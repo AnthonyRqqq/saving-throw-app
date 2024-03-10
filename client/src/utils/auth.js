@@ -29,7 +29,7 @@ class AuthService {
     // For getting the user token from localStorage
     getToken() {
         return localStorage.getItem('id_token');
-    }
+    };
 
     // For setting a user token on login in localStorage
     login(idToken) {
