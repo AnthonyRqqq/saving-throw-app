@@ -1,1 +1,3 @@
-<h1>LOGIN</h1>
+export default function Login() {
+    <h1>login</h1>
+    }

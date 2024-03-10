@@ -1,1 +1,3 @@
-<h1>WEATHER</h1>
+export default function WeatherSearch() {
+    <h1>WeatherSearch</h1>
+    }

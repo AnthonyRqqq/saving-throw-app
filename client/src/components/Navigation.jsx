@@ -38,7 +38,7 @@ export default function Navigation() {
                 {/* Link to weather search page */}
                 <li className='nav-item'>
                     <Link
-                    to='/weather-search'
+                    to='/weather/search'
                     className={`${currentPage === '/' ? 'nav-link active-link' : 'nav-link'} link-item`}
                     >Weather Search</Link>
                 </li>
