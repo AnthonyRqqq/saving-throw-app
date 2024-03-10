@@ -1,4 +1,4 @@
-const { Schema, model } = requre('mongoose');
+const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // User model
@@ -20,15 +20,17 @@ const userSchema = new Schema({
 });
 
 // For encrypting password
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function(next) {
     if(this.isNew || this.isModified('password')) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(this.password, saltRounds);
     };
+
+    next();
 });
 
 // For checking password
-userSchema.methods.isValidPassword = async (password) => {
+userSchema.methods.isValidPassword = async function(password) {
     return bcrypt.compare(password, this.password);
 };
 
