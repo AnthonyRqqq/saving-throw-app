@@ -10,6 +10,7 @@ db.once('open', async () => {
     // Clear previous seed data
     await cleanDB('User', 'users');
     await cleanDB('Location', 'locations');
+    await cleanDB('FantasyLocation', 'fantasylocations');
     
     // Created seeds
     const seededUsers = await User.create(userSeeds);

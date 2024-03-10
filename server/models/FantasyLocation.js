@@ -9,9 +9,10 @@ const fantasyLocationSchema = new Schema(
             maxLength: 120,
             unique: true
         },
-        locationLink: {
+        realLocation: {
             type: Schema.Types.ObjectId,
-            ref: 'Location'
+            ref: 'Location',
+            required: true
         }
     }
 );

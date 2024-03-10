@@ -29,10 +29,11 @@ const typeDefs = `
   type FantasyLocation {
     _id: ID
     name: String!
-    locationId: ID
+    realLocation: Location
   }
 
   type Query {
+    users: [User]
     locations: [Location]
     locationsByTags(tags: [String!]): [Location]
     fantasyLocations: [FantasyLocation]
@@ -44,9 +45,9 @@ const typeDefs = `
 
     addUser(email: String!, password: String!): Auth
 
-    addFantasyLocation(name: String!, locationId: ID): FantasyLocation
+    addFantasyLocation(name: String!, locationId: ID!): FantasyLocation
 
-    editFantasyLocation(fantasyLocationId: ID!, locationId: ID): FantasyLocation
+    editFantasyLocation(name: String!, locationId: ID): FantasyLocation
   }
 `
 
