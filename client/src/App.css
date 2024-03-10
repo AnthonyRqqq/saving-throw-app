@@ -27,8 +27,3 @@ h1 {
 .link-item:hover {
   color: #96875d
 }
-
-
-.main {
-  background-color: var(--background-color);
-}

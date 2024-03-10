@@ -1,3 +1,9 @@
 export default function Home() {
-<h1>HOME</h1>
+    return (
+        <div className='row home'>
+            <div className='d-flex justify-content-center home-subheader'>
+                <h4>Roll for initiative.</h4>
+            </div>
+        </div>
+    )
 }
