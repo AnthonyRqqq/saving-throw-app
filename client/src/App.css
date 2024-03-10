@@ -1,4 +1,34 @@
+:root {
+  --header-color: #253840;
+  --footer-color: #1A1C37;
+  --background-color: #E0E8F0;
+}
+
 * {
   box-sizing: border-box;
   font-family: American Typewriter, serif;
+}
+
+.header {
+  background-color: var(--header-color);
+  padding: .8%;
+}
+
+h1 {
+  color: #D9C589
+}
+
+/* Nav-link styling */
+.link-item,
+.link-item:focus {
+  color: #D9C589;
+}
+
+.link-item:hover {
+  color: #96875d
+}
+
+
+.main {
+  background-color: var(--background-color);
 }
