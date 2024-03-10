@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError } = require('../utils/auth');
-const { User, Location } = require('../models');
+const { User, Location, FantasyLocation } = require('../models');
 
 const resolvers = {
   Query: {
@@ -13,6 +13,24 @@ const resolvers = {
       } catch (err) {
         console.error('Error finding location by tags: ', err);
         throw new Error('Error finding location by tags');
+      }
+    },
+
+    fantasyLocations: async () => {
+      try {
+          return await FantasyLocation.find();
+      } catch (err) {
+        console.error('Error finding fantasy locations: ', err);
+        throw new Error('Error finding fantasy locations');
+      }
+    },
+
+    fantasyLocationByName: async (parent, { name }) => {
+      try {
+        return await FantasyLocation.find({ name });
+      } catch (err) {
+        console.error('Error finding fantasy location by name: ', err);
+        throw new Error('Error finding fantasy location by name');
       }
     }
   },
