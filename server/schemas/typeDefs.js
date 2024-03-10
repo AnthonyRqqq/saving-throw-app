@@ -28,7 +28,7 @@ const typeDefs = `
   # Type for fantasy locations
   type FantasyLocation {
     name: String!
-    locationLink: Location
+    locationId: ID
   }
 
   type Query {
@@ -43,9 +43,9 @@ const typeDefs = `
 
     addUser(email: String!, password: String!): Auth
 
-    addFantasyLocation(name: String!, locationLink: Location): FantasyLocation
+    addFantasyLocation(name: String!, locationId: ID): FantasyLocation
 
-    editFantasyLocation(name: String, locationLink: Location): FantasyLocation
+    editFantasyLocation(name: String, locationId: ID): FantasyLocation
   }
 `
 

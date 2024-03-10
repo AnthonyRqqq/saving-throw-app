@@ -6,7 +6,8 @@ const fantasyLocationSchema = new Schema(
             type: String,
             required: true,
             trim: true,
-            maxLength: 120
+            maxLength: 120,
+            unique: true
         },
         locationLink: {
             type: Schema.Types.ObjectId,
