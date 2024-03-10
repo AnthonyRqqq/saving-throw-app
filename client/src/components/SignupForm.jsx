@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { validateEmail } from '../utils/validateEmail';
-import { useHistory } from ('react-router-dom');
+import {  useNavigate } from 'react-router-dom';
 
 export default function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const history = useHistory();
+    const navigateTo = useNavigate();
 
     const handleInputChange = (e) => {
         const { target } = e;
-        const inputType = e.name;
-        const inputValue = e.value;
+        const inputType = target.name;
+        const inputValue = target.value;
 
         if (inputType === 'email') {
             setEmail(inputValue);
@@ -38,7 +38,7 @@ export default function SignupForm() {
         setPassword('');
 
         // Redirect to homepage
-        history.push('/');
+        navigateTo('/');
     };
 
     return (
