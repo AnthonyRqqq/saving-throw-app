@@ -1,0 +1,188 @@
+[
+    {
+        "name": "sahara",
+        "lat": 23.4162,
+        "lon": 25.6628,
+        "tags": ["desert", "dunes", "hot", "arid"]
+    },
+    {
+        "name": "antartica",
+        "lat": -82.8628,
+        "lon": 25.6628,
+        "tags": ["cold", "tundra", "windy", "snowy"]
+    },
+    {
+        "name": "amazon",
+        "lat": -3.4653,
+        "lon": 62.2159,
+        "tags": ["tropical", "jungle", "river", "rainy"]
+    },
+    {
+        "name": "sanDiego",
+        "lat": 32.7157,
+        "lon": -117.1611,
+        "tags": ["warm", "hot", "moderate", "coastal", "mountains"]
+    },
+    {
+        "name": "kodiakAlaska",
+        "lat": 57.7900,
+        "lon": -152.4072,
+        "tags": ["coastal", "mountains", "cold", "snowy"]
+    },
+    {
+        "name": "newYork",
+        "lat": 40.7128,
+        "lon": -74.0060,
+        "tags": ["cold", "marshes", "forest", "coastal", "windy"]
+    },
+    {
+        "name": "scotland",
+        "lat": 56.4907,
+        "lon": -4.2026,
+        "tags": ["coastal", "moderate", "windy"]
+    },
+    {
+        "name": "italy",
+        "lat": 41.8719,
+        "lon": 12.5674,
+        "tags": ["moderate", "coastal", "mountains"]
+    },
+    {
+        "name": "capeHorn",
+        "lat": -55.9833,
+        "lon": -67.2667,
+        "tags": ["coastal", "windy", "stormy"]
+    },
+    {
+        "name": "australia",
+        "lat": -25.2744,
+        "lon": 133.7751,
+        "tags": ["hot", "coastal", "plains", "tropical", "desert"]
+    },
+    {
+        "name": "newMexico",
+        "lat": 34.9727,
+        "lon": -105.0324,
+        "tags": ["desert", "dunes", "hot", "mountains"]
+    },
+    {
+        "name": "arizona",
+        "lat": 34.0489,
+        "lon": -111.0937,
+        "tags": ["plains", "desert", "hot", "arid"]
+    },
+    {
+        "name": "egypt",
+        "lat": 26.8206,
+        "lon": 30.8025,
+        "tags": ["hot", "desert", "dunes", "arid", "river"]
+    },
+    {
+        "name": "kansas",
+        "lat": 39.0119,
+        "lon": -98.4842,
+        "tags": ["plains", "moderate", "windy"]
+    },
+    {
+        "name": "greenland",
+        "lat": 71.7069,
+        "lon": -42.6043,
+        "tags": ["tundra", "mountains", "cold", "snowy"]
+    },
+    {
+        "name": "iceland",
+        "lat": 64.9631,
+        "lon": -19.0208,
+        "tags": ["cold", "coastal", "snowy", "windy"]
+    },
+    {
+        "name": "grandJunctionColorado",
+        "lat": 39.0639,
+        "lon": -108.5506,
+        "tags": ["mountains", "cold", "moderate"]
+    },
+    {
+        "name": "mountDenali",
+        "lat": 63.0692,
+        "lon": -151.0070,
+        "tags": ["mountains", "cold", "snowy"]
+    },
+    {
+        "name": "himalayas",
+        "lat": 28.5983,
+        "lon": 83.9310,
+        "tags": ["cold", "mountains", "snowy"]
+    },
+    {
+        "name": "kenderstegSwitzerland",
+        "lat": 46.4947,
+        "lon": 7.6744,
+        "tags": ["moderate", "mountains", "snowy"]
+    },
+    {
+        "name": "hawaii",
+        "lat": 20.7984,
+        "lon": -156.3319,
+        "tags": ["coastal", "tropcial", "rainy"]
+    },
+    {
+        "name": "sayulita",
+        "lat": 20.8688,
+        "lon": -105.4400,
+        "tags": ["coastal", "tropical", "jungle"]
+    },
+    {
+        "name": "tehran",
+        "lat": 35.6892,
+        "lon": 51.3890,
+        "tags": ["mountains", "arid", "moderate"]
+    },
+    {
+        "name": "bagdhad",
+        "lat": 33.3152,
+        "lon": 44.3661,
+        "tags": ["river", "arid", "hot"]
+    },
+    {
+        "name": "lasVegas",
+        "lat": 36.1699,
+        "lon": -115.1398,
+        "tags": ["desert", "hot", "dry"]
+    },
+    {
+        "name": "blackForestGermany",
+        "lat": 48.3957,
+        "lon": 8.0148,
+        "tags": ["forest", "mountains", "moderate"]
+    },
+    {
+        "name": "amsterdam",
+        "lat": 52.3676,
+        "lon": 4.9041,
+        "tags": ["coastal", "moderate", "windy"]
+    },
+    {
+        "name": "newZealand",
+        "lat": -40.9006,
+        "lon": 174.8860,
+        "tags": ["coastal", "mountains", "rainy"]
+    },
+    {
+        "name": "peru",
+        "lat": -12.0464,
+        "lon": -77.0428,
+        "tags": ["mountains", "coastal", "desert", "tropical"]
+    },
+    {
+        "name": "somalia",
+        "lat": 2.0469,
+        "lon": 45.3182,
+        "tags": ["coastal", "desert", "hot"]
+    },
+    {
+        "name": "vietnam",
+        "lat": 21.0285,
+        "lon": 105.8542,
+        "tags": ["coastal", "tropical", "rainy", "jungle"]
+    }
+]

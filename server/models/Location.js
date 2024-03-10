@@ -2,6 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const locationSchema = new Schema(
     {
+        name: {
+            type: String,
+            required: true,
+        },
         lat: {
             type: Number,
             required: true,
