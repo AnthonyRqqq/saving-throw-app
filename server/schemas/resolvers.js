@@ -3,7 +3,18 @@ const { User, Location } = require('../models');
 
 const resolvers = {
   Query: {
+    locations: async () => {
+      return await Location.find();
+    },
 
+    locationsByTags: async (parent, { tags }) => {
+      try {
+        return await Location.find({ tags: { $all: tags }});
+      } catch (err) {
+        console.error('Error finding location by tags: ', err);
+        throw new Error('Error finding location by tags');
+      }
+    }
   },
 
   Mutation: {
