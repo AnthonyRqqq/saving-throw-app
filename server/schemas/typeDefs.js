@@ -27,13 +27,14 @@ const typeDefs = `
 
   # Type for fantasy locations
   type FantasyLocation {
+    _id: ID
     name: String!
     locationId: ID
   }
 
   type Query {
     locations: [Location]
-    locationsByTags(tags: TagInput!): [Location]
+    locationsByTags(tags: [String!]): [Location]
     fantasyLocations: [FantasyLocation]
     fantasyLocationByName(name: String!): FantasyLocation
   }
@@ -45,7 +46,7 @@ const typeDefs = `
 
     addFantasyLocation(name: String!, locationId: ID): FantasyLocation
 
-    editFantasyLocation(name: String, locationId: ID): FantasyLocation
+    editFantasyLocation(fantasyLocationId: ID!, locationId: ID): FantasyLocation
   }
 `
 

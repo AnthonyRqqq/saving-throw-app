@@ -27,7 +27,7 @@ const resolvers = {
 
     fantasyLocationByName: async (parent, { name }) => {
       try {
-        return await FantasyLocation.find({ name });
+        return await FantasyLocation.findOne({ name: name });
       } catch (err) {
         console.error('Error finding fantasy location by name: ', err);
         throw new Error('Error finding fantasy location by name');
