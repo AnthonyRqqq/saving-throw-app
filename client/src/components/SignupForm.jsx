@@ -3,7 +3,7 @@ import { validateEmail } from '../utils/validateEmail';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-import { Auth } from '../utils/auth'
+import  Auth from '../utils/auth'
 
 
 export default function SignupForm() {
@@ -39,6 +39,7 @@ export default function SignupForm() {
         };
 
         try {
+            console.log(email, password)
             const response = await createUser({ email: email, password: password });
 
             if (response.error) {
@@ -48,7 +49,7 @@ export default function SignupForm() {
             const { token, user } = await response.data.createUser;
             console.log(user);
             Auth.login(token);
-            
+
         } catch (err) {
             console.error(err)
         }

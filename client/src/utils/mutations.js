@@ -30,7 +30,7 @@ export const ADD_USER = gql`
 export const CREATE_FANTASY_LOCATION = gql`
     mutation createFantasyLocation($name: String!, $locationId: ID!) {
         createFantasyLocation(name: $name, locationId: $locationId) {
-            fantasyLocations {
+            fantasyLocation {
                 _id
                 name
                 realLocation {
@@ -68,7 +68,7 @@ export const ADD_FANTASY_LOCATION = gql`
 
 // Execute remove fantasy location mutation for removing a linked fantasy location from a user
 export const REMOVE_FANTASY_LOCATION = gql`
-    mutation removeFantasyLocation($email: String!, fantasyLocationId: ID!) {
+    mutation removeFantasyLocation($email: String!, $fantasyLocationId: ID!) {
         removeFantasyLocation(email: $email, fantasyLocationId: $fantasyLocationId) {
             user {
                 _id

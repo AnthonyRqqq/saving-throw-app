@@ -1,4 +1,5 @@
-import decode from 'jwt-decode';
+import * as jwtDecode from 'jwt-decode';
+const decode = jwtDecode.default || jwtDecode;
 
 class AuthService {
     getUser() {
