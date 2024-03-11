@@ -11,6 +11,7 @@ export default function SignupForm() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+    // Define mutation
     const [createUser] = useMutation(ADD_USER);
 
     const navigateTo = useNavigate();
