@@ -29,7 +29,7 @@ const typeDefs = `
   type FantasyLocation {
     _id: ID
     name: String!
-    realLocation: Location
+    realLocation: Location!
   }
 
   type Query {
@@ -47,7 +47,7 @@ const typeDefs = `
 
     addFantasyLocation(name: String!, locationId: ID!): FantasyLocation
 
-    editFantasyLocation(name: String!, locationId: ID): FantasyLocation
+    editFantasyLocation(name: String, locationId: ID): FantasyLocation
   }
 `
 

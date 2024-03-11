@@ -77,7 +77,7 @@ const resolvers = {
 
     addFantasyLocation: async (parent, { name, locationId }) => {
       try {
-        return (await FantasyLocation.create({ name: name, locationLink: locationId })).populate('realLocation').execPopulate();
+        return (await FantasyLocation.create({ name: name, realLocation: locationId })).populate('realLocation');
       } catch (err) {
         console.error('Could not add fantasy location: ', err);
         throw new Error('Could not add fantasy location');
@@ -92,7 +92,7 @@ const resolvers = {
           },
           {
             $set: {
-              name: name, locationLink: locationId
+              name: name, realLocation: locationId
             }
           },
           {
