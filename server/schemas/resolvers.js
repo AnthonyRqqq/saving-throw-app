@@ -4,7 +4,7 @@ const { User, Location, FantasyLocation } = require('../models');
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find();
+      return await User.find().populate('fantasyLocations').populate('realLocation');
     },
 
     locations: async () => {
@@ -75,13 +75,32 @@ const resolvers = {
       };
     },
 
-    addFantasyLocation: async (parent, { name, locationId }) => {
+    createFantasyLocation: async (parent, { name, locationId }) => {
       try {
         return (await FantasyLocation.create({ name: name, realLocation: locationId })).populate('realLocation');
       } catch (err) {
-        console.error('Could not add fantasy location: ', err);
-        throw new Error('Could not add fantasy location');
+        console.error('Could not create fantasy location: ', err);
+        throw new Error('Could not create fantasy location');
       };
+    },
+
+    addFantasyLocation: async (parent, { email, fantasyLocationId}) => {
+      try {
+        return await User.findOneAndUpdate(
+          {
+            email: email
+          },
+          {
+            $addToSet: { fantasyLocations: fantasyLocationId }
+          },
+          {
+            new: true
+          }
+        ).populate('fantasyLocations');
+      } catch (err) {
+        console.error('Could not add fantasy location: ', err);
+        throw new Error('Could not add fantasy location.');
+      }
     },
 
     editFantasyLocation: async (parent, { name, locationId }) => {
@@ -98,11 +117,34 @@ const resolvers = {
           {
             new: true
           }
-        ).populate('realLocation');
+        ).populate('realLocation').populate('realLocation');
       } catch (err) {
         console.error('Could not edit fantasy location: ', err);
         throw new Error('Could not edit fantasy location');
       };
+    },
+
+    removeFantasyLocation: async (parent, { email, fantasyLocationId }) => {
+      try {
+         const updatedUser = await User.findOneAndUpdate(
+          {
+            email: email
+          },
+          {
+            $pull: { fantasyLocations: fantasyLocationId}
+          },
+          {
+            new: true
+          }
+        ).populate('fantasyLocations').populate('realLocation');
+
+        await FantasyLocation.deleteOne({ _id: fantasyLocationId });
+
+        return updatedUser
+      } catch (err) {
+        console.error('Could not remove fantasy location: '), err;
+        throw new Error('Could not remove fantasy location');
+      }
     }
   }
 };

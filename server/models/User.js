@@ -17,6 +17,15 @@ const userSchema = new Schema({
         maxLength: 50,
         minLength: 5
     },
+    fantasyLocations: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'FantasyLocation',
+        }
+    ],
+},
+{
+    strictPopulate: false
 });
 
 // For encrypting password

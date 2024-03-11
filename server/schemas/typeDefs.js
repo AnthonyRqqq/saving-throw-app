@@ -10,6 +10,7 @@ const typeDefs = `
   type User {
     _id: ID
     email: String!
+    fantasyLocations: [FantasyLocation]
   }
 
   # Type for locations used in weather API
@@ -45,7 +46,11 @@ const typeDefs = `
 
     addUser(email: String!, password: String!): Auth
 
-    addFantasyLocation(name: String!, locationId: ID!): FantasyLocation
+    createFantasyLocation(name: String!, locationId: ID!): FantasyLocation
+
+    addFantasyLocation(email: String!, fantasyLocationId: ID!): User
+
+    removeFantasyLocation(email: String!, fantasyLocationId: ID!): User
 
     editFantasyLocation(name: String, locationId: ID): FantasyLocation
   }
