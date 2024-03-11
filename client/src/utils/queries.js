@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 // Executing getting all locations
 export const GET_LOCATIONS = gql`
     query locations{
-        location{
+        locations{
             _id
             lat
             lon
@@ -27,7 +27,7 @@ export const GET_LOCATIONS_BY_TAGS = gql`
 // Executing getting all fantasy locations
 export const GET_FANTASY_LOCATIONS = gql`
     query fantasyLocations {
-        fantasylocation {
+        fantasyLocations {
             _id
             name
             realLocation {
@@ -43,7 +43,7 @@ export const GET_FANTASY_LOCATIONS = gql`
 // Executing getting fantasy location by name
 export const GET_FANTASY_LOCATION_BY_NAME = gql`
     query fantasyLocationByName($name: String!) {
-        fantasylocation(name: $name) {
+        fantasyLocationByName(name: $name) {
             _id
             name
             realLocation {
