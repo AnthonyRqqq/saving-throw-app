@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { validateEmail } from '../utils/validateEmail';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+import { Auth } from '../utils/auth'
+
 
 export default function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+
+    const [createUser] = useMutation(ADD_USER);
 
     const navigateTo = useNavigate();
 
@@ -21,7 +27,7 @@ export default function SignupForm() {
         };
     };
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
 
         // Prevents page refresh
         e.preventDefault();
@@ -31,6 +37,21 @@ export default function SignupForm() {
             setErrorMessage('Please enter a valid email address');
             return;
         };
+
+        try {
+            const response = await createUser({ email: email, password: password });
+
+            if (response.error) {
+                throw new Error('Something went wrong')
+            };
+
+            const { token, user } = await response.data.createUser;
+            console.log(user);
+            Auth.login(token);
+            
+        } catch (err) {
+            console.error(err)
+        }
 
         // Clear form fields and error message if complete
         setEmail('');
