@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import './App.css'
 
+// Creates instance of graphql endpoint
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache()
@@ -11,6 +12,7 @@ const client = new ApolloClient({
 
 export default function App() {
   return (
+    // ApolloProvider wrapper enables access to ApolloClient from anywhere in program
     <ApolloProvider client={client}>
       <>
         <header className='header'>
