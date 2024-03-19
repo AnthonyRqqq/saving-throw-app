@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { GET_LOCATIONS, GET_LOCATIONS_BY_TAGS, GET_FANTASY_LOCATIONS } from '../utils/queries';
@@ -14,13 +14,20 @@ export default function WeatherSearchForm() {
     const tagOptions = ['Desert', 'Dunes', 'Hot', 'Arid', 'Cold', 'Tundra', 'Windy', 'Snowy', 'Tropical', 'Jungle', 'River', 'Rainy', 'Warm', 'Moderate', 'Coastal', 'Mountains', 'Marshes', 'Forest', 'Windy', 'Stormy', 'Plains', 'River', 'Dry']
 
     // // Define queries
-    // const { allLocationData, allLocationLoading } = useQuery(GET_LOCATIONS);
+    const { loading: allLocationLoading, data: allLocationData } = useQuery(GET_LOCATIONS);
     // const { filteredLocationData, filteredLocationLoading } = useQuery(GET_LOCATIONS_BY_TAGS);
     // const { fantasyLocationData, fantasyLocationLoading } = useQuery(GET_FANTASY_LOCATIONS);
 
     // Define mutation
     const [createFantasyLocation] = useMutation(CREATE_FANTASY_LOCATION);
 
+    useEffect(() => {
+        if (!allLocationLoading && allLocationData) {
+            console.log(allLocationData)
+        }
+    }, [allLocationData, allLocationLoading])
+
+    // For setting up list of tags to filter locations by
     const handleTagSelect = async (e) => {
             console.log("HERE")
 
@@ -60,7 +67,7 @@ export default function WeatherSearchForm() {
             console.error(err);
             throw new Error('Could not create linked location.')
         }
-    }
+    };
 
     return (
         <div className='form-div'>

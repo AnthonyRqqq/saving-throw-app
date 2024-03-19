@@ -1,20 +1,18 @@
 import { Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 
 import './App.css'
 
-// Creates instance of graphql endpoint
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache()
-});
+})
 
 export default function App() {
   return (
     // ApolloProvider wrapper enables access to ApolloClient from anywhere in program
     <ApolloProvider client={client}>
-      <>
         <header className='header'>
           <h3>
             <Navigation />
@@ -24,7 +22,6 @@ export default function App() {
         <main className='main'>
           <Outlet />
         </main>
-      </>
     </ApolloProvider>
   )
 }

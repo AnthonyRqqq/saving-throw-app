@@ -16,7 +16,7 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
     await server.start();
 
-    app.use(express.urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
 
     // Important for MERN Setup: When our application runs from production, it functions slightly differently than in development
