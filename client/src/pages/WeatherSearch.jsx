@@ -1,3 +1,9 @@
+import WeatherSearchForm from '../components/WeatherSearchForm'
+
 export default function WeatherSearch() {
-    <h1>WeatherSearch</h1>
+    return (
+        <div>
+            <WeatherSearchForm />
+        </div>
+    )
     }
