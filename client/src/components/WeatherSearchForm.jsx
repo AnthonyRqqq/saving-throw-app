@@ -10,6 +10,7 @@ export default function WeatherSearchForm() {
     const [selectedTag, setSelectedTag] = useState('')
     const [filteredLocations, setFilteredLocations] = useState([]);
     const [fantasyLocationName, setFantasyLocationName] = useState('')
+    const [allLocations, setAllLocations] = useState([])
 
     const tagOptions = ['Desert', 'Dunes', 'Hot', 'Arid', 'Cold', 'Tundra', 'Windy', 'Snowy', 'Tropical', 'Jungle', 'River', 'Rainy', 'Warm', 'Moderate', 'Coastal', 'Mountains', 'Marshes', 'Forest', 'Windy', 'Stormy', 'Plains', 'River', 'Dry']
 
@@ -23,28 +24,29 @@ export default function WeatherSearchForm() {
 
     useEffect(() => {
         if (!allLocationLoading && allLocationData) {
-            console.log(allLocationData)
+            const locations = allLocationData.locations;
+            setAllLocations(locations);
+            console.log(allLocations)
         }
     }, [allLocationData, allLocationLoading])
 
     // For setting up list of tags to filter locations by
     const handleTagSelect = async (e) => {
-            console.log("HERE")
 
-            // Keeps search results limited to three
-            if (tags.length === 3) {
-                tags.shift();
-            }
+        // Keeps search results limited to three
+        if (tags.length === 3) {
+            tags.shift();
+        }
 
-            // Get the name of the tag and adds it to the tags array
-            const newTagsArray = [...tags, selectedTag];
+        // Get the name of the tag and adds it to the tags array
+        const newTagsArray = [...tags, selectedTag];
 
-            // Updates state
-            setTags(newTagsArray);
-            console.log(newTagsArray)
+        // Updates state
+        setTags(newTagsArray);
+        console.log(newTagsArray)
     };
 
-    const handleInputChange = (e) => {
+    const handleInputChange = async (e) => {
         const { target } = e;
         const inputType = target.name;
         const inputValue = target.value;
@@ -52,7 +54,9 @@ export default function WeatherSearchForm() {
         if (inputType === 'fantasyLocationName') {
             setFantasyLocationName(inputValue);
         } else if (inputType === 'tagSelect') {
-            setSelectedTag(inputValue)
+            await setSelectedTag(inputValue);
+            await setFilteredLocations([]);
+            await locationFilter();
         }
     };
 
@@ -68,6 +72,24 @@ export default function WeatherSearchForm() {
             throw new Error('Could not create linked location.')
         }
     };
+
+    // Filters locations based on selected tags at tag change
+    const locationFilter = async () => {
+        if (allLocations) {
+            const matchingLocations = [];
+
+            for (const location of allLocations) {
+                if (tags.every(value => location.tags.includes(value))) {
+                    matchingLocations.push(location);
+                }
+            }
+
+            // Update filteredLocations with new matching locations
+            setFilteredLocations(matchingLocations);
+            console.log(matchingLocations);
+        }
+    };
+
 
     return (
         <div className='form-div'>
@@ -91,14 +113,14 @@ export default function WeatherSearchForm() {
                 <div className='row justify-content-center'>
                     {/* Div to separate span onto own line */}
                     <div className='row justify-content-center'>
-                    <span className='row justify-content-center'>Select your tags. (Max of 3)</span>
+                        <span className='row justify-content-center'>Select your tags. (Max of 3)</span>
                     </div>
 
                     {/* Dropdown of tag options */}
                     <select className='col-1' name='tagSelect' onChange={handleInputChange}>
-                        <option value='' disabled selected style={{ textAlign: 'center'}}></option>
+                        <option value='' disabled selected style={{ textAlign: 'center' }}></option>
                         {tagOptions.map((tag, index) => (
-                            <option className='tagSelect' key={index} value={tag} style={{ textAlign: 'center'}}>{tag}</option>
+                            <option className='tagSelect' key={index} value={tag} style={{ textAlign: 'center' }}>{tag}</option>
                         ))};
                     </select>
 
@@ -109,9 +131,9 @@ export default function WeatherSearchForm() {
 
                     {/* Displays selected tags, max of three */}
                     <div className='row justify-content-center'>
-                        <ul className='col-1' style={{ listStyle: 'none', padding: '0'}}>
+                        <ul className='col-1' style={{ listStyle: 'none', padding: '0' }}>
                             {tags.map((tag, index) => (
-                                <li style={{ textAlign: 'center', listStyle: 'none', display: 'inline-block', marginRight: '5px'}}>{tag}</li>
+                                <li style={{ textAlign: 'center', listStyle: 'none', display: 'inline-block', marginRight: '5px' }}>{tag}</li>
                             ))}
                         </ul>
                     </div>

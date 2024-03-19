@@ -5,6 +5,7 @@ export const GET_LOCATIONS = gql`
     query locations{
         locations{
             _id
+            name
             lat
             lon
             tags
@@ -17,6 +18,7 @@ export const GET_LOCATIONS_BY_TAGS = gql`
     query locationsByTags($tags: [String!]) {
         location(tags: $tags) {
             _id
+            name
             lat
             lon
             tags

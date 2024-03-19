@@ -16,6 +16,7 @@ const typeDefs = `
   # Type for locations used in weather API
   type Location {
     _id: ID
+    name: String
     lat: Float!
     lon: Float!
     tags: [String!]
