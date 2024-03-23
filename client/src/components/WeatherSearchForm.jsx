@@ -9,8 +9,9 @@ export default function WeatherSearchForm() {
     const [tags, setTags] = useState([]);
     const [selectedTag, setSelectedTag] = useState('')
     const [filteredLocations, setFilteredLocations] = useState([]);
-    const [fantasyLocationName, setFantasyLocationName] = useState('')
-    const [allLocations, setAllLocations] = useState([])
+    const [fantasyLocationName, setFantasyLocationName] = useState('');
+    const [allLocations, setAllLocations] = useState([]);
+    const [tagLimit, setTagLimit] = useState(false);
 
     const tagOptions = ['Desert', 'Dunes', 'Hot', 'Arid', 'Cold', 'Tundra', 'Windy', 'Snowy', 'Tropical', 'Jungle', 'River', 'Rainy', 'Warm', 'Moderate', 'Coastal', 'Mountains', 'Marshes', 'Forest', 'Windy', 'Stormy', 'Plains', 'River', 'Dry']
 
@@ -33,9 +34,10 @@ export default function WeatherSearchForm() {
     // For setting up list of tags to filter locations by
     const handleTagSelect = async (e) => {
 
-        // Keeps search results limited to three
+        // Keeps search results limited to three, sets tag limit to display error message
         if (tags.length === 3) {
-            tags.shift();
+            setTagLimit(true);
+            return;
         }
 
         // Get the name of the tag and adds it to the tags array
@@ -90,6 +92,17 @@ export default function WeatherSearchForm() {
         }
     };
 
+    // For deleting tags from list
+    const handleDeleteTag = async (index) => {
+        const updatedTags = [...tags];
+        updatedTags.splice(index, 1);
+        setTags(updatedTags);
+
+        // Resets tag limit to erase error message
+        if (tagLimit) {
+            setTagLimit(false);
+        };
+    }
 
     return (
         <div className='form-div'>
@@ -127,13 +140,19 @@ export default function WeatherSearchForm() {
                     {/* Button for adding tags to the search array */}
                     <div className='row justify-content-center'>
                         <button className='col-1 mt-2 tagBtn' onClick={handleTagSelect}>Add Tag</button>
+                        {tagLimit && (
+                            <p>No more than three tags possible.</p>
+                        )}
                     </div>
 
                     {/* Displays selected tags, max of three */}
                     <div className='row justify-content-center'>
                         <ul className='col-1' style={{ listStyle: 'none', padding: '0' }}>
                             {tags.map((tag, index) => (
-                                <li style={{ textAlign: 'center', listStyle: 'none', display: 'inline-block', marginRight: '5px' }}>{tag}</li>
+                                <li style={{ textAlign: 'center', listStyle: 'none', display: 'inline-block', marginRight: '5px' }} key={index}>{tag}
+                                <button onClick={() => handleDeleteTag(index)}>X</button>
+                                </li>
+                                
                             ))}
                         </ul>
                     </div>
