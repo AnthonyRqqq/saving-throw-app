@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
-import { GET_LOCATIONS, GET_LOCATIONS_BY_TAGS, GET_FANTASY_LOCATIONS } from '../utils/queries';
+import { GET_LOCATIONS } from '../utils/queries';
 import { CREATE_FANTASY_LOCATION } from '../utils/mutations';
 
 export default function WeatherSearchForm() {
@@ -10,6 +10,7 @@ export default function WeatherSearchForm() {
     const [selectedTag, setSelectedTag] = useState('');
     const [tagLimit, setTagLimit] = useState(false);
     const [filteredLocations, setFilteredLocations] = useState([]);
+    const [filtered, setFiltered] = useState(false)
     const [fantasyLocationName, setFantasyLocationName] = useState('');
     const [allLocations, setAllLocations] = useState([]);
 
@@ -17,8 +18,6 @@ export default function WeatherSearchForm() {
 
     // // Define queries
     const { loading: allLocationLoading, data: allLocationData } = useQuery(GET_LOCATIONS);
-    // const { filteredLocationData, filteredLocationLoading } = useQuery(GET_LOCATIONS_BY_TAGS);
-    // const { fantasyLocationData, fantasyLocationLoading } = useQuery(GET_FANTASY_LOCATIONS);
 
     // Define mutation
     const [createFantasyLocation] = useMutation(CREATE_FANTASY_LOCATION);
@@ -27,12 +26,18 @@ export default function WeatherSearchForm() {
         if (!allLocationLoading && allLocationData) {
             const locations = allLocationData.locations;
             setAllLocations(locations);
-            console.log(allLocations)
         }
-    }, [allLocationData, allLocationLoading])
+
+        if (tags) {
+            console.log(tags)
+            setFilteredLocations([]);
+            locationFilter();
+        }
+
+    }, [allLocationData, allLocationLoading, tags])
 
     // For setting up list of tags to filter locations by
-    const handleTagSelect = async (e) => {
+    const handleTagSelect = async () => {
 
         // Keeps search results limited to three, sets tag limit to display error message
         if (tags.length === 3) {
@@ -42,10 +47,10 @@ export default function WeatherSearchForm() {
 
         // Get the name of the tag and adds it to the tags array
         const newTagsArray = [...tags, selectedTag];
-
+        console.log(selectedTag)
+        console.log(newTagsArray)
         // Updates state
         setTags(newTagsArray);
-        console.log(newTagsArray)
     };
 
     // For deleting tags from list
@@ -68,9 +73,7 @@ export default function WeatherSearchForm() {
         if (inputType === 'fantasyLocationName') {
             setFantasyLocationName(inputValue);
         } else if (inputType === 'tagSelect') {
-            await setSelectedTag(inputValue);
-            await setFilteredLocations([]);
-            await locationFilter();
+            setSelectedTag(inputValue);
         }
     };
 
@@ -92,17 +95,24 @@ export default function WeatherSearchForm() {
         if (allLocations) {
             const matchingLocations = [];
 
+            // Convert tags to lowercase
+            const lowercaseTags = tags.map(tag => tag.toLowerCase());
+
             for (const location of allLocations) {
-                if (tags.every(value => location.tags.includes(value))) {
+                // Convert location tags to lowercase
+                const lowercaseLocationTags = location.tags.map(tag => tag.toLowerCase());
+
+                // Check if all lowercase tags are included in lowercase location tags
+                if (lowercaseTags.every(tag => lowercaseLocationTags.includes(tag))) {
                     matchingLocations.push(location);
                 }
             }
 
             // Update filteredLocations with new matching locations
             setFilteredLocations(matchingLocations);
-            console.log(matchingLocations);
         }
     };
+
 
     return (
         <div className='form-div'>
@@ -157,6 +167,17 @@ export default function WeatherSearchForm() {
                             ))}
                         </ul>
                     </div>
+                </div>
+
+                <div className='row justify-content-center'>
+                    <ul>
+                        {filteredLocations.length !== allLocations.length && (
+                            filteredLocations.map((location, index) => {
+                                return (
+                                <li key={index}>{location.name}</li>
+                            )})
+                        )}
+                    </ul>
                 </div>
 
             </form>
