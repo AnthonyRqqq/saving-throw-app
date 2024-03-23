@@ -5,13 +5,13 @@ import { GET_LOCATIONS, GET_LOCATIONS_BY_TAGS, GET_FANTASY_LOCATIONS } from '../
 import { CREATE_FANTASY_LOCATION } from '../utils/mutations';
 
 export default function WeatherSearchForm() {
-    // Set up arrays using state to dynamically update available locations
+
     const [tags, setTags] = useState([]);
-    const [selectedTag, setSelectedTag] = useState('')
+    const [selectedTag, setSelectedTag] = useState('');
+    const [tagLimit, setTagLimit] = useState(false);
     const [filteredLocations, setFilteredLocations] = useState([]);
     const [fantasyLocationName, setFantasyLocationName] = useState('');
     const [allLocations, setAllLocations] = useState([]);
-    const [tagLimit, setTagLimit] = useState(false);
 
     const tagOptions = ['Desert', 'Dunes', 'Hot', 'Arid', 'Cold', 'Tundra', 'Windy', 'Snowy', 'Tropical', 'Jungle', 'River', 'Rainy', 'Warm', 'Moderate', 'Coastal', 'Mountains', 'Marshes', 'Forest', 'Windy', 'Stormy', 'Plains', 'River', 'Dry']
 
@@ -47,6 +47,18 @@ export default function WeatherSearchForm() {
         setTags(newTagsArray);
         console.log(newTagsArray)
     };
+
+    // For deleting tags from list
+    const handleDeleteTag = async (index) => {
+        const updatedTags = [...tags];
+        updatedTags.splice(index, 1);
+        setTags(updatedTags);
+
+        // Resets tag limit to erase error message
+        if (tagLimit) {
+            setTagLimit(false);
+        };
+    }
 
     const handleInputChange = async (e) => {
         const { target } = e;
@@ -92,18 +104,6 @@ export default function WeatherSearchForm() {
         }
     };
 
-    // For deleting tags from list
-    const handleDeleteTag = async (index) => {
-        const updatedTags = [...tags];
-        updatedTags.splice(index, 1);
-        setTags(updatedTags);
-
-        // Resets tag limit to erase error message
-        if (tagLimit) {
-            setTagLimit(false);
-        };
-    }
-
     return (
         <div className='form-div'>
             <h3 className='row justify-content-center'>Weather Search</h3>
@@ -140,6 +140,7 @@ export default function WeatherSearchForm() {
                     {/* Button for adding tags to the search array */}
                     <div className='row justify-content-center'>
                         <button className='col-1 mt-2 tagBtn' onClick={handleTagSelect}>Add Tag</button>
+                        {/* Displays error when too many tags are selected */}
                         {tagLimit && (
                             <p>No more than three tags possible.</p>
                         )}
@@ -150,9 +151,9 @@ export default function WeatherSearchForm() {
                         <ul className='col-1' style={{ listStyle: 'none', padding: '0' }}>
                             {tags.map((tag, index) => (
                                 <li style={{ textAlign: 'center', listStyle: 'none', display: 'inline-block', marginRight: '5px' }} key={index}>{tag}
-                                <button onClick={() => handleDeleteTag(index)}>X</button>
+                                    <button onClick={() => handleDeleteTag(index)}>X</button>
                                 </li>
-                                
+
                             ))}
                         </ul>
                     </div>
