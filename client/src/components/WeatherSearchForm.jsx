@@ -88,11 +88,14 @@ export default function WeatherSearchForm() {
         const updatedTags = [...tags];
         updatedTags.splice(index, 1);
         setTags(updatedTags);
+        
 
         // Resets tag limit to erase error message
         if (tagLimit) {
             setTagLimit(false);
         };
+
+        handleLocationSelect();
     }
 
     const handleInputChange = async (e) => {
@@ -144,24 +147,15 @@ export default function WeatherSearchForm() {
     };
 
     const handleLocationSelect = async (e) => {
+        if (e === undefined) {
+            setSelectedLocation('');
+            setSelectedLocationName('');
+            return;
+        }
         const { target } = e;
         setSelectedLocation(target.value);
         setSelectedLocationName(target.textContent);
 
-    }
-
-    const handleFocus = async (e) => {
-        e.preventDefault()
-        const { target } = e;
-        target.style.backgroundColor = 'blue';
-        target.style.color = 'white';
-    }
-
-    const handleBlur = async (e) => {
-        e.preventDefault();
-        const { target } = e;
-        target.style.backgroundColor = 'white';
-        target.style.color = 'black';
     }
 
     return (
