@@ -30,6 +30,10 @@ const startApolloServer = async () => {
         });
     };
 
+    app.get('/weather-api-key', (req, res) => {
+        res.json({ apiKey: process.env.WEATHER_API_KEY})
+    })
+
     // Important for MERN Setup: Any client-side requests that begin with '/graphql' will be handled by our Apollo Server
     app.use('/graphql', expressMiddleware(server));
 
