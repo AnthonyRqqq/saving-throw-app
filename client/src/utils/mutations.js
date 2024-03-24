@@ -28,21 +28,20 @@ export const ADD_USER = gql`
 
 // Execute create fantasy location mutation
 export const CREATE_FANTASY_LOCATION = gql`
-    mutation createFantasyLocation($name: String!, $locationId: ID!) {
-        createFantasyLocation(name: $name, locationId: $locationId) {
-            fantasyLocation {
+    mutation createFantasyLocation($name: String!, $realLocation: ID!) {
+        createFantasyLocation(name: $name, realLocation: $realLocation) {
+            _id
+            name
+            realLocation {
                 _id
-                name
-                realLocation {
-                    _id
-                    lat
-                    lon
-                    tags
-                }
+                lat
+                lon
+                tags
             }
         }
     }
-`
+`;
+
 
 // Execute add fantasy location mutation for linking a new fantasy location to a user
 export const ADD_FANTASY_LOCATION = gql`

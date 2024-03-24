@@ -75,9 +75,9 @@ const resolvers = {
       };
     },
 
-    createFantasyLocation: async (parent, { name, locationId }) => {
+    createFantasyLocation: async (parent, { name, realLocation }) => {
       try {
-        return (await FantasyLocation.create({ name: name, realLocation: locationId })).populate('realLocation');
+        return (await FantasyLocation.create({ name: name, realLocation: realLocation })).populate('realLocation');
       } catch (err) {
         console.error('Could not create fantasy location: ', err);
         throw new Error('Could not create fantasy location');

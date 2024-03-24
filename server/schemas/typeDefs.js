@@ -47,7 +47,7 @@ const typeDefs = `
 
     addUser(email: String!, password: String!): Auth
 
-    createFantasyLocation(name: String!, locationId: ID!): FantasyLocation
+    createFantasyLocation(name: String!, realLocation: ID!): FantasyLocation
 
     addFantasyLocation(email: String!, fantasyLocationId: ID!): User
 

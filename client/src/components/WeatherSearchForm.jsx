@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
+import { empty, useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { GET_LOCATIONS } from '../utils/queries';
 import { CREATE_FANTASY_LOCATION } from '../utils/mutations';
@@ -10,9 +10,9 @@ export default function WeatherSearchForm() {
     const [selectedTag, setSelectedTag] = useState('');
     const [tagLimit, setTagLimit] = useState(false);
     const [filteredLocations, setFilteredLocations] = useState([]);
-    const [filtered, setFiltered] = useState(false)
     const [fantasyLocationName, setFantasyLocationName] = useState('');
     const [allLocations, setAllLocations] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState('')
 
     const tagOptions = ['Desert', 'Dunes', 'Hot', 'Arid', 'Cold', 'Tundra', 'Windy', 'Snowy', 'Tropical', 'Jungle', 'River', 'Rainy', 'Warm', 'Moderate', 'Coastal', 'Mountains', 'Marshes', 'Forest', 'Windy', 'Stormy', 'Plains', 'River', 'Dry']
 
@@ -23,18 +23,39 @@ export default function WeatherSearchForm() {
     const [createFantasyLocation] = useMutation(CREATE_FANTASY_LOCATION);
 
     useEffect(() => {
+        // Defines location data when loaded
         if (!allLocationLoading && allLocationData) {
             const locations = allLocationData.locations;
             setAllLocations(locations);
         }
 
+        // Resets filtered locations when tags are selected or deleted
         if (tags) {
-            console.log(tags)
-            setFilteredLocations([]);
             locationFilter();
         }
 
-    }, [allLocationData, allLocationLoading, tags])
+        if (fantasyLocationName && selectedLocation) {
+            console.log(fantasyLocationName, selectedLocation)
+            handleFantasyLocationCreation(fantasyLocationName, selectedLocation);
+
+        }
+
+    }, [allLocationData, allLocationLoading, tags, fantasyLocationName, selectedLocation])
+
+    const handleFantasyLocationCreation = async (fantasyLocationName, selectedLocation) => {
+        try {
+            const response = await createFantasyLocation({
+                variables: {
+                    name: fantasyLocationName,
+                    realLocation: selectedLocation
+                }
+            });
+
+            console.log('Fantasy location created: ', response.data);
+        } catch (err) {
+            console.error('Error creating fantasy location: ', err)
+        }
+    }
 
     // For setting up list of tags to filter locations by
     const handleTagSelect = async () => {
@@ -45,10 +66,14 @@ export default function WeatherSearchForm() {
             return;
         }
 
+        // Keeps duplicate tags from being added
+        if (tags.includes(selectedTag)) {
+            return;
+        }
+
         // Get the name of the tag and adds it to the tags array
         const newTagsArray = [...tags, selectedTag];
-        console.log(selectedTag)
-        console.log(newTagsArray)
+
         // Updates state
         setTags(newTagsArray);
     };
@@ -106,13 +131,32 @@ export default function WeatherSearchForm() {
                 if (lowercaseTags.every(tag => lowercaseLocationTags.includes(tag))) {
                     matchingLocations.push(location);
                 }
-            }
+            };
 
             // Update filteredLocations with new matching locations
             setFilteredLocations(matchingLocations);
         }
     };
 
+    const handleLocationSelect = async (e) => {
+        const { target } = e;
+        setSelectedLocation(target.value)
+
+    }
+
+    const handleFocus = async (e) => {
+        e.preventDefault()
+        const { target } = e;
+        target.style.backgroundColor = 'blue'
+        target.style.color = 'white'
+    }
+
+    const handleBlur = async (e) => {
+        e.preventDefault();
+        const { target } = e;
+        target.style.backgroundColor = 'white'
+        target.style.color = 'black'
+    }
 
     return (
         <div className='form-div'>
@@ -174,8 +218,9 @@ export default function WeatherSearchForm() {
                         {filteredLocations.length !== allLocations.length && (
                             filteredLocations.map((location, index) => {
                                 return (
-                                <li key={index}>{location.name}</li>
-                            )})
+                                    <li key={index}><button onClick={handleLocationSelect} onFocus={handleFocus} onBlur={handleBlur} value={location._id}>{location.name}</button></li>
+                                )
+                            })
                         )}
                     </ul>
                 </div>
