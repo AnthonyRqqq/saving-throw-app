@@ -1,0 +1,34 @@
+.form-div {
+    background-color: #5896B6;
+}
+
+h3 {
+    color: #ecd695;
+    padding: 1%;
+}
+
+button {
+    background-color: #253840;
+    color: #D9C589;
+    margin: 2%;
+}
+
+button:hover {
+    background-color: #436370;
+}
+
+.locationBtn:focus {
+    background-color: #436370;   
+}
+
+.locationBtn {
+    margin: 0, 5%
+}
+
+p {
+    font-size: large;
+}
+
+.tagBtn {
+    margin-bottom: 1%;
+}

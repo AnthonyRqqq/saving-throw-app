@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { empty, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { GET_LOCATIONS } from '../utils/queries';
 import { CREATE_FANTASY_LOCATION } from '../utils/mutations';
+import './WeatherSearchForm.css'
 
 export default function WeatherSearchForm() {
 
@@ -13,6 +14,7 @@ export default function WeatherSearchForm() {
     const [fantasyLocationName, setFantasyLocationName] = useState('');
     const [allLocations, setAllLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState('')
+    const [selectedLocationName, setSelectedLocationName] = useState('')
 
     const tagOptions = ['Desert', 'Dunes', 'Hot', 'Arid', 'Cold', 'Tundra', 'Windy', 'Snowy', 'Tropical', 'Jungle', 'River', 'Rainy', 'Warm', 'Moderate', 'Coastal', 'Mountains', 'Marshes', 'Forest', 'Windy', 'Stormy', 'Plains', 'River', 'Dry']
 
@@ -36,13 +38,16 @@ export default function WeatherSearchForm() {
 
         if (fantasyLocationName && selectedLocation) {
             console.log(fantasyLocationName, selectedLocation)
-            handleFantasyLocationCreation(fantasyLocationName, selectedLocation);
-
         }
 
     }, [allLocationData, allLocationLoading, tags, fantasyLocationName, selectedLocation])
 
-    const handleFantasyLocationCreation = async (fantasyLocationName, selectedLocation) => {
+    const handleFantasyLocationCreation = async () => {
+
+        if (fantasyLocationName === '') {
+            return;
+        };
+
         try {
             const response = await createFantasyLocation({
                 variables: {
@@ -60,14 +65,14 @@ export default function WeatherSearchForm() {
     // For setting up list of tags to filter locations by
     const handleTagSelect = async () => {
 
-        // Keeps search results limited to three, sets tag limit to display error message
-        if (tags.length === 3) {
-            setTagLimit(true);
+        // Keeps duplicate tags from being added
+        if (tags.includes(selectedTag)) {
             return;
         }
 
-        // Keeps duplicate tags from being added
-        if (tags.includes(selectedTag)) {
+        // Keeps search results limited to three, sets tag limit to display error message
+        if (tags.length === 3) {
+            setTagLimit(true);
             return;
         }
 
@@ -140,22 +145,23 @@ export default function WeatherSearchForm() {
 
     const handleLocationSelect = async (e) => {
         const { target } = e;
-        setSelectedLocation(target.value)
+        setSelectedLocation(target.value);
+        setSelectedLocationName(target.textContent);
 
     }
 
     const handleFocus = async (e) => {
         e.preventDefault()
         const { target } = e;
-        target.style.backgroundColor = 'blue'
-        target.style.color = 'white'
+        target.style.backgroundColor = 'blue';
+        target.style.color = 'white';
     }
 
     const handleBlur = async (e) => {
         e.preventDefault();
         const { target } = e;
-        target.style.backgroundColor = 'white'
-        target.style.color = 'black'
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
     }
 
     return (
@@ -172,7 +178,6 @@ export default function WeatherSearchForm() {
                         onChange={handleInputChange}
                         type='text'
                         placeholder='Fantasy Location Name'
-                        required
                     />
                 </div>
 
@@ -180,7 +185,7 @@ export default function WeatherSearchForm() {
                 <div className='row justify-content-center'>
                     {/* Div to separate span onto own line */}
                     <div className='row justify-content-center'>
-                        <span className='row justify-content-center'>Select your tags. (Max of 3)</span>
+                        <p className='row justify-content-center mt-2'>Select your tags. (Max of 3)</p>
                     </div>
 
                     {/* Dropdown of tag options */}
@@ -196,37 +201,49 @@ export default function WeatherSearchForm() {
                         <button className='col-1 mt-2 tagBtn' onClick={handleTagSelect}>Add Tag</button>
                         {/* Displays error when too many tags are selected */}
                         {tagLimit && (
-                            <p>No more than three tags possible.</p>
+                            <p className='row justify-content-center'>No more than three tags possible.</p>
                         )}
                     </div>
 
                     {/* Displays selected tags, max of three */}
-                    <div className='row justify-content-center'>
-                        <ul className='col-1' style={{ listStyle: 'none', padding: '0' }}>
-                            {tags.map((tag, index) => (
-                                <li style={{ textAlign: 'center', listStyle: 'none', display: 'inline-block', marginRight: '5px' }} key={index}>{tag}
-                                    <button onClick={() => handleDeleteTag(index)}>X</button>
-                                </li>
+                    <div className='container'>
+                        <div className='row justify-content-center'>
+                            <ul className='list-unstyled d-flex justify-content-center'>
+                                {tags.map((tag, index) => (
+                                    <li key={index} className='mx-2'>
+                                        <button onClick={() => handleDeleteTag(index)}>{tag}</button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-                            ))}
+                <div className='container'>
+                    <div className='row justify-content-center'>
+                        <ul className='list-unstyled d-flex justify-content-center'>
+                            {filteredLocations.length !== allLocations.length && (
+                                filteredLocations.map((location, index) => {
+                                    return (
+                                        <li className='mx-2' key={index}><button className='locationBtn' onClick={handleLocationSelect} value={location._id}>{location.name}</button></li>
+                                    )
+                                })
+                            )}
                         </ul>
                     </div>
                 </div>
 
-                <div className='row justify-content-center'>
-                    <ul>
-                        {filteredLocations.length !== allLocations.length && (
-                            filteredLocations.map((location, index) => {
-                                return (
-                                    <li key={index}><button onClick={handleLocationSelect} onFocus={handleFocus} onBlur={handleBlur} value={location._id}>{location.name}</button></li>
-                                )
-                            })
-                        )}
-                    </ul>
-                </div>
+                {selectedLocation && (
+                    <div className='row justify-content-center'>
+                        <p className='row justify-content-center'>Selected Location: {selectedLocationName}</p>
+                    </div>
+                )}
 
+
+                <div className='row justify-content-center'>
+                    <button className='row justify-content-center col-1' onClick={handleFantasyLocationCreation}>Submit</button>
+                </div>
             </form>
         </div>
     )
-
-}
+};
