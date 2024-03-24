@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
-import { GET_LOCATIONS } from '../utils/queries';
-import { CREATE_FANTASY_LOCATION } from '../utils/mutations';
+import { GET_LOCATIONS } from '../../utils/queries';
+import { CREATE_FANTASY_LOCATION } from '../../utils/mutations';
 import './WeatherSearchForm.css'
 
 export default function WeatherSearchForm() {

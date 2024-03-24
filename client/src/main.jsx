@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import WeatherSearch from './pages/WeatherSearch';
+import WeatherDisplay from './pages/WeatherDisplay.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/weather/search',
         element: <WeatherSearch />,
+      },
+      {
+        path: '/weather/display',
+        element: <WeatherDisplay />
       },
     ]
   }

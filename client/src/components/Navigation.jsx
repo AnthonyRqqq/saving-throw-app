@@ -42,6 +42,13 @@ export default function Navigation() {
                     className={`${currentPage === '/' ? 'nav-link active-link' : 'nav-link'} link-item`}
                     >Weather Search</Link>
                 </li>
+
+                <li className='nav-item'>
+                <Link
+                to='/weather/display'
+                className={`${currentPage === '/' ? 'nav-link active-link' : 'nav-link'} link-item`}
+                >Weather Display</Link>
+                </li>
             </ul>
         </div>
     )
