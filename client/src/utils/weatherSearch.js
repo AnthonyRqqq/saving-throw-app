@@ -1,9 +1,16 @@
+import axios from 'axios'
+
 const weatherSearch = async (lat, lon) => {
 
-    const requestCurrentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=91e1ab2853251b69b38a1c4b07c71d3c`
+    const response = await axios.get('http://localhost:3001/api/env-variable');
+    console.log(response)
+    const weatherKey = await response.data.envVariable;
+    console.log(weatherKey)
 
-    const response = await fetch(requestCurrentWeatherUrl);
-    const data = await response.json();
+    const requestCurrentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${weatherKey}`
+
+    const weatherResponse = await fetch(requestCurrentWeatherUrl);
+    const data = await weatherResponse.json();
 
     console.log(data);
     return data;
