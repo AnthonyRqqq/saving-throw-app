@@ -34,6 +34,7 @@ export const GET_FANTASY_LOCATIONS = gql`
             name
             realLocation {
                 _id
+                name
                 lat
                 lon
                 tags

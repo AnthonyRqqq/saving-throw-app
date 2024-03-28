@@ -18,7 +18,7 @@ export default function WeatherDisplayComponent() {
             const lat = fantasyLocationData[0].realLocation.lat;
             const lon = fantasyLocationData[0].realLocation.lon;
 
-            weatherSearch(lat, lon);
+            // weatherSearch(lat, lon);
 
         }
     }, [data, loading])
