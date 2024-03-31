@@ -10,7 +10,7 @@ db.once('open', async () => {
     // Clear previous seed data
     await cleanDB('User', 'users');
     await cleanDB('Location', 'locations');
-    // await cleanDB('FantasyLocation', 'fantasylocations');
+    await cleanDB('FantasyLocation', 'fantasylocations');
     
     // Created seeds
     const seededUsers = await User.create(userSeeds);
@@ -20,7 +20,7 @@ db.once('open', async () => {
     console.log('all done!');
     console.log(seededUsers);
     console.log(seededLocations);
-    console.log(seededFantasyLocations);
+    // console.log(seededFantasyLocations);
     process.exit(0);
   } catch (err) {
     throw err;
