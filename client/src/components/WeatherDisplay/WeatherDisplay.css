@@ -2,3 +2,12 @@
     cursor: pointer;
     color: grey;
 }
+
+.fantasyLocationName {
+    font-size: xx-large;
+}
+
+.realLocationName {
+    font-size: medium;
+    color: grey;
+}

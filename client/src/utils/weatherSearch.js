@@ -12,8 +12,6 @@ const weatherSearch = async (lat, lon) => {
 
     const weatherResponse = await fetch(requestCurrentWeatherUrl);
     const data = await weatherResponse.json();
-
-    console.log(data);
     return data;
 };
 
