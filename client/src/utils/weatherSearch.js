@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 const weatherSearch = async (lat, lon) => {
 
     const response = await axios.get('http://localhost:3001/api/env-variable');

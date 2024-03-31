@@ -1,26 +1,45 @@
 import { useQuery } from "@apollo/client";
 import { GET_FANTASY_LOCATIONS } from "../../utils/queries";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 
 export default function WeatherDisplayComponent() {
 
+    const [fantasyLocations, setFantasyLocations] = useState([]);
+
     const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
 
     useEffect(() => {
-        console.log(loading)
+
         console.log(data)
         if (data && !loading) {
             const fantasyLocationData = data.fantasyLocations;
-
-            console.log(fantasyLocationData)
-            console.log(fantasyLocationData[0].realLocation.lat, fantasyLocationData[0].realLocation.lon)
-            const lat = fantasyLocationData[0].realLocation.lat;
-            const lon = fantasyLocationData[0].realLocation.lon;
+            setFantasyLocations(fantasyLocationData);
+            console.log(fantasyLocations)
 
             // weatherSearch(lat, lon);
 
         }
     }, [data, loading])
 
+
+    return (
+        <div>
+            {data && (
+                <div>
+                    {fantasyLocations.map(location => (
+                        <div key={location._id}>
+                            <span
+                                onClick={(event) => weatherSearch(parseFloat(event.target.dataset.lat), parseFloat(event.target.dataset.lon))}
+                                data-lat={location.realLocation.lat}
+                                data-lon={location.realLocation.lon}
+                            >{location.name}
+                            </span>
+                            <span>{location.realLocation.name}</span>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }
