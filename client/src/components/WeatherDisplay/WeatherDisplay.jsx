@@ -10,30 +10,29 @@ export default function WeatherDisplayComponent() {
   const [weatherState, setWeatherState] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
   const [currentFantastyLocation, setCurrentFantasyLocation] = useState("");
-  // const [currentRealLocation, setCurrentRealLocation] = useState('');
+  const [cloudCover, setCloudCover] = useState(null);
 
   const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
 
   useEffect(() => {
     if (data && !loading) {
       // Gets list of fantasy locations and sets the state
-      console.log(data);
       const fantasyLocationData = data.fantasyLocations;
       setFantasyLocations(fantasyLocationData);
-      console.log(fantasyLocations);
     }
   }, [data, loading, fantasyLocations]);
 
+  // Handles click events for fantasy locations, runs search for weather data
   const handleWeatherSearch = async (e) => {
     const lat = parseFloat(e.target.dataset.lat);
     const lon = parseFloat(e.target.dataset.lon);
 
     const weatherResult = await weatherSearch(lat, lon);
     console.log(weatherResult);
-    // setCurrentFantasyLocation(e.target.dataset.fantasyname);
-    // setCurrentRealLocation(e.target.dataset.realname);
     await setWeatherData(weatherResult);
     await setCurrentFantasyLocation(e.target.dataset.fantasyname);
+    await setCloudCover(weatherResult.clouds.all);
+
     // Resets weather state to true or initializes it if false
     if (weatherState) {
       setWeatherState(false);
@@ -55,6 +54,7 @@ export default function WeatherDisplayComponent() {
 
   return (
     <div>
+      {/* Main display of weather data, just temp and weather */}
       {weatherState && (
         <div className="weatherDisplay">
           <span>{currentFantastyLocation}</span>
@@ -80,16 +80,14 @@ export default function WeatherDisplayComponent() {
               </div>
             )}
             {seeMore && (
-              <ul>
+              <ul style={{ listStyle: "none" }}>
                 <li>Feels Like: {weatherData.main.feels_like}</li>
                 <li>Visibility: {weatherData.visibility / 1000} km</li>
                 <li>Humidity: {weatherData.main.humidity}%</li>
                 <li>Wind Speed: {weatherData.wind.speed} mph</li>
-                <li>Cloud Cover: {weatherData.weather.clouds}%</li>
+                {/* Sets whether there is no cloud cover or the percentage */}
                 <li>
-                  <img
-                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-                  ></img>
+                  Cloud Cover: {cloudCover === 0 ? `None` : `${cloudCover}%`}
                 </li>
               </ul>
             )}
