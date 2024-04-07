@@ -22,7 +22,7 @@ export default function WeatherDisplayComponent() {
       setFantasyLocations(fantasyLocationData);
       console.log(fantasyLocations);
     }
-  }, [data, loading]);
+  }, [data, loading, fantasyLocations]);
 
   const handleWeatherSearch = async (e) => {
     const lat = parseFloat(e.target.dataset.lat);
