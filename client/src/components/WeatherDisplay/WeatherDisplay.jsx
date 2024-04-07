@@ -11,6 +11,7 @@ export default function WeatherDisplayComponent() {
   const [seeMore, setSeeMore] = useState(false);
   const [currentFantastyLocation, setCurrentFantasyLocation] = useState("");
   const [cloudCover, setCloudCover] = useState(null);
+  const [visibility, setVisibility] = useState(null);
 
   const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
 
@@ -28,10 +29,13 @@ export default function WeatherDisplayComponent() {
     const lon = parseFloat(e.target.dataset.lon);
 
     const weatherResult = await weatherSearch(lat, lon);
-    console.log(weatherResult);
+    // Converts visibility from unix to km, then to miles
+    const weatherVisibility = (weatherResult.visibility / 1000 * 0.621371).toFixed(1);
+
     await setWeatherData(weatherResult);
     await setCurrentFantasyLocation(e.target.dataset.fantasyname);
     await setCloudCover(weatherResult.clouds.all);
+    await setVisibility(weatherVisibility);
 
     // Resets weather state to true or initializes it if false
     if (weatherState) {
@@ -53,12 +57,12 @@ export default function WeatherDisplayComponent() {
   };
 
   return (
-    <div className="test">
+    <div>
       {/* Main display of weather data, just temp and weather */}
       {weatherState && (
         <div className="weatherDisplay weatherCard">
-          <span>{currentFantastyLocation}</span>
-          <span>Current Temp: {weatherData.main.temp}</span>
+          <span style={{ fontSize: 'xx-large'}}>{currentFantastyLocation}</span>
+          <span>Current Temp: {weatherData.main.temp} &deg;F</span>
           <span>
             Weather: {weatherData.weather[0].main}{" "}
             <img
@@ -72,7 +76,7 @@ export default function WeatherDisplayComponent() {
                 className="clickText"
                 onClick={() => handleCollapseSeeMore()}
               >
-                Hide
+                Hide Details
               </div>
             ) : (
               <div className="clickText" onClick={() => handleSeeMore()}>
@@ -81,8 +85,8 @@ export default function WeatherDisplayComponent() {
             )}
             {seeMore && (
               <ul style={{ listStyle: "none" }}>
-                <li>Feels Like: {weatherData.main.feels_like}</li>
-                <li>Visibility: {weatherData.visibility / 1000} km</li>
+                <li>Feels Like: {weatherData.main.feels_like} &deg;F</li>
+                <li>Visibility: {visibility} miles</li>
                 <li>Humidity: {weatherData.main.humidity}%</li>
                 <li>Wind Speed: {weatherData.wind.speed} mph</li>
                 {/* Sets whether there is no cloud cover or the percentage */}
