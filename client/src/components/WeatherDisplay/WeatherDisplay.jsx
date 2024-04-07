@@ -10,7 +10,7 @@ export default function WeatherDisplayComponent() {
     const [weatherData, setWeatherData] = useState([]);
     const [weatherState, setWeatherState] = useState(false);
     const [seeMore, setSeeMore] = useState(false);
-    // const [currentFantastyLocation, setCurrentFantasyLocation] = useState('');
+    const [currentFantastyLocation, setCurrentFantasyLocation] = useState('');
     // const [currentRealLocation, setCurrentRealLocation] = useState('');
 
     const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
@@ -34,7 +34,7 @@ export default function WeatherDisplayComponent() {
         // setCurrentFantasyLocation(e.target.dataset.fantasyname);
         // setCurrentRealLocation(e.target.dataset.realname);
         await setWeatherData(weatherResult);
-
+        await setCurrentFantasyLocation(e.target.dataset.fantasyname)
         // Resets weather state to true or initializes it if false
         if (weatherState) {
             setWeatherState(false);
@@ -57,34 +57,11 @@ export default function WeatherDisplayComponent() {
 
     return (
         <div>
-            {data && (
-                <div className="row fantasyLocationItem">
-                    {/* Iterates through fantasy locations, displays data and assigns lat and lon individually */}
-                    {fantasyLocations.map(location => (
-                        <div className="col-4" key={location._id}>
-                            <div className="col">
-                                <span
-                                    onClick={(e) => handleWeatherSearch(e)}
-                                    data-lat={location.realLocation.lat}
-                                    data-lon={location.realLocation.lon}
-                                    data-fantasyname={location.name}
-                                    data-realname={location.realLocation.name}
-                                    className="fantasyLocationName"
-                                >{location.name}
-                                </span>
-                            </div>
-                            <div className="col">
-                                <span className="realLocationName">({location.realLocation.name})</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-
             {weatherState && (
-                <div>
+                <div className="weatherDisplay">
+                    <span>{currentFantastyLocation}</span>
                     <span>Current Temp: {weatherData.main.temp}</span>
-                    <span>Weather: {weatherData.weather[0].main}</span>
+                    <span>Weather: {weatherData.weather[0].main} <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}></img></span>
                     {/* For seeing further details about weather, switches to hide to get rid of details */}
                     <span>
                         {seeMore ? (
@@ -107,7 +84,30 @@ export default function WeatherDisplayComponent() {
                             </ul>
                         )}
                     </span>
+                </div>
+            )}
 
+            {data && (
+                <div className="row fantasyLocationItem">
+                    {/* Iterates through fantasy locations, displays data and assigns lat and lon individually */}
+                    {fantasyLocations.map(location => (
+                        <div className="col-4" key={location._id}>
+                            <div className="col">
+                                <span
+                                    onClick={(e) => handleWeatherSearch(e)}
+                                    data-lat={location.realLocation.lat}
+                                    data-lon={location.realLocation.lon}
+                                    data-fantasyname={location.name}
+                                    data-realname={location.realLocation.name}
+                                    className="fantasyLocationName"
+                                >{location.name}
+                                </span>
+                            </div>
+                            <div className="col">
+                                <span className="realLocationName">({location.realLocation.name})</span>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
