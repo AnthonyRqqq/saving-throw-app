@@ -32,9 +32,7 @@ export default function WeatherDisplayComponent() {
         console.log(weatherResult)
         // setCurrentFantasyLocation(e.target.dataset.fantasyname);
         // setCurrentRealLocation(e.target.dataset.realname);
-        setWeatherData(weatherResult);
-
-        await formatTime(weatherResult.sys.sunrise)
+        await setWeatherData(weatherResult);
 
         // Resets weather state to true or initializes it if false
         if (weatherState) {
@@ -43,31 +41,6 @@ export default function WeatherDisplayComponent() {
         } else {
             setWeatherState(true);
         }
-    }
-
-    const formatTime = async (time) => {
-
-
-        // Convert Unix timestamp to UTC time
-        const utcDate = new Date(time * 1000);
-
-        // Get hours, minutes, and seconds from UTC time
-        const utcHours = utcDate.getUTCHours();
-        const utcMinutes = utcDate.getUTCMinutes();
-        const utcSeconds = utcDate.getUTCSeconds();
-
-        // Convert UTC time to local machine time
-        const localDate = new Date(utcDate);
-
-        // Get hours, minutes, and seconds from local time
-        const localHours = localDate.getHours();
-        const localMinutes = localDate.getMinutes();
-        const localSeconds = localDate.getSeconds();
-
-        // Print the results
-        console.log("UTC Time:", utcHours + ":" + utcMinutes + ":" + utcSeconds);
-        console.log("Local Time:", localHours + ":" + localMinutes + ":" + localSeconds);
-
     }
 
 
