@@ -9,6 +9,7 @@ export default function WeatherDisplayComponent() {
     const [fantasyLocations, setFantasyLocations] = useState([]);
     const [weatherData, setWeatherData] = useState([]);
     const [weatherState, setWeatherState] = useState(false);
+    const [seeMore, setSeeMore] = useState(false);
     // const [currentFantastyLocation, setCurrentFantasyLocation] = useState('');
     // const [currentRealLocation, setCurrentRealLocation] = useState('');
 
@@ -43,6 +44,16 @@ export default function WeatherDisplayComponent() {
         }
     }
 
+    // For clicking the 'see more' button, gives further details of weather
+    const handleSeeMore = async () => {
+        await setSeeMore(true);
+    }
+
+    // For clicking the 'see less' button, hides potentially less useful details
+    const handleCollapseSeeMore = async () => {
+        await setSeeMore(false);
+    }
+
 
     return (
         <div>
@@ -74,15 +85,27 @@ export default function WeatherDisplayComponent() {
                 <div>
                     <span>Current Temp: {weatherData.main.temp}</span>
                     <span>Weather: {weatherData.weather[0].main}</span>
-                    <span>See More
-                        <ul>
-                            <li>Feels Like: {weatherData.main.feels_like}</li>
-                            <li>Visibility: {weatherData.visibility / 1000} km</li>
-                            <li>Humidity: {weatherData.main.humidity}%</li>
-                            <li>Wind Speed: {weatherData.wind.speed} mph</li>
-                            <li>Cloud Cover: {weatherData.weather.clouds}%</li>
-                            <li><img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}></img></li>
-                        </ul>
+                    {/* For seeing further details about weather, switches to hide to get rid of details */}
+                    <span>
+                        {seeMore ? (
+                            <div className="clickText" onClick={() => handleCollapseSeeMore()}>
+                                Hide
+                            </div>
+                        ) : (
+                            <div className="clickText" onClick={() => handleSeeMore()}>
+                                See More
+                            </div>
+                        )}
+                        {seeMore && (
+                            <ul>
+                                <li>Feels Like: {weatherData.main.feels_like}</li>
+                                <li>Visibility: {weatherData.visibility / 1000} km</li>
+                                <li>Humidity: {weatherData.main.humidity}%</li>
+                                <li>Wind Speed: {weatherData.wind.speed} mph</li>
+                                <li>Cloud Cover: {weatherData.weather.clouds}%</li>
+                                <li><img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}></img></li>
+                            </ul>
+                        )}
                     </span>
 
                 </div>

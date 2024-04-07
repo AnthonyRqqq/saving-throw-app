@@ -1,4 +1,5 @@
-.fantasyLocationName:hover {
+.fantasyLocationName:hover,
+.clickText:hover {
     cursor: pointer;
     color: grey;
 }
