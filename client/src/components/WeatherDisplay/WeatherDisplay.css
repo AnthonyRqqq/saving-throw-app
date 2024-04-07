@@ -1,11 +1,16 @@
 .fantasyLocationName:hover,
 .clickText:hover {
   cursor: pointer;
-  color: grey;
+  color: #ebe5d4;
+}
+
+#root {
+  background-color: #5896b6;
 }
 
 .fantasyLocationName {
   font-size: xx-large;
+  color: #d9c589;
 }
 
 .realLocationName {
@@ -17,10 +22,36 @@
   text-align: center;
 }
 
+.locationCard {
+  margin-right: 8%;
+  margin-left: 8%;
+  background-color: #253840;
+}
+
 .weatherDisplay {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: #d9c589;
+}
+
+.weatherCard {
+  /* border: 1px solid red; */
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-top: 2%;
+  background-color: #253840;
+}
+
+.fantasyLocationCard {
+  margin-top: 3%;
+}
+
+.realLocationCard {
+  margin-bottom: 3%;
+  padding-bottom: 3%;
 }

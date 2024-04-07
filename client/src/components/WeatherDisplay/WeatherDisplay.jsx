@@ -53,10 +53,10 @@ export default function WeatherDisplayComponent() {
   };
 
   return (
-    <div>
+    <div className="test">
       {/* Main display of weather data, just temp and weather */}
       {weatherState && (
-        <div className="weatherDisplay">
+        <div className="weatherDisplay weatherCard">
           <span>{currentFantastyLocation}</span>
           <span>Current Temp: {weatherData.main.temp}</span>
           <span>
@@ -100,7 +100,7 @@ export default function WeatherDisplayComponent() {
           {/* Iterates through fantasy locations, displays data and assigns lat and lon individually */}
           {fantasyLocations.map((location) => (
             <div className="col-4" key={location._id}>
-              <div className="col">
+              <div className="col locationCard fantasyLocationCard">
                 <span
                   onClick={(e) => handleWeatherSearch(e)}
                   data-lat={location.realLocation.lat}
@@ -112,7 +112,7 @@ export default function WeatherDisplayComponent() {
                   {location.name}
                 </span>
               </div>
-              <div className="col">
+              <div className="col locationCard realLocationCard">
                 <span className="realLocationName">
                   ({location.realLocation.name})
                 </span>
