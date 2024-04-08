@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import './App.css'
 

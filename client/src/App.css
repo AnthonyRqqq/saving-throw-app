@@ -1,7 +1,11 @@
 :root {
   --header-color: #253840;
-  --footer-color: #1A1C37;
-  --background-color: #E0E8F0;
+  --footer-color: #1a1c37;
+  --background-color: #e0e8f0;
+}
+
+#root {
+  overflow: hidden;
 }
 
 * {
@@ -11,21 +15,34 @@
 
 .header {
   background-color: var(--header-color);
-  padding: .8%;
+  padding: 0.8%;
 }
 
 h1 {
-  color: #D9C589
+  color: #d9c589;
+  margin-left: 3%;
 }
 
 /* Nav-link styling */
 .link-item,
-.link-item:focus {
-  color: #D9C589;
+.link-item:focus,
+.dropdown-toggle,
+.dropdown-toggle:focus {
+  color: #d9c589;
 }
 
-.link-item:hover {
-  color: #96875d
+.link-item:hover,
+.dropdown-toggle:hover {
+  color: #96875d;
+}
+
+.dropdown-menu {
+  background-color: #253840;
+  border: 3px solid #5896b6;
+}
+
+.nav {
+  margin-right: 3%;
 }
 
 main {

@@ -27,7 +27,7 @@ export default function Navigation() {
             <Link
               to="/login"
               className={`${
-                currentPage === "/" ? "nav-link active-link" : "nav-link"
+                currentPage === "/login" ? "nav-link active-link" : "nav-link"
               } link-item`}
             >
               Login
@@ -47,13 +47,15 @@ export default function Navigation() {
           </li>
         )}
 
-        {/* Link to signup page */}
+        {/* Link to signup page, hidden once user is logged in */}
         {!Auth.loggedIn() && (
           <li className="nav-item">
             <Link
               to="/signup"
               className={`${
-                currentPage === "/" ? "nav-link active-link" : "nav-link"
+                currentPage === "/signup"
+                  ? "nav-link active-link"
+                  : "nav-link"
               } link-item`}
             >
               Signup
@@ -61,27 +63,48 @@ export default function Navigation() {
           </li>
         )}
 
-        {/* Link to weather search page */}
-        <li className="nav-item">
-          <Link
-            to="/weather/search"
-            className={`${
-              currentPage === "/" ? "nav-link active-link" : "nav-link"
-            } link-item`}
+        {/* Weather dropdown */}
+        <li className="nav-item dropdown">
+          <a
+            className="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            Weather Search
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link
-            to="/weather/display"
-            className={`${
-              currentPage === "/" ? "nav-link active-link" : "nav-link"
-            } link-item`}
+            Weather
+          </a>
+          <ul
+            className="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+            style={{ minWidth: "auto" }} // Adjusting dropdown width
           >
-            Weather Display
-          </Link>
+            <li>
+              <Link
+                to="/weather/search"
+                className={`${
+                  currentPage === "/weather/search"
+                    ? "dropdown-item active-link"
+                    : "dropdown-item"
+                } link-item`}
+              >
+                Create Weather Link
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/weather/display"
+                className={`${
+                  currentPage === "/weather/display"
+                    ? "dropdown-item active-link"
+                    : "dropdown-item"
+                } link-item`}
+              >
+                Weather Display
+              </Link>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
