@@ -31,6 +31,11 @@ h1 {
   color: #d9c589;
 }
 
+/* Prevents items in dropdown from turning blue when clicked */
+.link-item {
+  background-color: transparent !important;
+}
+
 .link-item:hover,
 .dropdown-toggle:hover {
   color: #96875d;
