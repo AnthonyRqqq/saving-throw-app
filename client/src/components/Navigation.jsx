@@ -82,9 +82,9 @@ export default function Navigation() {
           >
             <li>
               <Link
-                to="/weather/search"
+                to="/weather/create"
                 className={`${
-                  currentPage === "/weather/search"
+                  currentPage === "/weather/create"
                     ? "dropdown-item active-link"
                     : "dropdown-item"
                 } link-item`}

@@ -1,9 +1,9 @@
-import WeatherSearchForm from "../components/WeatherSearchForm/WeatherSearchForm";
+import WeatherCreateForm from "../components/WeatherCreateForm/WeatherCreateForm";
 
 export default function WeatherSearch() {
   return (
     <div>
-      <WeatherSearchForm />
+      <WeatherCreateForm />
     </div>
   );
 }

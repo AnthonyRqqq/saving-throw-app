@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: '/weather/search',
+        path: '/weather/create',
         element: <WeatherSearch />,
       },
       {

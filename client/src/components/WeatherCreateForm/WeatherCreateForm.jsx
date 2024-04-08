@@ -3,9 +3,9 @@ import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { GET_LOCATIONS } from "../../utils/queries";
 import { CREATE_FANTASY_LOCATION } from "../../utils/mutations";
-import "./WeatherSearchForm.css";
+import "./WeatherCreateForm.css";
 
-export default function WeatherSearchForm() {
+export default function WeatherCreateForm() {
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState("");
   const [tagLimit, setTagLimit] = useState(false);
@@ -179,7 +179,7 @@ export default function WeatherSearchForm() {
 
   return (
     <div className="form-div">
-      <h3 className="row justify-content-center">Weather Search</h3>
+      <h3 className="row justify-content-center">Create Weather Link</h3>
       <form
         className="weather-search-form justify-content-center"
         onSubmit={handleFormSubmit}
