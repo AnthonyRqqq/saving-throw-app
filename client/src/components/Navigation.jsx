@@ -48,16 +48,18 @@ export default function Navigation() {
         )}
 
         {/* Link to signup page */}
-        <li className="nav-item">
-          <Link
-            to="/signup"
-            className={`${
-              currentPage === "/" ? "nav-link active-link" : "nav-link"
-            } link-item`}
-          >
-            Signup
-          </Link>
-        </li>
+        {!Auth.loggedIn() && (
+          <li className="nav-item">
+            <Link
+              to="/signup"
+              className={`${
+                currentPage === "/" ? "nav-link active-link" : "nav-link"
+              } link-item`}
+            >
+              Signup
+            </Link>
+          </li>
+        )}
 
         {/* Link to weather search page */}
         <li className="nav-item">
