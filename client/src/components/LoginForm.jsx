@@ -45,8 +45,6 @@ export default function SignupForm() {
       if (response.error) {
         throw new Error("Something went wrong");
       }
-      console.log(response.data)
-      console.log(response.data.login)
       const token = await response.data.login.token;
       await Auth.login(token);
     } catch (err) {
