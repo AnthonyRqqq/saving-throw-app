@@ -26,7 +26,8 @@ button:hover {
 }
 
 p {
-  font-size: large;
+  font-size: x-large;
+  color: #ecd695;
 }
 
 .tagBtn {

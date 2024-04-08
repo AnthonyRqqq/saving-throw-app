@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { GET_LOCATIONS } from "../../utils/queries";
 import { CREATE_FANTASY_LOCATION } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 import "./WeatherCreateForm.css";
 
 export default function WeatherCreateForm() {
@@ -14,6 +15,7 @@ export default function WeatherCreateForm() {
   const [allLocations, setAllLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedLocationName, setSelectedLocationName] = useState("");
+  const [logInFlag, setLogInFlag] = useState(false);
 
   const tagOptions = [
     "Desert",
@@ -72,6 +74,15 @@ export default function WeatherCreateForm() {
   ]);
 
   const handleFantasyLocationCreation = async () => {
+    // Checks to see if user is logged in
+    if (!Auth.loggedIn()) {
+      setLogInFlag(true);
+      console.log("denied");
+      return;
+    } else {
+      setLogInFlag(false);
+    }
+
     if (fantasyLocationName === "") {
       return;
     }
@@ -206,7 +217,11 @@ export default function WeatherCreateForm() {
           </div>
 
           {/* Dropdown of tag options */}
-          <select className="col-1" name="tagSelect">
+          <select
+            className="col-1"
+            name="tagSelect"
+            onChange={(e) => setSelectedTag(e.target.value)}
+          >
             <option
               value=""
               disabled
@@ -291,6 +306,12 @@ export default function WeatherCreateForm() {
           >
             Submit
           </button>
+
+          {logInFlag && (
+            <h3 className="row justify-content-center">
+              Please log in to access this function.
+            </h3>
+          )}
         </div>
       </form>
     </div>
