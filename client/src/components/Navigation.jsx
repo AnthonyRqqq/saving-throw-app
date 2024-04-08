@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import Auth from "../utils/auth";
 
 export default function Navigation() {
   const currentPage = useLocation().pathname;
@@ -20,17 +21,31 @@ export default function Navigation() {
           </Link>
         </li>
 
-        {/* Link to login page */}
-        <li className="nav-item">
-          <Link
-            to="/login"
-            className={`${
-              currentPage === "/" ? "nav-link active-link" : "nav-link"
-            } link-item`}
-          >
-            Login
-          </Link>
-        </li>
+        {/* Link to login page, changes to logout button if user logged in */}
+        {!Auth.loggedIn() ? (
+          <li className="nav-item">
+            <Link
+              to="/login"
+              className={`${
+                currentPage === "/" ? "nav-link active-link" : "nav-link"
+              } link-item`}
+            >
+              Login
+            </Link>
+          </li>
+        ) : (
+          <li className="nav-item">
+            <Link
+              to="/"
+              className={`${
+                currentPage === "/" ? "nav-link active-link" : "nav-link"
+              } link-item`}
+              onClick={() => Auth.logout()}
+            >
+              Logout
+            </Link>
+          </li>
+        )}
 
         {/* Link to signup page */}
         <li className="nav-item">
