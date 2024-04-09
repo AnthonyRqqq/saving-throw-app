@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { GET_FANTASY_LOCATIONS } from "../../utils/queries";
+import { GET_FANTASY_LOCATIONS, GET_USER_BY_ID } from "../../utils/queries";
 import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
+import Auth from '../../utils/auth'
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);
@@ -13,15 +14,32 @@ export default function WeatherDisplayComponent() {
   const [cloudCover, setCloudCover] = useState(null);
   const [visibility, setVisibility] = useState(null);
 
-  const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
+  // const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
+  
+  const { loading, data } = useQuery(GET_USER_BY_ID)
+
+  if (Auth.loggedIn()) {
+    const user = Auth.getUser();
+    console.log(user.data._id)
+    const { loading, data } = useQuery(GET_USER_BY_ID, {
+      variables: { id: user.data._id}
+    })
+    console.log(data)
+  }
 
   useEffect(() => {
     if (data && !loading) {
-      // Gets list of fantasy locations and sets the state
-      const fantasyLocationData = data.fantasyLocations;
-      setFantasyLocations(fantasyLocationData);
+      console.log(data)
     }
-  }, [data, loading, fantasyLocations]);
+  }, [data, loading])
+
+  // useEffect(() => {
+  //   if (data && !loading) {
+  //     // Gets list of fantasy locations and sets the state
+  //     const fantasyLocationData = data.fantasyLocations;
+  //     setFantasyLocations(fantasyLocationData);
+  //   }
+  // }, [data, loading, fantasyLocations]);
 
   // Handles click events for fantasy locations, runs search for weather data
   const handleWeatherSearch = async (e) => {
@@ -99,10 +117,10 @@ export default function WeatherDisplayComponent() {
         </div>
       )}
 
-      {data && (
-        <div className="row fantasyLocationItem">
+      {/* {data && (
+        <div className="row fantasyLocationItem"> */}
           {/* Iterates through fantasy locations, displays data and assigns lat and lon individually */}
-          {fantasyLocations.map((location) => (
+          {/* {fantasyLocations.map((location) => (
             <div className="col-4" key={location._id}>
               <div className="col locationCard fantasyLocationCard">
                 <span
@@ -124,7 +142,7 @@ export default function WeatherDisplayComponent() {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

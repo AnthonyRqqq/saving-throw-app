@@ -46,15 +46,20 @@
   margin-top: 1%;
   background-color: #253840;
   font-size: large;
+  border-radius: 15px;
 }
 
 .fantasyLocationCard {
   margin-top: 3%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .realLocationCard {
   margin-bottom: 3%;
   padding-bottom: 3%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .clickText {

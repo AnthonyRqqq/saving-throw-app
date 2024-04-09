@@ -36,6 +36,7 @@ const typeDefs = `
 
   type Query {
     users: [User]
+    userById(id: ID!): User
     locations: [Location]
     locationsByTags(tags: [String!]): [Location]
     fantasyLocations: [FantasyLocation]

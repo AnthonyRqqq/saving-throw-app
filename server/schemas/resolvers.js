@@ -7,6 +7,15 @@ const resolvers = {
       return await User.find().populate('fantasyLocations').populate('realLocation');
     },
 
+    userById: async (parent, { id }) => {
+      try {
+        return await User.findOne({ _id: id }).populate('fantasyLocations').populate('realLocation');
+      } catch (err) {
+        console.error('Error finding user by id: ', err);
+        throw new Error('Error finding user by id.')
+      }
+    },
+
     locations: async () => {
       return await Location.find();
     },

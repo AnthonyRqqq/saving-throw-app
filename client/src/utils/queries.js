@@ -58,3 +58,24 @@ export const GET_FANTASY_LOCATION_BY_NAME = gql`
         }
     }
 `
+
+// Executing getting user by id
+export const GET_USER_BY_ID = gql`
+query userById($id: ID!) {
+    userById(id: $id) {
+        _id
+        email
+        fantasyLocations {
+            _id
+            name
+            realLocation {
+                _id
+                name
+                lat
+                lon
+                tags
+            }
+        }
+    }
+}
+`
