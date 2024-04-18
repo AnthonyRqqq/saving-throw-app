@@ -68,10 +68,6 @@ export default function WeatherCreateForm() {
     if (tags) {
       locationFilter();
     }
-
-    if (fantasyLocationName && selectedLocation) {
-      console.log(fantasyLocationName, selectedLocation);
-    }
   }, [
     allLocationData,
     allLocationLoading,
@@ -81,16 +77,19 @@ export default function WeatherCreateForm() {
   ]);
 
   useEffect(() => {
+    if (logInFlag) {
+      return;
+    }
+
     if (fantasyLocationId) {
       addFantasyLocationToUser();
     }
-  }, [fantasyLocationId])
+  }, [fantasyLocationId]);
 
   const handleFantasyLocationCreation = async () => {
     // Checks to see if user is logged in
     if (!Auth.loggedIn()) {
       setLogInFlag(true);
-      console.log("denied");
       return;
     } else {
       setLogInFlag(false);
@@ -109,7 +108,6 @@ export default function WeatherCreateForm() {
       });
 
       await setFantasyLocationId(response.data.createFantasyLocation._id);
-      console.log("Fantasy location created: ", response.data);
     } catch (err) {
       console.error("Error creating fantasy location: ", err);
     }
@@ -117,16 +115,12 @@ export default function WeatherCreateForm() {
 
   const addFantasyLocationToUser = async () => {
     try {
-      console.log(user.data._id);
-      console.log(fantasyLocationId);
-      const response = await addFantasyLocation({
+      await addFantasyLocation({
         variables: {
           id: user.data._id,
           fantasyLocationId: fantasyLocationId,
         },
       });
-
-      console.log("Location added: ", response);
     } catch (err) {
       console.error("Error adding fantasy location: ", err);
     }

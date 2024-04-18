@@ -14,22 +14,16 @@ export default function WeatherDisplayComponent() {
   const [cloudCover, setCloudCover] = useState(null);
   const [visibility, setVisibility] = useState(null);
 
-  // if (!Auth.loggedIn()) {
-  //   return;
-  // }
-
   const user = Auth.getUser();
-  console.log(user.data._id);
+
   const { loading, data } = useQuery(GET_USER_BY_ID, {
-    variables: { id: user.data._id },
+    variables: { id: user.data._id  },
   });
-  console.log(data);
 
   useEffect(() => {
     if (data && !loading) {
       const fantasyLocationData = data.userById.fantasyLocations;
       setFantasyLocations(fantasyLocationData);
-      console.log('HERE', fantasyLocations);
     }
   }, [data, loading, fantasyLocations]);
 
@@ -111,10 +105,10 @@ export default function WeatherDisplayComponent() {
           </span>
         </div>
       )}
-      
+
       {fantasyLocations && (
         <div className="row fantasyLocationItem">
-      {fantasyLocations.map((location) => (
+          {fantasyLocations.map((location) => (
             <div className="col-4" key={location._id}>
               <div className="col locationCard fantasyLocationCard">
                 <span
