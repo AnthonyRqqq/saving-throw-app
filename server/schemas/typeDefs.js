@@ -50,7 +50,7 @@ const typeDefs = `
 
     createFantasyLocation(name: String!, realLocation: ID!): FantasyLocation
 
-    addFantasyLocation(email: String!, fantasyLocationId: ID!): User
+    addFantasyLocation(id: ID!, fantasyLocationId: ID!): User
 
     removeFantasyLocation(email: String!, fantasyLocationId: ID!): User
 

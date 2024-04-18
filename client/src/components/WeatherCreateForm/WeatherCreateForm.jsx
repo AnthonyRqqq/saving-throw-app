@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { GET_LOCATIONS } from "../../utils/queries";
-import { CREATE_FANTASY_LOCATION } from "../../utils/mutations";
+import {
+  CREATE_FANTASY_LOCATION,
+  ADD_FANTASY_LOCATION,
+} from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "./WeatherCreateForm.css";
 
@@ -16,6 +19,7 @@ export default function WeatherCreateForm() {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedLocationName, setSelectedLocationName] = useState("");
   const [logInFlag, setLogInFlag] = useState(false);
+  const [fantasyLocationId, setFantasyLocationId] = useState(null);
 
   const tagOptions = [
     "Desert",
@@ -43,12 +47,15 @@ export default function WeatherCreateForm() {
     "Dry",
   ];
 
+  const user = Auth.getUser();
+
   // // Define queries
   const { loading: allLocationLoading, data: allLocationData } =
     useQuery(GET_LOCATIONS);
 
   // Define mutation
   const [createFantasyLocation] = useMutation(CREATE_FANTASY_LOCATION);
+  const [addFantasyLocation] = useMutation(ADD_FANTASY_LOCATION);
 
   useEffect(() => {
     // Defines location data when loaded
@@ -73,6 +80,12 @@ export default function WeatherCreateForm() {
     selectedLocation,
   ]);
 
+  useEffect(() => {
+    if (fantasyLocationId) {
+      addFantasyLocationToUser();
+    }
+  }, [fantasyLocationId])
+
   const handleFantasyLocationCreation = async () => {
     // Checks to see if user is logged in
     if (!Auth.loggedIn()) {
@@ -95,9 +108,27 @@ export default function WeatherCreateForm() {
         },
       });
 
+      await setFantasyLocationId(response.data.createFantasyLocation._id);
       console.log("Fantasy location created: ", response.data);
     } catch (err) {
       console.error("Error creating fantasy location: ", err);
+    }
+  };
+
+  const addFantasyLocationToUser = async () => {
+    try {
+      console.log(user.data._id);
+      console.log(fantasyLocationId);
+      const response = await addFantasyLocation({
+        variables: {
+          id: user.data._id,
+          fantasyLocationId: fantasyLocationId,
+        },
+      });
+
+      console.log("Location added: ", response);
+    } catch (err) {
+      console.error("Error adding fantasy location: ", err);
     }
   };
 

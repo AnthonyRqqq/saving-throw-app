@@ -9,7 +9,7 @@ const resolvers = {
 
     userById: async (parent, { id }) => {
       try {
-        return await User.findOne({ _id: id }).populate('fantasyLocations').populate('realLocation');
+        return await User.findOne({ _id: id });
       } catch (err) {
         console.error('Error finding user by id: ', err);
         throw new Error('Error finding user by id.')
@@ -93,11 +93,11 @@ const resolvers = {
       };
     },
 
-    addFantasyLocation: async (parent, { email, fantasyLocationId}) => {
+    addFantasyLocation: async (parent, { id, fantasyLocationId}) => {
       try {
         return await User.findOneAndUpdate(
           {
-            email: email
+            _id: id
           },
           {
             $addToSet: { fantasyLocations: fantasyLocationId }

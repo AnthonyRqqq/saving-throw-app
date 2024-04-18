@@ -3,43 +3,35 @@ import { GET_FANTASY_LOCATIONS, GET_USER_BY_ID } from "../../utils/queries";
 import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
-import Auth from '../../utils/auth'
+import Auth from "../../utils/auth";
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
   const [weatherState, setWeatherState] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
-  const [currentFantastyLocation, setCurrentFantasyLocation] = useState("");
+  const [currentFantasyLocation, setCurrentFantasyLocation] = useState("");
   const [cloudCover, setCloudCover] = useState(null);
   const [visibility, setVisibility] = useState(null);
 
-  // const { loading, data } = useQuery(GET_FANTASY_LOCATIONS);
-  
-  const { loading, data } = useQuery(GET_USER_BY_ID)
+  // if (!Auth.loggedIn()) {
+  //   return;
+  // }
 
-  if (Auth.loggedIn()) {
-    const user = Auth.getUser();
-    console.log(user.data._id)
-    const { loading, data } = useQuery(GET_USER_BY_ID, {
-      variables: { id: user.data._id}
-    })
-    console.log(data)
-  }
+  const user = Auth.getUser();
+  console.log(user.data._id);
+  const { loading, data } = useQuery(GET_USER_BY_ID, {
+    variables: { id: user.data._id },
+  });
+  console.log(data);
 
   useEffect(() => {
     if (data && !loading) {
-      console.log(data)
+      const fantasyLocationData = data.fantasyLocations;
+      setFantasyLocations(fantasyLocationData);
+      console.log(fantasyLocations);
     }
-  }, [data, loading])
-
-  // useEffect(() => {
-  //   if (data && !loading) {
-  //     // Gets list of fantasy locations and sets the state
-  //     const fantasyLocationData = data.fantasyLocations;
-  //     setFantasyLocations(fantasyLocationData);
-  //   }
-  // }, [data, loading, fantasyLocations]);
+  }, [data, loading, fantasyLocations]);
 
   // Handles click events for fantasy locations, runs search for weather data
   const handleWeatherSearch = async (e) => {
@@ -48,7 +40,10 @@ export default function WeatherDisplayComponent() {
 
     const weatherResult = await weatherSearch(lat, lon);
     // Converts visibility from unix to km, then to miles
-    const weatherVisibility = (weatherResult.visibility / 1000 * 0.621371).toFixed(1);
+    const weatherVisibility = (
+      (weatherResult.visibility / 1000) *
+      0.621371
+    ).toFixed(1);
 
     await setWeatherData(weatherResult);
     await setCurrentFantasyLocation(e.target.dataset.fantasyname);
@@ -79,7 +74,7 @@ export default function WeatherDisplayComponent() {
       {/* Main display of weather data, just temp and weather */}
       {weatherState && (
         <div className="weatherDisplay weatherCard">
-          <span style={{ fontSize: 'xx-large'}}>{currentFantastyLocation}</span>
+          <span style={{ fontSize: "xx-large" }}>{currentFantasyLocation}</span>
           <span>Current Temp: {weatherData.main.temp} &deg;F</span>
           <span>
             Weather: {weatherData.weather[0].main}{" "}
@@ -116,11 +111,10 @@ export default function WeatherDisplayComponent() {
           </span>
         </div>
       )}
-
-      {/* {data && (
-        <div className="row fantasyLocationItem"> */}
-          {/* Iterates through fantasy locations, displays data and assigns lat and lon individually */}
-          {/* {fantasyLocations.map((location) => (
+      {/* 
+      {data && (
+        <div className="row fantasyLocationItem">
+      {fantasyLocations.map((location) => (
             <div className="col-4" key={location._id}>
               <div className="col locationCard fantasyLocationCard">
                 <span
