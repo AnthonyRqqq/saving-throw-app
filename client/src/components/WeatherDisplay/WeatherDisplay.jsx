@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_FANTASY_LOCATIONS, GET_USER_BY_ID } from "../../utils/queries";
+import { GET_USER_BY_ID } from "../../utils/queries";
 import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
@@ -27,9 +27,9 @@ export default function WeatherDisplayComponent() {
 
   useEffect(() => {
     if (data && !loading) {
-      const fantasyLocationData = data.fantasyLocations;
+      const fantasyLocationData = data.userById.fantasyLocations;
       setFantasyLocations(fantasyLocationData);
-      console.log(fantasyLocations);
+      console.log('HERE', fantasyLocations);
     }
   }, [data, loading, fantasyLocations]);
 
@@ -111,8 +111,8 @@ export default function WeatherDisplayComponent() {
           </span>
         </div>
       )}
-      {/* 
-      {data && (
+      
+      {fantasyLocations && (
         <div className="row fantasyLocationItem">
       {fantasyLocations.map((location) => (
             <div className="col-4" key={location._id}>
@@ -136,7 +136,7 @@ export default function WeatherDisplayComponent() {
             </div>
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 }
