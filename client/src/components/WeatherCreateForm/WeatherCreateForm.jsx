@@ -246,11 +246,11 @@ export default function WeatherCreateForm() {
             className="col-1"
             name="tagSelect"
             onChange={(e) => setSelectedTag(e.target.value)}
+            defaultValue={""}
           >
             <option
-              value=""
+              value={""}
               disabled
-              selected
               style={{ textAlign: "center" }}
             ></option>
             {tagOptions.map((tag, index) => (

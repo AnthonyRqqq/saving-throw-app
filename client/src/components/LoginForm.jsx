@@ -37,7 +37,6 @@ export default function SignupForm() {
     }
 
     try {
-      console.log(email, password);
       const response = await loginUser({
         variables: { email: email, password: password },
       });
