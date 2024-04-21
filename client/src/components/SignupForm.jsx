@@ -47,13 +47,11 @@ export default function SignupForm() {
         throw new Error("Something went wrong");
       }
 
-    
-
       const loginResponse = await loginUser({
         variables: { email: email, password: password },
       });
 
-      console.log(loginResponse)
+      console.log(loginResponse);
       const { token } = await loginResponse.data.login.token;
 
       await Auth.login(token);

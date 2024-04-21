@@ -6,7 +6,7 @@ export default function Navigation() {
 
   return (
     <div className="row">
-      <h1 className="col justify-content-start">Saving Throw</h1>
+      <h1 className="col justify-content-start">Saving Throws</h1>
 
       <ul className="nav col justify-content-end">
         {/* Link to homepage */}
