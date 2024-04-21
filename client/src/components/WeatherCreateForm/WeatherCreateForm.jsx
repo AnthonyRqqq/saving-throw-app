@@ -7,6 +7,7 @@ import {
   ADD_FANTASY_LOCATION,
 } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import { useNavigate } from "react-router-dom";
 import "./WeatherCreateForm.css";
 
 export default function WeatherCreateForm() {
@@ -47,6 +48,7 @@ export default function WeatherCreateForm() {
     "Dry",
   ];
 
+  const navigateTo = useNavigate();
   const user = Auth.getUser();
 
   // // Define queries
@@ -121,6 +123,7 @@ export default function WeatherCreateForm() {
           fantasyLocationId: fantasyLocationId,
         },
       });
+      navigateTo("/weather/display");
     } catch (err) {
       console.error("Error adding fantasy location: ", err);
     }
