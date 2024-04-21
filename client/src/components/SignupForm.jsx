@@ -2,7 +2,7 @@ import { useState } from "react";
 import { validateEmail } from "../utils/validateEmail";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations";
+import { ADD_USER, LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 export default function SignupForm() {
@@ -12,6 +12,7 @@ export default function SignupForm() {
 
   // Define mutation
   const [createUser] = useMutation(ADD_USER);
+  const [loginUser] = useMutation(LOGIN_USER);
 
   const navigateTo = useNavigate();
 
@@ -38,18 +39,24 @@ export default function SignupForm() {
     }
 
     try {
-      console.log(email, password);
-      const response = await createUser({
+      const createResponse = await createUser({
         variables: { email: email, password: password },
       });
 
-      if (response.error) {
+      if (createResponse.error) {
         throw new Error("Something went wrong");
       }
 
-      const { token, user } = await response.data.createUser;
-      console.log(user);
-      Auth.login(token);
+    
+
+      const loginResponse = await loginUser({
+        variables: { email: email, password: password },
+      });
+
+      console.log(loginResponse)
+      const { token } = await loginResponse.data.login.token;
+
+      await Auth.login(token);
     } catch (err) {
       console.error(err);
     }
