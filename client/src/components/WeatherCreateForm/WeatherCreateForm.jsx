@@ -23,29 +23,27 @@ export default function WeatherCreateForm() {
   const [fantasyLocationId, setFantasyLocationId] = useState(null);
 
   const tagOptions = [
-    "Desert",
-    "Dunes",
-    "Hot",
     "Arid",
-    "Cold",
-    "Tundra",
-    "Windy",
-    "Snowy",
-    "Tropical",
-    "Jungle",
-    "River",
-    "Rainy",
-    "Warm",
-    "Moderate",
     "Coastal",
-    "Mountains",
-    "Marshes",
-    "Forest",
-    "Windy",
-    "Stormy",
-    "Plains",
-    "River",
+    "Cold",
+    "Desert",
     "Dry",
+    "Dunes",
+    "Forest",
+    "Hot",
+    "Jungle",
+    "Marshes",
+    "Moderate",
+    "Mountains",
+    "Plains",
+    "Rainy",
+    "River",
+    "Snowy",
+    "Stormy",
+    "Tropical",
+    "Tundra",
+    "Warm",
+    "Windy",
   ];
 
   const navigateTo = useNavigate();
@@ -271,7 +269,10 @@ export default function WeatherCreateForm() {
 
           {/* Button for adding tags to the search array */}
           <div className="row justify-content-center">
-            <button className="col-1 mt-2 tagBtn" onClick={handleTagSelect}>
+            <button
+              className="col-1 mt-2 tagBtn roundedBox"
+              onClick={handleTagSelect}
+            >
               Add Tag
             </button>
             {/* Displays error when too many tags are selected */}
@@ -288,7 +289,10 @@ export default function WeatherCreateForm() {
               <ul className="list-unstyled d-flex justify-content-center">
                 {tags.map((tag, index) => (
                   <li key={index} className="mx-2">
-                    <button onClick={() => handleDeleteTag(index)}>
+                    <button
+                      onClick={() => handleDeleteTag(index)}
+                      className="roundedBox"
+                    >
                       {tag}
                     </button>
                   </li>
@@ -306,7 +310,7 @@ export default function WeatherCreateForm() {
                   return (
                     <li className="mx-2" key={index}>
                       <button
-                        className="locationBtn"
+                        className="locationBtn roundedBox"
                         onClick={handleLocationSelect}
                         value={location._id}
                       >
@@ -329,7 +333,7 @@ export default function WeatherCreateForm() {
 
         <div className="row justify-content-center">
           <button
-            className="row justify-content-center col-1"
+            className="row justify-content-center col-1 roundedBox"
             onClick={handleFantasyLocationCreation}
           >
             Submit

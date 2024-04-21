@@ -32,7 +32,7 @@ h1 {
 }
 
 .main {
-  flex: 1
+  flex: 1;
 }
 
 /* Nav-link styling */
@@ -65,12 +65,15 @@ h1 {
 main {
   background-color: #5896b6;
   flex: 1;
-  /* min-height: 100vh; */
 }
 
 .loginInput,
 .weatherInput,
 .tagInput {
   border-radius: 20px;
-  margin: .4%;
+  margin: 0.4%;
+}
+
+.roundedBox {
+  border-radius: 20px;
 }
