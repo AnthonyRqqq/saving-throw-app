@@ -4,6 +4,7 @@ import fireball from "../assets/homePageImages/fireball.jpg";
 import kraken from "../assets/homePageImages/kraken.jpg";
 import diceBook from "../assets/homePageImages/diceBook.jpg";
 import fireDice from "../assets/homePageImages/fireDice.jpg";
+import diceMap from '../assets/homePageImages/diceMap.jpg';
 
 export default function Home() {
   return (
@@ -22,13 +23,13 @@ export default function Home() {
         </div>
 
         <div className="col-6 d-flex justify-content-center align-items-center">
-          <img className="mainHomeImage" src={blankParchment}></img>
+          <img className="mainHomeImage" src={diceMap}></img>
 
           {/* Text overlayed on top of the image */}
           <div
             className="overlay-text position-absolute d-flex justify-content-center align-items-center"
             style={{
-              top: "50%" /* Centers vertically */,
+              top: "43%" /* Centers vertically */,
               left: "50%" /* Centers horizontally */,
               transform:
                 "translate(-50%, -50%)" /* Ensures absolute centering */,
