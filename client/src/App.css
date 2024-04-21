@@ -6,6 +6,9 @@
 
 #root {
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 * {
@@ -18,9 +21,18 @@
   padding: 0.8%;
 }
 
+.footer {
+  background-color: #253840;
+  padding-top: 6%;
+}
+
 h1 {
   color: #d9c589;
   margin-left: 3%;
+}
+
+.main {
+  flex: 1;
 }
 
 /* Nav-link styling */
@@ -53,12 +65,15 @@ h1 {
 main {
   background-color: #5896b6;
   flex: 1;
-  min-height: 100vh;
 }
 
 .loginInput,
 .weatherInput,
 .tagInput {
   border-radius: 20px;
-  margin: .4%;
+  margin: 0.4%;
+}
+
+.roundedBox {
+  border-radius: 20px;
 }
