@@ -39,7 +39,9 @@ export default function SignupForm() {
 
     try {
       console.log(email, password);
-      const response = await createUser({ email: email, password: password });
+      const response = await createUser({
+        variables: { email: email, password: password },
+      });
 
       if (response.error) {
         throw new Error("Something went wrong");
