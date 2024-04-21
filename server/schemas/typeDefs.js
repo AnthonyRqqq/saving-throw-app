@@ -52,7 +52,7 @@ const typeDefs = `
 
     addFantasyLocation(id: ID!, fantasyLocationId: ID!): User
 
-    removeFantasyLocation(email: String!, fantasyLocationId: ID!): User
+    removeFantasyLocation(id: ID!, fantasyLocationId: ID!): User
 
     editFantasyLocation(name: String, locationId: ID): FantasyLocation
   }

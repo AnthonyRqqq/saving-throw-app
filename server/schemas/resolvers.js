@@ -159,11 +159,11 @@ const resolvers = {
       }
     },
 
-    removeFantasyLocation: async (parent, { email, fantasyLocationId }) => {
+    removeFantasyLocation: async (parent, { id, fantasyLocationId }) => {
       try {
         const updatedUser = await User.findOneAndUpdate(
           {
-            email: email,
+            _id: id,
           },
           {
             $pull: { fantasyLocations: fantasyLocationId },
