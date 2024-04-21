@@ -69,7 +69,7 @@ export default function SignupForm() {
         {/* Input field for email */}
         <div className="row justify-content-center">
           <input
-            className="col-3"
+            className="col-3 loginInput"
             value={email}
             name="email"
             onChange={handleInputChange}
@@ -82,7 +82,7 @@ export default function SignupForm() {
         {/* Input field for password */}
         <div className="row justify-content-center">
           <input
-            className="col-3 password-input"
+            className="col-3 loginInput"
             value={password}
             name="password"
             onChange={handleInputChange}

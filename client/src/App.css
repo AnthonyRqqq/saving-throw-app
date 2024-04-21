@@ -55,3 +55,8 @@ main {
   flex: 1;
   min-height: 100vh;
 }
+
+.loginInput {
+  border-radius: 20px;
+  margin: .4%;
+}
