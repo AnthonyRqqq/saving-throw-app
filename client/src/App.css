@@ -56,7 +56,9 @@ main {
   min-height: 100vh;
 }
 
-.loginInput {
+.loginInput,
+.weatherInput,
+.tagInput {
   border-radius: 20px;
   margin: .4%;
 }

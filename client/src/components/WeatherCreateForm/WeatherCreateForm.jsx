@@ -226,7 +226,7 @@ export default function WeatherCreateForm() {
         {/* Input field for the name of the fantasy location */}
         <div className="row justify-content-center">
           <input
-            className="col-3"
+            className="col-3 weatherInput"
             value={fantasyLocationName}
             name="fantasyLocationName"
             onChange={handleInputChange}
@@ -246,7 +246,7 @@ export default function WeatherCreateForm() {
 
           {/* Dropdown of tag options */}
           <select
-            className="col-1"
+            className="col-1 tagInput"
             name="tagSelect"
             onChange={(e) => setSelectedTag(e.target.value)}
             defaultValue={""}
