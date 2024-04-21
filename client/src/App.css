@@ -77,3 +77,18 @@ main {
 .roundedBox {
   border-radius: 20px;
 }
+
+.mainHomeImage {
+  max-height: 80%;
+  border-radius: 20px;
+  border: 8px solid #253840;
+  overflow: hidden;
+}
+
+.sideImage {
+  max-width: 80%;
+  max-height: auto;
+  border: 8px solid #253840;
+  border-radius: 20px;
+  overflow: hidden;
+}
