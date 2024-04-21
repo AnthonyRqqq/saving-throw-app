@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const weatherSearch = async (lat, lon) => {
 
-    const response = await axios.get('http://localhost:3001/api/env-variable');
+    const response = await axios.get('https://savingthrows.onrender.com/api/env-variable');
     console.log(response)
     const weatherKey = await response.data.envVariable;
     console.log(weatherKey)
