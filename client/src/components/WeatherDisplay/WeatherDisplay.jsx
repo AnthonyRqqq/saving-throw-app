@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
 import Auth from "../../utils/auth";
+import DeleteModal from "../DeleteModal";
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);
@@ -13,6 +14,8 @@ export default function WeatherDisplayComponent() {
   const [currentFantasyLocation, setCurrentFantasyLocation] = useState("");
   const [cloudCover, setCloudCover] = useState(null);
   const [visibility, setVisibility] = useState(null);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [fantasyLocationId, setFantasyLocationId] = useState("");
 
   const user = Auth.getUser();
 
@@ -61,6 +64,13 @@ export default function WeatherDisplayComponent() {
   // For clicking the 'see less' button, hides potentially less useful details
   const handleCollapseSeeMore = async () => {
     await setSeeMore(false);
+  };
+
+  const handleDeleteIconClick = async (e) => {
+    setDeleteConfirm(true);
+    setFantasyLocationId(e.target.dataset.fantasylocationid);
+    console.log(fantasyLocationId);
+    console.log(deleteConfirm);
   };
 
   return (
@@ -124,8 +134,8 @@ export default function WeatherDisplayComponent() {
                 <div>
                   <i
                     className="bi bi-trash deleteIcon"
-                    data-bs-toggle="modal"
-                    data-bs-target="#confirmModal"
+                    onClick={(e) => handleDeleteIconClick(e)}
+                    data-fantasylocationid={location._id}
                   ></i>
                 </div>
               </div>
@@ -137,33 +147,14 @@ export default function WeatherDisplayComponent() {
             </div>
           ))}
 
-          <div
-            class="modal fade"
-            id="confirmModal"
-            tabindex="-1"
-            aria-labelledby="confirmModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content deleteModal">
-                <div class="modal-body">
-                  Are you sure you want to delete this?
-                </div>
-                <div className="modal-footer justify-content-center">
-                  <button type="button" class="btn btn-danger">
-                    Yes! Get rid of it!{" "}
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    On second thought...
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          {deleteConfirm && (
+            <DeleteModal
+              userId={user.data._id}
+              fantasyLocationId={fantasyLocationId}
+              onClose={() => setDeleteConfirm(false)}
+              deleteConfirm={deleteConfirm}
+            />
+          )}
         </div>
       )}
     </div>
