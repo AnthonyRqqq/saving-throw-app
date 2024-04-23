@@ -1,5 +1,6 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER_BY_ID } from "../../utils/queries";
+import { REMOVE_FANTASY_LOCATION } from "../../utils/mutations";
 import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
@@ -14,10 +15,11 @@ export default function WeatherDisplayComponent() {
   const [currentFantasyLocation, setCurrentFantasyLocation] = useState("");
   const [cloudCover, setCloudCover] = useState(null);
   const [visibility, setVisibility] = useState(null);
-  const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [fantasyLocationId, setFantasyLocationId] = useState("");
 
   const user = Auth.getUser();
+
+  const [removeFantasyLocation] = useMutation(REMOVE_FANTASY_LOCATION);
 
   const { loading, data } = useQuery(GET_USER_BY_ID, {
     variables: { id: user.data._id },
@@ -29,6 +31,18 @@ export default function WeatherDisplayComponent() {
       setFantasyLocations(fantasyLocationData);
     }
   }, [data, loading, fantasyLocations]);
+
+  const handleRemoveFantasyLocation = async () => {
+    try {
+      await removeFantasyLocation({
+        variables: { id: user.data._id, fantasyLocationId: fantasyLocationId },
+      });
+
+      console.log('DELETED THAT BITCH')
+    } catch (err) {
+      console.error("Error removing fantasy location: ", err);
+    }
+  };
 
   // Handles click events for fantasy locations, runs search for weather data
   const handleWeatherSearch = async (e) => {
@@ -67,10 +81,7 @@ export default function WeatherDisplayComponent() {
   };
 
   const handleDeleteIconClick = async (e) => {
-    setDeleteConfirm(true);
     setFantasyLocationId(e.target.dataset.fantasylocationid);
-    console.log(fantasyLocationId);
-    console.log(deleteConfirm);
   };
 
   return (
@@ -136,6 +147,8 @@ export default function WeatherDisplayComponent() {
                     className="bi bi-trash deleteIcon"
                     onClick={(e) => handleDeleteIconClick(e)}
                     data-fantasylocationid={location._id}
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmModal"
                   ></i>
                 </div>
               </div>
@@ -147,14 +160,19 @@ export default function WeatherDisplayComponent() {
             </div>
           ))}
 
-          {deleteConfirm && (
+          <div
+            className="modal fade"
+            id="confirmModal"
+            tabIndex="-1"
+            aria-labelledby="confirmModalLabel"
+            aria-hidden="true"
+          >
             <DeleteModal
               userId={user.data._id}
               fantasyLocationId={fantasyLocationId}
-              onClose={() => setDeleteConfirm(false)}
-              deleteConfirm={deleteConfirm}
+              onClick={() => handleRemoveFantasyLocation()}
             />
-          )}
+          </div>
         </div>
       )}
     </div>
