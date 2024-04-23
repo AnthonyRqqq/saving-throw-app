@@ -10,7 +10,7 @@ export default function DeleteModal({ onClose, onClick }) {
             onClick={() => {
               onClick();
               if (onClose) {
-                onClose(); // Close modal after confirming
+                onClose();
               }
             }}
             data-bs-dismiss="modal"
@@ -21,7 +21,7 @@ export default function DeleteModal({ onClose, onClick }) {
             type="button"
             className="btn btn-secondary"
             data-bs-dismiss="modal"
-            onClick={onClose} // Properly close the modal
+            onClick={onClose}
           >
             On second thought...
           </button>
