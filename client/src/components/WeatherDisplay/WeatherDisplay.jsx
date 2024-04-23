@@ -17,7 +17,7 @@ export default function WeatherDisplayComponent() {
   const user = Auth.getUser();
 
   const { loading, data } = useQuery(GET_USER_BY_ID, {
-    variables: { id: user.data._id  },
+    variables: { id: user.data._id },
   });
 
   useEffect(() => {
@@ -121,6 +121,13 @@ export default function WeatherDisplayComponent() {
                 >
                   {location.name}
                 </span>
+                <div>
+                  <i
+                    className="bi bi-trash deleteIcon"
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmModal"
+                  ></i>
+                </div>
               </div>
               <div className="col locationCard realLocationCard">
                 <span className="realLocationName">
@@ -129,6 +136,34 @@ export default function WeatherDisplayComponent() {
               </div>
             </div>
           ))}
+
+          <div
+            class="modal fade"
+            id="confirmModal"
+            tabindex="-1"
+            aria-labelledby="confirmModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content deleteModal">
+                <div class="modal-body">
+                  Are you sure you want to delete this?
+                </div>
+                <div className="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-danger">
+                    Yes! Get rid of it!{" "}
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    On second thought...
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
