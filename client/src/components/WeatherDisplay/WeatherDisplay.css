@@ -87,3 +87,17 @@
 .modal-footer {
   border: none;
 }
+
+.centeredContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  padding-top: 15%;
+  font-size: x-large;
+  color: #ecd695
+}
+
+.weatherLink {
+  text-decoration: none;
+}

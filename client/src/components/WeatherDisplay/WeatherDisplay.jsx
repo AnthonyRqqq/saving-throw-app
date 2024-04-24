@@ -6,6 +6,7 @@ import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
 import Auth from "../../utils/auth";
 import DeleteModal from "../DeleteModal";
+import { Link } from "react-router-dom";
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);
@@ -30,6 +31,7 @@ export default function WeatherDisplayComponent() {
     if (data && !loading) {
       const fantasyLocationData = data.userById.fantasyLocations;
       setFantasyLocations(fantasyLocationData);
+      console.log(fantasyLocationData);
     }
   }, [data, loading, fantasyLocations]);
 
@@ -79,6 +81,20 @@ export default function WeatherDisplayComponent() {
 
   return (
     <div>
+      {/* Provides a link and prompt to go to the weather creation page if nothing is present */}
+      {fantasyLocations.length === 0 && (
+        <div className="centeredContainer">
+          <span>Nothing yet!</span>
+          <span>
+            Head over to the{"  "}
+            <Link className="link-item weatherLink" to="/weather/create">
+              'Create Weather Link'
+            </Link>{" "}
+            page to get started!
+          </span>
+        </div>
+      )}
+
       {/* Main display of weather data, just temp and weather */}
       {weatherState && (
         <div className="weatherDisplay weatherCard">
@@ -92,15 +108,11 @@ export default function WeatherDisplayComponent() {
           </span>
           {/* For seeing further details about weather, switches to hide to get rid of details */}
           <span>
-
             {/* The expand/collapse toggle */}
             {/* Functions  off stateful data*/}
             {seeMore ? (
               // Collapses the extra details
-              <div
-                className="clickText"
-                onClick={() => setSeeMore(false)}
-              >
+              <div className="clickText" onClick={() => setSeeMore(false)}>
                 Hide Details
               </div>
             ) : (
