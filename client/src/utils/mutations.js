@@ -58,23 +58,18 @@ export const ADD_FANTASY_LOCATION = gql`
 
 // Execute remove fantasy location mutation for removing a linked fantasy location from a user
 export const REMOVE_FANTASY_LOCATION = gql`
-  mutation removeFantasyLocation($email: String!, $fantasyLocationId: ID!) {
-    removeFantasyLocation(
-      email: $email
-      fantasyLocationId: $fantasyLocationId
-    ) {
-      user {
+  mutation removeFantasyLocation($id: ID!, $fantasyLocationId: ID!) {
+    removeFantasyLocation(id: $id, fantasyLocationId: $fantasyLocationId) {
+      _id
+      email
+      fantasyLocations {
         _id
-        email
-        fantasyLocations {
+        name
+        realLocation {
           _id
-          name
-          realLocation {
-            _id
-            lat
-            lon
-            tags
-          }
+          lat
+          lon
+          tags
         }
       }
     }

@@ -53,6 +53,7 @@
   margin-top: 3%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  position: relative
 }
 
 .realLocationCard {
@@ -66,4 +67,37 @@
   margin-bottom: 3%;
   text-decoration: underline;
   font-size: larger;
+}
+
+.deleteIcon {
+  position: absolute;
+  top: 15%;
+  right: 3%;
+  color: rgb(180, 12, 12);
+  cursor: pointer;
+}
+
+.deleteModal  {
+  background-color: #253840;
+  border: 4px solid #5896b6;
+  color: #d9c589;
+}
+
+.modal-header,
+.modal-footer {
+  border: none;
+}
+
+.centeredContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  padding-top: 15%;
+  font-size: x-large;
+  color: #ecd695
+}
+
+.weatherLink {
+  text-decoration: none;
 }
