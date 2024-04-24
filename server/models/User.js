@@ -27,6 +27,10 @@ const userSchema = new Schema(
         ref: "FantasyLocation",
       },
     ],
+    weatherCreateInstruction: {
+      type: Boolean,
+      default: true
+    },
   },
   {
     strictPopulate: false,
