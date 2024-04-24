@@ -26,6 +26,16 @@ export const ADD_USER = gql`
   }
 `;
 
+
+export const UPDATE_USER = gwl`
+mutation updateUser($id: ID!, $email: String, $password: String, $weatherCreateInstruction: Boolean) {
+  updateUser(id: $id, email: $email, password: $password, weatherCreateInstruction: weatherCreateInstruction) {
+    _id
+    email
+    weatherCreateInstruction
+  }
+}`
+
 // Execute create fantasy location mutation
 export const CREATE_FANTASY_LOCATION = gql`
   mutation createFantasyLocation($name: String!, $realLocation: ID!) {

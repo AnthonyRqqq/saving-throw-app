@@ -1,5 +1,6 @@
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { User, Location, FantasyLocation } = require("../models");
+const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
@@ -91,6 +92,46 @@ const resolvers = {
       } catch (err) {
         console.error("Error logging in :", err);
         throw new Error("Could not log in.");
+      }
+    },
+
+    updateUser: async (
+      parent,
+      { id, email, password, weatherCreateInstruction }
+    ) => {
+      try {
+        const updates = {};
+
+        if (email) {
+          updates.email = email;
+        }
+
+        if (password) {
+          const saltRounds = 10;
+          updates.password = await bcrypt.hash(password, saltRounds);
+        }
+
+        if (weatherCreateInstruction !== undefined) {
+          updates.weatherCreateInstruction = weatherCreateInstruction;
+        }
+
+        const updatedUser = await User.findOneAndUpdate(
+          {
+            _id: id,
+          },
+          {
+            $set: updates,
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
+        return updatedUser;
+      } catch (err) {
+        console.error("Could not update user: ", err);
+        throw new Error("Could not update user.");
       }
     },
 

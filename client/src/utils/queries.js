@@ -65,6 +65,7 @@ query userById($id: ID!) {
     userById(id: $id) {
         _id
         email
+        weatherCreateInstruction
         fantasyLocations {
             _id
             name

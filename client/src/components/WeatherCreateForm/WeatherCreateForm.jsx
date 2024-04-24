@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-import { GET_LOCATIONS } from "../../utils/queries";
+import { GET_LOCATIONS, GET_USER_BY_ID } from "../../utils/queries";
 import {
   CREATE_FANTASY_LOCATION,
   ADD_FANTASY_LOCATION,
@@ -52,6 +52,9 @@ export default function WeatherCreateForm() {
   // // Define queries
   const { loading: allLocationLoading, data: allLocationData } =
     useQuery(GET_LOCATIONS);
+  const { loading: userLoading, data: userData } = useQuery(GET_USER_BY_ID, {
+    variables: { id: user.data._id},
+  });
 
   // Define mutation
   const [createFantasyLocation] = useMutation(CREATE_FANTASY_LOCATION);
@@ -85,6 +88,13 @@ export default function WeatherCreateForm() {
       addFantasyLocationToUser();
     }
   }, [fantasyLocationId]);
+
+  useEffect(() => {
+    if (userData && !userLoading) {
+      console.log(userData)
+    }
+
+  }, [userData, userLoading])
 
   const handleFantasyLocationCreation = async () => {
     // Checks to see if user is logged in
