@@ -5,9 +5,11 @@ import { GET_LOCATIONS, GET_USER_BY_ID } from "../../utils/queries";
 import {
   CREATE_FANTASY_LOCATION,
   ADD_FANTASY_LOCATION,
+  UPDATE_USER,
 } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
+import { Modal, Button, Form } from "react-bootstrap";
 import "./WeatherCreateForm.css";
 
 export default function WeatherCreateForm() {
@@ -21,6 +23,7 @@ export default function WeatherCreateForm() {
   const [selectedLocationName, setSelectedLocationName] = useState("");
   const [logInFlag, setLogInFlag] = useState(false);
   const [fantasyLocationId, setFantasyLocationId] = useState(null);
+  const [instructions, setInstructions] = useState(false);
 
   const tagOptions = [
     "Arid",
@@ -53,12 +56,13 @@ export default function WeatherCreateForm() {
   const { loading: allLocationLoading, data: allLocationData } =
     useQuery(GET_LOCATIONS);
   const { loading: userLoading, data: userData } = useQuery(GET_USER_BY_ID, {
-    variables: { id: user.data._id},
+    variables: { id: user.data._id },
   });
 
   // Define mutation
   const [createFantasyLocation] = useMutation(CREATE_FANTASY_LOCATION);
   const [addFantasyLocation] = useMutation(ADD_FANTASY_LOCATION);
+  const [updateUser] = useMutation(UPDATE_USER);
 
   useEffect(() => {
     // Defines location data when loaded
@@ -91,10 +95,27 @@ export default function WeatherCreateForm() {
 
   useEffect(() => {
     if (userData && !userLoading) {
-      console.log(userData)
+      console.log(userData);
+      if (userData.userById.weatherCreateInstruction) {
+        setInstructions(true);
+        forceReload();
+      }
     }
+  }, [userData, userLoading]);
 
-  }, [userData, userLoading])
+  const handleShowAgainCheckbox = async () => {
+    try {
+      await updateUser({
+        variables: {
+          id: user.data._id,
+          weatherCreateInstruction: false,
+        },
+      });
+      console.log("DID IT CHECKBOX");
+    } catch (err) {
+      console.error("Error updating from checkbox: ", err);
+    }
+  };
 
   const handleFantasyLocationCreation = async () => {
     // Checks to see if user is logged in
@@ -356,6 +377,76 @@ export default function WeatherCreateForm() {
           )}
         </div>
       </form>
+
+      <>
+        <Modal
+          className="centeredModal"
+          show={instructions}
+          onHide={() => {
+            const checkbox = document.getElementById("showAgainCheckbox");
+            if (checkbox.checked) {
+              handleShowAgainCheckbox();
+            }
+            setInstructions(false);
+          }}
+          style={{ paddingTop: "1%" }}
+        >
+          <div className="instructionModal">
+            <Modal.Header>
+              <Modal.Title>Instructions</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body className="text-center" style={{ fontSize: "large" }}>
+              Welcome to weather link creation!
+              <br />
+              <br />
+              This is where you will link a fantasy location to a real world
+              equivalent in order to obtain realtime weather data.
+              <br />
+              <br />
+              Start by entering in the name of your fantasy location, then
+              select up to three descriptive tags to filter real world locations
+              by. Bear in mind that not all combinations with have a viable
+              match.
+              <br />
+              <br />
+              If you don't like a tag you picked, that's okay! Simply click on
+              the button associated with the tag to clear it.
+              <br />
+              <br />
+              Once you've found a location you like, simply click on the
+              associated button with the real world location to select it and
+              click submit.
+              <br />
+              <br />
+              That's all there is to it! Go out and make something cool!
+            </Modal.Body>
+
+            <Form.Check
+              id="showAgainCheckbox"
+              type="checkbox"
+              label="Don't show again?"
+            ></Form.Check>
+
+            <Modal.Footer>
+              <Button
+                variant="seconday"
+                onClick={() => {
+                  const checkbox = document.getElementById("showAgainCheckbox");
+                  if (checkbox.checked) {
+                    handleShowAgainCheckbox();
+                  }
+                  setInstructions(false);
+                }}
+                className="link-item"
+                style={{ textDecoration: "underline", fontSize: "larger" }}
+              >
+                Got it!
+              </Button>
+            </Modal.Footer>
+          </div>
+        </Modal>
+      </>
     </div>
   );
 }

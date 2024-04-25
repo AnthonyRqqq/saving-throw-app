@@ -33,3 +33,37 @@ p {
 .tagBtn {
   margin-bottom: 1%;
 }
+
+.instructionModal  {
+  background-color: #253840;
+  border: 4px solid #5896b6;
+  color: #d9c589;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header,
+.modal-footer {
+  border: none;
+}
+
+.centeredContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  padding-top: 15%;
+  font-size: x-large;
+  color: #ecd695
+}
+
+.centeredModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15%;
+
+}

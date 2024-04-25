@@ -27,9 +27,9 @@ export const ADD_USER = gql`
 `;
 
 
-export const UPDATE_USER = gwl`
+export const UPDATE_USER = gql`
 mutation updateUser($id: ID!, $email: String, $password: String, $weatherCreateInstruction: Boolean) {
-  updateUser(id: $id, email: $email, password: $password, weatherCreateInstruction: weatherCreateInstruction) {
+  updateUser(id: $id, email: $email, password: $password, weatherCreateInstruction: $weatherCreateInstruction) {
     _id
     email
     weatherCreateInstruction

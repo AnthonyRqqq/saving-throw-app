@@ -49,7 +49,7 @@ const typeDefs = `
 
     addUser(email: String!, password: String!): Auth
 
-    updateUser(id: ID!, email: String, password: String, weatherCreateInstruction: Boolean )
+    updateUser(id: ID!, email: String, password: String, weatherCreateInstruction: Boolean): User
 
     createFantasyLocation(name: String!, realLocation: ID!): FantasyLocation
 
