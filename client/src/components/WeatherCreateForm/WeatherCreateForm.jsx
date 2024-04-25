@@ -11,6 +11,7 @@ import Auth from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import "./WeatherCreateForm.css";
+import InstructionModal from "../Modals/InstructionModal";
 
 export default function WeatherCreateForm() {
   const [tags, setTags] = useState([]);
@@ -244,6 +245,49 @@ export default function WeatherCreateForm() {
     setSelectedLocationName(target.textContent);
   };
 
+  const instructionText = () => {
+    const instructions = `
+      Welcome to weather link creation!
+      <br />
+      <br />
+      This is where you will link a fantasy location to a real-world
+      equivalent to obtain real-time weather data.
+      <br />
+      <br />
+      Start by entering the name of your fantasy location, then
+      select up to three descriptive tags to filter real-world locations.
+      Bear in mind that not all combinations will have a viable
+      match.
+      <br />
+      <br />
+      If you don't like a tag you picked, that's okay! Simply click on
+      the button associated with the tag to clear it.
+      <br />
+      <br />
+      Once you've found a location you like, simply click on the
+      associated button with the real-world location to select it and
+      click submit.
+      <br />
+      <br />
+      That's all there is to it! Go out and make something cool!
+    `;
+
+    return (
+      <div
+        dangerouslySetInnerHTML={{ __html: instructions }} // Use dangerouslySetInnerHTML to render HTML
+      />
+    );
+  };
+
+  const handleModalHide = () => {
+    const checkbox = document.getElementById("showAgainCheckbox");
+    if (checkbox.checked) {
+      handleShowAgainCheckbox();
+    }
+    setInstructions(false);
+  }
+
+
   return (
     <div className="form-div">
       <h3 className="row justify-content-center">Create Weather Link</h3>
@@ -377,75 +421,13 @@ export default function WeatherCreateForm() {
         </div>
       </form>
 
-      <>
-        <Modal
-          className="centeredModal"
-          show={instructions}
-          onHide={() => {
-            const checkbox = document.getElementById("showAgainCheckbox");
-            if (checkbox.checked) {
-              handleShowAgainCheckbox();
-            }
-            setInstructions(false);
-          }}
-          style={{ paddingTop: "1%" }}
-        >
-          <div className="instructionModal">
-            <Modal.Header>
-              <Modal.Title>Instructions</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body className="text-center" style={{ fontSize: "large" }}>
-              Welcome to weather link creation!
-              <br />
-              <br />
-              This is where you will link a fantasy location to a real world
-              equivalent in order to obtain realtime weather data.
-              <br />
-              <br />
-              Start by entering in the name of your fantasy location, then
-              select up to three descriptive tags to filter real world locations
-              by. Bear in mind that not all combinations with have a viable
-              match.
-              <br />
-              <br />
-              If you don't like a tag you picked, that's okay! Simply click on
-              the button associated with the tag to clear it.
-              <br />
-              <br />
-              Once you've found a location you like, simply click on the
-              associated button with the real world location to select it and
-              click submit.
-              <br />
-              <br />
-              That's all there is to it! Go out and make something cool!
-            </Modal.Body>
-
-            <Form.Check
-              id="showAgainCheckbox"
-              type="checkbox"
-              label="Don't show again?"
-            ></Form.Check>
-
-            <Modal.Footer>
-              <Button
-                variant="seconday"
-                onClick={() => {
-                  const checkbox = document.getElementById("showAgainCheckbox");
-                  if (checkbox.checked) {
-                    handleShowAgainCheckbox();
-                  }
-                  setInstructions(false);
-                }}
-                className="link-item"
-                style={{ textDecoration: "underline", fontSize: "larger" }}
-              >
-                Got it!
-              </Button>
-            </Modal.Footer>
-          </div>
-        </Modal>
-      </>
+      <InstructionModal
+        show={instructions}
+        instructionText={instructionText()}
+        onHide={handleModalHide}
+        onClick={handleModalHide}
+        style={{ paddingTop: "1%" }}
+      />
     </div>
   );
 }
