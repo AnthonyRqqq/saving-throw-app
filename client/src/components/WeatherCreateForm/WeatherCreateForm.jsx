@@ -98,7 +98,6 @@ export default function WeatherCreateForm() {
       console.log(userData);
       if (userData.userById.weatherCreateInstruction) {
         setInstructions(true);
-        forceReload();
       }
     }
   }, [userData, userLoading]);
