@@ -5,7 +5,8 @@ import "./Spells.css";
 export default function Spells() {
   const [spells, setSpells] = useState(null);
   const [displaySpellList, setDisplaySpellList] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedSchools, setSelectedSchools] = useState([]);
 
   useEffect(() => {
     const getAllSpells = async () => {
@@ -37,25 +38,38 @@ export default function Spells() {
     "Transmutation",
   ];
 
-  const handleFilterSelect = async (e) => {
+  const handleFilterSelect = async (e, input) => {
+    const handleInput = (filter, input) => {
+      if (input === "level") {
+        setSelectedLevels(filter);
+      } else {
+        setSelectedSchools(filter);
+      }
+    };
+
     const filter = e.target.textContent;
-    const currentlySelected = selectedFilters;
+    let currentlySelected = "";
+    if (input === "level") {
+      currentlySelected = selectedLevels;
+    } else {
+      currentlySelected = selectedSchools;
+    }
 
     if (currentlySelected.includes(filter)) {
       const index = currentlySelected.indexOf(filter);
       if (index !== -1) {
         currentlySelected.splice(index, 1);
       }
-      setSelectedFilters(currentlySelected);
+
+      handleInput(currentlySelected, input);
     } else {
       currentlySelected.push(filter);
-      setSelectedFilters(currentlySelected);
+      handleInput(currentlySelected, input);
     }
 
-    console.log(selectedFilters);
+    console.log("Schools: ", selectedSchools);
+    console.log("Levels: ", selectedLevels);
   };
-
-  const handleSchoolSelect = async (e) => {};
 
   return (
     <div>
@@ -63,7 +77,7 @@ export default function Spells() {
         <span>Spell Schools:</span>
         <ul className="spellList">
           {spellSchools.map((school, index) => (
-            <li key={index} onClick={(e) => handleFilterSelect(e)}>
+            <li key={index} onClick={(e) => handleFilterSelect(e, "school")}>
               {school}
             </li>
           ))}
@@ -74,7 +88,7 @@ export default function Spells() {
         <span>Spell Levels:</span>
         <ul className="spellList">
           {spellLevels.map((level, index) => (
-            <li key={index} onClick={(e) => handleFilterSelect(e)}>
+            <li key={index} onClick={(e) => handleFilterSelect(e, "level")}>
               {level}
             </li>
           ))}
