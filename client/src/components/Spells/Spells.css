@@ -1,0 +1,22 @@
+.spellName {
+  color: #ecd695;
+  font-size: larger;
+  padding-top: 0.5%;
+}
+
+.spellText:hover {
+  cursor: pointer;
+  color: #ebe5d4;
+}
+
+.spellList {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.spellList li {
+    list-style: none;
+    padding-left: 1.5%;
+}

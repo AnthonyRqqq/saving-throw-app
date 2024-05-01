@@ -61,6 +61,37 @@ export default function Navigation() {
           </li>
         )}
 
+        <li className="nav-item dropdown">
+          <a
+            className="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Spells
+          </a>
+          <ul
+            className="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+            style={{ minWidth: "auto" }} // Adjusting dropdown width
+          >
+            <li>
+              <Link
+                to="/spells"
+                className={`${
+                  currentPage === "/spells"
+                    ? "dropdown-item active-link"
+                    : "dropdown-item"
+                } link-item`}
+              >
+                View Spells
+              </Link>
+            </li>
+          </ul>
+        </li>
+
         {/* Weather dropdown */}
         {Auth.loggedIn() && (
           <li className="nav-item dropdown">

@@ -4,7 +4,7 @@ import fireball from "../assets/homePageImages/fireball.jpg";
 import kraken from "../assets/homePageImages/kraken.jpg";
 import diceBook from "../assets/homePageImages/diceBook.jpg";
 import fireDice from "../assets/homePageImages/fireDice.jpg";
-import diceMap from '../assets/homePageImages/diceMap.jpg';
+import diceMap from "../assets/homePageImages/diceMap.jpg";
 
 export default function Home() {
   return (
@@ -34,7 +34,7 @@ export default function Home() {
               transform:
                 "translate(-50%, -50%)" /* Ensures absolute centering */,
               fontSize: "xx-large",
-              fontFamily: 'Lobster, cursive'
+              fontFamily: "Lobster, cursive",
             }}
           >
             Make a saving throw...

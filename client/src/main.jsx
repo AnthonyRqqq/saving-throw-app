@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import WeatherSearch from './pages/WeatherSearch';
 import WeatherDisplay from './pages/WeatherDisplay.jsx';
+import Spells from './components/Spells/Spells.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/weather/display',
         element: <WeatherDisplay />
+      },
+      {
+        path: '/spells',
+        element: <Spells />
       },
     ]
   }
