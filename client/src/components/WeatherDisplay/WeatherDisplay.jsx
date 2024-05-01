@@ -7,6 +7,7 @@ import "./WeatherDisplay.css";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import DeleteModal from "../Modals/DeleteModal";
+import { useNavigate } from "react-router-dom";
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);
@@ -19,6 +20,7 @@ export default function WeatherDisplayComponent() {
   const [fantasyLocationId, setFantasyLocationId] = useState("");
   const [removeFantasyLocation] = useMutation(REMOVE_FANTASY_LOCATION);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showNoLocation, setShowNoLocation] = useState(false);
 
   const user = Auth.getUser();
 
@@ -32,6 +34,12 @@ export default function WeatherDisplayComponent() {
     if (data && !loading) {
       const fantasyLocationData = data.userById.fantasyLocations;
       setFantasyLocations(fantasyLocationData);
+
+      if (fantasyLocationData.length === 0) {
+        setShowNoLocation(true);
+      } else {
+        setShowNoLocation(false);
+      }
     }
   }, [data, loading, fantasyLocations]);
 
@@ -83,7 +91,7 @@ export default function WeatherDisplayComponent() {
   return (
     <div>
       {/* Provides a link and prompt to go to the weather creation page if nothing is present */}
-      {fantasyLocations.length === 0 && (
+      {showNoLocation && (
         <div className="centeredContainer">
           <span>Nothing yet!</span>
           <span>
