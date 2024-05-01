@@ -32,7 +32,7 @@ export default function InstructionModal({
 
           <Modal.Footer>
             <Button
-              variant="seconday"
+              variant="secondary"
               onClick={onClick}
               className="link-item"
               style={{ textDecoration: "underline", fontSize: "larger" }}

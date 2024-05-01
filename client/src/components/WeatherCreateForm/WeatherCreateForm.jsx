@@ -9,7 +9,6 @@ import {
 } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button, Form } from "react-bootstrap";
 import "./WeatherCreateForm.css";
 import InstructionModal from "../Modals/InstructionModal";
 
@@ -96,7 +95,6 @@ export default function WeatherCreateForm() {
 
   useEffect(() => {
     if (userData && !userLoading) {
-      console.log(userData);
       if (userData.userById.weatherCreateInstruction) {
         setInstructions(true);
       }
@@ -111,7 +109,6 @@ export default function WeatherCreateForm() {
           weatherCreateInstruction: false,
         },
       });
-      console.log("DID IT CHECKBOX");
     } catch (err) {
       console.error("Error updating from checkbox: ", err);
     }
@@ -274,7 +271,7 @@ export default function WeatherCreateForm() {
 
     return (
       <div
-        dangerouslySetInnerHTML={{ __html: instructions }} // Use dangerouslySetInnerHTML to render HTML
+        dangerouslySetInnerHTML={{ __html: instructions }} 
       />
     );
   };

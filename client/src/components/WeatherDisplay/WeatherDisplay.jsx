@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { weatherSearch } from "../../utils/weatherSearch";
 import "./WeatherDisplay.css";
 import Auth from "../../utils/auth";
-import DeleteModal from "../DeleteModal";
 import { Link } from "react-router-dom";
+import DeleteModal from "../Modals/DeleteModal";
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);
@@ -18,6 +18,7 @@ export default function WeatherDisplayComponent() {
   const [visibility, setVisibility] = useState(null);
   const [fantasyLocationId, setFantasyLocationId] = useState("");
   const [removeFantasyLocation] = useMutation(REMOVE_FANTASY_LOCATION);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const user = Auth.getUser();
 
@@ -31,7 +32,6 @@ export default function WeatherDisplayComponent() {
     if (data && !loading) {
       const fantasyLocationData = data.userById.fantasyLocations;
       setFantasyLocations(fantasyLocationData);
-      console.log(fantasyLocationData);
     }
   }, [data, loading, fantasyLocations]);
 
@@ -63,7 +63,8 @@ export default function WeatherDisplayComponent() {
 
   // Sets fantasy location id based on delete button's associated location
   const handleDeleteIconClick = async (e) => {
-    setFantasyLocationId(e.target.dataset.fantasylocationid);
+    await setFantasyLocationId(e.target.dataset.fantasylocationid);
+    await setShowDeleteConfirm(true);
   };
 
   // Handles deleting the indicated fantasy location
@@ -165,8 +166,6 @@ export default function WeatherDisplayComponent() {
                     className="bi bi-trash deleteIcon"
                     onClick={(e) => handleDeleteIconClick(e)}
                     data-fantasylocationid={location._id}
-                    data-bs-toggle="modal"
-                    data-bs-target="#confirmModal"
                   ></i>
                 </div>
               </div>
@@ -180,17 +179,12 @@ export default function WeatherDisplayComponent() {
             </div>
           ))}
 
-          {/* Handles modal fade in */}
-          <div
-            className="modal fade"
-            id="confirmModal"
-            tabIndex="-1"
-            aria-labelledby="confirmModalLabel"
-            aria-hidden="true"
-          >
-            {/* Modal for confirming deletion */}
-            <DeleteModal onClick={() => handleRemoveFantasyLocation()} />
-          </div>
+          <DeleteModal
+            show={showDeleteConfirm}
+            onClose={() => setShowDeleteConfirm(false)}
+            onHide={() => setShowDeleteConfirm(false)}
+            onClick={() => handleRemoveFantasyLocation()}
+          />
         </div>
       )}
     </div>

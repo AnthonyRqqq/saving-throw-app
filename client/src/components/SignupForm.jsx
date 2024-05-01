@@ -50,8 +50,6 @@ export default function SignupForm() {
       const loginResponse = await loginUser({
         variables: { email: email, password: password },
       });
-
-      console.log(loginResponse);
       const { token } = await loginResponse.data.login.token;
 
       await Auth.login(token);

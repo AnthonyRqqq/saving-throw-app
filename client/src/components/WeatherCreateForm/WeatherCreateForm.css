@@ -34,7 +34,8 @@ p {
   margin-bottom: 1%;
 }
 
-.instructionModal  {
+.instructionModal,
+.deleteModal  {
   background-color: #253840;
   border: 4px solid #5896b6;
   color: #d9c589;
