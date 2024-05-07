@@ -1,5 +1,6 @@
 import SpellSearch from "../../utils/spellSearch";
 import { useEffect, useState } from "react";
+import React from "react";
 import "./Spells.css";
 
 export default function Spells() {
@@ -7,6 +8,7 @@ export default function Spells() {
   const [displaySpellList, setDisplaySpellList] = useState(false);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
+  const [reload, setReload] = React.useState(0);
 
   useEffect(() => {
     const getAllSpells = async () => {
@@ -25,6 +27,10 @@ export default function Spells() {
       setDisplaySpellList(false);
     }
   }, [spells]);
+
+  const forceReload = () => {
+    setReload(reload + 1);
+  };
 
   const spellLevels = ["0 (Cantrip)", 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const spellSchools = [
@@ -67,6 +73,8 @@ export default function Spells() {
       handleInput(currentlySelected, input);
     }
 
+    forceReload();
+    console.log(toString(e.target.textContent))
     console.log("Schools: ", selectedSchools);
     console.log("Levels: ", selectedLevels);
   };
@@ -77,8 +85,19 @@ export default function Spells() {
         <span>Spell Schools:</span>
         <ul className="spellList">
           {spellSchools.map((school, index) => (
-            <li key={index} onClick={(e) => handleFilterSelect(e, "school")}>
-              {school}
+            <li
+              key={index}
+              onClick={(e) => handleFilterSelect(e, "school")}
+            >
+              <span
+                className={
+                  selectedSchools.includes(school)
+                    ? "selectedSchool spellSchool"
+                    : "spellSchool"
+                }
+              >
+                {school}
+              </span>
             </li>
           ))}
         </ul>
@@ -88,11 +107,26 @@ export default function Spells() {
         <span>Spell Levels:</span>
         <ul className="spellList">
           {spellLevels.map((level, index) => (
-            <li key={index} onClick={(e) => handleFilterSelect(e, "level")}>
-              {level}
+            <li
+              key={index}
+              onClick={(e) => handleFilterSelect(e, "level")}
+            >
+              <span
+                className={
+                  selectedLevels.includes(String(level))
+                    ? "spellLevel selectedLevel"
+                    : "spellLevel"
+                }
+              >
+                {level}
+              </span>
             </li>
           ))}
         </ul>
+      </div>
+
+      <div>
+        <hr></hr>
       </div>
 
       <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
