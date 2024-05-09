@@ -28,8 +28,20 @@ export default function Spells() {
     }
   }, [spells]);
 
+  useEffect(() => {
+    getFilteredSpells();
+  });
+
   const forceReload = () => {
     setReload(reload + 1);
+  };
+
+  const getFilteredSpells = async () => {
+    const filteredSpells = await SpellSearch.getFilteredSpells(
+      { levels: selectedLevels },
+      { schools: selectedSchools }
+    );
+    console.log(filteredSpells);
   };
 
   const spellLevels = ["0 (Cantrip)", 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -74,7 +86,6 @@ export default function Spells() {
     }
 
     forceReload();
-    console.log(toString(e.target.textContent))
     console.log("Schools: ", selectedSchools);
     console.log("Levels: ", selectedLevels);
   };
@@ -85,10 +96,7 @@ export default function Spells() {
         <span>Spell Schools:</span>
         <ul className="spellList">
           {spellSchools.map((school, index) => (
-            <li
-              key={index}
-              onClick={(e) => handleFilterSelect(e, "school")}
-            >
+            <li key={index} onClick={(e) => handleFilterSelect(e, "school")}>
               <span
                 className={
                   selectedSchools.includes(school)
@@ -107,10 +115,7 @@ export default function Spells() {
         <span>Spell Levels:</span>
         <ul className="spellList">
           {spellLevels.map((level, index) => (
-            <li
-              key={index}
-              onClick={(e) => handleFilterSelect(e, "level")}
-            >
+            <li key={index} onClick={(e) => handleFilterSelect(e, "level")}>
               <span
                 className={
                   selectedLevels.includes(String(level))
