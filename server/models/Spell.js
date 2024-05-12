@@ -58,13 +58,15 @@ const spellSchema = new Schema({
   duration: {
     type: String,
     required: true,
-    default: "Instantaneous"
+    default: "Instantaneous",
   },
   range: {
     type: String,
     required: true,
-  }
+  },
 });
+
+
 
 const Spell = model("Spell", spellSchema);
 
