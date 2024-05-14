@@ -34,7 +34,6 @@ const spellSchema = new Schema({
   },
   materialComponents: {
     type: Array,
-    required: true,
   },
   isConcentration: {
     type: Boolean,
@@ -64,9 +63,11 @@ const spellSchema = new Schema({
     type: String,
     required: true,
   },
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
-
-
 
 const Spell = model("Spell", spellSchema);
 

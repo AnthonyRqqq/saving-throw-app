@@ -35,6 +35,27 @@ const typeDefs = `
     realLocation: Location!
   }
 
+  # Type for spells
+  type Spell {
+    _id: ID,
+    name: String!,
+    level: Int!,
+    school: String!,
+    isRitual: Boolean,
+    description: String!,
+    effectsArray: [String],
+    atHigherLevel: String,
+    components: String!,
+    materialComponents: [String],
+    isConcentration: Boolean,
+    classList: [String!],
+    sourceBook: String,
+    castingTime: String,
+    duration: String,
+    range: String!,
+    createdBy: ID
+  }
+
   type Query {
     users: [User]
     userById(id: ID!): User
@@ -42,6 +63,8 @@ const typeDefs = `
     locationsByTags(tags: [String!]): [Location]
     fantasyLocations: [FantasyLocation]
     fantasyLocationByName(name: String!): FantasyLocation
+    spells: [Spell]
+    filteredSpells(schools: [String], levels: [Int]): [Spell]
   }
 
   type Mutation {
@@ -58,7 +81,45 @@ const typeDefs = `
     removeFantasyLocation(id: ID!, fantasyLocationId: ID!): User
 
     editFantasyLocation(name: String, locationId: ID): FantasyLocation
+
+    createSpell(
+      name: String!,
+      level: Int!,
+      school: String!,
+      isRitual: Boolean,
+      description: String!,
+      effectsArray: [String],
+      atHigherLevel: String,
+      components: String!,
+      materialComponents: [String],
+      isConcentration: Boolean,
+      classList: [String!],
+      sourceBook: String,
+      duration: String,
+      range: String!,
+      createdBy: ID
+    ): Spell
+
+    updateSpell(
+      id: ID,
+      name: String,
+      level: Int,
+      school: String,
+      isRitual: Boolean,
+      description: String,
+      effectsArray: [String],
+      atHigherLevel: String,
+      components: String,
+      materialComponents: [String],
+      isConcentration: Boolean,
+      classList: [String],
+      sourceBook: String,
+      duration: String,
+      range: String
+    ): Spell
+
+    deleteSpell(id: ID!): Spell
   }
-`
+`;
 
 module.exports = typeDefs;
