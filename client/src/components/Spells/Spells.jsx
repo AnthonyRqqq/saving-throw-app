@@ -1,5 +1,6 @@
 import SpellSearch from "../../utils/spellSearch";
 import { useEffect, useState } from "react";
+import { GET_ALL_SPELLS, GET_FILTERED_SPELLS } from "../../utils/queries";
 import React from "react";
 import "./Spells.css";
 
@@ -10,15 +11,17 @@ export default function Spells() {
   const [selectedSchools, setSelectedSchools] = useState([]);
   const [reload, setReload] = React.useState(0);
 
+  const { loading: allSpellsLoading, data: allSpellsData } =
+    useQuery(GET_ALL_SPELLS);
+
   useEffect(() => {
-    const getAllSpells = async () => {
-      const allSpells = await SpellSearch.getAllSpells();
-      await setSpells(allSpells);
-      console.log(spells);
-    };
+    if (!allSpellsLoading && allSpellsData) {
+      const spells = allSpellsData.name;
+      setSpells(spells);
+    }
 
     getAllSpells();
-  }, []);
+  }, [allSpellsLoading, allSpellsData]);
 
   useEffect(() => {
     if (spells?.results.length > 0) {
@@ -135,10 +138,10 @@ export default function Spells() {
       </div>
 
       <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
-        {displaySpellList &&
-          spells.results.map((spell, index) => (
+        {spells &&
+          spells.map((spell, index) => (
             <li key={index} className="spellName col-3">
-              <span className="spellText">{spell.name}</span>
+              <span className="spellText">{spell}</span>
             </li>
           ))}
       </ul>
