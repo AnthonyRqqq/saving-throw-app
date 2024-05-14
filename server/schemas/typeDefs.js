@@ -53,7 +53,7 @@ const typeDefs = `
     castingTime: String,
     duration: String,
     range: String!,
-    createdBy: ID
+    createdBy: User
   }
 
   type Query {
