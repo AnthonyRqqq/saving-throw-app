@@ -26,15 +26,25 @@ export const ADD_USER = gql`
   }
 `;
 
-
 export const UPDATE_USER = gql`
-mutation updateUser($id: ID!, $email: String, $password: String, $weatherCreateInstruction: Boolean) {
-  updateUser(id: $id, email: $email, password: $password, weatherCreateInstruction: $weatherCreateInstruction) {
-    _id
-    email
-    weatherCreateInstruction
+  mutation updateUser(
+    $id: ID!
+    $email: String
+    $password: String
+    $weatherCreateInstruction: Boolean
+  ) {
+    updateUser(
+      id: $id
+      email: $email
+      password: $password
+      weatherCreateInstruction: $weatherCreateInstruction
+    ) {
+      _id
+      email
+      weatherCreateInstruction
+    }
   }
-}`
+`;
 
 // Execute create fantasy location mutation
 export const CREATE_FANTASY_LOCATION = gql`
@@ -103,3 +113,149 @@ export const EDIT_FANTASY_LOCATION = gql`
     }
   }
 `;
+
+// Execute create a new spell
+export const CREATE_SPELL = gql`
+  mutation createSpell(
+    $name: String!
+    $level: Int!
+    $school: String!
+    $isRitual: Boolean
+    $description: String!
+    $effectsArray: [String]
+    $atHigherLevel: String
+    $components: String!
+    $materialComponents: [String]
+    $isConcentration: Boolean
+    $classList: [String!]
+    $sourceBook: String
+    $duration: String
+    $range: String!
+    $createdBy: ID
+  ) {
+    createSpell(
+      name: $name
+      level: $level
+      school: $school
+      isRitual: $isRitual
+      description: $description
+      effectsArray: $effectsArray
+      atHigherLevel: $atHigherLevel
+      components: $components
+      materialComponents: $materialComponents
+      isConcentration: $isConcentration
+      classList: $classList
+      sourceBook: $sourceBook
+      duration: $duration
+      range: $range
+      createdBy: $createdBy
+    ) {
+      spell {
+        _id
+        name
+        level
+        school
+        isRitual
+        description
+        effectsArray
+        atHigherLevel
+        components
+        materialComponents
+        isConcentration
+        classList
+        sourceBook
+        castingTime
+        duration
+        range
+        createdBy {
+          id
+        }
+      }
+    }
+  }
+`;
+
+// Execute updating an existing spell
+export const UPDATE_SPELL = gql`
+  mutation updateSpell(
+    $name: String
+    $level: Int
+    $school: String
+    $isRitual: Boolean
+    $description: String
+    $effectsArray: [String]
+    $atHigherLevel: String
+    $components: String
+    $materialComponents: [String]
+    $isConcentration: Boolean
+    $classList: [String]
+    $sourceBook: String
+    $duration: String
+    $range: String
+  ) {
+    updateSpell(
+      name: $name
+      level: $level
+      school: $school
+      isRitual: $isRitual
+      description: $description
+      effectsArray: $effectsArray
+      atHigherLevel: $atHigherLevel
+      components: $components
+      materialComponents: $materialComponents
+      isConcentration: $isConcentration
+      classList: $classList
+      sourceBook: $sourceBook
+      duration: $duration
+      range: $range
+    ) {
+      spell {
+        _id
+        name
+        level
+        school
+        isRitual
+        description
+        effectsArray
+        atHigherLevel
+        components
+        materialComponents
+        isConcentration
+        classList
+        sourceBook
+        castingTime
+        duration
+        range
+        createdBy {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const DELETE_SPELL = gql`
+  mutation deleteSpell($id: ID!) {
+    deleteSpell(id: $id) {
+      _id
+      name
+      level
+      school
+      isRitual
+      description
+      effectsArray
+      atHigherLevel
+      components
+      materialComponents
+      isConcentration
+      classList
+      sourceBook
+      castingTime
+      duration
+      range
+      createdBy {
+        id
+      }
+    }
+  }
+`
