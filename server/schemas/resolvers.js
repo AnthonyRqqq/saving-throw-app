@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError } = require("../utils/auth");
-const { User, Location, FantasyLocation } = require("../models");
+const { User, Location, FantasyLocation, Spell } = require("../models");
 const bcrypt = require("bcrypt");
 
 const resolvers = {
@@ -57,6 +57,33 @@ const resolvers = {
       } catch (err) {
         console.error("Error finding fantasy location by name: ", err);
         throw new Error("Error finding fantasy location by name");
+      }
+    },
+
+    spells: async () => {
+      try {
+        return await Spell.find().populate("createdBy");
+      } catch (err) {
+        console.error("Error finding all spells: ", err);
+        throw new Error("Error finding all spells");
+      }
+    },
+
+    filteredSpells: async (parent, { levels, schools }) => {
+      try {
+        // Checks for which filters are actually used
+        const filter = {};
+        if (schools && schools.length) {
+          filter.school = { $in: schools };
+        }
+        if (levels && levels.length) {
+          filter.level = { $in: levels };
+        }
+
+        return await Spell.find(filter).populate("createdBy");
+      } catch (err) {
+        console.error("Error filtering spells: ", err);
+        throw new Error("Error filtering spells");
       }
     },
   },
@@ -227,6 +254,15 @@ const resolvers = {
         throw new Error("Could not remove fantasy location");
       }
     },
+  },
+
+  deleteSpell: async (parent, { id }) => {
+    try {
+      await Spell.deleteOne({ _id: id });
+    } catch (err) {
+      console.error("Error deleting spell: ", err);
+      throw new Error("Erro deleting spell");
+    }
   },
 };
 
