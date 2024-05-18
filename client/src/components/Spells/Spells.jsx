@@ -18,7 +18,6 @@ export default function Spells() {
 
   useEffect(() => {
     if (!allSpellsLoading && allSpellsData) {
-      console.log(allSpellsData.spells);
       const spells = allSpellsData.spells;
       const sortedSpells = [...spells].sort((a, b) => {
         if (a.name < b.name) {
@@ -31,7 +30,6 @@ export default function Spells() {
       });
       setSpells(sortedSpells);
       setAllSpells(sortedSpells);
-      console.log(spells);
     }
   }, [allSpellsLoading, allSpellsData]);
 
@@ -57,12 +55,11 @@ export default function Spells() {
         spell.name.toLowerCase().includes(selectedName.toLowerCase())
       );
     }
-    console.log(filteredSpells);
     setSpells(filteredSpells);
     setDisplayedSpell("");
   };
 
-  const spellLevels = ["0 (Cantrip)", 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const spellLevels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const spellSchools = [
     "Abjuration",
     "Conjuration",
