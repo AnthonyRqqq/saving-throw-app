@@ -102,7 +102,7 @@ export const GET_ALL_SPELLS = gql`
       duration
       range
       createdBy {
-        id
+        _id
       }
     }
   }
@@ -128,7 +128,7 @@ export const GET_FILTERED_SPELLS = gql`
       duration
       range
       createdBy {
-        id
+        _id
       }
     }
   }

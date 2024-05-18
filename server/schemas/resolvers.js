@@ -254,15 +254,15 @@ const resolvers = {
         throw new Error("Could not remove fantasy location");
       }
     },
-  },
 
-  deleteSpell: async (parent, { id }) => {
-    try {
-      await Spell.deleteOne({ _id: id });
-    } catch (err) {
-      console.error("Error deleting spell: ", err);
-      throw new Error("Erro deleting spell");
-    }
+    deleteSpell: async (parent, { id }) => {
+      try {
+        await Spell.deleteOne({ _id: id });
+      } catch (err) {
+        console.error("Error deleting spell: ", err);
+        throw new Error("Error deleting spell");
+      }
+    },
   },
 };
 

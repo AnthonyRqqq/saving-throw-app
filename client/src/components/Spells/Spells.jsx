@@ -1,10 +1,12 @@
 import SpellSearch from "../../utils/spellSearch";
 import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS, GET_FILTERED_SPELLS } from "../../utils/queries";
 import React from "react";
 import "./Spells.css";
 
 export default function Spells() {
+  const [allSpells, setAllSpells] = useState(null);
   const [spells, setSpells] = useState(null);
   const [displaySpellList, setDisplaySpellList] = useState(false);
   const [selectedLevels, setSelectedLevels] = useState([]);
@@ -16,35 +18,41 @@ export default function Spells() {
 
   useEffect(() => {
     if (!allSpellsLoading && allSpellsData) {
-      const spells = allSpellsData.name;
-      setSpells(spells);
+      console.log(allSpellsData.spells);
+      const spells = allSpellsData.spells;
+      const sortedSpells = [...spells].sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      });
+      setSpells(sortedSpells);
+      setAllSpells(sortedSpells);
+      console.log(spells);
     }
-
-    getAllSpells();
   }, [allSpellsLoading, allSpellsData]);
 
   useEffect(() => {
-    if (spells?.results.length > 0) {
-      setDisplaySpellList(true);
-    } else {
-      setDisplaySpellList(false);
-    }
-  }, [spells]);
-
-  useEffect(() => {
+    console.log("FILTER");
     getFilteredSpells();
-  });
+  }, [selectedLevels, selectedSchools]);
 
   const forceReload = () => {
     setReload(reload + 1);
   };
 
   const getFilteredSpells = async () => {
-    const filteredSpells = await SpellSearch.getFilteredSpells(
-      { levels: selectedLevels },
-      { schools: selectedSchools }
-    );
-    console.log(filteredSpells);
+    let filteredSpells = [...allSpells];
+    if (selectedSchools.length > 0) {
+      filteredSpells.filter((spell) => selectedSchools.includes(spell.school));
+    }
+    if (selectedLevels.length > 0) {
+      filteredSpells.filter((spell) => selectedLevels.includes(spell.level));
+    }
+    setSpells(filteredSpells);
   };
 
   const spellLevels = ["0 (Cantrip)", 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -141,7 +149,7 @@ export default function Spells() {
         {spells &&
           spells.map((spell, index) => (
             <li key={index} className="spellName col-3">
-              <span className="spellText">{spell}</span>
+              <span className="spellText">{spell.name}</span>
             </li>
           ))}
       </ul>

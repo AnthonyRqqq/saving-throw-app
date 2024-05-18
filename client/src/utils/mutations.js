@@ -227,7 +227,7 @@ export const UPDATE_SPELL = gql`
         duration
         range
         createdBy {
-          id
+          _id
         }
       }
     }
@@ -254,7 +254,7 @@ export const DELETE_SPELL = gql`
       duration
       range
       createdBy {
-        id
+        _id
       }
     }
   }
