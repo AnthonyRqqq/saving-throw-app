@@ -11,6 +11,7 @@ export default function Spells() {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
   const [selectedName, setSelectedName] = useState("");
+  const [displayedSpell, setDisplayedSpell] = useState("");
 
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
@@ -58,6 +59,7 @@ export default function Spells() {
     }
     console.log(filteredSpells);
     setSpells(filteredSpells);
+    setDisplayedSpell("");
   };
 
   const spellLevels = ["0 (Cantrip)", 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -99,6 +101,13 @@ export default function Spells() {
     const { target } = e;
     const name = target.value;
     setSelectedName(name);
+  };
+
+  const handleSpellSelect = async (e) => {
+    const { target } = e;
+    const spellId = target.dataset.spellId;
+    const displayedSpell = spells.filter((spell) => spellId === spell._id);
+    setDisplayedSpell(displayedSpell);
   };
 
   return (
@@ -166,7 +175,13 @@ export default function Spells() {
         {spells &&
           spells.map((spell, index) => (
             <li key={index} className="spellName col-3">
-              <span className="spellText">{spell.name}</span>
+              <span
+                className="spellText"
+                data-spell-id={spell._id}
+                onClick={(e) => handleSpellSelect(e)}
+              >
+                {spell.name}
+              </span>
             </li>
           ))}
       </ul>
