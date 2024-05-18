@@ -8,10 +8,10 @@ import "./Spells.css";
 export default function Spells() {
   const [allSpells, setAllSpells] = useState(null);
   const [spells, setSpells] = useState(null);
-  const [displaySpellList, setDisplaySpellList] = useState(false);
+  // const [displaySpellList, setDisplaySpellList] = useState(false);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
-  const [reload, setReload] = React.useState(0);
+  // const [reload, setReload] = React.useState(0);
 
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
@@ -36,21 +36,24 @@ export default function Spells() {
   }, [allSpellsLoading, allSpellsData]);
 
   useEffect(() => {
-    console.log("FILTER");
     getFilteredSpells();
   }, [selectedLevels, selectedSchools]);
 
-  const forceReload = () => {
-    setReload(reload + 1);
-  };
+  // const forceReload = () => {
+  //   setReload(reload + 1);
+  // };
 
   const getFilteredSpells = async () => {
-    let filteredSpells = [...allSpells];
+    let filteredSpells = allSpells;
     if (selectedSchools.length > 0) {
-      filteredSpells.filter((spell) => selectedSchools.includes(spell.school));
+      filteredSpells = filteredSpells.filter((spell) =>
+        selectedSchools.includes(spell.school)
+      );
     }
     if (selectedLevels.length > 0) {
-      filteredSpells.filter((spell) => selectedLevels.includes(spell.level));
+      filteredSpells = filteredSpells.filter((spell) =>
+        selectedLevels.includes(String(spell.level))
+      );
     }
     setSpells(filteredSpells);
   };
@@ -67,38 +70,27 @@ export default function Spells() {
     "Transmutation",
   ];
 
-  const handleFilterSelect = async (e, input) => {
-    const handleInput = (filter, input) => {
-      if (input === "level") {
-        setSelectedLevels(filter);
-      } else {
-        setSelectedSchools(filter);
-      }
-    };
-
+  const handleFilterSelect = (e, input) => {
     const filter = e.target.textContent;
-    let currentlySelected = "";
+    let currentlySelected = [];
+
     if (input === "level") {
-      currentlySelected = selectedLevels;
-    } else {
-      currentlySelected = selectedSchools;
-    }
-
-    if (currentlySelected.includes(filter)) {
-      const index = currentlySelected.indexOf(filter);
-      if (index !== -1) {
-        currentlySelected.splice(index, 1);
+      currentlySelected = [...selectedLevels];
+      if (currentlySelected.includes(filter)) {
+        currentlySelected = currentlySelected.filter((item) => item !== filter);
+      } else {
+        currentlySelected.push(filter);
       }
-
-      handleInput(currentlySelected, input);
+      setSelectedLevels(currentlySelected);
     } else {
-      currentlySelected.push(filter);
-      handleInput(currentlySelected, input);
+      currentlySelected = [...selectedSchools];
+      if (currentlySelected.includes(filter)) {
+        currentlySelected = currentlySelected.filter((item) => item !== filter);
+      } else {
+        currentlySelected.push(filter);
+      }
+      setSelectedSchools(currentlySelected);
     }
-
-    forceReload();
-    console.log("Schools: ", selectedSchools);
-    console.log("Levels: ", selectedLevels);
   };
 
   return (
