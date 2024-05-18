@@ -8,11 +8,9 @@ import "./Spells.css";
 export default function Spells() {
   const [allSpells, setAllSpells] = useState(null);
   const [spells, setSpells] = useState(null);
-  // const [displaySpellList, setDisplaySpellList] = useState(false);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
   const [selectedName, setSelectedName] = useState("");
-  // const [reload, setReload] = React.useState(0);
 
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
@@ -39,10 +37,6 @@ export default function Spells() {
   useEffect(() => {
     getFilteredSpells();
   }, [selectedLevels, selectedSchools, selectedName]);
-
-  // const forceReload = () => {
-  //   setReload(reload + 1);
-  // };
 
   const getFilteredSpells = async () => {
     let filteredSpells = allSpells;
