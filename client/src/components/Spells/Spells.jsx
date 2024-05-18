@@ -1,7 +1,7 @@
-import SpellSearch from "../../utils/spellSearch";
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS, GET_FILTERED_SPELLS } from "../../utils/queries";
+import Form from "react-bootstrap/Form";
 import React from "react";
 import "./Spells.css";
 
@@ -11,6 +11,7 @@ export default function Spells() {
   // const [displaySpellList, setDisplaySpellList] = useState(false);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
+  const [selectedName, setSelectedName] = useState("");
   // const [reload, setReload] = React.useState(0);
 
   const { loading: allSpellsLoading, data: allSpellsData } =
@@ -37,7 +38,7 @@ export default function Spells() {
 
   useEffect(() => {
     getFilteredSpells();
-  }, [selectedLevels, selectedSchools]);
+  }, [selectedLevels, selectedSchools, selectedName]);
 
   // const forceReload = () => {
   //   setReload(reload + 1);
@@ -55,6 +56,13 @@ export default function Spells() {
         selectedLevels.includes(String(spell.level))
       );
     }
+
+    if (selectedName.length > 0) {
+      filteredSpells = filteredSpells.filter((spell) =>
+        spell.name.toLowerCase().includes(selectedName.toLowerCase())
+      );
+    }
+    console.log(filteredSpells);
     setSpells(filteredSpells);
   };
 
@@ -93,11 +101,20 @@ export default function Spells() {
     }
   };
 
+  const handleInputChange = async (e) => {
+    const { target } = e;
+    const name = target.value;
+    setSelectedName(name);
+  };
+
   return (
     <div>
       <div className="pt-3 px-3">
-        <span>Spell Schools:</span>
-        <ul className="spellList">
+        <div style={{ textAlign: "center" }}>Spell Schools:</div>
+        <ul
+          className="spellList"
+          style={{ flex: "flex", justifyContent: "center" }}
+        >
           {spellSchools.map((school, index) => (
             <li key={index} onClick={(e) => handleFilterSelect(e, "school")}>
               <span
@@ -115,8 +132,11 @@ export default function Spells() {
       </div>
 
       <div className="px-3">
-        <span>Spell Levels:</span>
-        <ul className="spellList">
+        <div style={{ textAlign: "center" }}>Spell Levels:</div>
+        <ul
+          className="spellList"
+          style={{ flex: "flex", justifyContent: "center" }}
+        >
           {spellLevels.map((level, index) => (
             <li key={index} onClick={(e) => handleFilterSelect(e, "level")}>
               <span
@@ -131,6 +151,17 @@ export default function Spells() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="px-3">
+        <div style={{ textAlign: "center" }}>Name:</div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Form.Control
+            type="text"
+            style={{ textAlign: "center", maxWidth: "20rem" }}
+            onChange={(e) => handleInputChange(e)}
+          ></Form.Control>
+        </div>
       </div>
 
       <div>
