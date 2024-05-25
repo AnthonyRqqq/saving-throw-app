@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_ALL_SPELLS, GET_FILTERED_SPELLS } from "../../utils/queries";
+import { GET_ALL_SPELLS } from "../../utils/queries";
 import Form from "react-bootstrap/Form";
 import SpellCard from "./SpellCard";
 import "./Spells.css";
@@ -16,9 +16,11 @@ export default function Spells() {
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
 
+  // Set initial spell data on page load
   useEffect(() => {
     if (!allSpellsLoading && allSpellsData) {
       const spells = allSpellsData.spells;
+      // Alphabetizes spells before setting them to display
       const sortedSpells = [...spells].sort((a, b) => {
         if (a.name < b.name) {
           return -1;
@@ -33,10 +35,12 @@ export default function Spells() {
     }
   }, [allSpellsLoading, allSpellsData]);
 
+  // Refilter the spells any time the filters are updated
   useEffect(() => {
     getFilteredSpells();
   }, [selectedLevels, selectedSchools, selectedName]);
 
+  // Handles setting the filters selected for spells
   const getFilteredSpells = async () => {
     let filteredSpells = allSpells;
     if (selectedSchools.length > 0) {
@@ -59,6 +63,7 @@ export default function Spells() {
     setDisplayedSpell("");
   };
 
+  // Filtering options for levels and schools
   const spellLevels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const spellSchools = [
     "Abjuration",
@@ -71,6 +76,7 @@ export default function Spells() {
     "Transmutation",
   ];
 
+  // Handles updating when a new filter is selected
   const handleFilterSelect = (e, input) => {
     const filter = e.target.textContent;
     let currentlySelected = [];
@@ -94,12 +100,14 @@ export default function Spells() {
     }
   };
 
+  // Handles text input change for name filter
   const handleInputChange = async (e) => {
     const { target } = e;
     const name = target.value;
     setSelectedName(name);
   };
 
+  // Handles displaying spell card when a spell is clicked
   const handleSpellSelect = async (e) => {
     const { target } = e;
     const spellId = target.dataset.spellId;
@@ -109,6 +117,7 @@ export default function Spells() {
 
   return (
     <div>
+      {/* Schools to filter by */}
       <div className="pt-3 px-3">
         <div style={{ textAlign: "center" }}>Spell Schools:</div>
         <ul
@@ -131,6 +140,7 @@ export default function Spells() {
         </ul>
       </div>
 
+      {/* Levels to filter by */}
       <div className="px-3">
         <div style={{ textAlign: "center" }}>Spell Levels:</div>
         <ul
@@ -153,6 +163,7 @@ export default function Spells() {
         </ul>
       </div>
 
+      {/* Input text to filter names by */}
       <div className="px-3">
         <div style={{ textAlign: "center" }}>Name:</div>
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -168,6 +179,7 @@ export default function Spells() {
         <hr></hr>
       </div>
 
+      {/* Show the SpellCard component if a spell has been selected */}
       {displayedSpell && <SpellCard spell={displayedSpell} />}
       <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
         {spells &&

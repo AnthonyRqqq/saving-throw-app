@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 
 export default function SpellCard(spell) {
+  // Sets the string to be displayed for the spell level
   let spellLevelText;
   switch (spell.level) {
     case 0:
@@ -34,6 +35,7 @@ export default function SpellCard(spell) {
       spellLevelText = "9th-Level";
   }
 
+  // Takes all items from the spellList array and joins them into a string for display
   const spellListString = spell.spellList.join(", ");
 
   return (
