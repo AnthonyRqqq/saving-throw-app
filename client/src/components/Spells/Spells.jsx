@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS, GET_FILTERED_SPELLS } from "../../utils/queries";
 import Form from "react-bootstrap/Form";
-import React from "react";
+import SpellCard from "./SpellCard";
 import "./Spells.css";
 
 export default function Spells() {
@@ -168,6 +168,7 @@ export default function Spells() {
         <hr></hr>
       </div>
 
+      {displayedSpell && <SpellCard spell={displayedSpell} />}
       <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
         {spells &&
           spells.map((spell, index) => (
