@@ -112,7 +112,7 @@ export default function Spells() {
     const { target } = e;
     const spellId = target.dataset.spellId;
     const displayedSpell = spells.filter((spell) => spellId === spell._id);
-    setDisplayedSpell(displayedSpell);
+    setDisplayedSpell(displayedSpell[0]);
   };
 
   return (
