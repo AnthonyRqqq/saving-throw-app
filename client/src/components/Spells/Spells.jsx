@@ -181,6 +181,12 @@ export default function Spells() {
 
       {/* Show the SpellCard component if a spell has been selected */}
       {displayedSpell && <SpellCard spell={displayedSpell} />}
+      {displayedSpell && (
+        <div>
+          <hr></hr>
+        </div>
+      )}
+
       <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
         {spells &&
           spells.map((spell, index) => (

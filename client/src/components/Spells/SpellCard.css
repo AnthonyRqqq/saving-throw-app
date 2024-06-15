@@ -1,0 +1,32 @@
+.spellCard {
+  background-color: #253840;
+  color: #d9c589;
+  padding: 2rem;
+  box-shadow: 0px 0px 5px 5px black;
+}
+
+.spellCardHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.spellCardName {
+  text-decoration: underline;
+}
+
+.spellCardField {
+  padding: 0.25rem 0;
+  display: flex;
+}
+
+.spellCardField div {
+    display: inline;
+}
+
+.fieldTitle {
+    font-weight: bold;
+}
+
+.spellDescription {
+  padding: 1rem 0;
+}

@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
+import "./SpellCard.css";
 
-export default function SpellCard({spell}) {
+export default function SpellCard({ spell }) {
   // Sets the string to be displayed for the spell level
   let spellLevelText;
   switch (spell.level) {
@@ -35,57 +36,83 @@ export default function SpellCard({spell}) {
       spellLevelText = "9th-Level";
   }
 
-  console.log(spell);
-  console.log(spell.classList);
   // Takes all items from the spellList array and joins them into a string for display
   const spellListString = spell.classList.join(", ");
-  console.log(spellListString);
 
   return (
-    <Container>
+    <Container className="spellCard">
       <Row>
-        <Col>
-          <h2>{spell.name}</h2>
+        <Col className="spellCardHeader">
+          <h2 className="spellCardName">{spell.name}</h2>
+          <h4>{spell.isRitual ? "Ritual" : ""}</h4>
         </Col>
       </Row>
 
-      <Row>
-        <Col>Source: {spell.sourceBook}</Col>
-      </Row>
-      <Row>
-        <Col>
+      <Row className="spellCardField">
+        <Col className="fieldTitle">
           {spell.level === 0
             ? `${spell.school} ${spellLevelText}`
             : `${spellLevelText} ${spell.school}`}
         </Col>
       </Row>
 
-      <Row>
-        <Col>Casting Time: {spell.castingTime}</Col>
-      </Row>
-      <Row>
-        <Col>Range: {spell.range}</Col>
-      </Row>
-      <Row>
+      <Row className="spellCardField">
         <Col>
-          Components: {spell.components}{" "}
-          {spell.materialComponents ? `(${spell.materialComponents})` : ""}
+          <div className="fieldTitle">Source: </div>
+          {spell.sourceBook}
         </Col>
       </Row>
-      <Row>
-        <Col>Duration: {spell.duration}</Col>
+
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">Casting Time: </div> {spell.castingTime}
+        </Col>
       </Row>
 
-      <Row>
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">Range: </div>
+          {spell.range}
+        </Col>
+      </Row>
+
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">Components: </div>
+          {spell.components}{" "}
+          {spell.materialComponents.length > 0 &&
+            `(${spell.materialComponents})`}
+        </Col>
+      </Row>
+
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">Duration: </div>
+          {spell.duration} {spell.isConcentration && `(Concentration)`}
+        </Col>
+      </Row>
+
+      <Row className="spellDescription">
         <Col>{spell.description}</Col>
       </Row>
 
-      <Row>
-        <Col>At Higher Levels: {spell.atHigherLevel}</Col>
+      <Row className="spellCardField">
+        <Col>
+          {/* {spell.atHigherLevel && `At Higher Levels: ${spell.atHigherLevel}`} */}
+          {spell.atHigherLevel && (
+            <>
+              <div className="fieldTitle">At Higher Levels: </div>
+              {spell.atHigherLevel}
+            </>
+          )}
+        </Col>
       </Row>
 
-      <Row>
-        <Col>Spell Lists: {spellListString}</Col>
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">Spell Lists: </div>
+          {spellListString}
+        </Col>
       </Row>
     </Container>
   );
