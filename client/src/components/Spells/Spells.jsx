@@ -119,14 +119,11 @@ export default function Spells() {
     <div>
       {/* Schools to filter by */}
       <div className="pt-3 px-3">
-        <div style={{ textAlign: "center" }}>Spell Schools:</div>
-        <ul
-          className="spellList"
-          style={{ flex: "flex", justifyContent: "center" }}
-        >
+        <div className="filterTitle">Spell Schools:</div>
+        <ul className="spellList">
           {spellSchools.map((school, index) => (
             <li key={index} onClick={(e) => handleFilterSelect(e, "school")}>
-              <span
+              <button
                 className={
                   selectedSchools.includes(school)
                     ? "selectedSchool spellSchool"
@@ -134,7 +131,7 @@ export default function Spells() {
                 }
               >
                 {school}
-              </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -142,14 +139,11 @@ export default function Spells() {
 
       {/* Levels to filter by */}
       <div className="px-3">
-        <div style={{ textAlign: "center" }}>Spell Levels:</div>
-        <ul
-          className="spellList"
-          style={{ flex: "flex", justifyContent: "center" }}
-        >
+        <div className="filterTitle">Spell Levels:</div>
+        <ul className="spellList">
           {spellLevels.map((level, index) => (
             <li key={index} onClick={(e) => handleFilterSelect(e, "level")}>
-              <span
+              <button
                 className={
                   selectedLevels.includes(String(level))
                     ? "spellLevel selectedLevel"
@@ -157,7 +151,7 @@ export default function Spells() {
                 }
               >
                 {level}
-              </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -165,8 +159,8 @@ export default function Spells() {
 
       {/* Input text to filter names by */}
       <div className="px-3">
-        <div style={{ textAlign: "center" }}>Name:</div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="filterTitle">Name:</div>
+        <div className="spellList">
           <Form.Control
             type="text"
             style={{ textAlign: "center", maxWidth: "20rem" }}
