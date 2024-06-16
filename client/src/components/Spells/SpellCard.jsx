@@ -1,4 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
+import AdditionalEffects from "./AdditionalEffects";
 import "./SpellCard.css";
 
 export default function SpellCard({ spell }) {
@@ -95,6 +96,10 @@ export default function SpellCard({ spell }) {
       <Row className="spellDescription">
         <Col>{spell.description}</Col>
       </Row>
+
+      {spell.effectsArray && (
+        <AdditionalEffects effectsArray={spell.effectsArray} />
+      )}
 
       <Row className="spellCardField">
         <Col>
