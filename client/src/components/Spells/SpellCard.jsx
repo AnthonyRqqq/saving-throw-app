@@ -94,7 +94,13 @@ export default function SpellCard({ spell }) {
       </Row>
 
       <Row className="spellDescription">
-        <Col>{spell.description}</Col>
+        <Col>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: spell.description.replace(/\n/g, "<br />"),
+            }}
+          />
+        </Col>
       </Row>
 
       {spell.effectsArray && (
