@@ -476,5 +476,127 @@
     "castingTime": "One Bonus Action",
     "duration": "Up to One Minute",
     "range": "60 Feet"
+  },
+  {
+    "name": "Blade Ward",
+    "level": 0,
+    "school": "Abjuration",
+    "description": "You extend your hand and trace a sigil of waring in the air. Until the end of your next turn, you have resistance against bludgeoning, piercing, and slashing damage dealt by weapon attacks.",
+    "components": "V, S",
+    "classList": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "sourceBook": "Tasha's Cauldron of Everything",
+    "duration": "One Round",
+    "range": "Self"
+  },
+  {
+    "name": "Bless",
+    "level": 1,
+    "school": "Enchantment",
+    "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.",
+    "components": "V, S, M",
+    "materialComponents": "a sprinkling of holy water",
+    "isConcentration": true,
+    "classList": ["Cleric", "Paladin"],
+    "duration": "Up to One Minute",
+    "range": "30 Feet"
+  },
+  {
+    "name": "Blight",
+    "level": 4,
+    "school": "Necromancy",
+    "description": "Necromantic energy washes over a creature of your choice that you can see within range, draining moisture and vitality from it. The target must make a Constitution saving throw. The target takes 8d8 necrotic damage on a failed save, or half as much damage on a successful one. This spell has no effect on undead or constructs. If you target a plant creature or a magical plant, it makes the saving throw with disadvantage, and the spell deal maximum damage to it. \n\n If you target a nonmagical plant that isn't a creature, such as a tree or shrub, it doesn't make the saving throw; it simply withers and dies.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th.",
+    "components": "V, S",
+    "classList": ["Druid", "Sorcerer", "Warlock", "Wizard"],
+    "range": "30 Feet"
+  },
+  {
+    "name": "Blinding Smite",
+    "level": 3,
+    "school": "Evocation",
+    "description": "If the attack hits, deal an extra 3d8 radiant damage and the target must succeed on a Constitution saving throw or be blinded.",
+    "components": "V",
+    "classList": ["Paladin"],
+    "isConcentration": true,
+    "range": "30 Feet",
+    "duration": "Up to One Minute"
+  },
+  {
+    "name": "Blindness/Deafness",
+    "level": 2,
+    "school": "Necromancy",
+    "description": "You can blind or deafen a foe. Choose one creature that you can see within range to make a Constitution saving throw. If it fails, the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, the target can make a Constitution saving throw. On a success, the spell ends.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+    "components": "V",
+    "classList": ["Bard", "Cleric", "Sorcerer", "Wizard"],
+    "duration": "One Minute",
+    "range": "30 Feet"
+  },
+  {
+    "name": "Blink", 
+    "level": 3, 
+    "school": "Transmutation",
+    "description": "Roll a d20 at the end of each of your turns for the duration of the spell. On a roll of 11 or higher, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell fails and the casting is wasted if you were already on that plane). At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from. If no unoccupied space is available within that range, you appear in the nearest unoccupied space (chosen at random if more than one space is equally near). You can dismiss this spell as an action. \n\n While on the Ethereal Plane, you can see and hear the plane you originated from, which is cast in shade of gray, and you can't see anything there more than 60 feet away. You can only affect and be affected by other creatures on the Ethereal Plane. Creatures that aren't there can't perceive you or interact with you, unless they have the ability to do so.",
+    "components": "V, S",
+    "classList": ["Sorcerer", "Wizard"],
+    "duration": "One Minute",
+    "range": "Self"
+  },
+  {
+    "name": "Blur",
+    "level": 2,
+    "school": "Illusion",
+    "description": "Your body becomes blurred, shifting and wavering to all who can see you. For the duration, any creature has disadvantage on attack rolls against you. An attacker is immune to this effect if it doesn't rely on sight, as with blindsight, or can see through illusions, as with truesight.",
+    "components": "V",
+    "isConcentration": true,
+    "classList": ["Sorcerer", "Wizard"],
+    "duration": "Up to One Minute",
+    "range": "Self"
+  },
+  {
+    "name": "Bones of the Earth",
+    "level": 6,
+    "school": "Transmutation",
+    "description": "You cause up to six pillars of stone to burst from places on the ground that you can see within range. Each pillar is a cylinder that has a diameter of 5 feet and a height of up to 30 feet. The ground where a pillar appears must be wide enough for its diameter, and you can target the ground under a creature if that creature is Medium or smaller. Each pillar has AC 5 and 30 hit points. When reduced to 0 hit points, a pillar crumbles into rubble, which creates an area of difficult terrain with a 10-foot radius that lasts until the rubble is cleared. Each 5-foot diameter portion of the area requires at least 1 minute to clear by hand. \n\n If a pillar is created under a creature, that creature must succeed on a Dexterity saving throw or be lifted by the pillar. A creature can choose to fail the save. \n\n If a pillar is prevented from reaching its full height because of a ceiling or other obstacle, a creature on the pillar takes 6d6 bludgeoning damage and is restrained, pinched between the pillar and the obstacle. The restrained creature can use an action to make a Strength or Dexterity check (the creature's choice) against the spell's save DC. On a success, the creature is no longer restrained and must either move off the pillar or fall off it.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 7th level or higher, you can create two additional pillars for each slot level above 6th.",
+    "components": "V, S",
+    "sourceBook": "Xanathar's Guide to Everything",
+    "range": "120 Feet"
+  },
+  {
+    "name": "Booming Blade",
+    "level": 0,
+    "school": "Evocation",
+    "description": "You brandish the weapon used in the spell's casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack's normal effects and then becomes sheathed in booming energy until the start of your next turn. If the target willingly moves 5 feet or more before then, the target takes 1d8 thunder damage, and the spell ends. \n\n This spell's damage increases when you reach certain levels. At 5th level, the melee attack deals an extra 1d8 thunder damage to the target on a hit, and damage the target takes for moving increases to 2d8. Both damage rolls increase by 1d8 at 11th level (2d8 and 3d8) and again at 17th level (3d8 and 4d8).",
+    "components": "V, M",
+    "materialComponents": "a melee weapon worth at least 1 sp",
+    "classList": ["Sorcerer", "Warlock", "Wizard"],
+    "sourceBook": "Tasha's Cauldron of Everything",
+    "duration": "One Round",
+    "range": "Self (5-Foot Radius)"
+  },
+  {
+    "name": "Branding Smite",
+    "level": 2,
+    "school": "Evocation",
+    "description": "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it's invisible, and the target sheds dim light in a 5-foot radius and can't become invisible until the spell ends.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the extra damage increases by 1d6 for each slot level above 2nd.",
+    "components": "V",
+    "isConcentration": true,
+    "classList": ["Paladin"],
+    "castingTime":"One Bonus Action",
+    "duration": "Up to One Minute",
+    "range": "Self"
+  },
+  {
+    "name": "Burning Hands",
+    "level": 1,
+    "school": "Evocation",
+    "description": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. \n\n The fire ignites any flammable objects in the area that aren't being worn or carried.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+    "components": "V, S",
+    "classList": ["Sorcerer", "Wizard"],
+    "range": "Self (15-Foot Cone)"
   }
 ]
