@@ -7,7 +7,6 @@ import "./WeatherDisplay.css";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import DeleteModal from "../Modals/DeleteModal";
-import { useNavigate } from "react-router-dom";
 
 export default function WeatherDisplayComponent() {
   const [fantasyLocations, setFantasyLocations] = useState([]);

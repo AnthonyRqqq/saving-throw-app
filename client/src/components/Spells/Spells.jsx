@@ -1,17 +1,32 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
-import Form from "react-bootstrap/Form";
+import { Form, Spinner } from "react-bootstrap";
 import SpellCard from "./SpellCard";
 import "./Spells.css";
 
+// Filtering options for levels and schools
+const spellLevels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const spellSchools = [
+  "Abjuration",
+  "Conjuration",
+  "Divination",
+  "Enchantment",
+  "Evocation",
+  "Illusion",
+  "Necromancy",
+  "Transmutation",
+];
+
 export default function Spells() {
-  const [allSpells, setAllSpells] = useState(null);
-  const [spells, setSpells] = useState(null);
+  const [allSpells, setAllSpells] = useState([]);
+  const [spells, setSpells] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
   const [selectedName, setSelectedName] = useState("");
   const [displayedSpell, setDisplayedSpell] = useState("");
+  const [reload, setReload] = useState(0);
+  const intervalRef = useRef(null);
 
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
@@ -34,6 +49,15 @@ export default function Spells() {
       setAllSpells(sortedSpells);
     }
   }, [allSpellsLoading, allSpellsData]);
+
+  // Handles reloading the page if spell data is still being loaded
+  useEffect(() => {
+    if (allSpellsLoading) {
+      handleLoading();
+    } else {
+      clearInterval(intervalRef.current);
+    }
+  }, [allSpellsLoading]);
 
   // Refilter the spells any time the filters are updated
   useEffect(() => {
@@ -62,19 +86,6 @@ export default function Spells() {
     setSpells(filteredSpells);
     setDisplayedSpell("");
   };
-
-  // Filtering options for levels and schools
-  const spellLevels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const spellSchools = [
-    "Abjuration",
-    "Conjuration",
-    "Divination",
-    "Enchantment",
-    "Evocation",
-    "Illusion",
-    "Necromancy",
-    "Transmutation",
-  ];
 
   // Handles updating when a new filter is selected
   const handleFilterSelect = (e, input) => {
@@ -115,6 +126,14 @@ export default function Spells() {
     setDisplayedSpell(displayedSpell[0]);
   };
 
+  const handleLoading = async () => {
+    intervalRef.current = setInterval(() => {
+      const newReload = reload + 1;
+      console.log(`Reload ${newReload}`);
+      setReload(newReload);
+    }, 1000);
+  };
+
   return (
     <div>
       {/* Schools to filter by */}
@@ -122,8 +141,9 @@ export default function Spells() {
         <div className="filterTitle">Spell Schools:</div>
         <ul className="spellList">
           {spellSchools.map((school, index) => (
-            <li key={index} onClick={(e) => handleFilterSelect(e, "school")}>
+            <li key={index}>
               <button
+                onClick={(e) => handleFilterSelect(e, "school")}
                 className={
                   selectedSchools.includes(school)
                     ? "selectedSchool spellSchool"
@@ -142,8 +162,9 @@ export default function Spells() {
         <div className="filterTitle">Spell Levels:</div>
         <ul className="spellList">
           {spellLevels.map((level, index) => (
-            <li key={index} onClick={(e) => handleFilterSelect(e, "level")}>
+            <li key={index}>
               <button
+                onClick={(e) => handleFilterSelect(e, "level")}
                 className={
                   selectedLevels.includes(String(level))
                     ? "spellLevel selectedLevel"
@@ -182,7 +203,7 @@ export default function Spells() {
       )}
 
       <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
-        {spells &&
+        {spells.length > 0 ? (
           spells.map((spell, index) => (
             <li key={index} className="spellName col-3">
               <span
@@ -193,7 +214,12 @@ export default function Spells() {
                 {spell.name}
               </span>
             </li>
-          ))}
+          ))
+        ) : (
+          <div>
+            <Spinner animation="border" />
+          </div>
+        )}
       </ul>
     </div>
   );
