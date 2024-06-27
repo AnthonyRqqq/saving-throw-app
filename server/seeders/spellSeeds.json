@@ -562,6 +562,7 @@
     "atHigherLevel": "When you cast this spell using a spell slot of 7th level or higher, you can create two additional pillars for each slot level above 6th.",
     "components": "V, S",
     "sourceBook": "Xanathar's Guide to Everything",
+    "classList": ["Druid"],
     "range": "120 Feet"
   },
   {
