@@ -775,10 +775,89 @@
     "level": 8,
     "school": "Necromancy",
     "description": "This spell grows an inert duplicate of a living creature as a safeguard against death. This clone forms inside the vessel used in the spell's casting and grows to full size and maturity after 120 days; you can also choose to have the clone be a younger version of the same creature. It remains inert and endures indefinitely, as long as its vessel remains undisturbed. \n\n At any time after the clone matures, if the original creature dies, its soul transfers to the clone, provided that the soul is free and willing to return. \n\n The clone is physically identical to the original and has the same personality, memories, and abilities, but none of the original's equipment. The original creature's physical remains, if they still exist, become inert and can't thereafter be restored to life, since the creature's soul is elsewhere.",
-    "components":"V, S, M",
+    "components": "V, S, M",
     "materialComponents": "a diamond worth at least 1,000 gp and at least 1 cubic inch of flesh of the creature that is to be cloned, which the spell consumes, and a vessel worth at least 2,000 gp that has a sealable lid and is large enough to hold the creature being cloned, such as a huge urn, coffin, mud-filled cyst in the ground, or a crystal container filled with salt water",
     "classList": ["Wizard"],
     "castingTime": "One Hour",
     "range": "Touch"
+  },
+  {
+    "name": "Cloud of Daggers",
+    "level": 2,
+    "school": "Conjuration",
+    "description": "You fill the air with spinning daggers in a cube 5 feet on each side, centered on a point you choose within range. A creature takes 4d4 slashing damage when it enters the spell's area for the first time on a turn or starts its turn there.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 2d4 for each slot level above 2nd.",
+    "components": "V, S, M",
+    "materialComponents": "a sliver of glass",
+    "isConcentration": true,
+    "classList": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "duration": "Up to One Minute",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Cloudkill",
+    "level": 5,
+    "school": "Conjuration",
+    "description": "You create a 20-foot radius sphere of poisonous, yellow-green fog centered on a point you choose within range. The fog spreads around corners. It lasts for the duration or until strong wind disperses the fog, ending the spell. Its area is heavily obscured. \n\n When a creature enters the spell's area for the first time on a turn or starts its turn there, that creature must make a Constitution saving throw. The creature takes 5d8 poison damage on a failed save, or half as much damage on a successful one. Creatures are affected even if they hold their breath or don't need to breathe. \n\n The fog moves 10 feet away from you at the start of each of your turns, rolling along the surface of the ground. The vapors, being heavier than air, sink to the lowest level of the land, even pouring down openings.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Sorcerer", "Wizard"],
+    "duration": "Up to 10 Minutes",
+    "range": "120 Feet"
+  },
+  {
+    "name": "Color Spray",
+    "level": 1,
+    "school": "Illusion",
+    "description": "A dazzling array of flashing, colored light springs from your hand. Roll 6d10; the total is how many hit points of creatures this spell can affect. Creatures in a 15-foot cone originating from you are affected in ascending order of their current hit points (ignoring unconscious creatures and creatures that can't see). \n\n Starting with the creature that has the lowest current hit points, each creature affected by this spell is blinded until the end of your next turn. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d10 for each slot level above 1st.",
+    "components": "V, S, M",
+    "materialComponents": "a pinch of powder or sand that is colored red, yellow, and blue",
+    "classList": ["Sorcerer", "Wizard", "Bard (Optional)"],
+    "duration": "One Round",
+    "range": "Self (15-Foot Cone)"
+  },
+  {
+    "name": "Command",
+    "level": 1,
+    "school": "Enchantment",
+    "description": "You speak a one-word command to a creature that you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it. \n\n Some typical commands and their effects follow. You might issue a command other than one described here. If you do so, the DM determines how the target behaves. If the target is prevented from following your command, the spell ends.",
+    "effectsArray": [
+      "Approach: The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.",
+      "Drop: The target drops whatever it is holding and then ends its turn.",
+      "Flee: The target spends its turn moving away from you by the fastest available means.",
+      "Grovel: The target falls prone and then ends its turn.",
+      "Halt: The target stays where it is and takes no actions."
+    ],
+    "atHigherLevel": "When you cast this spell using a spell slot of 2nd level or higher, you can affect on additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+    "components": "V",
+    "classList": ["Cleric", "Paladin", "Bard (Optional)"],
+    "duration": "One Round",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Commune",
+    "level": 5,
+    "school": "Divination",
+    "isRitual": true,
+    "description": "You contact your deity or a divine proxy and ask up to three questions that can be answered with a yes or no. You must ask your questions before the spell ends. You receive a correct answer for each question. \n\n Divine beings aren't necessarily omniscient, so you might receive 'unclear' as an answer if a question pertains to information that lies beyond the deity's knowledge. In a case where a one-word answer could be misleading or contrary to the deity's interests, the DM might offer a short phrase as an answer instead. \n\n If you cast the spell two or more times before finishing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get no answer. The DM makes this roll in secret.",
+    "components": "V, S, M",
+    "materialComponents": "incense and a vial of holy or unholy water",
+    "classList": ["Cleric"],
+    "castingTime": "One Minute",
+    "duration": "One Minute",
+    "range": "Self"
+  },
+  {
+    "name": "Commune With Nature",
+    "level": 5,
+    "school": "Divination",
+    "isRitual": true,
+    "description": "You briefly become one with nature and gain knowledge of the surrounding territory. In the outdoors, the spell gives you knowledge of the land within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell doesn't function where nature has been replaced by construction, such as in dungeons and towns. You instantly gain knowledge of up to three facts of your choice about any of the following subjects as they relate to the area: \n\n - Terrain and bodies of water \n\n - Prevalent plants, minerals, animals, or peoples \n\n - Powerful celestials, fey, fiends, elementals, or undead \n\n - Influence from other planes of existence \n\n - Buildings \n\n For example, you could determine the location of powerful undead in the area, the location of major sources of safe drinking water, and the location of any nearby towns.",
+    "components": "V, M",
+    "classList": ["Druid", "Ranger"],
+    "castingTime": "One Minute",
+    "range": "Self"
   }
 ]
