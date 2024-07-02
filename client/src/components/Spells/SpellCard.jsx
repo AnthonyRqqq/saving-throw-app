@@ -1,8 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
+import { forwardRef } from "react";
 import AdditionalEffects from "./AdditionalEffects";
 import "./SpellCard.css";
 
-export default function SpellCard({ spell }) {
+const SpellCard = forwardRef(({ spell }, ref) => {
   // Sets the string to be displayed for the spell level
   let spellLevelText;
   switch (spell.level) {
@@ -41,7 +42,7 @@ export default function SpellCard({ spell }) {
   const spellListString = spell.classList.join(", ");
 
   return (
-    <Container className="spellCard">
+    <Container className="spellCard" ref={ref}>
       <Row>
         <Col className="spellCardHeader">
           <h2 className="spellCardName">{spell.name}</h2>
@@ -127,4 +128,6 @@ export default function SpellCard({ spell }) {
       </Row>
     </Container>
   );
-}
+});
+
+export default SpellCard;
