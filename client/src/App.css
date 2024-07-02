@@ -3,6 +3,7 @@
   --footer-color: #13070c;
   --background-color: #f1e4d4;
   --text-color: #e0cf91;
+  --hover-text-color: #96875d;
 }
 
 #root {
@@ -59,7 +60,7 @@ h1 {
 
 .link-item:hover,
 .dropdown-toggle:hover {
-  color: #96875d;
+  color: var(--hover-text-color);
 }
 
 .dropdown-menu {
@@ -90,7 +91,7 @@ main {
 .mainHomeImage {
   max-height: 80%;
   border-radius: 10px;
-  box-shadow:  0 0 30px var(--header-color);
+  box-shadow: 0 0 30px var(--header-color);
   overflow: hidden;
 }
 
@@ -98,6 +99,6 @@ main {
   max-width: 80%;
   max-height: auto;
   border-radius: 20px;
-  box-shadow:  0 0 10px var(--header-color);
+  box-shadow: 0 0 10px var(--header-color);
   overflow: hidden;
 }
