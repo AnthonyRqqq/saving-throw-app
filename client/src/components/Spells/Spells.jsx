@@ -27,6 +27,7 @@ export default function Spells() {
   const [displayedSpell, setDisplayedSpell] = useState("");
   const [reload, setReload] = useState(0);
   const intervalRef = useRef(null);
+  const focusRef = useRef(null);
 
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
@@ -123,7 +124,12 @@ export default function Spells() {
     const { target } = e;
     const spellId = target.dataset.spellId;
     const displayedSpell = spells.filter((spell) => spellId === spell._id);
-    setDisplayedSpell(displayedSpell[0]);
+    await setDisplayedSpell(displayedSpell[0]);
+
+    // Scrolls back to top of page to view spell
+    if (focusRef) {
+      focusRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleLoading = async () => {
@@ -183,6 +189,7 @@ export default function Spells() {
         <div className="filterTitle">Name:</div>
         <div className="spellList">
           <Form.Control
+            className="filterTitle"
             type="text"
             style={{ textAlign: "center", maxWidth: "20rem" }}
             onChange={(e) => handleInputChange(e)}
@@ -191,7 +198,7 @@ export default function Spells() {
       </div>
 
       <div>
-        <hr></hr>
+        <hr ref={focusRef}></hr>
       </div>
 
       {/* Show the SpellCard component if a spell has been selected */}

@@ -1,7 +1,10 @@
 :root {
-  --header-color: #253840;
-  --footer-color: #1a1c37;
-  --background-color: #e0e8f0;
+  --header-color: #13070c;
+  --footer-color: #13070c;
+  --hover-header-color: #4b4a4a;
+  --background-color: #f1e4d4;
+  --text-color: #e0cf91;
+  --hover-text-color: #96875d;
 }
 
 #root {
@@ -17,17 +20,25 @@
 }
 
 .header {
-  background-color: var(--header-color);
   padding: 0.8%;
+  background: linear-gradient(
+    to bottom,
+    var(--header-color) 70%,
+    var(--background-color)
+  );
 }
 
 .footer {
-  background-color: #253840;
   padding-top: 6%;
+  background: linear-gradient(
+    to top,
+    var(--footer-color) 20%,
+    var(--background-color) 60%
+  );
 }
 
 h1 {
-  color: #d9c589;
+  color: var(--text-color);
   margin-left: 3%;
 }
 
@@ -40,7 +51,7 @@ h1 {
 .link-item:focus,
 .dropdown-toggle,
 .dropdown-toggle:focus {
-  color: #d9c589;
+  color: var(--text-color);
 }
 
 /* Prevents items in dropdown from turning blue when clicked */
@@ -50,12 +61,12 @@ h1 {
 
 .link-item:hover,
 .dropdown-toggle:hover {
-  color: #96875d;
+  color: var(--hover-text-color);
 }
 
 .dropdown-menu {
-  background-color: #253840;
-  border: 3px solid #5896b6;
+  background-color: var(--header-color);
+  border: 3px solid var(--background-color);
 }
 
 .nav {
@@ -63,7 +74,7 @@ h1 {
 }
 
 main {
-  background-color: #5896b6;
+  background-color: var(--background-color);
   flex: 1;
 }
 
@@ -74,21 +85,26 @@ main {
   margin: 0.4%;
 }
 
+/* .login-form *,
+.signup-form * {
+  background-color: var(--background-color);
+} */
+
 .roundedBox {
   border-radius: 20px;
 }
 
 .mainHomeImage {
   max-height: 80%;
-  border-radius: 20px;
-  border: 8px solid #253840;
+  border-radius: 10px;
+  box-shadow: 0 0 30px var(--header-color);
   overflow: hidden;
 }
 
 .sideImage {
   max-width: 80%;
   max-height: auto;
-  border: 8px solid #253840;
   border-radius: 20px;
+  box-shadow: 0 0 10px var(--header-color);
   overflow: hidden;
 }

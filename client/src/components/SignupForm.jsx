@@ -68,7 +68,7 @@ export default function SignupForm() {
 
   return (
     <div className="form-div">
-      <h3 className="row justify-content-center">Create Account</h3>
+      <h3 className="row justify-content-center m-0 pb-3">Create Account</h3>
       <form
         className="signup-form justify-content-center"
         onSubmit={handleFormSubmit}
@@ -113,7 +113,6 @@ export default function SignupForm() {
           </p>
         </div>
       )}
-      ;
     </div>
   );
 }

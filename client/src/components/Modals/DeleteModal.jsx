@@ -1,4 +1,5 @@
 import { Modal, Button } from "react-bootstrap";
+import './DeleteModal.css'
 
 export default function DeleteModal({ onClose, onClick, show, onHide }) {
   return (
@@ -17,7 +18,6 @@ export default function DeleteModal({ onClose, onClick, show, onHide }) {
                   onClose();
                 }
               }}
-              variant="danger"
               style={{ whiteSpace: "nowrap" }}
             >
               Yes! Get rid of it!
@@ -25,7 +25,6 @@ export default function DeleteModal({ onClose, onClick, show, onHide }) {
 
             <Button
               onClick={onClose}
-              variant="secondary"
               style={{ whiteSpace: "nowrap" }}
             >
               On second thought...

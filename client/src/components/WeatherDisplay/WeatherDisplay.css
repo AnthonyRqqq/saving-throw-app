@@ -1,21 +1,17 @@
 .fantasyLocationName:hover,
 .clickText:hover {
   cursor: pointer;
-  color: #ebe5d4;
-}
-
-#root {
-  background-color: #5896b6;
+  color: var(--hover-text-color);
 }
 
 .fantasyLocationName {
   font-size: xx-large;
-  color: #d9c589;
+  color: var(--text-color);
 }
 
 .realLocationName {
   font-size: medium;
-  color: grey;
+  color: rgb(170, 168, 168);
 }
 
 .fantasyLocationItem {
@@ -25,7 +21,7 @@
 .locationCard {
   margin-right: 8%;
   margin-left: 8%;
-  background-color: #253840;
+  background-color: var(--header-color);
 }
 
 .weatherDisplay {
@@ -34,7 +30,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #d9c589;
+  color: var(--text-color);
 }
 
 .weatherCard {
@@ -44,7 +40,7 @@
   margin-left: 40%;
   margin-right: 40%;
   margin-top: 1%;
-  background-color: #253840;
+  background-color: var(--header-color);
   font-size: large;
   border-radius: 15px;
 }
@@ -78,9 +74,10 @@
 }
 
 .deleteModal  {
-  background-color: #253840;
-  border: 4px solid #5896b6;
-  color: #d9c589;
+  background-color: var(--header-color);
+  border: 4px solid var(--header-color);
+  color: var(--text-color);
+  border-radius: 6px
 }
 
 .modal-header,
@@ -95,7 +92,7 @@
   align-items: center;
   padding-top: 15%;
   font-size: x-large;
-  color: #ecd695
+  color: var(--text-color)
 }
 
 .weatherLink {

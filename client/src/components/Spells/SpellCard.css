@@ -1,6 +1,6 @@
 .spellCard {
-  background-color: #253840;
-  color: #d9c589;
+  background-color: var(--header-color);
+  color: var(--text-color);
   padding: 2rem;
   box-shadow: 0px 0px 5px 5px black;
 }
