@@ -189,6 +189,7 @@ export default function Spells() {
         <div className="filterTitle">Name:</div>
         <div className="spellList">
           <Form.Control
+            className="filterTitle"
             type="text"
             style={{ textAlign: "center", maxWidth: "20rem" }}
             onChange={(e) => handleInputChange(e)}
@@ -197,11 +198,11 @@ export default function Spells() {
       </div>
 
       <div>
-        <hr></hr>
+        <hr ref={focusRef}></hr>
       </div>
 
       {/* Show the SpellCard component if a spell has been selected */}
-      {displayedSpell && <SpellCard spell={displayedSpell} ref={focusRef} />}
+      {displayedSpell && <SpellCard spell={displayedSpell} />}
       {displayedSpell && (
         <div>
           <hr></hr>

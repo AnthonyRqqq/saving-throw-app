@@ -12,6 +12,11 @@
   text-align: center;
   font-size: larger;
   padding-bottom: 0.75rem;
+  border-color: var(--header-color) !important;
+}
+
+.filterTitle:focus {
+  box-shadow: 0 0 5px black;
 }
 
 .spellList {
@@ -27,12 +32,16 @@
 .spellSchool,
 .spellLevel {
   border-radius: 10px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  color: black;
 }
 
 .selectedSchool,
 .selectedLevel {
-  background-color: var(--background-color);
+  background-color: var(--header-color);
   border-radius: 10px;
+  color: var(--text-color);
 }
 
 hr {
