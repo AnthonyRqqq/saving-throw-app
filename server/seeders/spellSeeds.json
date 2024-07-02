@@ -8,7 +8,7 @@
     "materialComponents": "a bit of sponge",
     "classList": ["Sorcerer", "Wizard"],
     "sourceBook": "Xanathar's Guide to Everything",
-    "range": "150 feet"
+    "range": "150 Feet"
   },
   {
     "name": "Absorb Elements",
@@ -689,7 +689,7 @@
     "components": "V, S, M",
     "materialComponents": "a bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins",
     "classList": ["Sorcerer", "Wizard"],
-    "range": "150 feet"
+    "range": "150 Feet"
   },
   {
     "name": "Charm Monster",
@@ -744,7 +744,7 @@
     "components": "V, S, M",
     "materialComponents": "the powder of a crushed black pearl worth at least 500 gp",
     "classList": ["Sorcerer", "Warlock", "Wizard"],
-    "range": "150 feet"
+    "range": "150 Feet"
   },
   {
     "name": "Circle of Power",
@@ -859,5 +859,149 @@
     "classList": ["Druid", "Ranger"],
     "castingTime": "One Minute",
     "range": "Self"
+  },
+  {
+    "name": "Compelled Duel",
+    "level": 1,
+    "school": "Enchantment",
+    "description": "You attempt to compel a creature into a duel. One creature that you can see within range must make a Wisdom saving throw. On a failed save, the creature is drawn to you, compelled by your divine demand. For the duration, it has disadvantage on attack rolls against creatures other than you, and must make a Wisdom saving throw each time it attempts to move to a space that is more than 30 feet away from you; if it succeeds on this saving throw, this spell doesn't restrict the target's movement for that turn. \n\n The spell ends if you attack any other creature, if you cast a spell that targets a hostile creature other than the target, if a creature friendly to you damages the target or casts a harmful spell on it, or if you end your turn more than 30 feet away from the target.",
+    "components": "V",
+    "isConcentration": true,
+    "classList": ["Paladin"],
+    "castingTime": "One Bonus Action",
+    "duration": "Up to One Minute",
+    "range": "30 Feet"
+  },
+  {
+    "name": "Comprehend Languages",
+    "level": 1,
+    "school": "Divination",
+    "isRitual": true,
+    "description": "For the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about one minute to read one page of text. \n\n This spell doesn't decode secret messages in a text or a glyph, such as an arcane sigil, that isn't part of a written language.",
+    "components": "V, S, M",
+    "materialComponents": "a pinch of soot and salt",
+    "classList": ["Bard", "Sorcerer", "Wizard", "Warlock"],
+    "duration": "One Hour",
+    "range": "Self"
+  },
+  {
+    "name": "Compulsion",
+    "level": 4,
+    "school": "Enchantment",
+    "description": "Creatures of your choice that you can see within range and that can hear you must make a Wisdom saving throw. A target automatically succeeds on this saving throw if it can't be charmed. On a failed save, a target is affected by this spell. Until the spell ends, you can use a bonus action on each of your turns to designate a direction that is horizontal to you. Each affected target must use as much of its movement as possible to move in that direction on its next turn. It can take its action before it moves. After moving in this way, it can make another Wisodom saving throw to try to end the effect. \n\n A target isn't compelled to move into an obviously deadly hazard, such as a fire or pit, but it will provoke opportunity attacks to move in the designated direction.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Bard"],
+    "duration": "Up to One Minute",
+    "range": "30 Feet"
+  },
+  {
+    "name": "Cone of Cold",
+    "level": 5,
+    "school": "Evocation",
+    "description": "A blast of cold air erupts from your hands. Each creature in a 60-foot cone must make a Constitution saving throw. A creature takes 8d8 cold damage on a failed save, or half as much damage on a successful one. \n\n A creature killed by this spell becomes a frozen statue until it thaws.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.",
+    "components": "V, S, M",
+    "materialComponents": "a small crystal or glass cone",
+    "classList": ["Sorcerer", "Wizard", "Bard (Optional)"],
+    "range": "Self (60-Foot Cone)"
+  },
+  {
+    "name": "Confusion",
+    "level": 4,
+    "school": "Enchantment",
+    "description": "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10-foot radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it. \n\n An affected target can't take reactions and must roll a d10 at the start of each of its turns to determine its behavior for that turn: \n\n 1 - The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn't take an action this turn. \n\n 2-6 - The creature doesn't move or take actions this turn. \n\n 7-8 - The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn. \n\n 9-10 - The creature can act and move normally. \n\n At the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 5th level or higher, the radius of the spehere increases by 5 feet for each slot level above 4th.",
+    "components": "V, S, M",
+    "materialComponents": "three nut shells",
+    "isConcentration": true,
+    "classList": ["Bard", "Druid", "Sorcerer", "Wizard"],
+    "duration": "Up to One Minute",
+    "range": "90 Feet"
+  },
+  {
+    "name": "Conjure Animals",
+    "level": 3,
+    "school": "Conjuration",
+    "description": "You summon fey spirits that take the form of beasts and appear in unoccupied spaces that you can see within range. Choose one of the following options for what appears: \n\n - One beast of challenge rating 2 or lower \n\n - Two beasts of challenge rating 1 or lower \n\n - Four beasts of challenge rating 1/2 or lower \n\n - Eight beasts of challenge rating 1/4 or lower \n\n Each beast is also considered fey, and it disappears when it drops to 0 hit points or when the spell ends. The summoned creatures are friendly to you and your companions. Roll initiative for the summoned creatures as a group, which has its own turns. They obey any verbal commands that you issue to them (no action required by you). If you don't issue any commands to them, they defend themselves from hostile creatures, but otherwise take no actions. The DM has the creatures' statistics.",
+    "atHigherLevel": "When you cast this spell using certain higher-level spell slots, you choose one of the summoning options above, and more creatures appear: twice as many with a 5th-level slot, three times as many with a 7th-level slot, and four times as many with a 9th-level slot.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Druid", "Ranger"],
+    "duration": "Up to One Hour",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Conjure Barrage",
+    "level": 3,
+    "school": "Conjuration",
+    "description": "You throw a nonmagical weapon or fire a piece of nonmagical ammunition into the air to create a cone of identical weapons that shoot forward and then disappear. Each creature in a 60-foot cone must succeed on a Dexterity saving throw. A creature takes 3d8 damage on a failed save, or half as much damage on a successful one. The damage type is the same as that of the weapon or ammunition used as a component.",
+    "components": "V, S, M",
+    "materialComponents": "one piece of ammunition or a thrown weapon",
+    "classList": ["Ranger"],
+    "range": "Self (60-Foot Cone)"
+  },
+  {
+    "name": "Conjure Celestial",
+    "level": 7,
+    "school": "Conjuration",
+    "description": "You summon a celestial of challenge rating 4 or lower, which appears in an unoccupied space that you can see within range. The celestial disappears when it drops to 0 hit points or when the spell ends. \n\n The celestial is friendly to you and your companions for the duration. Roll initiative for the celestial, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you), as long as they don't violate its alignment. If you don't issue any commands to the celestial, it defends itself from hostile creatures but otherwise takes no actions. The DM has the celestial's statistics.",
+    "atHigherLevel": "When you cast this spell using a 9th-level spell slot, you summon a celestial of challenge rating 5 or lower.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Cleric"],
+    "castingTime": "One Minute",
+    "duration": "Up to One Hour",
+    "range":"90 Feet"
+  },
+  {
+    "name": "Conjure Elemental",
+    "level": 5,
+    "school": "Conjuration",
+    "description": "You call forth an elemental servant. Choose an area of air, earth, fire or water that fills a 10-foot cube within range. An elemental of challenge rating 5 or lower appropriate to the area you chose appears in an unoccupied space within 10 feet of it. For example, a fire elemental emerges from a bonfire, and an earth elemental rises up from the ground. The elemental disappears when it drops to 0 hit points or when the spell ends. The elemental is friendly to you and your companions for the duration. Roll initiative for the elemental, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you). If you don't issue any commands to the elemental, it defends itself from hostile creatures but otherwise takes no actions. \n\n If your concentration is broken, the elemental doesn't disappear. Instead, you lose control of the elemental, it becomes hostile toward you and your companions, and it might attack. An uncontrolled elemental can't be dismissed by you, and it disappears one hour after you summoned it. The DM has the elemental's statistics.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th.",
+    "components": "V, S, M",
+    "materialComponents": "burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water",
+    "isConcentration": true,
+    "classList": ["Druid", "Wizard"],
+    "castingTime": "One Minute",
+    "duration": "Up to One Hour",
+    "range": "90 Feet"
+  },
+  {
+    "name": "Conjure Fey",
+    "level": 6,
+    "school": "Conjuration",
+    "description": "You summon a fey creature of challenge rating 6 or lower, or a fey spirit that takes the form of a beast of challenge rating 6 or lower. It appears in an unoccupied space that you can see within range. The fey creature disappears when it drops to 0 hit points of when the spell ends. \n\n The fey creature is friendly to you and your companions for the duration. Roll initiative for the creature which has its own turns. It obeys any verbal commands that you issue to it (no action required by you), as long as they don't violate its alignment. If you don't issue any commands to the fey creature, it defends itself from hostile creatures but otherwise takes no actions. \n\n If your concentration is broken, the fey creature doesn't disappear. Instead you lose control of the fey creature, it becomes hostile toward you and your companions, and it might attack. An uncontrolled fey creature can't be dismissed by you, and it disappears one hour after you summoned it. The DM has the fey creature's statistics. ",
+    "atHigherLevel": "When you cast this spell using a spell slot of 7th level or higher, the challenge rating increases by 1 for each slot level above 6th.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Druid", "Warlock"],
+    "castingTime": "One Minute",
+    "duration": "Up to One Hour",
+    "range": "90 Feet"
+  },
+  {
+    "name": "Conjure Minor Elementals",
+    "level": 4,
+    "school": "Conjuration",
+    "description": "You summon elementals that appear in unoccupied spaces that you can see within range. You choose one of the following options for what appears: \n\n - One elemental of challenge rating 2 or lower \n\n - Two elementals of challenge rating 1 or lower \n\n - Four elementals of challenge rating 1/2 or lower \n\n - Eight elementals of challenge rating 1/4 or lower \n\n An elemental summoned by this spell disappears when it drops to 0 hit points or when the spell ends. \n\n The summoned creatures are friendly to you and your companions. Roll initiative for the summoned creatures as a group, which has its own turns. They obey any verbal commands that you issue to them (no action required by you). If you don't issue any commands to them, they defend themselves from hostile creatures, but otherwise take no actions. The DM has the creatures' statistics.",
+    "atHigherLevel": "When you cast this spell using certain higher-level spell slots, you choose one of the summoning options above, and more creatures appear: twice as many with a 6th-level slot and three times as many with an 8th-level slot.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Druid", "Wizard"],
+    "castingTime": "One Minute",
+    "duration": "Up to One Hour",
+    "range": "90 Feet"
+  },
+  {
+    "name": "Conjure Volley",
+    "level": 5,
+    "school": "Conjuration",
+    "description": "You fire a piece of nonmagical ammunition from a ranged weapon or throw a nonmagical weapon into the air and choose a point within range. Hundreds of duplicates of the ammunition or weapon fall in a volley from above and then disappear. Each creature in a 40-foot radius, 20-foot high cylinder centered on that point must make a Dexterity saving throw. A creature takes 8d8 damage on a failed save, or half as much damage on a successful one. The damage type is the same as that of the ammunition or weapon.",
+    "components": "V, S, M",
+    "materialComponents": "one piece of ammunition or one thrown weapon",
+    "classList": ["Ranger"],
+    "range": "150 Feet"
   }
 ]
