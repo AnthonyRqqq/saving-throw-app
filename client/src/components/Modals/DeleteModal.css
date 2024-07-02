@@ -1,0 +1,10 @@
+.deleteModal button {
+    background-color: var(--text-color);
+    color: black;
+    border-color: var(--background-color)    
+}
+
+.deleteModal button:hover {
+    background-color: var(--hover-text-color);
+    border-color: var(--background-color)
+}

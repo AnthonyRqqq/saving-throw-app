@@ -1,6 +1,7 @@
 :root {
   --header-color: #13070c;
   --footer-color: #13070c;
+  --hover-header-color: #4b4a4a;
   --background-color: #f1e4d4;
   --text-color: #e0cf91;
   --hover-text-color: #96875d;
@@ -83,6 +84,11 @@ main {
   border-radius: 20px;
   margin: 0.4%;
 }
+
+/* .login-form *,
+.signup-form * {
+  background-color: var(--background-color);
+} */
 
 .roundedBox {
   border-radius: 20px;
