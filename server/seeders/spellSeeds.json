@@ -1086,5 +1086,67 @@
     "classList": ["Cleric", "Druid", "Wizard"],
     "duration": "Up to 10 Minutes",
     "range": "300 Feet"
+  },
+  {
+    "name": "Control Weather",
+    "level": 8,
+    "school": "Transmutation",
+    "description": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. \n\n When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 X 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction.",
+    "effectsArray": ["Precipitation: \n\n 1 - Clear \n\n 2 - Light Clouds \n\n 3 - Overcast or ground fog \n\n 4 - Rain, hail, or snow \n\n 5 - Torrential rain, driving hail, or blizzard", "Temperature: \n\n 1 - Unbearable heat \n\n 2 - Hot \n\n 3 - Warm \n\n 4 - Cool \n\n 5 - Cold \n\n 6 - Arctic Cold", "Wind: \n\n 1 - Calm \n\n 2 - Moderate Wind \n\n 3 - Strong Wind \n\n 4 - Gale \n\n 5 - Storm"],
+    "components": "V, S, M",
+    "materialComponents": "burning incense and bits of earth and wood mixed in water",
+    "isConcentration": true,
+    "classList": ["Cleric", "Druid", "Wizard"],
+    "castingTime": "10 Minutes",
+    "range": "Self (5-Mile Radius)",
+    "duration": "Up to 8 Hours"
+  },
+  {
+    "name": "Control Winds",
+    "level": 5,
+    "school": "Transmutation",
+    "description": "You take control of the air in a 100-foot cube that you can see within range. Choose one of the following effects when you cast the spell. The effect lasts for the spell's duration unless you use your action on a later turn to switch to a different effect. \n\n You can also use your action to temporarily halt the effect or to restart one you've halted.",
+    "effectsArray": ["Gusts: A wind picks up within the cube, continually blowing in a horizontal direction you designate. You choose the intensity of the wind: calm, moderate or strong. If the wind is moderate or strong, ranged weapon attacks that enter or leave the cube or pass through it have disadvantage on their attack rolls. If the wind is strong, any creature moving against the wind must spend 1 extra foot of movement for each foot moved", "Downdraft: You cause a sustained blast of strong wind to blow downward from the top of the cube. Ranged weapon attack that pass through the cube or that are made against targets with it have disadvantage on their attack rolls. A creature must make a Strength saving throw if it flies into the cube for the first time on a turn or starts its turn there flying. On a failed save, the creature is knocked prone.", "Updraft: You cause a sustained updraft within the cube, rising upward from the cube's bottom edge. Creatures that end a fall within the cube take only half damage from the fall. When a creature in the cube makes a vertical jump, the creature can jump up to 10 feet higher that normal."],
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Druid", "Sorcerer", "Wizard"],
+    "sourceBook":"Xanathar's Guide to Everything",
+    "duration": "Up to One Hour",
+    "range": "300 Feet"
+  },
+  {
+    "name": "Cordon of Arrows", 
+    "level": 2,
+    "school": "Transmutation",
+    "description": "You plant four pieces of nonmagical ammunition (arrows or crossbow bolts) in the ground within range and lay magic upon them to protect an area. Until the spell ends, whenever a creature other than you comes within 30 feet of the ammunition for the first time on a turn or ends its turn there, one piece of ammuntion flies up to strike it. The creature must succeed on a Dexterity saving throw or take 1d6 piercing damage. The piece of ammunition is then destroyed. The spell ends when no ammunition remains. \n\n When you cast this spell, you can designate any creatures you choose, and the spell ignores them.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the amount of ammunition that can be affected increases by two for each slot level above 2nd.",
+    "components":"V, S, M",
+    "materialComponents": "four or more arrows or bolts",
+    "classList": ["Ranger"],
+    "duration": "8 Hours",
+    "range": "5 Feet"
+  },
+  {
+    "name": "Counterspell",
+    "level": 5,
+    "school": "Abjuration",
+    "description": "You attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used.",
+    "components": "S",
+    "classList": ["Sorcerer", "Warlock", "Wizard"],
+    "castingTime": "One Reaction, which you take when you see a creature within 60 feet of you casting a spell",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Create Bonfire",
+    "level": 0,
+    "school": "Conjuration",
+    "description": "You create a bonfire on ground that you can see within range. Until the spell ends, the magic bonfire fills a 5-foot cube. Any creature in the bonfire's space when you cast the spell must succeed on a Dexterity saving throw or take 1d8 fire damage. A creature must also make the saving throw when it moves into the bonfire's space for the first time on a turn or ends its turn there. \n\n The bonfire ignites flammable objects in its area that aren't being worn or carried. \n\n The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+    "components": "V, S",
+    "classList": ["Druid", "Sorcerer", "Warlock", "Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "isConcentration": true,
+    "duration": "Up to One Minute",
+    "range": "60 Feet"
   }
 ]
