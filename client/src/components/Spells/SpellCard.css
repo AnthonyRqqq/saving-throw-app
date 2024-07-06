@@ -6,8 +6,8 @@
 }
 
 .spellCardHeader {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .spellCardName {
@@ -17,16 +17,22 @@
 .spellCardField {
   padding: 0.25rem 0;
   display: flex;
+  font-size: 1.1rem;
 }
 
 .spellCardField div {
-    display: inline;
+  display: inline;
+}
+
+.atHigherLevel {
+  margin-bottom: 1.75rem;
 }
 
 .fieldTitle {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .spellDescription {
-  padding: 1rem 0;
+  padding: 1.5rem 0 0.25rem 0;
+  font-size: 1.1rem;
 }
