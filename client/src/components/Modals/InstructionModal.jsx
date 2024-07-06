@@ -26,6 +26,7 @@ export default function InstructionModal({
 
           <Form.Check
             id="showAgainCheckbox"
+            className="instructionModalShowAgain"
             type="checkbox"
             label="Don't show again?"
           ></Form.Check>
