@@ -76,7 +76,7 @@ export default function SignupForm() {
         {/* Input field for email */}
         <div className="row justify-content-center">
           <input
-            className="col-sm-8 col-lg-3 loginInput"
+            className="col-sm-8 col-lg-3 col-8 loginInput"
             value={email}
             name="email"
             onChange={handleInputChange}
@@ -89,7 +89,7 @@ export default function SignupForm() {
         {/* Input field for password */}
         <div className="row justify-content-center">
           <input
-            className="col-sm-8 col-lg-3 loginInput"
+            className="col-sm-8 col-lg-3 col-8 loginInput"
             value={password}
             name="password"
             onChange={handleInputChange}
@@ -101,7 +101,7 @@ export default function SignupForm() {
 
         {/* Submit button */}
         <div className="row justify-content-center">
-          <button className="col-lg-1 col-sm-3 justify-content-center" type="submit">
+          <button className="col-lg-1 col-sm-3 col-3 justify-content-center" type="submit">
             Submit
           </button>
         </div>
