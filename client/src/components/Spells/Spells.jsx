@@ -209,10 +209,16 @@ export default function Spells() {
         </div>
       )}
 
-      <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
+      <ul
+        className="row"
+        style={{
+          listStyle: "none",
+          textAlign: "center",
+        }}
+      >
         {spells.length > 0 ? (
           spells.map((spell, index) => (
-            <li key={index} className="spellName col-3">
+            <li key={index} className="spellName col-lg-3 col-sm-4 col-md-3">
               <span
                 className="spellText"
                 data-spell-id={spell._id}
