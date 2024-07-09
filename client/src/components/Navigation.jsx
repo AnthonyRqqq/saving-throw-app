@@ -6,20 +6,18 @@ export default function Navigation() {
 
   return (
     <div className="row">
-      <h1 className="col justify-content-start">Saving Throws</h1>
+      <h1 className="col justify-content-start">
+        <Link
+        to='/'
+        className={`${
+          currentPage === "/" ? "nav-link active-link" : "nav-link"
+        } link-item`}
+      >
+        Saving Throws
+      </Link>
+      </h1>
 
       <ul className="nav col justify-content-end">
-        {/* Link to homepage */}
-        <li className="nav-item">
-          <Link
-            to="/"
-            className={`${
-              currentPage === "/" ? "nav-link active-link" : "nav-link"
-            } link-item`}
-          >
-            Home
-          </Link>
-        </li>
 
         {/* Link to login page, changes to logout button if user logged in */}
         {!Auth.loggedIn() ? (
