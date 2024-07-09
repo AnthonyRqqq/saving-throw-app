@@ -10,38 +10,23 @@ export default function Home() {
   return (
     <>
       <div className="row d-flex justify-content-evenly align-items-center pt-4">
-        <div className="col-3">
+        <div className="col-lg-3 col-12">
           <div className="col-12 d-flex justify-content-center mb-2">
             <img src={dragon} className="sideImage"></img>
           </div>
           <div className="col-12 d-flex justify-content-center mb-2">
             <img className="sideImage" src={diceBook}></img>
           </div>
-          <div className="col-12 d-flex justify-content-center">
+          <div className="col-12 mb-2 d-flex justify-content-center">
             <img src={kraken} className="sideImage"></img>
           </div>
         </div>
 
-        <div className="col-6 d-flex justify-content-center align-items-center">
+        <div className="col-lg-6 col-9 d-flex justify-content-center align-items-center">
           <img className="mainHomeImage" src={diceMap}></img>
-
-          {/* Text overlayed on top of the image */}
-          <div
-            className="overlay-text position-absolute d-flex justify-content-center align-items-center"
-            style={{
-              top: "43%" /* Centers vertically */,
-              left: "50%" /* Centers horizontally */,
-              transform:
-                "translate(-50%, -50%)" /* Ensures absolute centering */,
-              fontSize: "xx-large",
-              fontFamily: "Lobster, cursive",
-            }}
-          >
-            Make a saving throw...
-          </div>
         </div>
 
-        <div className="col-3">
+        <div className="col-lg-3 col-12">
           <div className="col-12 d-flex justify-content-center mb-2 mt-2">
             <img src={fireDice} className="sideImage"></img>
           </div>
