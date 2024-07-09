@@ -952,7 +952,7 @@
     "classList": ["Cleric"],
     "castingTime": "One Minute",
     "duration": "Up to One Hour",
-    "range":"90 Feet"
+    "range": "90 Feet"
   },
   {
     "name": "Conjure Elemental",
@@ -1034,7 +1034,14 @@
     "level": 5,
     "school": "Necromancy",
     "description": "Your touch inflicts disease. Make a melee spell attack against a creature within your reach. On a hit, the target is poisoned. \n\n At the end of each of the poisoned target's turns, the target must make a Constitution saving throw. If the target succeeds on three of these saving throws, it is no longer poisoned, and the spell ends. If the target fails three of these saves, the target is no longer poisoned, but choose one of the diseases below. The target is subjected to the chosen disease for the spell's duration. \n\n Since this spell induces a natural disease in its target, any effect that removes a disease or otherwise ameliorates a disease's effects apply to it.",
-    "effectsArray": ["Blinding Sickness: Pain grips the creature's mind, and its eyes turn milky white. The creature has disadvantage on Wisdom checks and Wisdom saving throws and is blinded.", "Filth Fever: A raging fever sweeps through the creature's body. The creature has disadvantage on Strength checks, Strength saving throws, and attack rolls that use Strength.", "Flesh Rot: The creature's flesh decays. The creature has disadvantage on Charisma checks and vulnerability to all damage.", "Mindfire: The creature's mind becomes feverish. The creature has disadvantage on Intelligence saving throws, and the creature behaves as if under the effects of the confusion spell during combat.", "Seizure: The creature is overcome with shaking. The creature has disadvantage on Dexterity checks, Dexterity saving throws, and attack rolls that use Dexterity.", "Slimy Doom: The creature begins to bleed uncontrollably. The creature has disadvantage on Constitution checks and Constitution saving throws. In addition, whenever the creature takes damage, it is stunned until the end of its next turn."],
+    "effectsArray": [
+      "Blinding Sickness: Pain grips the creature's mind, and its eyes turn milky white. The creature has disadvantage on Wisdom checks and Wisdom saving throws and is blinded.",
+      "Filth Fever: A raging fever sweeps through the creature's body. The creature has disadvantage on Strength checks, Strength saving throws, and attack rolls that use Strength.",
+      "Flesh Rot: The creature's flesh decays. The creature has disadvantage on Charisma checks and vulnerability to all damage.",
+      "Mindfire: The creature's mind becomes feverish. The creature has disadvantage on Intelligence saving throws, and the creature behaves as if under the effects of the confusion spell during combat.",
+      "Seizure: The creature is overcome with shaking. The creature has disadvantage on Dexterity checks, Dexterity saving throws, and attack rolls that use Dexterity.",
+      "Slimy Doom: The creature begins to bleed uncontrollably. The creature has disadvantage on Constitution checks and Constitution saving throws. In addition, whenever the creature takes damage, it is stunned until the end of its next turn."
+    ],
     "components": "V, S",
     "classList": ["Cleric", "Druid"],
     "duration": "7 Days",
@@ -1079,7 +1086,12 @@
     "level": 4,
     "school": "Transmutation",
     "description": "Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.",
-    "effectsArray": ["Flood: You cause the water level of all standing water in the area to rise by as much as 20 feet. If the area includes a shore, the flooding water spills over onto dry land. If you choose an area in a large body of water, you instead create a 20-foot tall wave that travels from one side of the area to the other and then crashes down. Any Huge or smaller vehicales in the wave's path are carried with it to the other side. Any Huge or smaller vehicles struck by the wave have a 25 percent chance of capsizing. The water level remains elevated until the spell ends or you choose a different effect. If this effect produced a wave, the wave repeats on the start of your next turn while the flood effect lasts.", "Part Water: You cause water in the area to move apart and create a trench. The trench extends across the spell's area, and the separated water forms a wall to either side. The trench remains until the spell ends or you choose a different effect. The water then slowly fills in the trench over the course of the next round until the normal water level is restored.", "Redirect Flow: You cause flowing water in the area to move in a direction you choose, even if the water has to flow over obstacles, up walls, or in other unlikely directions. The water in the area moves as your direct it, but once it moves beyond the spell's area, it resumes its flow based on the terrain conditions. The water continues to move in the direction you chose until the spell ends or you choose a different effect.", "Whirlpool: This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. The whirlpool forms a vortex that is 5 feet wide at the base, up to 50 feet wide at the top, and 25 feet tall. Any creature or object in the water and within 25 feet of the vortex is pulled 10 feet toward it. A creature can swim away from the vortex by making a Strength (Athletics) check against your spell save DC. \n\n When a creature enters the vortex for the first time on a turn or starts its turn there, it must make a Strength saving throw. On a failed save, the creature takes 2d8 bludgeoning damage and is caught in the vortex until the spell ends. On a successful save, the creature takes half damage, and isn't caught in the vortex. A creature caught in the vortex can use its action to try to swim away from the vortex as described above, but has disadvantage on the Strength (Athletics) check to do so. \n\n The first time each turn that an object enters the vortex, the object takes 2d8 bludgeoning damage; this damage occurs each round it remains in the vortex."],
+    "effectsArray": [
+      "Flood: You cause the water level of all standing water in the area to rise by as much as 20 feet. If the area includes a shore, the flooding water spills over onto dry land. If you choose an area in a large body of water, you instead create a 20-foot tall wave that travels from one side of the area to the other and then crashes down. Any Huge or smaller vehicales in the wave's path are carried with it to the other side. Any Huge or smaller vehicles struck by the wave have a 25 percent chance of capsizing. The water level remains elevated until the spell ends or you choose a different effect. If this effect produced a wave, the wave repeats on the start of your next turn while the flood effect lasts.",
+      "Part Water: You cause water in the area to move apart and create a trench. The trench extends across the spell's area, and the separated water forms a wall to either side. The trench remains until the spell ends or you choose a different effect. The water then slowly fills in the trench over the course of the next round until the normal water level is restored.",
+      "Redirect Flow: You cause flowing water in the area to move in a direction you choose, even if the water has to flow over obstacles, up walls, or in other unlikely directions. The water in the area moves as your direct it, but once it moves beyond the spell's area, it resumes its flow based on the terrain conditions. The water continues to move in the direction you chose until the spell ends or you choose a different effect.",
+      "Whirlpool: This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. The whirlpool forms a vortex that is 5 feet wide at the base, up to 50 feet wide at the top, and 25 feet tall. Any creature or object in the water and within 25 feet of the vortex is pulled 10 feet toward it. A creature can swim away from the vortex by making a Strength (Athletics) check against your spell save DC. \n\n When a creature enters the vortex for the first time on a turn or starts its turn there, it must make a Strength saving throw. On a failed save, the creature takes 2d8 bludgeoning damage and is caught in the vortex until the spell ends. On a successful save, the creature takes half damage, and isn't caught in the vortex. A creature caught in the vortex can use its action to try to swim away from the vortex as described above, but has disadvantage on the Strength (Athletics) check to do so. \n\n The first time each turn that an object enters the vortex, the object takes 2d8 bludgeoning damage; this damage occurs each round it remains in the vortex."
+    ],
     "components": "V, S, M",
     "materialComponents": "a drop of water and a pinch of dust",
     "isConcentration": true,
@@ -1092,7 +1104,11 @@
     "level": 8,
     "school": "Transmutation",
     "description": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. \n\n When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 X 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction.",
-    "effectsArray": ["Precipitation: \n\n 1 - Clear \n\n 2 - Light Clouds \n\n 3 - Overcast or ground fog \n\n 4 - Rain, hail, or snow \n\n 5 - Torrential rain, driving hail, or blizzard", "Temperature: \n\n 1 - Unbearable heat \n\n 2 - Hot \n\n 3 - Warm \n\n 4 - Cool \n\n 5 - Cold \n\n 6 - Arctic Cold", "Wind: \n\n 1 - Calm \n\n 2 - Moderate Wind \n\n 3 - Strong Wind \n\n 4 - Gale \n\n 5 - Storm"],
+    "effectsArray": [
+      "Precipitation: \n\n 1 - Clear \n\n 2 - Light Clouds \n\n 3 - Overcast or ground fog \n\n 4 - Rain, hail, or snow \n\n 5 - Torrential rain, driving hail, or blizzard",
+      "Temperature: \n\n 1 - Unbearable heat \n\n 2 - Hot \n\n 3 - Warm \n\n 4 - Cool \n\n 5 - Cold \n\n 6 - Arctic Cold",
+      "Wind: \n\n 1 - Calm \n\n 2 - Moderate Wind \n\n 3 - Strong Wind \n\n 4 - Gale \n\n 5 - Storm"
+    ],
     "components": "V, S, M",
     "materialComponents": "burning incense and bits of earth and wood mixed in water",
     "isConcentration": true,
@@ -1106,21 +1122,25 @@
     "level": 5,
     "school": "Transmutation",
     "description": "You take control of the air in a 100-foot cube that you can see within range. Choose one of the following effects when you cast the spell. The effect lasts for the spell's duration unless you use your action on a later turn to switch to a different effect. \n\n You can also use your action to temporarily halt the effect or to restart one you've halted.",
-    "effectsArray": ["Gusts: A wind picks up within the cube, continually blowing in a horizontal direction you designate. You choose the intensity of the wind: calm, moderate or strong. If the wind is moderate or strong, ranged weapon attacks that enter or leave the cube or pass through it have disadvantage on their attack rolls. If the wind is strong, any creature moving against the wind must spend 1 extra foot of movement for each foot moved", "Downdraft: You cause a sustained blast of strong wind to blow downward from the top of the cube. Ranged weapon attack that pass through the cube or that are made against targets with it have disadvantage on their attack rolls. A creature must make a Strength saving throw if it flies into the cube for the first time on a turn or starts its turn there flying. On a failed save, the creature is knocked prone.", "Updraft: You cause a sustained updraft within the cube, rising upward from the cube's bottom edge. Creatures that end a fall within the cube take only half damage from the fall. When a creature in the cube makes a vertical jump, the creature can jump up to 10 feet higher that normal."],
+    "effectsArray": [
+      "Gusts: A wind picks up within the cube, continually blowing in a horizontal direction you designate. You choose the intensity of the wind: calm, moderate or strong. If the wind is moderate or strong, ranged weapon attacks that enter or leave the cube or pass through it have disadvantage on their attack rolls. If the wind is strong, any creature moving against the wind must spend 1 extra foot of movement for each foot moved",
+      "Downdraft: You cause a sustained blast of strong wind to blow downward from the top of the cube. Ranged weapon attack that pass through the cube or that are made against targets with it have disadvantage on their attack rolls. A creature must make a Strength saving throw if it flies into the cube for the first time on a turn or starts its turn there flying. On a failed save, the creature is knocked prone.",
+      "Updraft: You cause a sustained updraft within the cube, rising upward from the cube's bottom edge. Creatures that end a fall within the cube take only half damage from the fall. When a creature in the cube makes a vertical jump, the creature can jump up to 10 feet higher that normal."
+    ],
     "components": "V, S",
     "isConcentration": true,
     "classList": ["Druid", "Sorcerer", "Wizard"],
-    "sourceBook":"Xanathar's Guide to Everything",
+    "sourceBook": "Xanathar's Guide to Everything",
     "duration": "Up to One Hour",
     "range": "300 Feet"
   },
   {
-    "name": "Cordon of Arrows", 
+    "name": "Cordon of Arrows",
     "level": 2,
     "school": "Transmutation",
     "description": "You plant four pieces of nonmagical ammunition (arrows or crossbow bolts) in the ground within range and lay magic upon them to protect an area. Until the spell ends, whenever a creature other than you comes within 30 feet of the ammunition for the first time on a turn or ends its turn there, one piece of ammuntion flies up to strike it. The creature must succeed on a Dexterity saving throw or take 1d6 piercing damage. The piece of ammunition is then destroyed. The spell ends when no ammunition remains. \n\n When you cast this spell, you can designate any creatures you choose, and the spell ignores them.",
     "atHigherLevel": "When you cast this spell using a spell slot of 3rd level or higher, the amount of ammunition that can be affected increases by two for each slot level above 2nd.",
-    "components":"V, S, M",
+    "components": "V, S, M",
     "materialComponents": "four or more arrows or bolts",
     "classList": ["Ranger"],
     "duration": "8 Hours",
@@ -1148,5 +1168,147 @@
     "isConcentration": true,
     "duration": "Up to One Minute",
     "range": "60 Feet"
+  },
+  {
+    "name": "Create Food and Water",
+    "level": 3,
+    "school": "Conjuration",
+    "description": "You create 45 pounds of food and 30 gallons of water on the ground or in containers within range, enough to sustain up to fifteen humanoids or five steeds for 24 hours. The food is bland but nourishing, and spoils if uneaten after 24 hours. The water is clean and doesn't go bad.",
+    "components": "V, S",
+    "classList": ["Cleric", "Paladin"],
+    "range": "30 Feet"
+  },
+  {
+    "name": "Create Homonculus",
+    "level": 6,
+    "school": "Transmutation",
+    "description": "While speaking an intricate incantation, you cut yourself with a jewel-encrusted dagger, taking 2d4 piercing damage that can't be reduced in any way. You then drip your blood on the spell's other components and touch them, transforming them into a special construct called a homunculus. The statistics of the homunculus are in the Monster Manual. It is your faithful companion, and it dies if you die. Whenever you finish a long rest, you can spend up to half your Hit Dice if the homunculus is on the same plane of existence as you. When you do so, roll each die and add your Constitution modifier to it. Your hit point maximum is reduced by the total, and the homunculus's hit point maximum and current hit points are both increased by it. The process can reduce you to no lower than 1 hit point, and the change to your and the homunculus's hit points ends when you finish your next long rest. The reduction to your hit point maximum can't be removed by any means before then, except by the homunclus's death. You can have only one homunculus at a time. If you cast this spell while your homunculus lives, the spell fails.",
+    "components": "V, S, M",
+    "materialComponents": "clay, ash, and mandrake root, all of which the spell consumes, and a jewel-encrusted dagger worth at least 1,000 gp",
+    "classList": ["Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "castingTime": "One Hour",
+    "range": "Touch"
+  },
+  {
+    "name": "Create or Destroy Water",
+    "level": 1,
+    "school": "Transmutation",
+    "description": "You either create or destroy water.",
+    "effectsArray": [
+      "Create Water: You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot cube within range, extinguishing exposed flames in the area.",
+      "Destroy Water: You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot cube within range."
+    ],
+    "atHigherLevel": "When you cast this spell using a spell slot of 2nd level or higher, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each slot level above 1st.",
+    "components": "V, S, M",
+    "materialComponents": "a drop of water if creating water or a few grains of sand if destroying it",
+    "classList": ["Cleric", "Druid"],
+    "range": "30 Feet"
+  },
+  {
+    "name": "Create Undead",
+    "level": 6,
+    "school": "Necromancy",
+    "description": "You can cast this spell only at night. Choose up to three corpses of Medium or Small humanoids within range. Each corpse becomes a ghoul under your control. (The DM has game statistics for these creatures). \n\n As a bonus action on each of your turns, you can mentally command any creature you animated with this spell if the creature is within 120 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move during its next turn, or you can issue a general command, such as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until its task is complete. \n\n The creature is under your control for 24 hours, after which it stops obeying any command you have given it. To maintain control over the creature for another 24 hours, you must cast this spell on the creature before the current 24-hour period ends. The use of the spell reasserts your control over up to three creatures you have animated with this spell, rather than animating new ones.",
+    "atHigherLevel": "When you cast this spell using a 7th-level spell slot, you can animate or reassert control over four ghouls. When you cast this spell using an 8th-level spell slot, you can animate or reassert control over five ghouls or two ghasts or wights. When you cast this spell using a 9th-level spell slot, you can animate or reassert control over six ghouls, three ghasts or wights, or two mummies.",
+    "components": "V, S, M",
+    "materialComponents": "one clay pot filled with grave dirt, one clay pot filled with brackish water, and one 150 gp black onyx stone for each corpse",
+    "classList": ["Cleric", "Warlock", "Wizard"],
+    "castingTime": "One Minute",
+    "range": "10 Feet"
+  },
+  {
+    "name": "Creation",
+    "level": 5,
+    "school": "Illusion",
+    "description": "You pull wisps of shadow material from the Shadowfell to create a nonliving object of vegetable matter within range: soft goods, rope, wood, or something similar. You can also use this spell to create mineral objects such as stone, crystal, or metal. \n\n The object created must be no larger than a 5-foot cube, and the object must be of a form and material that you have seen before. \n\n The duration depends on the object's material. If the object is composed of multiple materials, use the shortest duration. \n\n Vegetable Matter - 1 day \n\n Stone or Crystal - 12 hours \n\n Precious Metals - 1 hour \n\n Gems - 10 minutes \n\n Adamantine or Mithral - 1 minute \n\n Using any material created by this spell as another spell's material component causes that spell to fail.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 6th level or higher, the cube increases by 5 feet for each slot level above 5th.",
+    "components": "V, S, M",
+    "materialComponents": "a tiny piece of matter of the same type of the item you plan to create",
+    "classList": ["Sorcerer", "Wizard"],
+    "castingTime": "One Minute",
+    "range": "30 Feet",
+    "duration": "Special"
+  },
+  {
+    "name": "Crown of Madness",
+    "level": 2,
+    "school": "Enchantment",
+    "description": "One humanoid of your choice that you can see within range must succeed on a Wisdom saving throw or become charmed by you for the duration. While the target is charmed in this way, a twisted crown of jagged iron appears on its head, and a madness glows in its eyes. \n\n The charmed target must use its action before moving on each of its turns to make a melee attack against a creature other than itself that you mentally choose. The target can act normally on its turn if you choose no creature or if none are within its reach. \n\n On your subsequent turns, you must use your action to maintain control over the target, or the spell ends. Also, the target can make a Wisdom saving throw at the end of each of its turns. On a success, the spell ends.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Bard", "Sorcerer", "Wizard", "Warlock"],
+    "duration": "Up to One Minute",
+    "range": "120 Feet"
+  },
+  {
+    "name": "Crown of Stars",
+    "level": 7,
+    "school": "Evocation",
+    "description": "Seven star-like motes of light appear and orbit your head until the spell ends. You can use a bonus action to send one of the motes streaking toward one creature or object within 120 feet of you. When you do so, make a ranged spell attack. On a hit, the target takes 4d12 radiant damage. Whether you hit or miss, the mote is expended. The spell ends early if you expend the last mote. If you have four or more motes remaining, they shed bright light in a 30-foot radius and dim light for an additional 30 feet. If you have one to three motes remaining, they shed dim light in a 30-foot radius.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 8th level or higher, the number of motes created increases by two for each slot level above 7th.",
+    "components": "V, S",
+    "classList": ["Sorcerer", "Warlock", "Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "duration": "One Hour",
+    "range": "Self"
+  },
+  {
+    "name": "Crusader's Mantle",
+    "level": 3,
+    "school": "Evocation",
+    "description": "Holy power radiates from you in an aura with a 30-foot radius, awakening boldness in friendly creatures. Until the spell ends, the aura moves with you, centered on you. While in the aura, each non-hostile creature in the aura (including you) deals an extra 1d4 radiant damage when it hits with a weapon attack.",
+    "components": "V",
+    "classList": ["Paladin"],
+    "isConcentration": true,
+    "duration": "Up to One Minute",
+    "range": "Self"
+  },
+  {
+    "name": "Cure Wounds",
+    "level": 1,
+    "school": "Evocation",
+    "description": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.",
+    "components": "V, S",
+    "classList": ["Bard", "Cleric", "Ranger", "Paladin"],
+    "range": "Touch"
+  },
+  {
+    "name": "Dancing Lights",
+    "level": 0,
+    "school": "Evocation",
+    "description": "You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. You can also combine the four lights into one glowing vaguely humanoid form of Medium size. Whichever form you choose, each light sheds dim light in a 10-foot radius. \n\n As a bonus action on your turn, you can move the lights up to 60 feet to a new spot within range. A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.",
+    "components": "V, S, M",
+    "materialComponents": "a bit of phosphorus or wychwood, or a glowworm",
+    "isConcentration": true,
+    "classList": ["Bard", "Sorcerer", "Wizard"],
+    "range": "120 Feet",
+    "duration": "Up to One Minute"
+  },
+  {
+    "name": "Danse Macabre",
+    "level": 5,
+    "school": "Necromancy",
+    "description": "Threads of dark power leap from your fingers to pierce up to five Small or Medium corpses you can see within range. Each corpse immediately stands up and becomes undead. You decide whether it is a zombie or a skeleton (the statistics for zombies and skeletons are in the Monster Manual), and it gains a bonus to its attack and damage rolls equal to your spellcasting ability modifier. You can use a bonus action to mentally command the creatures you make with this spell, issuing the same command to all of them. To receive the command, a creature must be within 60 feet of you. You decide what action the creatures will take and where they will move during their next turn, or you can issue a general commands, such as to guard a chamber or passageway against your foes. If you issue no commands, the creatures do nothing except defend themselves against hostile creatures. Once given an order, the creatures continue to follow it until their task is complete. \n\n The creatures are under your control until the spell ends, after which they become inanimate once more.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 6th level or higher, you animate up to two additional corpses for each slot level above 5th.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Warlock", "Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "duration": "Up to One Hour",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Darkness",
+    "level": 2,
+    "school": "Evocation",
+    "description": "Magical darkness spreads from a point you choose within range to fill a 15-foot radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it. \n\n If the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. Completely covering the source of the darkness with an opaque object, such as a bowl or a helm, blocks the darkness. \n\n If any of this spell's area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created that light is dispelled.",
+    "components": "V, M",
+    "materialComponents": "bat fur and a drop of pitch or piece of coal",
+    "isConcentration": true,
+    "classList": ["Sorcerer", "Warlock", "Wizard"],
+    "range": "60 Feet",
+    "duration": "Up to 10 Minutes"
   }
 ]

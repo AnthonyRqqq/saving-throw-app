@@ -59,13 +59,6 @@ export default function SpellCard({ spell }) {
 
       <Row className="spellCardField">
         <Col>
-          <div className="fieldTitle">Source: </div>
-          {spell.sourceBook}
-        </Col>
-      </Row>
-
-      <Row className="spellCardField">
-        <Col>
           <div className="fieldTitle">Casting Time: </div> {spell.castingTime}
         </Col>
       </Row>
@@ -107,22 +100,28 @@ export default function SpellCard({ spell }) {
         <AdditionalEffects effectsArray={spell.effectsArray} />
       )}
 
-      <Row className="spellCardField">
-        <Col>
-          {/* {spell.atHigherLevel && `At Higher Levels: ${spell.atHigherLevel}`} */}
-          {spell.atHigherLevel && (
+      {spell.atHigherLevel && (
+        <Row className="spellCardField atHigherLevel">
+          <Col>
             <>
               <div className="fieldTitle">At Higher Levels: </div>
               {spell.atHigherLevel}
             </>
-          )}
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      )}
 
       <Row className="spellCardField">
         <Col>
           <div className="fieldTitle">Spell Lists: </div>
           {spellListString}
+        </Col>
+      </Row>
+
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">Source: </div>
+          {spell.sourceBook}
         </Col>
       </Row>
     </Container>

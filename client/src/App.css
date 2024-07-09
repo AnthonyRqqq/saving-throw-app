@@ -57,6 +57,7 @@ h1 {
 /* Prevents items in dropdown from turning blue when clicked */
 .link-item {
   background-color: transparent !important;
+  display: inline-block;
 }
 
 .link-item:hover,

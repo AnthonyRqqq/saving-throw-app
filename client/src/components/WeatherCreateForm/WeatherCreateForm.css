@@ -22,6 +22,7 @@ button:hover {
 
 .locationBtn {
   margin: 0, 5%;
+  white-space: nowrap;
 }
 
 p {
@@ -30,6 +31,17 @@ p {
 
 .tagBtn {
   margin-bottom: 1%;
+  white-space: nowrap;
+}
+
+.tagList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tagItem {
+  white-space: nowrap;
 }
 
 .instructionModal,

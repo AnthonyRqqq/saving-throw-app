@@ -144,7 +144,7 @@ export default function Spells() {
     <div>
       {/* Schools to filter by */}
       <div className="pt-3 px-3">
-        <div className="filterTitle">Spell Schools:</div>
+        <div className="filterTitle">Spell Schools</div>
         <ul className="spellList">
           {spellSchools.map((school, index) => (
             <li key={index}>
@@ -165,7 +165,7 @@ export default function Spells() {
 
       {/* Levels to filter by */}
       <div className="px-3">
-        <div className="filterTitle">Spell Levels:</div>
+        <div className="filterTitle">Spell Levels</div>
         <ul className="spellList">
           {spellLevels.map((level, index) => (
             <li key={index}>
@@ -186,7 +186,7 @@ export default function Spells() {
 
       {/* Input text to filter names by */}
       <div className="px-3">
-        <div className="filterTitle">Name:</div>
+        <div className="filterTitle">Name</div>
         <div className="spellList">
           <Form.Control
             className="filterTitle"
@@ -209,10 +209,16 @@ export default function Spells() {
         </div>
       )}
 
-      <ul className="row" style={{ listStyle: "none", textAlign: "center" }}>
+      <ul
+        className="row"
+        style={{
+          listStyle: "none",
+          textAlign: "center",
+        }}
+      >
         {spells.length > 0 ? (
           spells.map((spell, index) => (
-            <li key={index} className="spellName col-3">
+            <li key={index} className="spellName col-lg-3 col-sm-4 col-md-3">
               <span
                 className="spellText"
                 data-spell-id={spell._id}
