@@ -105,7 +105,7 @@ export default function WeatherDisplayComponent() {
 
       {/* Main display of weather data, just temp and weather */}
       {weatherState && (
-        <div className="weatherDisplay weatherCard">
+        <div className="weatherDisplay weatherCard col-lg-4 col-8 mx-auto">
           <span style={{ fontSize: "xx-large" }}>{currentFantasyLocation}</span>
           <span>Current Temp: {weatherData.main.temp} &deg;F</span>
           <span>
@@ -150,7 +150,7 @@ export default function WeatherDisplayComponent() {
       {fantasyLocations && (
         <div className="row fantasyLocationItem">
           {fantasyLocations.map((location) => (
-            <div className="col-4" key={location._id}>
+            <div className="col-lg-4 col-6" key={location._id}>
               {/* The part of the chip holding the fantasy location daya */}
               <div className="col locationCard fantasyLocationCard">
                 <span
