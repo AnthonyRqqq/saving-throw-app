@@ -23,7 +23,7 @@
   padding: 0.8%;
   background: linear-gradient(
     to bottom,
-    var(--header-color) 70%,
+    var(--header-color) 85%,
     var(--background-color)
   );
 }
