@@ -295,7 +295,7 @@ export default function WeatherCreateForm() {
         {/* Input field for the name of the fantasy location */}
         <div className="row justify-content-center">
           <input
-            className="col-3 weatherInput"
+            className="col-6 col-lg-3 weatherInput"
             value={fantasyLocationName}
             name="fantasyLocationName"
             onChange={handleInputChange}
@@ -315,7 +315,7 @@ export default function WeatherCreateForm() {
 
           {/* Dropdown of tag options */}
           <select
-            className="col-1 tagInput"
+            className="col-lg-1 col-4 tagInput"
             name="tagSelect"
             onChange={(e) => setSelectedTag(e.target.value)}
             defaultValue={""}
@@ -341,7 +341,7 @@ export default function WeatherCreateForm() {
           {/* Button for adding tags to the search array */}
           <div className="row justify-content-center">
             <button
-              className="col-1 mt-2 tagBtn roundedBox"
+              className="col-lg-1 col-sm-3 col-3 mt-2 tagBtn roundedBox"
               onClick={handleTagSelect}
             >
               Add Tag
@@ -356,8 +356,8 @@ export default function WeatherCreateForm() {
 
           {/* Displays selected tags, max of three */}
           <div className="container">
-            <div className="row justify-content-center">
-              <ul className="list-unstyled d-flex justify-content-center">
+            <div className="justify-content-center">
+              <ul className="list-unstyled tagList">
                 {tags.map((tag, index) => (
                   <li key={index} className="mx-2">
                     <button
@@ -375,7 +375,7 @@ export default function WeatherCreateForm() {
 
         <div className="container">
           <div className="row justify-content-center">
-            <ul className="list-unstyled d-flex justify-content-center">
+            <ul className="list-unstyled tagList">
               {filteredLocations.length !== allLocations.length &&
                 filteredLocations.map((location, index) => {
                   return (
@@ -404,7 +404,7 @@ export default function WeatherCreateForm() {
 
         <div className="row justify-content-center">
           <button
-            className="row justify-content-center col-1 roundedBox"
+            className="row justify-content-center col-3 col-lg-1 roundedBox"
             onClick={handleFantasyLocationCreation}
           >
             Submit
