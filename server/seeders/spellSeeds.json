@@ -1310,5 +1310,126 @@
     "classList": ["Sorcerer", "Warlock", "Wizard"],
     "range": "60 Feet",
     "duration": "Up to 10 Minutes"
+  },
+  {
+    "name": "Dawn", 
+    "level": 5,
+    "school": "Evocation",
+    "description": "The light of dawn shines down on a location you specify within range. Until the spell ends, a 30-foot radius, 40-foot high cylinder of bright light glimmers there. This light is sunlight. When the cylinder appears, each creature in it must make a Constitution saving throw, taking 4d10 radiant damage on a failed save, or half as much damage on a successful one. A creature must also make this saving throw whenever it ends its turn in the cylinder. If you're within 60 feet of the cylinder, you can move it up to 60 feet as a bonus action on your turn.",
+    "components": "V, S, M",
+    "materialComponents": "a sunburst pendant worth at least 100 gp",
+    "isConcentration": true,
+    "classList": ["Cleric", "Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "duration": "Up to One Minute",
+    "range":"60 Feet"
+  },
+  {
+    "name": "Daylight",
+    "level": 3,
+    "school": "Evocation",
+    "description": "A 60-foot radius of light spreads out from a point you choose within range. The sphere is bright light and sheds dim light for an additional 60 feet. \n\n If you chose a point on an object you are holding or one that isn't being worn or carried, the light shines from the object and moves with it. Completely covering the affected object with an opaque object, such as a bowl or a helm, blocks the light. \n\n If any of this spell's area overlaps with an area of darkness created by a spell of 3rd level or lower, the spell that created the darkness is dispelled.",
+    "components": "V, S",
+    "classList": ["Cleric", "Druid", "Paladin", "Ranger", "Sorcerer"],
+    "duration": "One Hour",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Death Ward",
+    "level": 4,
+    "school": "Abjuration",
+    "description": "You touch a creature and grant it a measure of protection from death. \n\n The first time the target would drop to 0 hit points as a result of taking damage, the target instead drops to 1 hit point, and the spell ends. \n\n If the spell is still in effect when the target is subjected to an effect that would kill it instantaneously without dealing damage, that effect is instead negated against the target, and the spell ends.",
+    "components": "V, S",
+    "classList": ["Cleric", "Paladin"],
+    "duration": "8 Hours",
+    "range": "Touch"
+  },
+  {
+    "name": "Delayed Blast Fireball",
+    "level": 7,
+    "school": "Evocation",
+    "description": "A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners. Each creature in a 20-foot radius sphere centered on that point must make a Dexterity saving throw. A creature takes fire damage equal to the total accumulated damage on a failed save, or half as much damage on a successful one. \n\n The spell's base damage is 12d6. If at the end of your turn the bead has not yet detonated, the damage increases by 1d6. \n\n If the glowing bead is touched before the interval has expired, the creature touching it must make a Dexterity saving throw. On a failed save, the spell ends immediately, causing the bead to erupt in flame. On a successful save, the creature can throw the bead up to 40 feet. When it strikes a creature or a solid object, the spell ends, and the bead explodes. \n\n The fire damages objects in the area and ignites flammable objects that aren't being worn or carried.",
+    "atHigherLevel": "When you cast this spell using a spell slot of 8th level or higher, the base damage increases by 1d6 for each slot level above 7th.",
+    "components": "V, S, M",
+    "materialComponents": "a tiny ball of bat guano and sulfur",
+    "isConcentration": true,
+    "classList": ["Sorcerer", "Wizard"],
+    "duration": "Up to One Minute",
+    "range": "150 Feet"
+  },
+  {
+    "name": "Demiplane",
+    "level": 8,
+    "school": "Conjuration",
+    "description": "You create a shadowy door on a flat solid surface that you can see within range. The door is large enough to allow Medium creatures to pass through unhindered. When opened, the door leads to a demiplane that appears to be an empty room 30 feet in each dimension, made of wood or stone. When the spell ends, the door disappears and any creatures or objects inside the demiplane remain trapped there, as the door also disappears from the other side. \n\n Each time you cast this spell, you can create a new demiplane, or have the shadowy door connect to a demiplane you created with a previous casting of this spell. Additionally, if you know the nature and contents of a demiplane created by a casting of this spell by another creature, you can have the shadowy door connect to its demiplane instead.",
+    "components": "S",
+    "classList": ["Warlock", "Wizard", "Sorcerer (Optional)"],
+    "duration": "One Hour",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Destructive Wave",
+    "level": 5,
+    "school": "Evocation",
+    "description": "You strike the gorund, creating a burst of divine energy that ripples outward from you. Each creature you choose within 30 feet of you must succeed on a Constitution saving throw or take 5d6 thunder damage, as well as 5d6 radiant or necrotic damage (your choice), and be knocked prone. A creature that succeeds on its saving throw takes half as much damage and isn't knocked prone.",
+    "components": "V",
+    "classList": ["Paladin"],
+    "range": "Self (30-Foot Radius)"
+  },
+  {
+    "name": "Detect Good and Evil",
+    "level": 1,
+    "school": "Divination",
+    "description": "For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated. \n\n The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Cleric", "Paladin"],
+    "duration": "Up to 10 Minutes"
+  },
+  {
+    "name": "Detect Magic",
+    "level": 1,
+    "school": "Divination",
+    "isRitual": true,
+    "description": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any. \n\n The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+    "components": "V, S",
+    "isConcentration": true,
+    "classList": ["Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Wizard"],
+    "duration": "Up to 10 Minutes",
+    "range": "Self"
+  },
+  {
+    "name": "Detect Poison and Disease",
+    "level": 1,
+    "school": "Divination",
+    "isRitual": true,
+    "description": "For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case. \n\n The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+    "components": "V, S, M",
+    "materialComponents": "a yew leaf",
+    "classList": ["Cleric", "Druid", "Paladin", "Ranger"],
+    "isConcentration": true,
+    "range": "Self",
+    "duration": "Up to 10 Minutes"
+  },
+  {
+    "name": "Detect Thoughts",
+    "level": 2,
+    "school": "Divination",
+    "description": "For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn't speak any language, the creature is unaffected. \n\n You initially learn the surface thoughts of the creature, what is most on its mind in that moment. As an action, you can either shift your attention to another creature's thoughts or attempt to probe deeper into the same creature's mind. If you probe deeper, the target must make a Wisdom saving throw. If it fails, you gain insight into its reasoning (if any), its emotional state, and something that looms large in its mind (such as something it worries over, loves, or hates). If it succeeds, the spell ends. Either way, the target knows that you are probing into its mind, and unless you shift your attention to another creature's thoughts, the creature can use its action on its turn to make an Intelligence check contested by your Intelligence check; if it succeeds, the spell ends. \n\n Questions verbally directed at the target creature naturally shape the course of its thoughts, so this spell is particularly effective as part of an interrogation. \n\n You can also use this spell to detect the presence of thinking creatures you can't see. When you cast the spell or as your action during the duration, you can search for thoughts within 30 feet of you. The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. You can't detect a creature with an Intelligence of 3 or lower or one that doesn't speak any language. \n\n Once you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, even if you can't see it, but it must still be within range.",
+    "components": "V, S, M",
+    "materialComponents": "a copper piece",
+    "isConcentration": true,
+    "classList": ["Bard", "Sorcerer", "Wizard"],
+    "range": "Self",
+    "duration": "Up to One Minute"
+  },
+  {
+    "name": "Dimension Door",
+    "level": 4,
+    "school": "Conjuration",
+    "description": "You teleport yourself from your current location to any other spot within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualize, or one you can describe by stating distance and direction, such as \"200 feet straight downward\" or \"upward to the northwest at a 45-degree angle, 300 feet\". \n\n You can bring along objects as long as their weight doesn't exceed what you can carry. You can also bring one willing creature of your size or smaller who is carrying gear up to its carrying capacity. The creature must be within 5 feet of you when you cast this spell. \n\n If you would arrive in a place already occupied by an object or a creature, you and any creature traveling with you each take 4d6 force damage, and the spell fails to teleport you.",
+    "components": "V",
+    "classList": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "range": "500 Feet"
   }
 ]
