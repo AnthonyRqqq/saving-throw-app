@@ -1384,7 +1384,8 @@
     "components": "V, S",
     "isConcentration": true,
     "classList": ["Cleric", "Paladin"],
-    "duration": "Up to 10 Minutes"
+    "duration": "Up to 10 Minutes",
+    "range": "Self"
   },
   {
     "name": "Detect Magic",
