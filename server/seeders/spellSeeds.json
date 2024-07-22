@@ -1583,5 +1583,30 @@
     "castingTime": "One Minute",
     "duration": "Until Dispelled",
     "range": "Touch"
+  },
+  {
+    "name": "Dream",
+    "level": 5,
+    "school": "Illusion",
+    "description": "This spell shapes a creature's dreams. Choose a creature known to you as the target of this spell. The target must be on the same plane of existence as you. Creatures that don't sleep, such as elves, can't be contacted by this spell. You, or a willing creature you touch, enters a trance state, acting as a messenger. While in the trance, the messenger is aware of his or her surroundings, but can't take actions or move. \n\n If the target is asleep, the messenger appears in the target's dreams and can converse with the target as long as it remains asleep, through the duration of the spell. The messenger can also shape the environment of the dream, creating landscapes, objects, and other images. The messenger can emerge from the trance at any time, ending the effect of the spell early. The target recalls the dream perfectly upon waking. If the target is awake when you cast the spell, the messenger knows it, and can either end the trance (and the spell) or wait for the target to fall asleep, at which point the messenger appears in the target's dreams. \n\n You can make the messenger appear monstrous and terrifying to the target. If you do, the messenger can deliver a message of no more than ten words and then the target must make a Wisdom saving throw. On a failed save, echoes of the phantasmal monstrosity spawn a nightmare that lasts the duration of the target's sleep and prevents the target from gaining any benefit from that rest. In addition, when the target wakes up, it takes 3d6 psychic damage. \n\n If you have a body part, lock of hair, clipping from a nail, or similar portion of the target's body, the target makes its saving throw with disadvantage.",
+    "components": "V, S, M",
+    "materialComponents": "a handful of sand, a dab of ink, and a writing quill plucked from a sleeping bird",
+    "classList": ["Bard", "Wizard", "Warlock"],
+    "castingTime": "One Minute",
+    "duration": "8 Hours",
+    "range": "Special"
+  },
+  {
+    "name": "Dream of the Blue Veil",
+    "level": 7,
+    "school": "Conjuration",
+    "description": "You and up to eight willing creatures within range fall unconscious for the spells' duration and experience visions of another world on the Material Plane, such as Oerth, Toril, Krynn, or Eberron. If the spell reaches its full duration, the visions conclude with each of you encountering and pulling back a mysterious blue curtain. The spell then ends with you mentally and physically transported to the world that was in the visions. \n\n To cast this spell, you must have a magic item that originated on the world you wish to reach, and you must be aware of the world's existence, even if you don't know the world's name. Your destination in the other world is a safe location within 1 mile of where the magic item was created. Alternatively, you can cast the spell if one of the affected creatures was born on the other world, which causes your destination to be a safe location within 1 mile of where that creature was born. \n\n The spell ends early on a creature if that creature takes any damage, and the creature isn't transported. If you take any damage, the spell ends for you and all other creatures, with none of you being transported.",
+    "components": "V, S, M",
+    "materialComponents": "a magic item or a willing creature from the destination world",
+    "classList": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "sourceBook": "Tasha's Cauldron of Everything",
+    "castingTime": "10 Minutes",
+    "duration": "6 Hours",
+    "range": "20 Feet"
   }
 ]
