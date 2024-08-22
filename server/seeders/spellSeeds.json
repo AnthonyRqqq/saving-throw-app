@@ -3732,5 +3732,40 @@
     "classList": ["Druid", "Sorcerer", "Wizard"],
     "duration": "Up to Two Hours",
     "range": "120 Feet"
+  },
+  {
+    "name": "Negative Energy Flood",
+    "level": 5,
+    "school": "Necromancy",
+    "description": "You send ribbons of negative energy at one creature you can see within range. Unless the target is undead, it must make a Constitution saving throw, taking 5d12 necrotic damage on a failed save, or half as much damage on a successful one. A target killed by this damage rises up as a zombie at the start of your next turn. The zombie pursues whatever creature it can see that is closest to it. Statistics for the zombie are in the Monster Manual. If you target an undead with this spell, the target doesn't make a saving throw. Instead, roll 5d12. The target gains half the total as temporary hit points.",
+    "components": "V, M",
+    "materialComponents": "a broken bone and a square of black silk",
+    "classList": ["Warlock", "Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "range": "60 Feet"
+  },
+  {
+    "name": "Nondetection",
+    "level": 3,
+    "school": "Abjuration",
+    "description": "For the duration, you hide a target that you touch from divination magic. The target can be a willing creature or a place or an object no larger than 10 feet in any dimension. The target can't be targeted by any divination magic or perceived through magical scrying sensors.",
+    "components": "V, S, M",
+    "materialComponents": "a pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes",
+    "classList": ["Bard", "Ranger", "Wizard"],
+    "range": "Touch",
+    "duration": "8 Hours"
+  },
+  {
+    "name": "Nystul's Magic Aura",
+    "level": 2,
+    "school": "Illusion",
+    "description": "You place an illusion on a creature or an object you touch so that divination spells reveal false information about it. The target can be a willing creature or an object that isn't being carried or worn by another creature. \n\n When you cast the spell, choose one or both of the following effects. The effect lasts for the duration. If you cast this spell on the same creature or object every day for 30 days, placing the same effect on it each time, the illusion lasts until it is dispelled.",
+    "effectsArray": ["False Aura: You change the way the target appears to spells and magical effects, such as \"Detect Magic\", that detect magical auras. You can make a nonmagical object appear magical, a magical object appear nonmagical, or change the object's magical aura so that it appears to belong to a specific school of magic that you choose. When you use this effect on an object, you can make the false magic apparent to any creature that handles the item.", "Mask: You change the way the target appears to spells and magical effects that detect creature types, such as a paladin's Divine Sense or the trigger of a \"Symbol\" spell. You choose a creature type and other spells and magical effects treat the target as if it were a creature of that type or of that alignment."],
+    "components": "V, S, M",
+    "materialComponents": "a small square of silk",
+    "classList": ["Wizard"],
+    "range": "Touch",
+    "duration": "24 Hours"
   }
+
 ]
