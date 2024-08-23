@@ -4029,5 +4029,113 @@
     "components": "V, S",
     "classList": ["Sorcerer", "Wizard", "Bard (Optional)"],
     "range": "Self (60-Foot Cone)"
+  },
+  {
+    "name": "Prismatic Wall",
+    "level": 9,
+    "school": "Abjuration",
+    "description": "A shimmering, multicolored plane of light forms a vertical opaque wall—up to 90 feet long, 30 feet high, and 1 inch thick—centered on a point you can see within range. Alternatively, you can shape the wall into a sphere up to 30 feet in diameter centered on a point you choose within range. The wall remains in place for the duration. If you position the wall so that it passes through a space occupied by a creature, the spell fails, and your action and the spell slot are wasted. \n\n The wall sheds bright light out to a range of 100 feet and dim light for an additional 100 feet. You and creatures you designate at the time you cast the spell can pass through and remain near the wall without harm. If another creature that can see the wall moves to within 20 feet of it or starts its turn there, the creature must succeed on a Constitution saving throw or become blinded for 1 minute. \n\n The wall consists of seven layers, each with a different color. When a creature attempts to reach into or pass through the wall, it does so one layer at a time through all the wall's layers. As it passes or reaches through each layer, the creature must make a Dexterity saving throw or be affected by that layer's properties as described below. \n\n The wall can be destroyed, also one layer at a time, in order from red to violet, by means specific to each layer. Once a layer is destroyed, it remains so for the duration of the spell. \"Antimagic Field\" has no effect on the wall and \"Dispel Magic\" can affect only the violet layer.",
+    "effectsArray": ["1, Red: The creature takes 10d6 fire damage on a failed save, or half as much damage on a successful one. While this layer is in place, nonmagical ranged attacks can't pass through the wall. The layer can be destroyed by dealing at least 25 cold damage to it.", "2, Orange: The creature takes 10d6 acid damage on a failed save, or half as much damage on a successful one. While this layer is in place, magical ranged attacks can't pass through the wall. The layer is destroyed by a strong wind.", "3, Yellow: The creature takes 10d6 lightning damage on a failed save, or half as much damage on a successful one. This layer can be destroyed by dealing at least 60 force damage to it.", "4, Green: The creature takes 10d6 poison damage on a failed save, or half as much damage on a successful one. A \"Passwall\" spell, or another spell of equal or greater level that can open a portal on a solid surface, destroys this layer.", "5, Blue: The creature takes 10d6 cold damage on a failed save, or half as much damage on a successful one. This layer can be destroyed by dealing at least 25 fire damage to it.", "6, Indigo: On a failed save, the creature is restrained. It must then make a Constitution saving throw at the end of each of its turns. If it successfully saves three times, the spell ends. If it fails its save three times, it permanently turns to stone and is subjected to the petrified condition. The successes and failures don't need to be consecutive; keep track of both until the creature collects three of a kind. \n\n While this layer is in place, spells can't be cast through the wall. The layer is destroyed by bright light shed by a \"Daylight\" spell or a similar spell of equal or higher level.", "7, Violet: On a failed save, the creature is blinded. It must then make a Wisdom saving throw at the start of your next turn. A successful save ends the blindness. If it fails that save, the creature is transported to another plane of the DM's choosing and is no longer blinded. (Typically, a creature that is on a plane that isn't its home plane is banished home, while other creatures are usually cast into the Astral or Ethereal planes.) This layer is destroyed by a \"Dispel Magic\" spell or a similar spell of equal or higher level that can end spells and magical effects."],
+    "components": "V, S",
+    "classList": ["Wizard", "Bard (Optional)"],
+    "range": "60 Feet",
+    "duration": "10 Minutes"
+  },
+  {
+    "name": "Produce Flame",
+    "level": 0,
+    "school": "Conjuration",
+    "description": "A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as an action or if you cast it again. \n\n You can also attack with the flame, although doing so ends the spell. When you cast this spell, or as an action on a later turn, you can hurl the flame at a creature within 30 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 fire damage. \n\n This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+    "components": "V, S",
+    "classList": ["Druid"],
+    "range": "Self",
+    "duration": "10 Minutes"
+  },
+  {
+    "name": "Programmed Illusion",
+    "level": 6,
+    "school": "Illusion",
+    "description": "You create an illusion of an object, a creature, or some other visible phenomenon within range that activates when a specific condition occurs. The illusion is imperceptible until then. It must be no larger than a 30-foot cube, and you decide when you cast the spell how the illusion behaves and what sounds it makes. This scripted performance can last up to 5 minutes. \n\n When the condition you specify occurs, the illusion springs into existence and performs in the manner you described. Once the illusion finishes performing, it disappears and remains dormant for 10 minutes. After this time, the illusion can be activated again. \n\n The triggering condition can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the area. For example, you could create an illusion of yourself to appear and warn off others who attempt to open a trapped door, or you could set the illusion to trigger only when a creature says the correct word or phrase. \n\n Physical interaction with the image reveals it to be an illusion, because things can pass through it. A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature.",
+    "components": "V, S, M",
+    "materialComponents": "a bit of fleece and jade dust worth at least 25 gp",
+    "classList": ["Bard", "Wizard"],
+    "range": "120 Feet",
+    "duration": "Until Dispelled"
+  },
+  {
+    "name": "Project Image",
+    "level": 7,
+    "school": "Illusion",
+    "description": "You create an illusory copy of yourself that lasts for the duration. The copy can appear at any location within range that you have seen before, regardless of intervening obstacles. The illusion looks and sounds like you but is intangible. If the illusion takes any damage, it disappears, and the spell ends. \n\n You can use your action to move this illusion up to twice your speed, and make it gesture, speak, and behave in whatever way you choose. It mimics your mannerisms perfectly. \n\n You can see through its eyes and hear through its ears as if you were in its space. On your turn as a bonus action, you can switch from using its senses to using your own, or back again. While you are using its senses, you are blinded and deafened in regard to your own surroundings. \n\n Physical interaction with the image reveals it to be an illusion, because things can pass through it. A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature.",
+    "components": "V, S, M",
+    "materialComponents": "a small replica of you made from materials worth at least 5 gp",
+    "isConcentration": true,
+    "classList": ["Bard", "Wizard"],
+    "range": "500 Miles",
+    "duration": "Up to One Day"
+  },
+  {
+    "name": "Protection From Energy",
+    "level": 3,
+    "school": "Abjuration",
+    "description": "For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder.",
+    "components": "V, S",
+    "classList": ["Cleric", "Druid", "Ranger", "Sorcerer", "Wizard"],
+    "range": "Touch",
+    "isConcentration": true,
+    "duration": "Up to One Hour"
+  },
+  {
+    "name": "Protection From Evil and Good",
+    "level": 1,
+    "school": "Abjuration",
+    "description": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead. \n\n The protection grants several benefits. Creatures of those types have disadvantage on attack rolls against the target. The target also can't be charmed, frightened, or possessed by them. If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect.",
+    "components": "V, S, M",
+    "materialComponents": "holy water or powdered silver and iron, which the spell consumes",
+    "classList": ["Cleric", "Paladin", "Warlock", "Wizard", "Druid (Optional)"],
+    "isConcentration": true,
+    "duration": "Up to 10 Minutes",
+    "range": "Touch"
+  },
+  {
+    "name": "Protection From Poison",
+    "level": 2,
+    "school": "Abjuration",
+    "description": "You touch a creature. If it is poisoned, you neutralize the poison. If more than one poison afflicts the targe you neutralize one poison that you know is present, or you neutralize one at random. \n\n For the duration, the target has advantage on saving throws against being poisoned, and it has resistance to poison damage.",
+    "components": "V, S",
+    "classList": ["Cleric", "Druid", "Paladin", "Ranger"],
+    "range": "Touch",
+    "duration": "One Hour"
+  },
+  {
+    "name": "Psychic Scream",
+    "level": 9, 
+    "school": "Enchantment",
+    "description": "You unleash the power of your mind to blast the intellect of up to ten creatures of your choice that you can see within range. Creatures that have an Intelligence score of 2 or lower are unaffected. \n\n Each target must make an Intelligence saving throw. On a failed save, a target takes 14d6 psychic damage and is stunned. On a successful save, a target takes half as much damage and isn't stunned. If a target is killed by this damage, its head explodes, assuming it has one. \n\n A stunned target can make an Intelligence saving throw at the end of each of its turns. On a successful save, the stunning effect ends.",
+    "components": "S",
+    "sourceBook": "Xanathar's Guide to Everything",
+    "classList": ["Bard", "Sorcerer", "Wizard", "Warlock"],
+    "range": "90 Feet"
+  },
+  {
+    "name": "Purify Food and Drink",
+    "level": 1,
+    "school": "Transmutation",
+    "isRitual": true,
+    "description": "All nonmagical food and drink within a 5-foot-radius sphere centered on a point of your choice within range is purified and rendered free of poison and disease.",
+    "components": "V, S",
+    "classList": ["Cleric", "Druid", "Paladin"],
+    "range": "10 Feet"
+  },
+  {
+    "name": "Pyrotechnics",
+    "level": 2,
+    "school": "Transmutation",
+    "description": "Choose an area of nonmagical flame that you can see and that fits within a 5-foot cube within range. You can extinguish the fire in that area, and you create either fireworks or smoke when you do so.",
+    "effectsArray": ["Fireworks: The target explodes with a dazzling display of colors. Each creature within 10 feet of the target must succeed on a Constitution saving throw or become blinded until the end of your next turn.", "Smoke: Thick black smoke spreads out from the target in a 20-foot radius, moving around corners. The area of the smoke is heavily obscured. The smoke persists for 1 minute or until a strong wind disperses it."],
+    "components": "V, S",
+    "classList": ["Bard", "Sorcerer", "Wizard"],
+    "sourceBook": "Xanathar's Guide to Everything",
+    "range": "60 Feet"
   }
 ]
