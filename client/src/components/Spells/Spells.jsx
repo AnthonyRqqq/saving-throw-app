@@ -3,21 +3,9 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
 import { Form, Spinner } from "react-bootstrap";
 import SpellCard from "./SpellCard";
-import SpellFilters from "./SpellFilters";
+import FilterSelect from "./FilterSelect";
+import Filters from "./Filters";
 import "./Spells.css";
-
-// Filtering options for levels and schools
-const spellLevels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const spellSchools = [
-  "Abjuration",
-  "Conjuration",
-  "Divination",
-  "Enchantment",
-  "Evocation",
-  "Illusion",
-  "Necromancy",
-  "Transmutation",
-];
 
 export default function Spells() {
   const [allSpells, setAllSpells] = useState([]);
@@ -152,10 +140,20 @@ export default function Spells() {
 
   return (
     <div>
-      <SpellFilters filterList={filterList} setFilterList={setFilterList} handleReload={handleReload} />
-
+      <FilterSelect
+        filterList={filterList}
+        setFilterList={setFilterList}
+        handleReload={handleReload}
+      />
+      <Filters
+        filterList={filterList}
+        handleReload={handleReload}
+        allSpells={allSpells}
+        setSpells={setSpells}
+        setDisplayedSpell={setDisplayedSpell}
+      />
       {/* Schools to filter by */}
-      <div className="pt-3 px-3">
+      {/* <div className="pt-3 px-3">
         <div className="filterTitle">Spell Schools</div>
         <ul className="spellList">
           {spellSchools.map((school, index) => (
@@ -173,10 +171,10 @@ export default function Spells() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
 
       {/* Levels to filter by */}
-      <div className="px-3">
+      {/* <div className="px-3">
         <div className="filterTitle">Spell Levels</div>
         <ul className="spellList">
           {spellLevels.map((level, index) => (
@@ -194,7 +192,7 @@ export default function Spells() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
 
       {/* Input text to filter names by */}
       <div className="px-3">
