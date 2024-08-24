@@ -84,7 +84,9 @@ export default function Spells() {
         spell.name.toLowerCase().includes(selectedName.toLowerCase())
       );
     }
-    setSpells(filteredSpells);
+
+    if (filteredSpells.length === 0) setSpells(null);
+    else setSpells(filteredSpells);
     setDisplayedSpell("");
   };
 
@@ -216,22 +218,26 @@ export default function Spells() {
           textAlign: "center",
         }}
       >
-        {spells.length > 0 ? (
-          spells.map((spell, index) => (
-            <li key={index} className="spellName col-lg-3 col-sm-4 col-md-3">
-              <span
-                className="spellText"
-                data-spell-id={spell._id}
-                onClick={(e) => handleSpellSelect(e)}
-              >
-                {spell.name}
-              </span>
-            </li>
-          ))
+        {spells ? (
+          spells.length > 0 ? (
+            spells.map((spell, index) => (
+              <li key={index} className="spellName col-lg-3 col-sm-4 col-md-3">
+                <span
+                  className="spellText"
+                  data-spell-id={spell._id}
+                  onClick={(e) => handleSpellSelect(e)}
+                >
+                  {spell.name}
+                </span>
+              </li>
+            ))
+          ) : (
+            <div>
+              <Spinner animation="border" />
+            </div>
+          )
         ) : (
-          <div>
-            <Spinner animation="border" />
-          </div>
+          <div>No spells found matching these filters</div>
         )}
       </ul>
     </div>
