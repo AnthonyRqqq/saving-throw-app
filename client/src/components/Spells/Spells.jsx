@@ -54,8 +54,8 @@ export default function Spells() {
   }, [allSpellsLoading, allSpellsData]);
 
   useEffect(() => {
-    console.log(filterList)
-  }, [filterList])
+    console.log(filterList);
+  }, [filterList]);
 
   // Handles reloading the page if spell data is still being loaded
   useEffect(() => {
@@ -95,6 +95,8 @@ export default function Spells() {
     else setSpells(filteredSpells);
     setDisplayedSpell("");
   };
+
+  const handleReload = () => setReload((prev) => prev + 1);
 
   // Handles updating when a new filter is selected
   const handleFilterSelect = (e, input) => {
@@ -150,7 +152,7 @@ export default function Spells() {
 
   return (
     <div>
-      <SpellFilters filterList={filterList} setFilterList={setFilterList} />
+      <SpellFilters filterList={filterList} setFilterList={setFilterList} handleReload={handleReload} />
 
       {/* Schools to filter by */}
       <div className="pt-3 px-3">

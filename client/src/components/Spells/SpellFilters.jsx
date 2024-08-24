@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function SpellFilters({ filterList, setFilterList }) {
+export default function SpellFilters({
+  filterList,
+  setFilterList,
+  handleReload,
+}) {
   const [dropdownOptions, setDropdownOptions] = useState(false);
 
   const filters = [
@@ -39,7 +43,8 @@ export default function SpellFilters({ filterList, setFilterList }) {
       if (index !== -1) {
         newFilters.splice(index, 1);
       }
-      console.log(newFilters)
+      console.log(newFilters);
+      handleReload();
       return setFilterList(newFilters);
     }
 
@@ -53,6 +58,7 @@ export default function SpellFilters({ filterList, setFilterList }) {
 
     newFilters.push(filter.name);
     console.log(newFilters);
+    handleReload();
     return setFilterList(newFilters);
   };
 
@@ -68,7 +74,7 @@ export default function SpellFilters({ filterList, setFilterList }) {
       className="dropdown"
     >
       <button onClick={() => setDropdownOptions(!dropdownOptions)}>
-        Select Options
+        Filters
       </button>
       <div
         className="dropdown-content"
@@ -79,7 +85,7 @@ export default function SpellFilters({ filterList, setFilterList }) {
             <label key={filter.name}>
               <input
                 type="checkbox"
-                checked={filterList[filter.name] || false}
+                checked={filterList.includes(filter.name)}
                 onChange={() => handleFilterChange(filter)}
               />
               {filter.name}
