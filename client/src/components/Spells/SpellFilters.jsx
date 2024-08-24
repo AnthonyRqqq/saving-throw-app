@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { filters } from "../../data/spells";
+import { Button } from "react-bootstrap";
 
 export default function SpellFilters({
   filterList,
@@ -6,34 +8,6 @@ export default function SpellFilters({
   handleReload,
 }) {
   const [dropdownOptions, setDropdownOptions] = useState(false);
-
-  const filters = [
-    {
-      name: "School",
-    },
-    {
-      name: "Level",
-    },
-    {
-      name: "Class",
-    },
-    {
-      name: "Concentration Only",
-      exclude: "No Concentration",
-    },
-    {
-      name: "No Concentration",
-      exclude: "Concentration Only",
-    },
-    {
-      name: "Ritual Only",
-      exclude: "No Ritual",
-    },
-    {
-      name: "No Ritual",
-      exclude: "Ritual Only",
-    },
-  ];
 
   const handleFilterChange = async (filter) => {
     const newFilters = filterList;
@@ -43,7 +17,6 @@ export default function SpellFilters({
       if (index !== -1) {
         newFilters.splice(index, 1);
       }
-      console.log(newFilters);
       handleReload();
       return setFilterList(newFilters);
     }
@@ -57,7 +30,6 @@ export default function SpellFilters({
     }
 
     newFilters.push(filter.name);
-    console.log(newFilters);
     handleReload();
     return setFilterList(newFilters);
   };
@@ -92,6 +64,15 @@ export default function SpellFilters({
             </label>
           );
         })}
+
+        <Button
+          onClick={() => {
+            setFilterList([]);
+            handleReload();
+          }}
+        >
+          Clear Filters
+        </Button>
       </div>
     </div>
   );
