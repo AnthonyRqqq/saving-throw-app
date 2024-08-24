@@ -4228,7 +4228,8 @@
     "materialComponents": "a prayer wheel and holy water",
     "classList": ["Bard", "Cleric", "Druid"],
     "castingTime": "One Minute",
-    "duration": "One Hour"
+    "duration": "One Hour",
+    "range": "Touch"
   },
   {
     "name": "Reincarnate",
