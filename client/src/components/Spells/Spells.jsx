@@ -152,47 +152,6 @@ export default function Spells() {
         setSpells={setSpells}
         setDisplayedSpell={setDisplayedSpell}
       />
-      {/* Schools to filter by */}
-      {/* <div className="pt-3 px-3">
-        <div className="filterTitle">Spell Schools</div>
-        <ul className="spellList">
-          {spellSchools.map((school, index) => (
-            <li key={index}>
-              <button
-                onClick={(e) => handleFilterSelect(e, "school")}
-                className={
-                  selectedSchools.includes(school)
-                    ? "selectedSchool spellSchool"
-                    : "spellSchool"
-                }
-              >
-                {school}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div> */}
-
-      {/* Levels to filter by */}
-      {/* <div className="px-3">
-        <div className="filterTitle">Spell Levels</div>
-        <ul className="spellList">
-          {spellLevels.map((level, index) => (
-            <li key={index}>
-              <button
-                onClick={(e) => handleFilterSelect(e, "level")}
-                className={
-                  selectedLevels.includes(String(level))
-                    ? "spellLevel selectedLevel"
-                    : "spellLevel"
-                }
-              >
-                {level}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div> */}
 
       {/* Input text to filter names by */}
       <div className="px-3">

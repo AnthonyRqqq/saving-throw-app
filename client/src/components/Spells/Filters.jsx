@@ -24,7 +24,15 @@ export default function filters({
   };
 
   const handleFilterChange = () => {};
-  const handleFilterClick = () => {};
+
+  // When clicking on this filterList item, remove it from the filterList array
+  const handleFilterClick = (filter) => {
+    const newFilters = filterList;
+    const index = newFilters.indexOf(filter);
+    newFilters.splice(index, 1);
+    handleReload();
+    return setFilterList(newFilters);
+  };
 
   return (
     <div className="pt-3">
@@ -54,6 +62,7 @@ export default function filters({
             return (
               <div className="px-3 pb-3" key={index}>
                 <button
+                  onClick={() => handleFilterClick(button)}
                   className="selectedSchool"
                   style={{ textWrap: "nowrap" }}
                 >
