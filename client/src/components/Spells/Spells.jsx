@@ -199,17 +199,10 @@ export default function Spells() {
         </div>
       </div>
 
-      <div>
-        <hr ref={focusRef}></hr>
-      </div>
-
+      <hr ref={focusRef}></hr>
       {/* Show the SpellCard component if a spell has been selected */}
       {displayedSpell && <SpellCard spell={displayedSpell} />}
-      {displayedSpell && (
-        <div>
-          <hr></hr>
-        </div>
-      )}
+      {displayedSpell && <hr></hr>}
 
       <ul
         className="row"
@@ -220,6 +213,7 @@ export default function Spells() {
       >
         {spells ? (
           spells.length > 0 ? (
+            // Display the list of available spells matching the selected filters
             spells.map((spell, index) => (
               <li key={index} className="spellName col-lg-3 col-sm-4 col-md-3">
                 <span
@@ -232,11 +226,13 @@ export default function Spells() {
               </li>
             ))
           ) : (
+            // If we have a spells array, but it is empty, show a loading spinner as data loads in
             <div>
               <Spinner animation="border" />
             </div>
           )
         ) : (
+          // If we don't have any spells matching the filters, display a message instead of a spinner
           <div>No spells found matching these filters</div>
         )}
       </ul>
