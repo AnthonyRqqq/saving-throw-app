@@ -1,5 +1,5 @@
 import { spellSchool, spellClass, spellLevel } from "../../data/spells";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function filters({
   filterList,
@@ -9,6 +9,10 @@ export default function filters({
   setDisplayedSpell,
 }) {
   const [selectedFilters, setSelectedFilters] = useState({});
+
+  useEffect(() => {
+    console.log(selectedFilters);
+  }, [selectedFilters]);
 
   const filterButtons = [
     "Concentration Only",
@@ -23,7 +27,26 @@ export default function filters({
     Level: spellLevel,
   };
 
-  const handleFilterChange = () => {};
+  const handleFilterChange = (e, filterType) => {
+    const filterValue = e.target.textContent;
+    let filter = selectedFilters[filterType];
+
+    if (filter?.includes(filterValue)) {
+      const index = filter.indexOf(filterValue);
+      filter.splice(index, 1);
+      handleReload();
+      return setSelectedFilters((prev) => ({ ...prev, filter }));
+    } else {
+      let newFilter = [];
+      if (filter) newFilter = [...filter];
+      newFilter.push(filterValue);
+      handleReload();
+      return setSelectedFilters((prev) => ({
+        ...prev,
+        [filterType]: newFilter,
+      }));
+    }
+  };
 
   // When clicking on this filterList item, remove it from the filterList array
   const handleFilterClick = (filter) => {
@@ -46,7 +69,16 @@ export default function filters({
                 {data[selection].map((item, itemIndex) => {
                   return (
                     <li key={itemIndex}>
-                      <button className="spellSchool">{item}</button>
+                      <button
+                        onClick={(e) => handleFilterChange(e, selection)}
+                        className={
+                          selectedFilters[selection]?.includes(item.toString())
+                            ? "selectedSchool spellSchoo"
+                            : "spellSchool"
+                        }
+                      >
+                        {item}
+                      </button>
                     </li>
                   );
                 })}
