@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
 import { Form, Spinner } from "react-bootstrap";
 import SpellCard from "./SpellCard";
+import SpellFilters from "./SpellFilters";
 import "./Spells.css";
 
 // Filtering options for levels and schools
@@ -24,6 +25,7 @@ export default function Spells() {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
   const [selectedName, setSelectedName] = useState("");
+  const [filterList, setFilterList] = useState([]);
   const [displayedSpell, setDisplayedSpell] = useState("");
   const [reload, setReload] = useState(0);
   const intervalRef = useRef(null);
@@ -50,6 +52,10 @@ export default function Spells() {
       setAllSpells(sortedSpells);
     }
   }, [allSpellsLoading, allSpellsData]);
+
+  useEffect(() => {
+    console.log(filterList)
+  }, [filterList])
 
   // Handles reloading the page if spell data is still being loaded
   useEffect(() => {
@@ -144,6 +150,8 @@ export default function Spells() {
 
   return (
     <div>
+      <SpellFilters filterList={filterList} setFilterList={setFilterList} />
+
       {/* Schools to filter by */}
       <div className="pt-3 px-3">
         <div className="filterTitle">Spell Schools</div>
@@ -199,10 +207,14 @@ export default function Spells() {
         </div>
       </div>
 
+      {/* Ref here to scroll to the displayed spell after one is selected */}
       <hr ref={focusRef}></hr>
       {/* Show the SpellCard component if a spell has been selected */}
-      {displayedSpell && <SpellCard spell={displayedSpell} />}
-      {displayedSpell && <hr></hr>}
+      {displayedSpell && (
+        <>
+          <SpellCard spell={displayedSpell} /> <hr></hr>
+        </>
+      )}
 
       <ul
         className="row"
