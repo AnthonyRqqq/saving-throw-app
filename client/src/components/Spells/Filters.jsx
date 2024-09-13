@@ -70,10 +70,10 @@ export default function filters({
                   return (
                     <li key={itemIndex}>
                       <button
-                        onClick={(e) => handleFilterChange(e, selection)}
+                        onClick={(e) => handleFilterChange(e, selection.toLowerCase())}
                         className={
                           selectedFilters[selection]?.includes(item.toString())
-                            ? "selectedSchool spellSchoo"
+                            ? "selectedSchool spellSchool"
                             : "spellSchool"
                         }
                       >
