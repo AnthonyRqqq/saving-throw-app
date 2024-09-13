@@ -43,9 +43,12 @@ export default function SpellFilters({
         }
       }}
       tabIndex={0} // Ensure the div can receive focus
-      className="dropdown"
+      className="dropdown mx-4"
     >
-      <button onClick={() => setDropdownOptions(!dropdownOptions)}>
+      <button
+        style={{ borderRadius: "8px" }}
+        onClick={() => setDropdownOptions(!dropdownOptions)}
+      >
         Filters
       </button>
       <div
@@ -57,6 +60,7 @@ export default function SpellFilters({
             <label key={filter.name}>
               <input
                 type="checkbox"
+                className="me-1 dropdown-checkbox"
                 checked={filterList.includes(filter.name)}
                 onChange={() => handleFilterChange(filter)}
               />
@@ -65,14 +69,18 @@ export default function SpellFilters({
           );
         })}
 
-        <Button
-          onClick={() => {
-            setFilterList([]);
-            handleReload();
-          }}
-        >
-          Clear Filters
-        </Button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            size="sm"
+            className="dropdown-button"
+            onClick={() => {
+              setFilterList([]);
+              handleReload();
+            }}
+          >
+            Clear Filters
+          </Button>
+        </div>
       </div>
     </div>
   );
