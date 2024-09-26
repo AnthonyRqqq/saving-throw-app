@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
-import { Form, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import SpellCard from "./SpellCard";
 import FilterSelect from "./FilterSelect";
 import Filters from "./Filters";
@@ -53,13 +53,6 @@ export default function Spells() {
 
   const handleReload = () => setReload((prev) => prev + 1);
 
-  // Handles text input change for name filter
-  const handleInputChange = async (e) => {
-    const { target } = e;
-    const name = target.value;
-    setSelectedName(name);
-  };
-
   // Handles displaying spell card when a spell is clicked
   const handleSpellSelect = async (e) => {
     const { target } = e;
@@ -99,19 +92,6 @@ export default function Spells() {
         setDisplayedSpell={setDisplayedSpell}
         reload={reload}
       />
-
-      {/* Input text to filter names by */}
-      <div className="px-3">
-        <div className="filterTitle">Name</div>
-        <div className="spellList">
-          <Form.Control
-            className="filterTitle"
-            type="text"
-            style={{ textAlign: "center", maxWidth: "20rem" }}
-            onChange={(e) => handleInputChange(e)}
-          ></Form.Control>
-        </div>
-      </div>
 
       {/* Ref here to scroll to the displayed spell after one is selected */}
       <hr ref={focusRef}></hr>

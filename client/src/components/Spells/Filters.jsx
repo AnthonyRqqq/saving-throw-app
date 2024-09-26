@@ -1,5 +1,6 @@
 import { spellSchool, spellClass, spellLevel } from "../../data/spells";
 import { useState, useEffect } from "react";
+import { Form } from "react-bootstrap";
 
 export default function filters({
   filterList,
@@ -87,6 +88,16 @@ export default function filters({
             break;
           case "ritual":
             if (selectedFilters[filter] !== curr.isRitual) pass = false;
+            break;
+          case "name":
+            if (selectedFilters[filter].length > 0) {
+              if (
+                !curr.name
+                  .toLowerCase()
+                  .includes(selectedFilters[filter].toLowerCase())
+              )
+                pass = false;
+            }
             break;
         }
       });
@@ -198,6 +209,23 @@ export default function filters({
             );
           }
         })}
+      </div>
+
+      {/* Input text to filter names by */}
+      <div className="px-3">
+        <div className="filterTitle">Name</div>
+        <div className="spellList">
+          <Form.Control
+            className="filterTitle"
+            type="text"
+            style={{ textAlign: "center", maxWidth: "20rem" }}
+            onChange={(e) => {
+              const { target } = e;
+              const name = target.value;
+              setSelectedFilters((prev) => ({ ...prev, ["name"]: name }));
+            }}
+          ></Form.Control>
+        </div>
       </div>
     </div>
   );
