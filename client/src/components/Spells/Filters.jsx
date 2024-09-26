@@ -8,18 +8,42 @@ export default function filters({
   setSpells,
   setDisplayedSpell,
   setFilterList,
+  reload,
 }) {
   const [selectedFilters, setSelectedFilters] = useState({});
 
   useEffect(() => {
     const setNewSpells = async () => handleNewSpells();
-    console.log(filterList)
+    console.log(filterList);
+    console.log(selectedFilters);
     setNewSpells();
   }, [selectedFilters]);
 
   useEffect(() => {
     console.log(filterList);
-  }, [filterList]);
+    const newFilters = selectedFilters;
+
+    if (filterList.some((filter) => filter.includes("Concentration"))) {
+      if (filterList.includes("Concentration Only"))
+        newFilters["concentration"] = true;
+      else newFilters["concentration"] = false;
+    } else if (newFilters["concentration"]) delete newFilters["concentration"];
+
+    if (filterList.some((filter) => filter.includes("Ritual"))) {
+      if (filterList.includes("Ritual Only")) {
+        newFilters["ritual"] = true;
+      } else newFilters["ritual"] = false;
+    } else if (newFilters["ritual"]) delete newFilters["ritual"];
+
+    console.log(newFilters);
+    setSelectedFilters(newFilters);
+    if (
+      Object.keys(newFilters).length > 0 &&
+      (Object.keys(newFilters).includes("ritual") ||
+        Object.keys(newFilters).includes("concentration"))
+    )
+      handleNewSpells();
+  }, [reload]);
 
   const handleNewSpells = async () => {
     if (
@@ -57,7 +81,12 @@ export default function filters({
             )
               pass = false;
             break;
-          default:
+          case "concentration":
+            console.log(curr);
+            if (selectedFilters[filter] !== curr.isConcentration) pass = false;
+            break;
+          case "ritual":
+            if (selectedFilters[filter] !== curr.isRitual) pass = false;
             break;
         }
       });

@@ -97,6 +97,7 @@ export default function Spells() {
         allSpells={allSpells}
         setSpells={setSpells}
         setDisplayedSpell={setDisplayedSpell}
+        reload={reload}
       />
 
       {/* Input text to filter names by */}
