@@ -1,5 +1,5 @@
 import { spellSchool, spellClass, spellLevel } from "../../data/spells";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
 
 export default function filters({
@@ -12,6 +12,7 @@ export default function filters({
   reload,
 }) {
   const [selectedFilters, setSelectedFilters] = useState({});
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const setNewSpells = async () => handleNewSpells();
@@ -50,7 +51,10 @@ export default function filters({
     console.log(newFilters);
     setSelectedFilters(newFilters);
     if (Object.keys(newFilters).length > 0) handleNewSpells();
-    else setSpells(allSpells);
+    else {
+      inputRef.current.value = "";
+      setSpells(allSpells);
+    }
   }, [reload]);
 
   const handleNewSpells = async () => {
@@ -221,6 +225,7 @@ export default function filters({
         <div className="filterTitle">Name</div>
         <div className="spellList">
           <Form.Control
+            ref={inputRef}
             className="filterTitle"
             type="text"
             style={{ textAlign: "center", maxWidth: "20rem" }}
