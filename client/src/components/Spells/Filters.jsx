@@ -22,6 +22,7 @@ export default function filters({
 
   useEffect(() => {
     console.log(filterList);
+    console.log(selectedFilters);
     const newFilters = selectedFilters;
 
     if (filterList.some((filter) => filter.includes("Concentration"))) {
@@ -36,14 +37,20 @@ export default function filters({
       } else newFilters["ritual"] = false;
     } else if (newFilters["ritual"]) delete newFilters["ritual"];
 
+    Object.keys(newFilters).forEach((key) => {
+      const isInFilterList = filterList.some((filter) =>
+        filter.toLowerCase().includes(key.toLowerCase())
+      );
+
+      if (!isInFilterList) {
+        delete newFilters[key];
+      }
+    });
+
     console.log(newFilters);
     setSelectedFilters(newFilters);
-    if (
-      Object.keys(newFilters).length > 0 &&
-      (Object.keys(newFilters).includes("ritual") ||
-        Object.keys(newFilters).includes("concentration"))
-    )
-      handleNewSpells();
+    if (Object.keys(newFilters).length > 0) handleNewSpells();
+    else setSpells(allSpells);
   }, [reload]);
 
   const handleNewSpells = async () => {
@@ -57,7 +64,6 @@ export default function filters({
     const spellList = allSpells.reduce((acc, curr) => {
       let pass = true;
       Object.keys(selectedFilters).forEach((filter) => {
-        console.log(filter);
         switch (filter) {
           case "class":
             if (
@@ -83,7 +89,6 @@ export default function filters({
               pass = false;
             break;
           case "concentration":
-            console.log(curr);
             if (selectedFilters[filter] !== curr.isConcentration) pass = false;
             break;
           case "ritual":
