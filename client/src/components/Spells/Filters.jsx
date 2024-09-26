@@ -7,13 +7,13 @@ export default function filters({
   allSpells,
   setSpells,
   setDisplayedSpell,
+  setFilterList,
 }) {
   const [selectedFilters, setSelectedFilters] = useState({});
 
   useEffect(() => {
-    console.log(allSpells);
-    console.log(selectedFilters);
     const setNewSpells = async () => handleNewSpells();
+    console.log(filterList)
     setNewSpells();
   }, [selectedFilters]);
 

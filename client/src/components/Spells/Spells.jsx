@@ -10,9 +10,6 @@ import "./Spells.css";
 export default function Spells() {
   const [allSpells, setAllSpells] = useState([]);
   const [spells, setSpells] = useState([]);
-  const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedSchools, setSelectedSchools] = useState([]);
-  const [selectedName, setSelectedName] = useState("");
   const [filterList, setFilterList] = useState([]);
   const [displayedSpell, setDisplayedSpell] = useState("");
   const [reload, setReload] = useState(0);
@@ -90,9 +87,12 @@ export default function Spells() {
         filterList={filterList}
         setFilterList={setFilterList}
         handleReload={handleReload}
+        setSpells={setSpells}
+        allSpells={allSpells}
       />
       <Filters
         filterList={filterList}
+        setFilterList={setFilterList}
         handleReload={handleReload}
         allSpells={allSpells}
         setSpells={setSpells}

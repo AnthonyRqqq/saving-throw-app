@@ -6,6 +6,8 @@ export default function SpellFilters({
   filterList,
   setFilterList,
   handleReload,
+  setSpells,
+  allSpells,
 }) {
   const [dropdownOptions, setDropdownOptions] = useState(false);
 
@@ -17,8 +19,8 @@ export default function SpellFilters({
       if (index !== -1) {
         newFilters.splice(index, 1);
       }
-      handleReload();
-      return setFilterList(newFilters);
+      setFilterList(newFilters);
+      return handleReload();
     }
 
     // If the filterList has a mutually exclusive filter, uncheck it when we select our new filter
@@ -30,8 +32,8 @@ export default function SpellFilters({
     }
 
     newFilters.push(filter.name);
-    handleReload();
-    return setFilterList(newFilters);
+    setFilterList(newFilters);
+    return handleReload();
   };
 
   return (
@@ -75,6 +77,7 @@ export default function SpellFilters({
             className="dropdown-button"
             onClick={() => {
               setFilterList([]);
+              setSpells(allSpells);
               handleReload();
             }}
           >
