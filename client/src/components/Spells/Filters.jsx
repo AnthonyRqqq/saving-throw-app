@@ -11,8 +11,67 @@ export default function filters({
   const [selectedFilters, setSelectedFilters] = useState({});
 
   useEffect(() => {
+    console.log(allSpells);
     console.log(selectedFilters);
+    const setNewSpells = async () => handleNewSpells();
+    setNewSpells();
   }, [selectedFilters]);
+
+  useEffect(() => {
+    console.log(filterList);
+  }, [filterList]);
+
+  const handleNewSpells = async () => {
+    if (
+      Object.keys(selectedFilters).every(
+        (filter) => selectedFilters[filter].length === 0
+      )
+    )
+      return setSpells(allSpells);
+
+    const spellList = allSpells.reduce((acc, curr) => {
+      let pass = true;
+      Object.keys(selectedFilters).forEach((filter) => {
+        console.log(filter);
+        switch (filter) {
+          case "class":
+            if (
+              !curr.classList.some((item) =>
+                selectedFilters[filter].includes(item)
+              ) &&
+              selectedFilters[filter].length > 0
+            )
+              pass = false;
+            break;
+          case "level":
+            if (
+              !selectedFilters[filter].includes(curr.level.toString()) &&
+              selectedFilters[filter].length > 0
+            )
+              pass = false;
+            break;
+          case "school":
+            if (
+              !selectedFilters[filter].includes(curr.school) &&
+              selectedFilters[filter].length > 0
+            )
+              pass = false;
+            break;
+          default:
+            break;
+        }
+      });
+      if (pass) {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+    console.log(spellList);
+    setDisplayedSpell(null);
+
+    if (spellList.length === 0) setSpells(null);
+    else setSpells(spellList);
+  };
 
   const filterButtons = [
     "Concentration Only",
@@ -27,8 +86,7 @@ export default function filters({
     Level: spellLevel,
   };
 
-  const handleFilterChange = (e, filterType) => {
-    const filterValue = e.target.textContent;
+  const handleFilterChange = (filterValue, filterType) => {
     let filter = selectedFilters[filterType];
 
     if (filter?.includes(filterValue)) {
@@ -70,9 +128,16 @@ export default function filters({
                   return (
                     <li key={itemIndex}>
                       <button
-                        onClick={(e) => handleFilterChange(e, selection.toLowerCase())}
+                        onClick={(e) =>
+                          handleFilterChange(
+                            e.target.textContent,
+                            selection.toLowerCase()
+                          )
+                        }
                         className={
-                          selectedFilters[selection]?.includes(item.toString())
+                          selectedFilters[selection.toLowerCase()]?.includes(
+                            item.toString()
+                          )
                             ? "selectedSchool spellSchool"
                             : "spellSchool"
                         }

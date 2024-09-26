@@ -54,61 +54,7 @@ export default function Spells() {
     }
   }, [allSpellsLoading]);
 
-  // Refilter the spells any time the filters are updated
-  useEffect(() => {
-    getFilteredSpells();
-  }, [selectedLevels, selectedSchools, selectedName]);
-
-  // Handles setting the filters selected for spells
-  const getFilteredSpells = async () => {
-    let filteredSpells = allSpells;
-    if (selectedSchools.length > 0) {
-      filteredSpells = filteredSpells.filter((spell) =>
-        selectedSchools.includes(spell.school)
-      );
-    }
-    if (selectedLevels.length > 0) {
-      filteredSpells = filteredSpells.filter((spell) =>
-        selectedLevels.includes(String(spell.level))
-      );
-    }
-
-    if (selectedName.length > 0) {
-      filteredSpells = filteredSpells.filter((spell) =>
-        spell.name.toLowerCase().includes(selectedName.toLowerCase())
-      );
-    }
-
-    if (filteredSpells.length === 0) setSpells(null);
-    else setSpells(filteredSpells);
-    setDisplayedSpell("");
-  };
-
   const handleReload = () => setReload((prev) => prev + 1);
-
-  // Handles updating when a new filter is selected
-  const handleFilterSelect = (e, input) => {
-    const filter = e.target.textContent;
-    let currentlySelected = [];
-
-    if (input === "level") {
-      currentlySelected = [...selectedLevels];
-      if (currentlySelected.includes(filter)) {
-        currentlySelected = currentlySelected.filter((item) => item !== filter);
-      } else {
-        currentlySelected.push(filter);
-      }
-      setSelectedLevels(currentlySelected);
-    } else {
-      currentlySelected = [...selectedSchools];
-      if (currentlySelected.includes(filter)) {
-        currentlySelected = currentlySelected.filter((item) => item !== filter);
-      } else {
-        currentlySelected.push(filter);
-      }
-      setSelectedSchools(currentlySelected);
-    }
-  };
 
   // Handles text input change for name filter
   const handleInputChange = async (e) => {
@@ -152,47 +98,6 @@ export default function Spells() {
         setSpells={setSpells}
         setDisplayedSpell={setDisplayedSpell}
       />
-      {/* Schools to filter by */}
-      {/* <div className="pt-3 px-3">
-        <div className="filterTitle">Spell Schools</div>
-        <ul className="spellList">
-          {spellSchools.map((school, index) => (
-            <li key={index}>
-              <button
-                onClick={(e) => handleFilterSelect(e, "school")}
-                className={
-                  selectedSchools.includes(school)
-                    ? "selectedSchool spellSchool"
-                    : "spellSchool"
-                }
-              >
-                {school}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div> */}
-
-      {/* Levels to filter by */}
-      {/* <div className="px-3">
-        <div className="filterTitle">Spell Levels</div>
-        <ul className="spellList">
-          {spellLevels.map((level, index) => (
-            <li key={index}>
-              <button
-                onClick={(e) => handleFilterSelect(e, "level")}
-                className={
-                  selectedLevels.includes(String(level))
-                    ? "spellLevel selectedLevel"
-                    : "spellLevel"
-                }
-              >
-                {level}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div> */}
 
       {/* Input text to filter names by */}
       <div className="px-3">
