@@ -4601,7 +4601,8 @@
     "materialComponents": "snow or ice in quantities sufficient to made a life-size copy of the duplicated creature; some hair, fingernail clippings, or other piece of that creature's body placed inside the snow or ice; and powdered ruby worth 1,500 gp, sprinkled over the duplicate and consumed by the spell",
     "classList": ["Wizard"],
     "castingTime": "12 Hours",
-    "duration": "Until Dispelled"
+    "duration": "Until Dispelled",
+    "range": "Touch"
   },
   {
     "name": "Skill Empowerment",
@@ -4720,6 +4721,7 @@
     "description": "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the DM's discretion.",
     "components": "V, S",
     "classList": ["Bard", "Druid", "Ranger"],
-    "duration": "10 Minutes"
+    "duration": "10 Minutes",
+    "range": "Self"
   }
 ]
