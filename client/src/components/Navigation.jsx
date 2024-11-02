@@ -5,20 +5,31 @@ export default function Navigation() {
   const currentPage = useLocation().pathname;
 
   return (
-    <div className="row">
-      <h1 className="col justify-content-start">
-        <Link
-        to='/'
+    <div className={`${currentPage === "/" ? "" : "row"} : `}>
+      <h1
         className={`${
-          currentPage === "/" ? "nav-link active-link" : "nav-link"
-        } link-item`}
+          currentPage === "/"
+            ? "justify-content-center"
+            : "justify-content-start"
+        } col`}
       >
-        Saving Throws
-      </Link>
+        <Link
+          to="/"
+          className={`${
+            currentPage === "/" ? "nav-link active-link" : "nav-link"
+          } link-item`}
+        >
+          Saving Throws
+        </Link>
       </h1>
 
-      <ul className="nav col justify-content-end">
-
+      <ul
+        className={`${
+          currentPage === "/"
+            ? "row homepage-nav-options"
+            : "col justify-content-end"
+        } nav `}
+      >
         {/* Link to login page, changes to logout button if user logged in */}
         {!Auth.loggedIn() ? (
           <li className="nav-item">

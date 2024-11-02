@@ -5,7 +5,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import App from './App.jsx';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import WeatherSearch from './pages/WeatherSearch';
@@ -17,10 +16,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
       {
         path: '/login',
         element: <Login />,
