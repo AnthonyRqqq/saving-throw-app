@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Footer from "./components/Footer";
@@ -11,22 +11,32 @@ const client = new ApolloClient({
 });
 
 export default function App() {
+  const currentPage = useLocation().pathname;
+
   return (
     // ApolloProvider wrapper enables access to ApolloClient from anywhere in program
     <ApolloProvider client={client}>
-      <header className="header">
-        <h3>
+      {currentPage === "/" ? (
+        <div className="homepage-navigation">
           <Navigation />
-        </h3>
-      </header>
+        </div>
+      ) : (
+        <>
+          <header className="header">
+            <h3>
+              <Navigation />
+            </h3>
+          </header>
 
-      <main className="main">
-        <Outlet />
-      </main>
+          <main className="main">
+            <Outlet />
+          </main>
 
-      <footer className="footer">
-        <Footer />
-      </footer>
+          <footer className="footer">
+            <Footer />
+          </footer>
+        </>
+      )}
     </ApolloProvider>
   );
 }

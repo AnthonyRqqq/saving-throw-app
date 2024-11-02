@@ -19,6 +19,10 @@
   font-family: American Typewriter, serif;
 }
 
+body {
+  background-color: black;
+}
+
 .header {
   padding: 0.8%;
   background: linear-gradient(
@@ -86,26 +90,57 @@ main {
   margin: 0.4%;
 }
 
-/* .login-form *,
-.signup-form * {
-  background-color: var(--background-color);
-} */
-
 .roundedBox {
   border-radius: 20px;
 }
 
-.mainHomeImage {
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 0 30px var(--header-color);
-  overflow: hidden;
+.homepage-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.sideImage {
-  max-width: 80%;
-  max-height: auto;
-  border-radius: 20px;
-  box-shadow: 0 0 10px var(--header-color);
-  overflow: hidden;
+.title {
+  font-family: "Great Vibes", cursive;
+}
+
+.hompage-navigation > div > h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-navigation > div > h1 > a {
+  font-size: 3.5rem;
+}
+
+.homepage-nav-options {
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.homepage-nav-options li {
+  display: flex;
+  width: auto;
+  font-size: x-large
+}
+
+.modalBorder > .modal-dialog > .modal-content > div {
+  border-radius: 8px
+}
+
+.error-text {
+  color: rgb(204, 56, 56);
+  font-size: 1.25rem;
+}
+
+.signup-text:hover {
+  cursor: pointer;
+  color: grey
+}
+
+@media screen and (max-width: 390px) {
+  .homepage-nav-options {
+    flex-wrap: wrap
+  }
 }
