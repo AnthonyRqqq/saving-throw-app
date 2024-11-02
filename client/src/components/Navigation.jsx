@@ -1,34 +1,56 @@
 import { Link, useLocation } from "react-router-dom";
+import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
 import Auth from "../utils/auth";
+import { useState } from "react";
 
 export default function Navigation() {
+  const [showLogin, setShowLogin] = useState(false)
+  const [showSignupForm, setShowSignupForm] = useState(null);
+
+
   const currentPage = useLocation().pathname;
 
   return (
-    <div className="row">
-      <h1 className="col justify-content-start">
-        <Link
-        to='/'
+    <div className={`${currentPage === "/" ? "" : "row"} : `}>
+      <LoginForm show={showLogin} setShowSignupForm={setShowSignupForm} onHide={() => setShowLogin(false)}/>
+      <SignupForm show={showSignupForm} setShowLogin={setShowLogin} onHide={() => setShowSignupForm(false)} />
+
+      <h1
         className={`${
-          currentPage === "/" ? "nav-link active-link" : "nav-link"
-        } link-item`}
+          currentPage === "/"
+            ? "justify-content-center"
+            : "justify-content-start"
+        } col`}
       >
-        Saving Throws
-      </Link>
+        <Link
+          to="/"
+          className={`${
+            currentPage === "/" ? "nav-link active-link" : "nav-link"
+          } link-item title`}
+        >
+          Saving Throws
+        </Link>
       </h1>
 
-      <ul className="nav col justify-content-end">
-
+      <ul
+        className={`${
+          currentPage === "/"
+            ? "row homepage-nav-options"
+            : "col justify-content-end"
+        } nav `}
+      >
         {/* Link to login page, changes to logout button if user logged in */}
         {!Auth.loggedIn() ? (
           <li className="nav-item">
             <Link
-              to="/login"
+              to="/"
+              onClick={() => setShowLogin(true)}
               className={`${
                 currentPage === "/login" ? "nav-link active-link" : "nav-link"
               } link-item`}
             >
-              Login
+              Login / Signup
             </Link>
           </li>
         ) : (
@@ -41,20 +63,6 @@ export default function Navigation() {
               onClick={() => Auth.logout()}
             >
               Logout
-            </Link>
-          </li>
-        )}
-
-        {/* Link to signup page, hidden once user is logged in */}
-        {!Auth.loggedIn() && (
-          <li className="nav-item">
-            <Link
-              to="/signup"
-              className={`${
-                currentPage === "/signup" ? "nav-link active-link" : "nav-link"
-              } link-item`}
-            >
-              Signup
             </Link>
           </li>
         )}
