@@ -100,7 +100,7 @@ export default function SignupForm({ show, onHide, setShowLogin }) {
           {/* Input field for email */}
           <div className="row justify-content-center">
             <input
-              className="col-sm-8 col-lg-3 col-8 loginInput"
+              className="col-8 loginInput"
               value={email}
               name="email"
               onChange={handleInputChange}
@@ -113,7 +113,7 @@ export default function SignupForm({ show, onHide, setShowLogin }) {
           {/* Input field for password */}
           <div className="row justify-content-center">
             <input
-              className="col-sm-8 col-lg-3 col-8 loginInput"
+              className="col-8 loginInput"
               value={password}
               name="password"
               onChange={handleInputChange}
@@ -125,7 +125,7 @@ export default function SignupForm({ show, onHide, setShowLogin }) {
 
           <div className="row justify-content-center">
             <input
-              className="col-sm-8 col-lg-3 col-8 loginInput"
+              className="col-8 loginInput"
               value={verifyPassword}
               name="verifyPassword"
               onChange={handleInputChange}
@@ -137,10 +137,7 @@ export default function SignupForm({ show, onHide, setShowLogin }) {
 
           {/* Submit button */}
           <div className="row justify-content-center">
-            <button
-              className="col-lg-1 col-sm-3 col-3 justify-content-center"
-              type="submit"
-            >
+            <button className="col-3 justify-content-center" type="submit">
               Submit
             </button>
           </div>
