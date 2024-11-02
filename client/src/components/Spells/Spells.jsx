@@ -105,6 +105,7 @@ export default function Spells() {
       <ul
         className="row"
         style={{
+          padding: '0px',
           listStyle: "none",
           textAlign: "center",
         }}
