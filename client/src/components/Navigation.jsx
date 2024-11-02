@@ -39,7 +39,7 @@ export default function Navigation() {
                 currentPage === "/login" ? "nav-link active-link" : "nav-link"
               } link-item`}
             >
-              Login
+              Login / Signup
             </Link>
           </li>
         ) : (
@@ -52,20 +52,6 @@ export default function Navigation() {
               onClick={() => Auth.logout()}
             >
               Logout
-            </Link>
-          </li>
-        )}
-
-        {/* Link to signup page, hidden once user is logged in */}
-        {!Auth.loggedIn() && (
-          <li className="nav-item">
-            <Link
-              to="/signup"
-              className={`${
-                currentPage === "/signup" ? "nav-link active-link" : "nav-link"
-              } link-item`}
-            >
-              Signup
             </Link>
           </li>
         )}
