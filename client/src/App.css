@@ -122,5 +122,11 @@ main {
 .homepage-nav-options li {
   display: flex;
   width: auto;
-  font-size: larger
+  font-size: x-large
+}
+
+@media screen and (max-width: 390px) {
+  .homepage-nav-options {
+    flex-wrap: wrap
+  }
 }
