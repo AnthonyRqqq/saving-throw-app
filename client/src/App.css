@@ -101,10 +101,17 @@ main {
   height: 100vh;
 }
 
+.title {
+  font-family: "Great Vibes", cursive;
+}
+
 .hompage-navigation > div > h1 {
   display: flex;
   justify-content: center;
-  width: auto;
+}
+
+.homepage-navigation > div > h1 > a {
+  font-size: 3.5rem;
 }
 
 .homepage-nav-options {
@@ -115,4 +122,5 @@ main {
 .homepage-nav-options li {
   display: flex;
   width: auto;
+  font-size: larger
 }

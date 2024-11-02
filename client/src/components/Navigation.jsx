@@ -17,7 +17,7 @@ export default function Navigation() {
           to="/"
           className={`${
             currentPage === "/" ? "nav-link active-link" : "nav-link"
-          } link-item`}
+          } link-item title`}
         >
           Saving Throws
         </Link>
