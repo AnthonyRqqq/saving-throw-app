@@ -6,9 +6,10 @@ import { ADD_USER, LOGIN_USER } from "../utils/mutations";
 import { Modal } from "react-bootstrap";
 import Auth from "../utils/auth";
 
-export default function SignupForm({ show, onHide }) {
+export default function SignupForm({ show, onHide, setShowLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [verifyPassword, setVerifyPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   // Define mutation
@@ -22,10 +23,16 @@ export default function SignupForm({ show, onHide }) {
     const inputType = target.name;
     const inputValue = target.value;
 
-    if (inputType === "email") {
-      setEmail(inputValue);
-    } else {
-      setPassword(inputValue);
+    switch (inputType) {
+      case "email":
+        setEmail(inputValue);
+        break;
+      case "password":
+        setPassword(inputValue);
+        break;
+      case "verifyPassword":
+        setVerifyPassword(inputValue);
+        break;
     }
   };
 
@@ -35,8 +42,11 @@ export default function SignupForm({ show, onHide }) {
 
     // Checks for valid email
     if (!validateEmail(email)) {
-      setErrorMessage("Please enter a valid email address");
-      return;
+      return setErrorMessage("Please enter a valid email address");
+    }
+
+    if (password !== verifyPassword || !password || !verifyPassword) {
+      return setErrorMessage("Password and Verify Password must match.");
     }
 
     try {
@@ -67,8 +77,20 @@ export default function SignupForm({ show, onHide }) {
     navigateTo("/");
   };
 
+  const handleOnHide = async () => {
+    setEmail("");
+    setErrorMessage("");
+    setPassword("");
+    setVerifyPassword("");
+    onHide();
+  };
+
   return (
-    <Modal show={show} onHide={onHide} className="centeredModal">
+    <Modal
+      show={show}
+      onHide={handleOnHide}
+      className="centeredModal modalBorder"
+    >
       <div className="form-div">
         <h3 className="row justify-content-center m-0 pb-3">Create Account</h3>
         <form
@@ -83,7 +105,7 @@ export default function SignupForm({ show, onHide }) {
               name="email"
               onChange={handleInputChange}
               type="email"
-              placeholder="email"
+              placeholder="Email"
               required
             />
           </div>
@@ -96,7 +118,19 @@ export default function SignupForm({ show, onHide }) {
               name="password"
               onChange={handleInputChange}
               type="password"
-              placeholder="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div className="row justify-content-center">
+            <input
+              className="col-sm-8 col-lg-3 col-8 loginInput"
+              value={verifyPassword}
+              name="verifyPassword"
+              onChange={handleInputChange}
+              type="password"
+              placeholder="Verify Password"
               required
             />
           </div>
@@ -111,6 +145,19 @@ export default function SignupForm({ show, onHide }) {
             </button>
           </div>
         </form>
+
+        <div className="pb-2 d-flex justify-content-center">
+          <span
+            className="signup-text"
+            onClick={async () => {
+              setShowLogin(true);
+              handleOnHide();
+            }}
+          >
+            I have an account! Take me to login!
+          </span>
+        </div>
+
         {errorMessage && (
           <div>
             <p className="error-text row justify-content-center">

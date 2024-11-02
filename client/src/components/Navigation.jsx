@@ -1,16 +1,20 @@
 import { Link, useLocation } from "react-router-dom";
 import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
 import Auth from "../utils/auth";
 import { useState } from "react";
 
 export default function Navigation() {
   const [showLogin, setShowLogin] = useState(false)
+  const [showSignupForm, setShowSignupForm] = useState(null);
+
 
   const currentPage = useLocation().pathname;
 
   return (
     <div className={`${currentPage === "/" ? "" : "row"} : `}>
-      <LoginForm show={showLogin} onHide={() => setShowLogin(false)}/>
+      <LoginForm show={showLogin} setShowSignupForm={setShowSignupForm} onHide={() => setShowLogin(false)}/>
+      <SignupForm show={showSignupForm} setShowLogin={setShowLogin} onHide={() => setShowSignupForm(false)} />
 
       <h1
         className={`${

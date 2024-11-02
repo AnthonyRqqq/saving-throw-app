@@ -6,10 +6,10 @@ import { LOGIN_USER } from "../utils/mutations";
 import { Modal } from "react-bootstrap";
 import Auth from "../utils/auth";
 
-export default function SignupForm({ show, onHide }) {
+export default function LoginForm({ show, onHide, setShowSignupForm }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const [loginUser] = useMutation(LOGIN_USER);
 
@@ -43,75 +43,102 @@ export default function SignupForm({ show, onHide }) {
       });
 
       if (response.error) {
+        setErrorMessage("Error logging in.");
+        console.log("error message");
         throw new Error("Something went wrong");
       }
       const token = await response.data.login.token;
       await Auth.login(token);
+      onHide();
     } catch (err) {
-      console.error(err);
+      setErrorMessage("Invalid email or password. Please try again.");
+      return;
     }
 
     // Clear form fields and error message if complete
     setEmail("");
-    setErrorMessage("");
+    setErrorMessage(null);
     setPassword("");
 
     // Redirect to homepage
     navigateTo("/");
   };
 
+  const handleOnHide = async () => {
+    setErrorMessage(null);
+    setPassword("");
+    setEmail("");
+    onHide();
+  };
+
   return (
-    <Modal show={show} onHide={onHide} className="centeredModal">
-      <div className="form-div">
-        <h3 className="row justify-content-center m-0 pb-3">Login</h3>
-        <form
-          className="signup-form justify-content-center"
-          onSubmit={handleFormSubmit}
-        >
-          {/* Input field for email */}
-          <div className="row justify-content-center">
-            <input
-              className="col-sm-8 col-lg-3 col-8 loginInput"
-              value={email}
-              name="email"
-              onChange={handleInputChange}
-              type="email"
-              placeholder="email"
-              required
-            />
-          </div>
+    <>
+      <Modal
+        show={show}
+        onHide={handleOnHide}
+        className="centeredModal modalBorder"
+      >
+        <div className="form-div">
+          <h3 className="row justify-content-center m-0 pb-3">Login</h3>
+          <form
+            className="signup-form justify-content-center"
+            onSubmit={handleFormSubmit}
+          >
+            {/* Input field for email */}
+            <div className="row justify-content-center">
+              <input
+                className="col-10 loginInput"
+                value={email}
+                name="email"
+                onChange={handleInputChange}
+                type="email"
+                placeholder="Email"
+                required
+              />
+            </div>
 
-          {/* Input field for password */}
-          <div className="row justify-content-center">
-            <input
-              className="col-sm-8 col-lg-3 col-8 loginInput"
-              value={password}
-              name="password"
-              onChange={handleInputChange}
-              type="password"
-              placeholder="password"
-              required
-            />
-          </div>
+            {/* Input field for password */}
+            <div className="row justify-content-center">
+              <input
+                className="col-10 loginInput"
+                value={password}
+                name="password"
+                onChange={handleInputChange}
+                type="password"
+                placeholder="Password"
+                required
+              />
+            </div>
 
-          {/* Submit button */}
-          <div className="row justify-content-center">
-            <button
-              className="col-lg-1 col-sm-3 col-3 justify-content-center"
-              type="submit"
+            {/* Submit button */}
+            <div className="row justify-content-center">
+              <button className="col-3 justify-content-center" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+
+          <div className="pb-2 d-flex justify-content-center">
+            <span
+              className="signup-text"
+              onClick={async () => {
+                setShowSignupForm(true);
+                handleOnHide();
+              }}
             >
-              Submit
-            </button>
+              Not signed up yet? Click here!
+            </span>
           </div>
-        </form>
-        {errorMessage && (
-          <div>
-            <p className="error-text row justify-content-center">
-              {errorMessage}
-            </p>
-          </div>
-        )}
-      </div>
-    </Modal>
+
+          {errorMessage && (
+            <div>
+              <p className="error-text row justify-content-center">
+                {errorMessage}
+              </p>
+            </div>
+          )}
+        </div>
+      </Modal>
+    </>
   );
 }
