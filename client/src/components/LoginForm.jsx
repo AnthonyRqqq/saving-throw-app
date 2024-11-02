@@ -3,9 +3,10 @@ import { validateEmail } from "../utils/validateEmail";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+import { Modal } from "react-bootstrap";
 import Auth from "../utils/auth";
 
-export default function SignupForm() {
+export default function SignupForm({ show, onHide }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -60,52 +61,57 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="form-div">
-      <h3 className="row justify-content-center m-0 pb-3">Login</h3>
-      <form
-        className="signup-form justify-content-center"
-        onSubmit={handleFormSubmit}
-      >
-        {/* Input field for email */}
-        <div className="row justify-content-center">
-          <input
-            className="col-sm-8 col-lg-3 col-8 loginInput"
-            value={email}
-            name="email"
-            onChange={handleInputChange}
-            type="email"
-            placeholder="email"
-            required
-          />
-        </div>
+    <Modal show={show} onHide={onHide} className="centeredModal">
+      <div className="form-div">
+        <h3 className="row justify-content-center m-0 pb-3">Login</h3>
+        <form
+          className="signup-form justify-content-center"
+          onSubmit={handleFormSubmit}
+        >
+          {/* Input field for email */}
+          <div className="row justify-content-center">
+            <input
+              className="col-sm-8 col-lg-3 col-8 loginInput"
+              value={email}
+              name="email"
+              onChange={handleInputChange}
+              type="email"
+              placeholder="email"
+              required
+            />
+          </div>
 
-        {/* Input field for password */}
-        <div className="row justify-content-center">
-          <input
-            className="col-sm-8 col-lg-3 col-8 loginInput"
-            value={password}
-            name="password"
-            onChange={handleInputChange}
-            type="password"
-            placeholder="password"
-            required
-          />
-        </div>
+          {/* Input field for password */}
+          <div className="row justify-content-center">
+            <input
+              className="col-sm-8 col-lg-3 col-8 loginInput"
+              value={password}
+              name="password"
+              onChange={handleInputChange}
+              type="password"
+              placeholder="password"
+              required
+            />
+          </div>
 
-        {/* Submit button */}
-        <div className="row justify-content-center">
-          <button className="col-lg-1 col-sm-3 col-3 justify-content-center" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
-      {errorMessage && (
-        <div>
-          <p className="error-text row justify-content-center">
-            {errorMessage}
-          </p>
-        </div>
-      )}
-    </div>
+          {/* Submit button */}
+          <div className="row justify-content-center">
+            <button
+              className="col-lg-1 col-sm-3 col-3 justify-content-center"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        {errorMessage && (
+          <div>
+            <p className="error-text row justify-content-center">
+              {errorMessage}
+            </p>
+          </div>
+        )}
+      </div>
+    </Modal>
   );
 }
