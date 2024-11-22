@@ -38,10 +38,6 @@ export default function Spells() {
     }
   }, [allSpellsLoading, allSpellsData]);
 
-  useEffect(() => {
-    console.log(filterList);
-  }, [filterList]);
-
   // Handles reloading the page if spell data is still being loaded
   useEffect(() => {
     if (allSpellsLoading) {
@@ -69,7 +65,6 @@ export default function Spells() {
   const handleLoading = async () => {
     intervalRef.current = setInterval(() => {
       const newReload = reload + 1;
-      console.log(`Reload ${newReload}`);
       setReload(newReload);
     }, 1000);
   };
