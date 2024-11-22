@@ -67,7 +67,9 @@ export default function filters({
           case "class":
             if (
               !curr.classList.some((item) =>
-                selectedFilters[filter].includes(item)
+                selectedFilters[filter].includes(
+                  item.replace(/\(Optional\)/g, "").trim()
+                )
               ) &&
               selectedFilters[filter].length > 0
             )
