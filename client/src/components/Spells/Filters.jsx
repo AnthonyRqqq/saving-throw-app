@@ -16,14 +16,10 @@ export default function filters({
 
   useEffect(() => {
     const setNewSpells = async () => handleNewSpells();
-    console.log(filterList);
-    console.log(selectedFilters);
     setNewSpells();
   }, [selectedFilters]);
 
   useEffect(() => {
-    console.log(filterList);
-    console.log(selectedFilters);
     const newFilters = selectedFilters;
 
     if (filterList.some((filter) => filter.includes("Concentration"))) {
@@ -48,7 +44,6 @@ export default function filters({
       }
     });
 
-    console.log(newFilters);
     setSelectedFilters(newFilters);
     if (Object.keys(newFilters).length > 0) handleNewSpells();
     else {
@@ -115,7 +110,6 @@ export default function filters({
       }
       return acc;
     }, []);
-    console.log(spellList);
     setDisplayedSpell(null);
 
     if (spellList.length === 0) setSpells(null);
