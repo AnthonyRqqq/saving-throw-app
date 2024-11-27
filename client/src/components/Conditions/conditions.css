@@ -1,0 +1,10 @@
+.accordion-item > * {
+    background-color: var(--background-color) !important;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
