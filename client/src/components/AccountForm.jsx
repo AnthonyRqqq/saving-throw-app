@@ -63,7 +63,7 @@ export default function AccountForm({
         variables: { email, password },
       });
 
-      const { token } = await loginResponse.data.login.token;
+      const token = await loginResponse.data.login.token;
 
       await Auth.login(token);
       return handleOnHide();
