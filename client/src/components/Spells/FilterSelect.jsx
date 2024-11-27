@@ -8,6 +8,7 @@ export default function SpellFilters({
   handleReload,
   setSpells,
   allSpells,
+  setDisplayedSpell,
 }) {
   const [dropdownOptions, setDropdownOptions] = useState(false);
 
@@ -78,6 +79,7 @@ export default function SpellFilters({
             onClick={() => {
               setFilterList([]);
               setSpells(allSpells);
+              setDisplayedSpell("");
               handleReload();
             }}
           >

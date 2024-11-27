@@ -77,6 +77,7 @@ export default function Spells() {
         handleReload={handleReload}
         setSpells={setSpells}
         allSpells={allSpells}
+        setDisplayedSpell={setDisplayedSpell}
       />
       <Filters
         filterList={filterList}
