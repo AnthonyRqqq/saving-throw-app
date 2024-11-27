@@ -5,9 +5,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import App from './App.jsx';
-import WeatherSearch from './pages/WeatherSearch';
-import WeatherDisplay from './pages/WeatherDisplay.jsx';
+import WeatherSearch from './components/WeatherSearch';
+import WeatherDisplay from './components/WeatherDisplay.jsx';
 import Spells from './components/Spells/Spells.jsx';
+import Conditions from './components/Conditions/Conditions.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: '/spells',
         element: <Spells />
       },
+      {
+        path: '/conditions',
+        element: <Conditions />
+      }
     ]
   }
 ])

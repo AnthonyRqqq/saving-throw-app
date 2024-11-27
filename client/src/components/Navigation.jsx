@@ -74,6 +74,17 @@ export default function Navigation() {
           </li>
         )}
 
+        <li className="nav-item">
+          <Link
+            to="/conditions"
+            className={`${
+              currentPage === "/conditions" ? "active-link" : ""
+            } link-item nav-link`}
+          >
+            Conditions
+          </Link>
+        </li>
+
         <li className="nav-item dropdown">
           <a
             className="nav-link dropdown-toggle"
