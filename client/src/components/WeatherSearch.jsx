@@ -1,4 +1,4 @@
-import WeatherCreateForm from "../components/WeatherCreateForm/WeatherCreateForm";
+import WeatherCreateForm from "./WeatherCreateForm/WeatherCreateForm";
 
 export default function WeatherSearch() {
   return (
