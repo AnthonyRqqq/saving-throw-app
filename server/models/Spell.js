@@ -73,6 +73,22 @@ const spellSchema = new Schema({
       ref: "StatBlock",
     },
   ],
+  table: [
+    {
+      header: {
+        type: String,
+        required: true,
+      },
+      details: [
+        {
+          detail: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+    },
+  ],
 });
 
 const Spell = model("Spell", spellSchema);

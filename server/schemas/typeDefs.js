@@ -54,7 +54,8 @@ const typeDefs = `
     duration: String,
     range: String!,
     createdBy: User,
-    statBlock: [StatBlock]
+    statBlock: [StatBlock],
+    table: [String]
   }
 
   type Query {
