@@ -53,7 +53,8 @@ const typeDefs = `
     castingTime: String,
     duration: String,
     range: String!,
-    createdBy: User
+    createdBy: User,
+    statBlock: [StatBlock]
   }
 
   type Query {
