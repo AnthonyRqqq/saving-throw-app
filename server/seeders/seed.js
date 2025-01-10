@@ -1,10 +1,17 @@
 const db = require("../config/connection");
-const { User, Location, FantasyLocation, Spell } = require("../models");
+const {
+  User,
+  Location,
+  FantasyLocation,
+  Spell,
+  StatBlock,
+} = require("../models");
 const cleanDB = require("./cleanDB");
 const locationSeeds = require("./locationSeeds.json");
 const userSeeds = require("./userSeeds.json");
 const fantasyLocationSeeds = require("./fantasyLocationSeeds.json");
 const spellSeeds = require("./spellSeeds.json");
+const statBlockSeeds = require("./statBlockSeeds.json");
 
 db.once("open", async () => {
   try {
@@ -13,17 +20,15 @@ db.once("open", async () => {
     // await cleanDB('Location', 'locations');
     // await cleanDB('FantasyLocation', 'fantasylocations');
     await cleanDB("Spell", "spells");
+    await cleanDB("StatBlock", "statBlocks");
 
     // Created seeds
-    // const seededUsers = await User.create(userSeeds);
-    // const seededLocations = await Location.create(locationSeeds);
-    // const seededFantasyLocations = await FantasyLocation.create(fantasyLocationSeeds)
-    const seededSpells = await Spell.create(spellSeeds);
+    await User.create(userSeeds);
+    await Location.create(locationSeeds);
+    await FantasyLocation.create(fantasyLocationSeeds);
+    await Spell.create(spellSeeds);
+    await StatBlock.create(statBlockSeeds);
 
-    // console.log('all done!');
-    // console.log(seededUsers);
-    // console.log(seededLocations);
-    // console.log(seededFantasyLocations);
     process.exit(0);
   } catch (err) {
     throw err;

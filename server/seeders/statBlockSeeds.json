@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Aberrant Spirit",
+    "size": "Medium",
+    "type": "Aberration",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "40 + 10 for each spell level above 4th",
+    "speed": "30 ft., fly 30ft. (hover) (Beholderkin only)",
+    "strength": 16,
+    "dexterity": 10,
+    "constitution": 15,
+    "intelligence": 16,
+    "wisdom": 10,
+    "charisma": 6,
+    "immunities": ["Psychic"],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Deep Speech", "Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Regeneration (Slaad Only)",
+        "description": "The aberration regains 5 hit points at the start of its turn if it has at least 1 hit point."
+      },
+      {
+        "title": "Whispering Aura (Star Spawn Only)",
+        "description": "At the start of each of the aberration's turns, each creature within 5 feet of the aberration must succeed on a Wisdom saving throw against your spell save DC or take 2d6 psychic damage, provided that the aberration isn't incapacitated."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The aberration makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Claws (Slaad Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": " Hit: 1d10 + 3 + the spell's level slashing damage. If the target is a creature, it can't regain hit points until the start of the aberration's next turn."
+      },
+      {
+        "title": "Eye Ray (Beholderkin Only)",
+        "type": "Ranged Spell Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "range 150 ft.",
+        "target": "one creature",
+        "description": "Hit: 1d8 + 3 + the spell's level psychic damage."
+      },
+      {
+        "title": "Psychic Slam (Star Spawn Only)",
+        "type": "Melee Spell Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one creature",
+        "description": "Hit: 1d8 + 3 + the spell's level psychic damage"
+      }
+    ]
+  },
+  {
+    "name": "Bestial Spirit",
+    "size": "Small",
+    "type": "Beast",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "20 (Air Only) or 30 (Land and Water Only) + 5 for each spell level above 2nd",
+    "speed": "30 ft., climb 30 ft. (Land Only), fly 60 ft. (Air Only), swim 30 ft. (Water Only)",
+    "strength": 18,
+    "dexterity": 11,
+    "constitution": 16,
+    "intelligence": 4,
+    "wisdom": 14,
+    "charisma": 5,
+    "sense": ["Darkvision 60 ft.", "Passive Perception 12"],
+    "language": ["Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Flyby (Air Only)",
+        "description": "The beast doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+      },
+      {
+        "title": "Pack Tactics (Land and Water Only)",
+        "description": "The beast has advantage on an attack roll against a creature if at least one of the beast's allies is within 5 feet of the creature and the ally isn't incapacitated."
+      },
+      {
+        "title": "Water Breathing (Water Only)",
+        "description": "The beast can breathe only underwater."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The beast makes a number of attacks equal to half the spell's level (rounded down)."
+      },
+      {
+        "title": "Maul",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d8 + 4 + the spell's level piercing damage."
+      }
+    ]
+  }
+]

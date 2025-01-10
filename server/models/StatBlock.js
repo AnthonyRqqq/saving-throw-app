@@ -9,9 +9,12 @@ const statBlockSchema = new Schema({
     type: String,
     required: true,
   },
-  alignment: {
+  type: {
     type: String,
     required: true,
+  },
+  alignment: {
+    type: String,
   },
   armorClass: {
     type: String,
@@ -49,6 +52,12 @@ const statBlockSchema = new Schema({
     type: Number,
     required: true,
   },
+  immunities: {
+    type: Array,
+  },
+  resistances: {
+    type: Array,
+  },
   skills: {
     type: Array,
   },
@@ -62,10 +71,9 @@ const statBlockSchema = new Schema({
   },
   challenge: {
     type: String,
-    required: true,
   },
   proficiency: {
-    type: Number,
+    type: String,
     required: true,
   },
   trait: [
@@ -89,10 +97,13 @@ const statBlockSchema = new Schema({
       type: {
         type: String,
       },
-      hitBonuse: {
-        type: Number,
+      hitBonus: {
+        type: String,
       },
       range: {
+        type: String,
+      },
+      target: {
         type: String,
       },
       description: {
