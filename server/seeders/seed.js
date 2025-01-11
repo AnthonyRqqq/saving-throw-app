@@ -19,15 +19,15 @@ db.once("open", async () => {
     // await cleanDB('User', 'users');
     // await cleanDB('Location', 'locations');
     // await cleanDB('FantasyLocation', 'fantasylocations');
-    await cleanDB("Spell", "spells");
-    await cleanDB("StatBlock", "statBlocks");
+    // await cleanDB("Spell", "spells");
+    // await cleanDB("StatBlock", "statBlocks");
 
     // Created seeds
-    await User.create(userSeeds);
-    await Location.create(locationSeeds);
-    await FantasyLocation.create(fantasyLocationSeeds);
+    // await User.create(userSeeds);
+    // await Location.create(locationSeeds);
+    // await FantasyLocation.create(fantasyLocationSeeds);
     await Spell.create(spellSeeds);
-    await StatBlock.create(statBlockSeeds);
+    // await StatBlock.create(statBlockSeeds);
 
     process.exit(0);
   } catch (err) {

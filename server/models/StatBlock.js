@@ -52,7 +52,10 @@ const statBlockSchema = new Schema({
     type: Number,
     required: true,
   },
-  immunities: {
+  conditionImmunities: {
+    type: Array,
+  },
+  damageImmunities: {
     type: Array,
   },
   resistances: {
@@ -74,7 +77,6 @@ const statBlockSchema = new Schema({
   },
   proficiency: {
     type: String,
-    required: true,
   },
   trait: [
     {
@@ -89,6 +91,54 @@ const statBlockSchema = new Schema({
     },
   ],
   action: [
+    {
+      title: {
+        type: String,
+        required: true,
+      },
+      type: {
+        type: String,
+      },
+      hitBonus: {
+        type: String,
+      },
+      range: {
+        type: String,
+      },
+      target: {
+        type: String,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  reaction: [
+    {
+      title: {
+        type: String,
+        required: true,
+      },
+      type: {
+        type: String,
+      },
+      hitBonus: {
+        type: String,
+      },
+      range: {
+        type: String,
+      },
+      target: {
+        type: String,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  bonusAction: [
     {
       title: {
         type: String,
