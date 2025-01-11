@@ -79,14 +79,10 @@ const spellSchema = new Schema({
         type: String,
         required: true,
       },
-      details: [
-        {
-          detail: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
+      details: {
+        type: Array,
+        required: true,
+      },
     },
   ],
 });

@@ -19,7 +19,7 @@ db.once("open", async () => {
     // await cleanDB('User', 'users');
     // await cleanDB('Location', 'locations');
     // await cleanDB('FantasyLocation', 'fantasylocations');
-    // await cleanDB("Spell", "spells");
+    await cleanDB("Spell", "spells");
     // await cleanDB("StatBlock", "statBlocks");
 
     // Created seeds
