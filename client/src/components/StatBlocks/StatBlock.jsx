@@ -15,6 +15,33 @@ export default function StatBlock({ statBlock }) {
     return modifier;
   };
 
+  const Action = ({ action }) => {
+    // <div className="fieldTitle">{action.title}. </div>
+
+    // {action.type && <div className="fst-italic">{action.type}: </div>}
+    // {action.hitBonus && <div>{action.hitBonus}, </div>}
+    // {action.range && <div>{action.range}, </div>}
+    // {action.target && <div>{action.target}, </div>}
+    // {action.description}
+
+    return (
+      <Row className="spellCardField">
+        <Col>
+          <div className="fieldTitle">{action.title} </div>
+          {action.type && (
+            <>
+              <div className="fst-italic">{action.type}: </div>
+              <div>{action.hitBonus}, </div>
+              <div>{action.range}, </div>
+              <div>{action.target}, </div>
+            </>
+          )}
+          {action.description}
+        </Col>
+      </Row>
+    );
+  };
+
   return (
     <Container className="mt-4 pt-4 statBlock">
       <Row>
@@ -23,13 +50,10 @@ export default function StatBlock({ statBlock }) {
         </Col>
       </Row>
       <CardField content={`${statBlock.size} ${statBlock.type}`} />
-
       <div className="breakline"></div>
       <CardField title={"Armor Class: "} content={statBlock.armorClass} />
       <CardField title={"Speed: "} content={statBlock.speed} />
-
       <div className="breakline"></div>
-
       <Row>
         <Col className="text-center">
           <div className="fw-bold">STR</div> {statBlock.strength}{" "}
@@ -61,8 +85,27 @@ export default function StatBlock({ statBlock }) {
           {`(${handleStatBonus(statBlock.charisma)})`}
         </Col>
       </Row>
-
       <div className="breakline"></div>
+      {statBlock.resistances.length > 0 && (
+        <CardField
+          title={"Damage Resistances: "}
+          content={statBlock.resistances.join(", ")}
+        />
+      )}
+
+      {statBlock.damageImmunities.length > 0 && (
+        <CardField
+          title={"Damage Immunities: "}
+          content={statBlock.damageImmunities.join(", ")}
+        />
+      )}
+
+      {statBlock.conditionImmunities.length > 0 && (
+        <CardField
+          title={"Condition Immunities: "}
+          content={statBlock.conditionImmunities.join(", ")}
+        />
+      )}
 
       <CardField title={"Senses: "} content={statBlock.sense.join(", ")} />
       <CardField
@@ -74,35 +117,49 @@ export default function StatBlock({ statBlock }) {
         title={"Proficiency Bonus: "}
         content={statBlock.proficiency}
       />
-
       <div className="breakline"></div>
-
       {statBlock.trait.map((trait) => {
         return <CardField title={trait.title} content={trait.description} />;
       })}
-
       <Row className="mt-4">
         <Col>
           <h4>Actions</h4>
         </Col>
       </Row>
-
       <div className="breakline-sm"></div>
-
       {statBlock.action.map((action) => {
-        return (
-          <Row className="spellCardField">
+        return <Action action={action} />;
+      })}
+      {statBlock.bonusAction.length > 0 && (
+        <>
+          <Row className="mt-4">
             <Col>
-              <div className="fieldTitle">{action.title}. </div>
-              {action.type && <div>{action.type}: </div>}
-              {action.hitBonus && <div>{action.hitBonus}, </div>}
-              {action.range && <div>{action.range}, </div>}
-              {action.target && <div>{action.target}, </div>}
-              {action.description}
+              <h4>Bonus Actions</h4>
             </Col>
           </Row>
-        );
-      })}
+
+          <div className="breakline-sm"></div>
+
+          {statBlock.bonusAction.map((action) => {
+            return <Action action={action} />;
+          })}
+        </>
+      )}
+      {statBlock.reaction.length > 0 && (
+        <>
+          <Row className="mt-4">
+            <Col>
+              <h4>Reactions</h4>
+            </Col>
+          </Row>
+
+          <div className="breakline-sm"></div>
+
+          {statBlock.reaction.map((action) => {
+            return <Action action={action} />;
+          })}
+        </>
+      )}
     </Container>
   );
 }
