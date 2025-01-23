@@ -1,0 +1,6 @@
+.statBlock {
+    background-color: var(--text-color);
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px 5px var(--text-color);
+}

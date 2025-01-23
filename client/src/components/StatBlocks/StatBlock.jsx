@@ -1,9 +1,11 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import CardField from "../Templates/CardField";
 
+import './StatBlock.css'
+
 export default function StatBlock({ statBlock }) {
   return (
-    <Container>
+    <Container className="mt-4 statBlock">
       <Row>
         <Col>
           <h2 className="spellCardName">{statBlock.name}</h2>
