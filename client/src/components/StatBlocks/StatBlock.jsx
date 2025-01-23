@@ -1,46 +1,68 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import CardField from "../Templates/CardField";
 
-import './StatBlock.css'
+import "./StatBlock.css";
 
 export default function StatBlock({ statBlock }) {
+  const handleStatBonus = (bonus) => {
+    let modifier = -5;
+
+    if (bonus > 1) {
+      if (bonus % 2 !== 0) bonus = bonus - 1;
+      modifier = modifier + bonus / 2;
+      if (modifier >= 0) modifier = `+${modifier}`;
+    }
+    return modifier;
+  };
+
   return (
-    <Container className="mt-4 statBlock">
+    <Container className="mt-4 pt-4 statBlock">
       <Row>
         <Col>
-          <h2 className="spellCardName">{statBlock.name}</h2>
+          <h2>{statBlock.name}</h2>
         </Col>
       </Row>
-
       <CardField content={`${statBlock.size} ${statBlock.type}`} />
+
+      <div className="breakline"></div>
       <CardField title={"Armor Class: "} content={statBlock.armorClass} />
       <CardField title={"Speed: "} content={statBlock.speed} />
 
+      <div className="breakline"></div>
+
       <Row>
-        <Col>
-          <div>STR</div> {statBlock.strength}
+        <Col className="text-center">
+          <div className="fw-bold">STR</div> {statBlock.strength}{" "}
+          {`(${handleStatBonus(statBlock.strength)})`}
         </Col>
 
-        <Col>
-          <div>DEX</div> {statBlock.dexterity}
+        <Col className="text-center">
+          <div className="fw-bold">DEX</div> {statBlock.dexterity}{" "}
+          {`(${handleStatBonus(statBlock.dexterity)})`}
         </Col>
 
-        <Col>
-          <div>CON</div> {statBlock.constitution}
+        <Col className="text-center">
+          <div className="fw-bold">CON</div> {statBlock.constitution}{" "}
+          {`(${handleStatBonus(statBlock.constitution)})`}
         </Col>
 
-        <Col>
-          <div>WIS</div> {statBlock.wisdom}
+        <Col className="text-center">
+          <div className="fw-bold">WIS</div> {statBlock.wisdom}{" "}
+          {`(${handleStatBonus(statBlock.wisdom)})`}
         </Col>
 
-        <Col>
-          <div>INT</div> {statBlock.intelligence}
+        <Col className="text-center">
+          <div className="fw-bold">INT</div> {statBlock.intelligence}{" "}
+          {`(${handleStatBonus(statBlock.intelligence)})`}
         </Col>
 
-        <Col>
-          <div>CHA</div> {statBlock.charisma}
+        <Col className="text-center">
+          <div className="fw-bold">CHA</div> {statBlock.charisma}{" "}
+          {`(${handleStatBonus(statBlock.charisma)})`}
         </Col>
       </Row>
+
+      <div className="breakline"></div>
 
       <CardField title={"Senses: "} content={statBlock.sense.join(", ")} />
       <CardField
@@ -53,15 +75,19 @@ export default function StatBlock({ statBlock }) {
         content={statBlock.proficiency}
       />
 
+      <div className="breakline"></div>
+
       {statBlock.trait.map((trait) => {
         return <CardField title={trait.title} content={trait.description} />;
       })}
 
-      <Row>
+      <Row className="mt-4">
         <Col>
-          <h3 className="spellCardName">Actions</h3>
+          <h4>Actions</h4>
         </Col>
       </Row>
+
+      <div className="breakline-sm"></div>
 
       {statBlock.action.map((action) => {
         return (
