@@ -3,6 +3,8 @@ import AdditionalEffects from "./AdditionalEffects";
 import "./SpellCard.css";
 
 export default function SpellCard({ spell }) {
+  console.log(spell)
+
   // Sets the string to be displayed for the spell level
   let spellLevelText;
   switch (spell.level) {
