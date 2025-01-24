@@ -105,7 +105,7 @@ export default function AccountForm({
       <Modal
         show={show}
         onHide={handleOnHide}
-        className="centeredModal modalBorder"
+        className="centeredModal modalBorder "
       >
         <div className="form-div">
           <h3 className="row justify-content-center m-0 pb-3">
@@ -115,7 +115,7 @@ export default function AccountForm({
 
         <form
           onSubmit={handleFormSubmit}
-          className="signup-form justify-content-center"
+          className="signup-form justify-content-center form-div"
         >
           {formField({
             input: email,
@@ -144,7 +144,7 @@ export default function AccountForm({
           </div>
         </form>
 
-        <div className="pb-2 d-flex justify-content-center">
+        <div className="pb-2 d-flex justify-content-center form-div">
           <span
             className="signup-text"
             onClick={async () => {
@@ -161,7 +161,7 @@ export default function AccountForm({
         </div>
 
         {errorMessage && (
-          <div>
+          <div className="form-div">
             <p className="error-text row justify-content-center">
               {errorMessage}
             </p>
