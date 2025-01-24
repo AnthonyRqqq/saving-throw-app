@@ -145,12 +145,9 @@ export default function WeatherCreateForm() {
 
     // Keeps search results limited to three, sets tag limit to display error message
     if (tags.length === 3) return setTagLimit(true);
-
-    // Get the name of the tag and adds it to the tags array
-    const newTagsArray = [...tags, selectedTag];
-
+    
     // Updates state
-    setTags(newTagsArray);
+    setTags((old) => [...old, selectedTag]);
   };
 
   // For deleting tags from list
@@ -245,7 +242,7 @@ export default function WeatherCreateForm() {
   return (
     <div className="form-div">
       <h3 className="row justify-content-center">Create Weather Link</h3>
-      <form className="weather-search-form justify-content-center">
+      <div className="weather-search-form justify-content-center">
         {/* Input field for the name of the fantasy location */}
         <div className="row justify-content-center">
           <input
@@ -253,7 +250,6 @@ export default function WeatherCreateForm() {
             value={fantasyLocationName}
             name="fantasyLocationName"
             onChange={handleInputChange}
-            type="text"
             placeholder="Fantasy Location Name"
           />
         </div>
@@ -274,22 +270,12 @@ export default function WeatherCreateForm() {
             onChange={(e) => setSelectedTag(e.target.value)}
             defaultValue={""}
           >
-            <option
-              value={""}
-              disabled
-              style={{ textAlign: "center" }}
-            ></option>
+            <option value={""} disabled className="text-center"></option>
             {tagOptions.map((tag, index) => (
-              <option
-                className="tagSelect"
-                key={index}
-                value={tag}
-                style={{ textAlign: "center" }}
-              >
+              <option className="tagSelect text-center" key={index} value={tag}>
                 {tag}
-              </option>
+            </option>
             ))}
-            ;
           </select>
 
           {/* Button for adding tags to the search array */}
@@ -370,7 +356,7 @@ export default function WeatherCreateForm() {
             </h3>
           )}
         </div>
-      </form>
+      </div>
 
       <InstructionModal
         show={instructions}
