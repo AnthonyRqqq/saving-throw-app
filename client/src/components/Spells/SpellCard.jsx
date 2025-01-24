@@ -137,28 +137,6 @@ export default function SpellCard({ spell }) {
                 </>
               );
             })}
-            {/* <div
-              dangerouslySetInnerHTML={{
-                __html: spell.description
-                  .replace(/\n/g, "<br />")
-                  .replace(/\t\t/g, <SpellTable spell={spell} />),
-              }}
-            /> */}
-            {/* {descriptionArray ? (
-              descriptionArray.map((item, index) => {
-                return (
-                  <div key={index}>
-                    {index > 1 (
-                      <SpellTable />
-                    ) : (
-                      <div>{item.replace(/\n/g, "<br />")}</div>
-                    )}
-                  </div>
-                );
-              })
-            ) : (
-              <div>{spell.description.replace(/\n/g, "<br />")}</div>
-            )} */}
           </Col>
         </Row>
 
