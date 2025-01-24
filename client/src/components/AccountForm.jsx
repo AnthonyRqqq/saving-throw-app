@@ -138,7 +138,7 @@ export default function AccountForm({
             })}
 
           <div className="row justify-content-center">
-            <button className="col-3 justify-content-center" type="submit">
+            <button className="col-3 justify-content-center rounded" type="submit">
               Submit
             </button>
           </div>
