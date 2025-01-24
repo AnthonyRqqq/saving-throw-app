@@ -44,6 +44,38 @@ export default function SpellCard({ spell }) {
   const spellListString = spell.classList.join(", ");
   const statBlock = spell.statBlock[0];
 
+  const SpellTable = () => {
+    const tableData = spell.table;
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            {tableData.map((item) => {
+              return <th>{item.header}</th>;
+            })}
+          </tr>
+        </thead>
+
+        <tbody>
+          {tableData.map((item, index) => {
+            return (
+              <tr key={item}>
+                {tableData.map((detail, detailIndex) => {
+                  return <td key={detailIndex}>{detail.details[index]}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
+  const descriptionArray = spell.description.split("\t\t") || [
+    spell.description,
+  ];
+
   return (
     <Container className="spellCard">
       <Container>
@@ -93,11 +125,40 @@ export default function SpellCard({ spell }) {
 
         <Row className="spellDescription">
           <Col>
-            <div
+            {descriptionArray.map((item, index) => {
+              return (
+                <>
+                  {index > 0 && <SpellTable />}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: spell.description.replace(/\n/g, "<br />"),
+                    }}
+                  />
+                </>
+              );
+            })}
+            {/* <div
               dangerouslySetInnerHTML={{
-                __html: spell.description.replace(/\n/g, "<br />"),
+                __html: spell.description
+                  .replace(/\n/g, "<br />")
+                  .replace(/\t\t/g, <SpellTable spell={spell} />),
               }}
-            />
+            /> */}
+            {/* {descriptionArray ? (
+              descriptionArray.map((item, index) => {
+                return (
+                  <div key={index}>
+                    {index > 1 (
+                      <SpellTable />
+                    ) : (
+                      <div>{item.replace(/\n/g, "<br />")}</div>
+                    )}
+                  </div>
+                );
+              })
+            ) : (
+              <div>{spell.description.replace(/\n/g, "<br />")}</div>
+            )} */}
           </Col>
         </Row>
 
