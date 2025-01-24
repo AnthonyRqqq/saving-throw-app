@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import AdditionalEffects from "./AdditionalEffects";
 import StatBlock from "../StatBlocks/StatBlock";
+import { handleStatBonus } from "../../utils/lib";
 import "./SpellCard.css";
 
 export default function SpellCard({ spell }) {
@@ -40,6 +41,15 @@ export default function SpellCard({ spell }) {
       spellLevelText = "9th-Level";
   }
 
+  const stats = [
+    "Strength",
+    "Dexterity",
+    "Charisma",
+    "Constitution",
+    "Intelligence",
+    "Wisom",
+  ];
+
   // Takes all items from the spellList array and joins them into a string for display
   const spellListString = spell.classList.join(", ");
   const statBlock = spell.statBlock[0];
@@ -48,7 +58,7 @@ export default function SpellCard({ spell }) {
     const tableData = spell.table;
 
     return (
-      <table>
+      <table className="mt-3 mb-5 statBlock">
         <thead>
           <tr>
             {tableData.map((item) => {
@@ -60,9 +70,15 @@ export default function SpellCard({ spell }) {
         <tbody>
           {tableData.map((item, index) => {
             return (
-              <tr key={item}>
+              <tr key={index}>
                 {tableData.map((detail, detailIndex) => {
-                  return <td key={detailIndex}>{detail.details[index]}</td>;
+                  console.log(detail);
+                  let newDetail = detail.details[index];
+                  if (!newDetail) return null
+                  if (stats.includes(detail.header))
+                    newDetail = `${newDetail} (${handleStatBonus(newDetail)})`;
+
+                  return <td key={detailIndex}>{newDetail}</td>;
                 })}
               </tr>
             );
