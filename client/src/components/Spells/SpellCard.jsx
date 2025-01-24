@@ -147,10 +147,8 @@ export default function SpellCard({ spell }) {
         {spell.atHigherLevel && (
           <Row className="spellCardField atHigherLevel">
             <Col>
-              <>
-                <div className="fieldTitle">At Higher Levels: </div>
-                {spell.atHigherLevel}
-              </>
+              <div className="fieldTitle">At Higher Levels: </div>
+              {spell.atHigherLevel}
             </Col>
           </Row>
         )}
