@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import AdditionalEffects from "./AdditionalEffects";
 import StatBlock from "../StatBlocks/StatBlock";
+import { handleStatBonus } from "../../utils/lib";
 import "./SpellCard.css";
 
 export default function SpellCard({ spell }) {
@@ -40,9 +41,56 @@ export default function SpellCard({ spell }) {
       spellLevelText = "9th-Level";
   }
 
+  const stats = [
+    "Strength",
+    "Dexterity",
+    "Charisma",
+    "Constitution",
+    "Intelligence",
+    "Wisom",
+  ];
+
   // Takes all items from the spellList array and joins them into a string for display
   const spellListString = spell.classList.join(", ");
   const statBlock = spell.statBlock[0];
+
+  const SpellTable = () => {
+    const tableData = spell.table;
+
+    return (
+      <table className="mt-3 mb-5 statBlock">
+        <thead>
+          <tr>
+            {tableData.map((item) => {
+              return <th>{item.header}</th>;
+            })}
+          </tr>
+        </thead>
+
+        <tbody>
+          {tableData.map((item, index) => {
+            return (
+              <tr key={index}>
+                {tableData.map((detail, detailIndex) => {
+                  console.log(detail);
+                  let newDetail = detail.details[index];
+                  if (!newDetail) return null
+                  if (stats.includes(detail.header))
+                    newDetail = `${newDetail} (${handleStatBonus(newDetail)})`;
+
+                  return <td key={detailIndex}>{newDetail}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
+  const descriptionArray = spell.description.split("\t\t") || [
+    spell.description,
+  ];
 
   return (
     <Container className="spellCard">
@@ -93,11 +141,18 @@ export default function SpellCard({ spell }) {
 
         <Row className="spellDescription">
           <Col>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: spell.description.replace(/\n/g, "<br />"),
-              }}
-            />
+            {descriptionArray.map((item, index) => {
+              return (
+                <>
+                  {index > 0 && <SpellTable />}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: spell.description.replace(/\n/g, "<br />"),
+                    }}
+                  />
+                </>
+              );
+            })}
           </Col>
         </Row>
 
@@ -108,10 +163,8 @@ export default function SpellCard({ spell }) {
         {spell.atHigherLevel && (
           <Row className="spellCardField atHigherLevel">
             <Col>
-              <>
-                <div className="fieldTitle">At Higher Levels: </div>
-                {spell.atHigherLevel}
-              </>
+              <div className="fieldTitle">At Higher Levels: </div>
+              {spell.atHigherLevel}
             </Col>
           </Row>
         )}

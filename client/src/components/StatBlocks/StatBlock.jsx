@@ -1,29 +1,11 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import CardField from "../Templates/CardField";
+import { handleStatBonus } from "../../utils/lib";
 
 import "./StatBlock.css";
 
 export default function StatBlock({ statBlock }) {
-  const handleStatBonus = (bonus) => {
-    let modifier = -5;
-
-    if (bonus > 1) {
-      if (bonus % 2 !== 0) bonus = bonus - 1;
-      modifier = modifier + bonus / 2;
-      if (modifier >= 0) modifier = `+${modifier}`;
-    }
-    return modifier;
-  };
-
   const Action = ({ action }) => {
-    // <div className="fieldTitle">{action.title}. </div>
-
-    // {action.type && <div className="fst-italic">{action.type}: </div>}
-    // {action.hitBonus && <div>{action.hitBonus}, </div>}
-    // {action.range && <div>{action.range}, </div>}
-    // {action.target && <div>{action.target}, </div>}
-    // {action.description}
-
     return (
       <Row className="spellCardField">
         <Col>
