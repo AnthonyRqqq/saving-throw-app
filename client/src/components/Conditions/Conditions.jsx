@@ -1,5 +1,4 @@
 import { conditions } from "./conditions";
-import { Col } from "react-bootstrap";
 import "./conditions.css";
 
 export default function Conditions() {
@@ -10,7 +9,7 @@ export default function Conditions() {
           return (
             <div className="accordion-item" key={condition}>
               <h2
-                className="ps-0 fw-bold fs-5 accordion-button accordion-header"
+                className="ps-0 fw-bold fs-5 accordion-button accordion-header collapsed"
                 data-bs-toggle="collapse"
                 data-bs-target={`#panel-${condition}`}
                 style={{ color: "black" }}
@@ -35,23 +34,29 @@ export default function Conditions() {
 
                 {conditions[condition].table && (
                   <>
-                  <div className="pb-4 mb-4">{conditions[condition].header}</div>
-                  <table>
+                    <div className="pb-4 mb-4">
+                      {conditions[condition].header}
+                    </div>
+                    <table>
+                      <tbody>
+                        {conditions[condition].table.level.map(
+                          (level, index) => {
+                            return (
+                              <tr>
+                                <td>{level}</td>
+                                <td>
+                                  {conditions[condition].table.effect[index]}
+                                </td>
+                              </tr>
+                            );
+                          }
+                        )}
+                      </tbody>
+                    </table>
 
-                    <tbody>
-                      {conditions[condition].table.level.map((level, index) => {
-                        return (
-                          <tr>
-                            <td>{level}</td>
-                            <td>{conditions[condition].table.effect[index]}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-
-                  <div className="pt-4 mt-4">{conditions[condition].footer}</div>
-
+                    <div className="pt-4 mt-4">
+                      {conditions[condition].footer}
+                    </div>
                   </>
                 )}
               </div>
