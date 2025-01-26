@@ -16,6 +16,23 @@ export const conditions = {
       "A deafened creature can't hear and automatically fails any ability check that requires hearing.",
     ],
   },
+  Exhaustion: {
+    header:
+      "Some special abilities and environmental hazards, such as starvation and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description.",
+    footer:
+      "If an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\n\n A creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\n\n An effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\n\n Finishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink.",
+    table: {
+      level: [1, 2, 3, 4, 5, 6],
+      effect: [
+        "Disadvantage on ability checks",
+        "Speed halved",
+        "Disadvantage on attack rolls and saving throws",
+        "Hit point maximum halved",
+        "Speed reduced to zero",
+        "Death",
+      ],
+    },
+  },
   Frightened: {
     effects: [
       "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.",
@@ -90,22 +107,5 @@ export const conditions = {
       "Attack rolls against the creature have advantage.",
       "Any attack that hits the creature is a critical hit if the attacker is within five feet of the creature.",
     ],
-  },
-  Exhaustion: {
-    header:
-      "Some special abilities and environmental hazards, such as starvation and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description.",
-    footer:
-      "If an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\n\n A creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\n\n An effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\n\n Finishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink.",
-    table: {
-      level: [1, 2, 3, 4, 5, 6],
-      effect: [
-        "Disadvantage on ability checks",
-        "Speed halved",
-        "Disadvantage on attack rolls and saving throws",
-        "Hit point maximum halved",
-        "Speed reduced to zero",
-        "Death",
-      ],
-    },
   },
 };
