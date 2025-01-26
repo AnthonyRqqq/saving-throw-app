@@ -72,9 +72,7 @@ export default function WeatherCreateForm() {
     }
 
     // Resets filtered locations when tags are selected or deleted
-    if (tags) {
-      locationFilter();
-    }
+    if (tags) locationFilter();
   }, [
     allLocationData,
     allLocationLoading,
@@ -84,21 +82,12 @@ export default function WeatherCreateForm() {
   ]);
 
   useEffect(() => {
-    if (logInFlag) {
-      return;
-    }
-
-    if (fantasyLocationId) {
-      addFantasyLocationToUser();
-    }
+    if (logInFlag) return;
+    if (fantasyLocationId) addFantasyLocationToUser();
   }, [fantasyLocationId]);
 
   useEffect(() => {
-    if (userData && !userLoading) {
-      if (userData.userById.weatherCreateInstruction) {
-        setInstructions(true);
-      }
-    }
+    if (userData?.userById.weatherCreateInstruction) setInstructions(true);
   }, [userData, userLoading]);
 
   const handleShowAgainCheckbox = async () => {
@@ -116,16 +105,10 @@ export default function WeatherCreateForm() {
 
   const handleFantasyLocationCreation = async () => {
     // Checks to see if user is logged in
-    if (!Auth.loggedIn()) {
-      setLogInFlag(true);
-      return;
-    } else {
-      setLogInFlag(false);
-    }
+    if (!Auth.loggedIn()) return setLogInFlag(true);
+    else setLogInFlag(false);
 
-    if (fantasyLocationName === "") {
-      return;
-    }
+    if (!fantasyLocationName) return;
 
     try {
       const response = await createFantasyLocation({
@@ -158,21 +141,13 @@ export default function WeatherCreateForm() {
   // For setting up list of tags to filter locations by
   const handleTagSelect = async () => {
     // Keeps duplicate tags from being added
-    if (tags.includes(selectedTag)) {
-      return;
-    }
+    if (tags.includes(selectedTag) || !selectedTag) return;
 
     // Keeps search results limited to three, sets tag limit to display error message
-    if (tags.length === 3) {
-      setTagLimit(true);
-      return;
-    }
-
-    // Get the name of the tag and adds it to the tags array
-    const newTagsArray = [...tags, selectedTag];
-
+    if (tags.length === 3) return setTagLimit(true);
+    
     // Updates state
-    setTags(newTagsArray);
+    setTags((old) => [...old, selectedTag]);
   };
 
   // For deleting tags from list
@@ -182,28 +157,14 @@ export default function WeatherCreateForm() {
     setTags(updatedTags);
 
     // Resets tag limit to erase error message
-    if (tagLimit) {
-      setTagLimit(false);
-    }
-
+    if (tagLimit) setTagLimit(false);
     handleLocationSelect();
   };
 
   const handleInputChange = async (e) => {
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
-
-    if (inputType === "fantasyLocationName") {
-      setFantasyLocationName(inputValue);
-    } else if (inputType === "tagSelect") {
-      setSelectedTag(inputValue);
-    }
-  };
-
-  const handleFormSubmit = async (e) => {
-    // Prevents page refresh
-    e.preventDefault();
+    if (e.target.name === "fantasyLocationName")
+      setFantasyLocationName(e.target.value);
+    else if (e.target.name === "tagSelect") setSelectedTag(e.target.value);
   };
 
   // Filters locations based on selected tags at tag change
@@ -269,29 +230,19 @@ export default function WeatherCreateForm() {
       That's all there is to it! Go out and make something cool!
     `;
 
-    return (
-      <div
-        dangerouslySetInnerHTML={{ __html: instructions }} 
-      />
-    );
+    return <div dangerouslySetInnerHTML={{ __html: instructions }} />;
   };
 
   const handleModalHide = () => {
     const checkbox = document.getElementById("showAgainCheckbox");
-    if (checkbox.checked) {
-      handleShowAgainCheckbox();
-    }
+    if (checkbox.checked) handleShowAgainCheckbox();
     setInstructions(false);
-  }
-
+  };
 
   return (
     <div className="form-div">
       <h3 className="row justify-content-center">Create Weather Link</h3>
-      <form
-        className="weather-search-form justify-content-center"
-        onSubmit={handleFormSubmit}
-      >
+      <div className="weather-search-form justify-content-center">
         {/* Input field for the name of the fantasy location */}
         <div className="row justify-content-center">
           <input
@@ -299,7 +250,6 @@ export default function WeatherCreateForm() {
             value={fantasyLocationName}
             name="fantasyLocationName"
             onChange={handleInputChange}
-            type="text"
             placeholder="Fantasy Location Name"
           />
         </div>
@@ -320,22 +270,12 @@ export default function WeatherCreateForm() {
             onChange={(e) => setSelectedTag(e.target.value)}
             defaultValue={""}
           >
-            <option
-              value={""}
-              disabled
-              style={{ textAlign: "center" }}
-            ></option>
+            <option value={""} disabled className="text-center"></option>
             {tagOptions.map((tag, index) => (
-              <option
-                className="tagSelect"
-                key={index}
-                value={tag}
-                style={{ textAlign: "center" }}
-              >
+              <option className="tagSelect text-center" key={index} value={tag}>
                 {tag}
-              </option>
+            </option>
             ))}
-            ;
           </select>
 
           {/* Button for adding tags to the search array */}
@@ -416,7 +356,7 @@ export default function WeatherCreateForm() {
             </h3>
           )}
         </div>
-      </form>
+      </div>
 
       <InstructionModal
         show={instructions}

@@ -131,7 +131,7 @@ export default function WeatherDisplayComponent() {
             )}
             {/* Extra data for weather, toggled by user */}
             {seeMore && (
-              <ul style={{ listStyle: "none" }}>
+              <ul className="px-0" style={{ listStyle: "none" }}>
                 <li>Feels Like: {weatherData.main.feels_like} &deg;F</li>
                 <li>Visibility: {visibility} miles</li>
                 <li>Humidity: {weatherData.main.humidity}%</li>

@@ -9,16 +9,23 @@ export default function StatBlock({ statBlock }) {
     return (
       <Row className="spellCardField">
         <Col>
-          <div className="fieldTitle">{action.title} </div>
-          {action.type && (
+          <div className="fieldTitle">{action.title}. </div>
+          {action.type ? (
             <>
               <div className="fst-italic">{action.type}: </div>
               <div>{action.hitBonus}, </div>
               <div>{action.range}, </div>
               <div>{action.target}, </div>
+              <div>
+                <div className="fst-italic">
+                  {action.description.substring(0, 4)}
+                </div>
+                <div>{action.description.substring(4)}</div>
+              </div>
             </>
+          ) : (
+            <div>{action.description}</div>
           )}
-          {action.description}
         </Col>
       </Row>
     );
@@ -101,7 +108,9 @@ export default function StatBlock({ statBlock }) {
       />
       <div className="breakline"></div>
       {statBlock.trait.map((trait) => {
-        return <CardField title={trait.title} content={trait.description} />;
+        return (
+          <CardField title={`${trait.title}.`} content={trait.description} />
+        );
       })}
       <Row className="mt-4">
         <Col>
