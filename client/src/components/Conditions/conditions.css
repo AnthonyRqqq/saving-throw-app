@@ -1,10 +1,31 @@
-.accordion-item > * {
+.accordion-item > *, 
+.accordion-header > * {
     background-color: var(--background-color) !important;
+    text-align: center;
+    border-color: var(--background-color) !important;
+    border-top: none; /* Remove top border */
+    border-bottom: none; /* Remove bottom border */
 }
 
 .accordion {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 40%;
+    text-align: center;
+    border-color: var(--background-color) !important;
+    border-top: none; /* Remove top border */
+    border-bottom: none; /* Remove bottom border */
 }
+
+.accordion-item > *, 
+.accordion-header > * {
+    box-shadow: none !important; /* Remove any box-shadow */
+}
+
+.accordion-item, .accordion-header {
+    border-top: none;
+    border-bottom: none;
+}
+
+.accordion-body li {
+    text-align: left;
+}
+
