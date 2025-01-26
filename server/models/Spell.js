@@ -67,6 +67,24 @@ const spellSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  statBlock: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "StatBlock",
+    },
+  ],
+  table: [
+    {
+      header: {
+        type: String,
+        required: true,
+      },
+      details: {
+        type: Array,
+        required: true,
+      },
+    },
+  ],
 });
 
 const Spell = model("Spell", spellSchema);

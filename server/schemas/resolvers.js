@@ -62,7 +62,7 @@ const resolvers = {
 
     spells: async () => {
       try {
-        return await Spell.find().populate("createdBy");
+        return await Spell.find().populate("createdBy").populate("statBlock");
       } catch (err) {
         console.error("Error finding all spells: ", err);
         throw new Error("Error finding all spells");
@@ -80,7 +80,9 @@ const resolvers = {
           filter.level = { $in: levels };
         }
 
-        return await Spell.find(filter).populate("createdBy");
+        return await Spell.find(filter)
+          .populate("createdBy")
+          .populate("statBlock");
       } catch (err) {
         console.error("Error filtering spells: ", err);
         throw new Error("Error filtering spells");

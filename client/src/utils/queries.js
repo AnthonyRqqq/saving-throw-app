@@ -104,6 +104,62 @@ export const GET_ALL_SPELLS = gql`
       createdBy {
         _id
       }
+      statBlock {
+        _id
+        name
+        size
+        type
+        alignment
+        armorClass
+        hitPoints
+        speed
+        strength
+        dexterity
+        constitution
+        intelligence
+        wisdom
+        charisma
+        conditionImmunities
+        damageImmunities
+        resistances
+        skills
+        sense
+        language
+        challenge
+        proficiency
+        trait {
+          title
+          description
+        }
+        action {
+          title
+          type
+          hitBonus
+          range
+          target
+          description
+        }
+        reaction {
+          title
+          type
+          hitBonus
+          range
+          target
+          description
+        }
+        bonusAction {
+          title
+          type
+          hitBonus
+          range
+          target
+          description
+        }
+      }
+      table {
+        header
+        details
+      }
     }
   }
 `;

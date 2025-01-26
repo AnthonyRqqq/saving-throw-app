@@ -1,0 +1,529 @@
+[
+  {
+    "name": "Aberrant Spirit",
+    "size": "Medium",
+    "type": "Aberration",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "40 + 10 for each spell level above 4th",
+    "speed": "30 ft., fly 30ft. (hover) (Beholderkin only)",
+    "strength": 16,
+    "dexterity": 10,
+    "constitution": 15,
+    "intelligence": 16,
+    "wisdom": 10,
+    "charisma": 6,
+    "damageImmunities": ["Psychic"],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Deep Speech", "Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Regeneration (Slaad Only)",
+        "description": "The aberration regains 5 hit points at the start of its turn if it has at least 1 hit point."
+      },
+      {
+        "title": "Whispering Aura (Star Spawn Only)",
+        "description": "At the start of each of the aberration's turns, each creature within 5 feet of the aberration must succeed on a Wisdom saving throw against your spell save DC or take 2d6 psychic damage, provided that the aberration isn't incapacitated."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The aberration makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Claws (Slaad Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": " Hit: 1d10 + 3 + the spell's level slashing damage. If the target is a creature, it can't regain hit points until the start of the aberration's next turn."
+      },
+      {
+        "title": "Eye Ray (Beholderkin Only)",
+        "type": "Ranged Spell Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "range 150 ft.",
+        "target": "one creature",
+        "description": "Hit: 1d8 + 3 + the spell's level psychic damage."
+      },
+      {
+        "title": "Psychic Slam (Star Spawn Only)",
+        "type": "Melee Spell Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one creature",
+        "description": "Hit: 1d8 + 3 + the spell's level psychic damage"
+      }
+    ]
+  },
+  {
+    "name": "Bestial Spirit",
+    "size": "Small",
+    "type": "Beast",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "20 (Air Only) or 30 (Land and Water Only) + 5 for each spell level above 2nd",
+    "speed": "30 ft., climb 30 ft. (Land Only), fly 60 ft. (Air Only), swim 30 ft. (Water Only)",
+    "strength": 18,
+    "dexterity": 11,
+    "constitution": 16,
+    "intelligence": 4,
+    "wisdom": 14,
+    "charisma": 5,
+    "sense": ["Darkvision 60 ft.", "Passive Perception 12"],
+    "language": ["Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Flyby (Air Only)",
+        "description": "The beast doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+      },
+      {
+        "title": "Pack Tactics (Land and Water Only)",
+        "description": "The beast has advantage on an attack roll against a creature if at least one of the beast's allies is within 5 feet of the creature and the ally isn't incapacitated."
+      },
+      {
+        "title": "Water Breathing (Water Only)",
+        "description": "The beast can breathe only underwater."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The beast makes a number of attacks equal to half the spell's level (rounded down)."
+      },
+      {
+        "title": "Maul",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d8 + 4 + the spell's level piercing damage."
+      }
+    ]
+  },
+  {
+    "name": "Celestial Spirit",
+    "size": "Large",
+    "type": "Celestial",
+    "armorClass": "11 + spell level (natural armor) + 2 (Defender only)",
+    "hitPoints": "40 + 10 for each spell level above 5th",
+    "speed": "30 ft., fly 40 ft.",
+    "strength": 16,
+    "dexterity": 14,
+    "constitution": 16,
+    "intelligence": 10,
+    "wisdom": 14,
+    "charisma": 16,
+    "resistances": ["Radiant"],
+    "conditionImmunities": ["Charmed", "Frightened"],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 12"],
+    "language": ["Celestial", "Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The celestial makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Radiant Bow (Avenger Only)",
+        "type": "Ranged Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 150/600 ft.",
+        "target": "one target",
+        "description": "Hit: 2d6 + 2 + the spell's level radiant damage."
+      },
+      {
+        "title": "Radiant Mace (Defender Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d10 + 3 + the spell's level radiant damage, and the celestial can choose itself or another creature it can see within 10 feet of the target. The chosen creature gains 1d10 temporary hit points."
+      },
+      {
+        "title": "Healing Touch (1/Day)",
+        "description": "The celestial touches another creature. The target magically regains hit points equal to 2d8 + the spell's level."
+      }
+    ]
+  },
+  {
+    "name": "Construct Spirit",
+    "size": "Medium",
+    "type": "Construct",
+    "armorClass": "13 + spell level (natural armor)",
+    "hitPoints": "40 + 15 for each spell level above 4th",
+    "speed": "30 ft.",
+    "strength": 18,
+    "dexterity": 10,
+    "constitution": 18,
+    "intelligence": 14,
+    "wisdom": 11,
+    "charisma": 5,
+    "resistances": ["Poison"],
+    "conditionImmunities": [
+      "Charmed",
+      "Exhaustion",
+      "Frightened",
+      "Incapacitated",
+      "Paralyzed",
+      "Petrified",
+      "Poisoned"
+    ],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Heated Body (Metal Only)",
+        "description": "A creature that touches the construct or hits it with a melee attack while within 5 feet of it takes 1d10 fire damage."
+      },
+      {
+        "title": "Stone Lethargy (Stone Only)",
+        "description": "When a creature the construct can see starts its turn within 10 feet of the construct, the construct can force it to make a Wisdom saving throw against your spell save DC. On a failed save, the target can't use reactions and its speed is halved until the start of its next turn."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The construct makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Slam",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d8 + 4 + the spell's level bludgeoning damage."
+      }
+    ],
+    "reaction": [
+      {
+        "title": "Berserk Lashing (Clay Only)",
+        "description": "When the construct takes damage, it makes a slam attack against a random creature within 5 feet of it. If no creature is within reach, the construct moves up to half its speed toward an enemy it can see, without provoking opportunity attacks."
+      }
+    ]
+  },
+  {
+    "name": "Elemental Spirit",
+    "size": "Medium",
+    "type": "Elemental",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "50 + 10 for each spell level above 4th",
+    "speed": "40 ft., burrow 40 ft. (Earth Only), fly 40 ft. (hover) (Air Only), swim 40 ft. (Water Only)",
+    "strength": 18,
+    "dexterity": 15,
+    "constitution": 17,
+    "intelligence": 4,
+    "wisdom": 10,
+    "charisma": 16,
+    "resistances": [
+      "Acid (Water Only)",
+      "Lightning and Thunder (Air Only)",
+      "Piercing and Slashing (Earth Only)"
+    ],
+    "damageImmunities": ["Poison", "Fire (Fire Only)"],
+    "conditionImmunities": [
+      "Exhaustion",
+      "Frightened",
+      "Paralyzed",
+      "Petrified",
+      "Poisoned",
+      "Unconscious"
+    ],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Primordial", "Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Amorphous Form (Air, Fire, and Water Only)",
+        "description": "The elemental can move through a space as narrow as 1 inch wide without squeezing."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The elemental makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Slam",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d10 + 4 + the spell's level bludgeoning damage (Air, Earth, and Water only) or fire damage (Fire only)."
+      }
+    ]
+  },
+  {
+    "name": "Fey Spirit",
+    "size": "Small",
+    "type": "Fey",
+    "armorClass": "12 + spell level (natural armor)",
+    "hitPoints": "30 + 10 for each spell level above 3rd",
+    "speed": "40 ft.",
+    "strength": 13,
+    "dexterity": 16,
+    "constitution": 14,
+    "intelligence": 14,
+    "wisdom": 11,
+    "charisma": 16,
+    "conditionImmunities": ["Charmed"],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Sylvan", "Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The Fey makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Shortsword",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d6 + 3 + the spell's level piercing damage + 1d6 force damage."
+      }
+    ],
+    "bonusAction": [
+      {
+        "title": "Fey Step",
+        "description": "The fey magically teleports up to 30 feet to an unoccupied space it can see. Then one of the following effects occurs, based on the fey's chosen mood."
+      },
+      {
+        "title": "Fuming",
+        "description": "The fey has advantage on the next attack roll it makes before the end of this turn."
+      },
+      {
+        "title": "Mirthful",
+        "description": "The fey can force one creature it can see within 10 feet of it to make a Wisdom saving throw against your spell save DC. Unless the save succeeds, the target is charmed by you and the fey for 1 minute or until the target takes any damage."
+      },
+      {
+        "title": "Tricksy",
+        "description": "The fey can fill a 5-foot cube within 5 feet of it with magical darkness, which lasts until the end of its next turn."
+      }
+    ]
+  },
+  {
+    "name": "Fiendish Spirit",
+    "size": "Large",
+    "type": "Fiend",
+    "armorClass": "12 + spell level (natural armor)",
+    "hitPoints": "50 (Demon Only) or 40 (Devil Only) or 60 (Yugoloth Only) + 15 for each spell level above 6th",
+    "speed": "40 ft., climb 40 ft. (Demon Only), fly 60 ft. (Devil Only)",
+    "strength": 13,
+    "dexterity": 16,
+    "constitution": 15,
+    "intelligence": 10,
+    "wisdom": 10,
+    "charisma": 16,
+    "resistances": ["Fire"],
+    "damageImmunities": ["Poison"],
+    "conditionImmunities": ["Poisoned"],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Abyssal", "Infernal", "Telepathy 60 ft."],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Death Throes (Demon Only)",
+        "description": "When the fiend drops to 0 hit points or the spell ends, the fiend explodes, and each creature within 10 feet of it must make a Dexterity saving throw against your spell save DC. A creature takes 2d10 + the spell's level fire damage on a failed save, or half as much damage on a successful one."
+      },
+      {
+        "title": "Devil's Sight (Devil Only)",
+        "description": "Magical darkness doesn't impede the fiend's darkvision."
+      },
+      {
+        "title": "Magic Resistance",
+        "description": "The fiend has advantage on saving throws against spells and other magical effects."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The fiend makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Bite (Demon Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d12 + 3 + the spell's level necrotic damage."
+      },
+      {
+        "title": "Claws (Yugoloth Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d8 + 3 + the spell's level slashing damage. Immediately after the attack hits or misses, the fiend can magically teleport up to 30 feet to an unoccupied space it can see."
+      },
+      {
+        "title": "Hurl Flame (Devil Only)",
+        "type": "Ranged Spell Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "range 150 ft.",
+        "target": "one target",
+        "description": "Hit: 2d6 + 3 + the spell's level fire damage. If the target is a flammable object that isn't being worn or carried, it also catches fire."
+      }
+    ]
+  },
+  {
+    "name": "Shadow Spirit",
+    "size": "Medium",
+    "type": "Monstrosity",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "35 + 15 for each spell level above 3rd",
+    "speed": "40 ft.",
+    "strength": 13,
+    "dexterity": 16,
+    "constitution": 15,
+    "intelligence": 4,
+    "wisdom": 10,
+    "charisma": 16,
+    "resistances": ["Necrotic"],
+    "conditionImmunities": ["Frightened"],
+    "sense": ["Darkvision 120 ft.", "Passive Perception 10"],
+    "language": ["Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Terror Frenzy (Fury Only)",
+        "description": "The spirit has advantage on attack rolls against frightened creatures."
+      },
+      {
+        "title": "Weight of Sorrow (Despair Only)",
+        "description": "Any creature, other than you, that starts its turn within 5 feet of the spirit has its speed reduced by 20 feet until the start of that creature's next turn."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The spirit makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Chilling Hand",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d12 + 3 + the spell's level cold damage."
+      },
+      {
+        "title": "Dreadful Scream (1/Day)",
+        "description": "The spirit screams. Each creature within 30 feet of it must succeed on a Wisdom saving throw against your spell save DC or be frightened of the spirit for 1 minute. The frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+      }
+    ],
+    "bonusAction": [
+      {
+        "title": "Shadow Stealth (Fear Only)",
+        "description": "While in dim light or darkness, the spirit takes the Hide action."
+      }
+    ]
+  },
+  {
+    "name": "Undead Spirit",
+    "size": "Medium",
+    "type": "Undead",
+    "armorClass": "11 + spell level (natural armor)",
+    "hitPoints": "30 (Ghostly or Putrid Only) or 20 (Skeletal Only) + 10 for each spell level above 3rd",
+    "speed": "30 ft., fly 40 ft. (hover) (Ghostly Only)",
+    "strength": 12,
+    "dexterity": 16,
+    "constitution": 15,
+    "intelligence": 4,
+    "wisdom": 10,
+    "charisma": 9,
+    "damageImmunities": ["Necrotic", "Poison"],
+    "conditionImmunities": [
+      "Exhaustion",
+      "Frightened",
+      "Paralyzed",
+      "Poisoned"
+    ],
+    "sense": ["Darkvision 60 ft.", "Passive Perception 10"],
+    "language": ["Understands the languages you speak"],
+    "proficiency": "Equals Your Bonus",
+    "trait": [
+      {
+        "title": "Festering Aura (Putrid Only)",
+        "description": "Any creature, other than you, that starts its turn within 5 feet of the spirit must succeed on a Constitution saving throw against your spell save DC or be poisoned until the start of its next turn."
+      },
+      {
+        "title": "Incorporeal Passage (Ghostly Only)",
+        "description": "The spirit can move through other creatures and objects as if they were difficult terrain. If it ends its turn inside an objects, it is shunted to the nearest unoccupied space and takes 1d10 force damage for every 5 feet traveled."
+      }
+    ],
+    "action": [
+      {
+        "title": "Multiattack",
+        "description": "The spirit makes a number of attacks equal to half this spell's level (rounded down)."
+      },
+      {
+        "title": "Deathly Touch (Ghostly Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one creature",
+        "description": "Hit: 1d8 + 3 + the spell's level necrotic damage, and the creature must succeed on a Wisdom saving throw against your spell save DC or be frightened of the undead until the end of the target's next turn."
+      },
+      {
+        "title": "Grave Bolt (Skeletal Only)",
+        "type": "Ranged Spell Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "range 150 ft.",
+        "target": "one target",
+        "description": "Hit: 2d4 + 3 + the spell's level necrotic damage."
+      },
+      {
+        "title": "Rotting Claw (Putrid Only)",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "your spell attack modifier to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 1d6 + 3 + the spell's level slashing damage. If the target is poisoned, it must succeed on a Constitution saving throw against your spell save DC or be paralyzed until the end of its next turn."
+      }
+    ]
+  },
+  {
+    "name": "Tiny Servant",
+    "size": "Tiny",
+    "type": "Construct",
+    "armorClass": "15 (natural armor)",
+    "hitPoints": "10 (4d4)",
+    "speed": "30 ft., climb 30 ft.",
+    "strength": 4,
+    "dexterity": 16,
+    "constitution": 10,
+    "intelligence": 2,
+    "wisdom": 10,
+    "charisma": 1,
+    "damageImmunities": ["Poison", "Psychic"],
+    "conditionImmunities": [
+      "Blinded",
+      "Charmed",
+      "Deafened",
+      "Exhaustion",
+      "Frightened",
+      "Paralyzed",
+      "Petrified",
+      "Poisoned"
+    ],
+    "sense": [
+      "Blindsight 60 ft. (blind beyond this radius)",
+      "Passive Perception 10"
+    ],
+    "language": ["None"],
+    "action": [
+      {
+        "title": "Slam",
+        "type": "Melee Weapon Attack",
+        "hitBonus": "+5 to hit",
+        "range": "reach 5 ft.",
+        "target": "one target",
+        "description": "Hit: 5 (1d4 + 3) bludgeoning damage."
+      }
+    ]
+  }
+]
