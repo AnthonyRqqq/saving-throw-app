@@ -3,8 +3,8 @@
   background-color: var(--background-color) !important;
   text-align: center;
   border-color: var(--background-color) !important;
-  border-top: none; /* Remove top border */
-  border-bottom: none; /* Remove bottom border */
+  border-top: none; 
+  border-bottom: none;
 }
 
 .accordion {
@@ -30,3 +30,17 @@
   text-align: left;
 }
 
+.accordion-button:not(.collapsed) {
+    background-color: var(--header-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0px 0px 5px 5px black !important;
+    margin-top: 1rem
+}
+
+.accordion-button:not(.collapsed) ~ div {
+    background-color: var(--header-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0px 0px 5px 5px black !important;
+    z-index: 1000;
+    margin-bottom: 1rem;
+}
