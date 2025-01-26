@@ -1,8 +1,28 @@
-# React + Vite
+# Saving Throws
+    
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+    
+## Table of Contents
+    
+[Description](#description)
+    
+[Usage](#usage)
+    
+[License](#license)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Questions](#questions)
+    
+## Description
 
-Currently, two official plugins are available:
+Saving Throws is designed to be an ever-expanding suite of tools for use in D&D 5e. At present, this includes a highly responsive spell searching functionality and the ability to create a fantasy location with a real world location for consistent weather tracking in a D&D setting.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+NOTE: This application and its contributor(s) are in no way affiliated with Wizards of the Coast or Hasbro, Inc.
+
+## License
+    
+[MIT](https://opensource.org/licenses/MIT)
+
+## Questions
+    
+GitHub: [AnthonyRqqq](https://github.com/AnthonyRqqq)
+    
