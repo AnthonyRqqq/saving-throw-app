@@ -58,7 +58,7 @@ export default function SpellCard({ spell }) {
     const tableData = spell.table;
 
     return (
-      <table className="mt-3 mb-5 statBlock">
+      <table className="my-4 statBlock">
         <thead>
           <tr>
             {tableData.map((item) => {
@@ -82,9 +82,18 @@ export default function SpellCard({ spell }) {
     );
   };
 
-  const descriptionArray = spell.description.split("\t\t") || [
-    spell.description,
-  ];
+  const DescriptionDisplay = ({ spellDescription }) => {
+    let descriptionArray = spellDescription
+      .split("\n\n")
+      .map((item) => item.trim());
+    console.log(descriptionArray);
+
+    return descriptionArray.map((item) => {
+      if (item === "") return <SpellTable />;
+
+      return <div className="py-1">{item}</div>;
+    });
+  };
 
   return (
     <Container className="spellCard">
@@ -135,18 +144,7 @@ export default function SpellCard({ spell }) {
 
         <Row className="spellDescription">
           <Col>
-            {descriptionArray.map((item, index) => {
-              return (
-                <div key={item}>
-                  {index > 0 && <SpellTable />}
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: spell.description.replace(/\n/g, "<br />"),
-                    }}
-                  />
-                </div>
-              );
-            })}
+            <DescriptionDisplay spellDescription={spell.description} />
           </Col>
         </Row>
 
