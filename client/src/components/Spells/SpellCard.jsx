@@ -62,23 +62,17 @@ export default function SpellCard({ spell }) {
         <thead>
           <tr>
             {tableData.map((item) => {
-              return <th>{item.header}</th>;
+              return <th key={item}>{item.header}</th>;
             })}
           </tr>
         </thead>
 
         <tbody>
-          {tableData.map((item, index) => {
+          {tableData[0].details.map((detail, index) => {
             return (
               <tr key={index}>
-                {tableData.map((detail, detailIndex) => {
-                  console.log(detail);
-                  let newDetail = detail.details[index];
-                  if (!newDetail) return null
-                  if (stats.includes(detail.header))
-                    newDetail = `${newDetail} (${handleStatBonus(newDetail)})`;
-
-                  return <td key={detailIndex}>{newDetail}</td>;
+                {tableData.map((item, itemIndex) => {
+                  return <td key={itemIndex}>{item.details[index]}</td>;
                 })}
               </tr>
             );
@@ -143,14 +137,14 @@ export default function SpellCard({ spell }) {
           <Col>
             {descriptionArray.map((item, index) => {
               return (
-                <>
+                <div key={item}>
                   {index > 0 && <SpellTable />}
                   <div
                     dangerouslySetInnerHTML={{
                       __html: spell.description.replace(/\n/g, "<br />"),
                     }}
                   />
-                </>
+                </div>
               );
             })}
           </Col>
