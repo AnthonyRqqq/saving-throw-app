@@ -91,7 +91,7 @@ export default function SpellCard({ spell }) {
     return descriptionArray.map((item) => {
       if (item === "") return <SpellTable />;
 
-      return <div className="py-1">{item}</div>;
+      return <div className="py-2">{item}</div>;
     });
   };
 

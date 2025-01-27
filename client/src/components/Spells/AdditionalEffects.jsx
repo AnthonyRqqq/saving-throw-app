@@ -7,7 +7,7 @@ export default function AdditionalEffects({ effectsArray }) {
   const renderEffectsArray = (effectsArray) => {
     return effectsArray.map((effect, index) => {
       return (
-        <div className="spellCardField pb-2" key={index}>
+        <div className="spellCardField pb-3" key={index}>
           {effect}
         </div>
       );
