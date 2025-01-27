@@ -30,17 +30,11 @@
   text-align: left;
 }
 
-.accordion-button:not(.collapsed) {
-    background-color: var(--header-color) !important;
-    color: var(--text-color) !important;
-    box-shadow: 0px 0px 5px 5px black !important;
-    margin-top: 1rem
-}
-
 .accordion-button:not(.collapsed) ~ div {
     background-color: var(--header-color) !important;
     color: var(--text-color) !important;
     box-shadow: 0px 0px 5px 5px black !important;
     z-index: 1000;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }

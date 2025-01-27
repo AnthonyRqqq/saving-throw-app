@@ -18,7 +18,7 @@ export default function Conditions() {
               </h2>
               <div
                 id={`panel-${condition}`}
-                className="accordion-collapse collapse"
+                className="accordion-collapse collapse px-3 py-2"
               >
                 {conditions[condition].effects && (
                   <ul className="accordion-body mb-0">
