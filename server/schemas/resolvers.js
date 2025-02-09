@@ -282,6 +282,49 @@ const resolvers = {
         throw new Error("Error deleting spell");
       }
     },
+
+    createSpellList: async (
+      parent,
+      { spellIds, userId, spellSlots, preparedSpells, spellClass }
+    ) => {
+      try {
+        return await SpellList.create({
+          spell: spellIds,
+          user: userId,
+          spellSlots,
+          preparedSpells,
+          class: spellClass,
+        })
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        throw new Error(`Error creating spell list: ${e}`);
+      }
+    },
+
+    updateSpellList: async (
+      parent,
+      { listId, spells, preparedSpells, spellSlots, listClass }
+    ) => {
+      try {
+        return await SpellList.findOneAndUpdate(
+          { _id: listId },
+          {
+            $set: {
+              spell: spells,
+              preparedSpells,
+              class: listClass,
+              spellSlots,
+            },
+          },
+          { new: true }
+        )
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        throw new Error(`Error updating spell list: ${e}`);
+      }
+    },
   },
 };
 

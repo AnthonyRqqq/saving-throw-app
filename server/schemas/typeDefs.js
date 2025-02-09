@@ -150,6 +150,7 @@ type SpellList {
     fantasyLocationByName(name: String!): FantasyLocation
     spells: [Spell]
     filteredSpells(schools: [String], levels: [Int]): [Spell]
+    spellLists(userId: ID!): [SpellList]
   }
 
   type Mutation {
@@ -204,6 +205,22 @@ type SpellList {
     ): Spell
 
     deleteSpell(id: ID!): Spell
+
+    createSpellLists(
+      spell: [ID],
+      user: ID!,
+      spellSlots: [SpellSlot],
+      preparedSpells: [String],
+      class: String!
+    ): SpellList
+
+    updateSpellList(
+      listId: ID,
+      spell: [ID],
+      preparedSpells: [ID],
+      class: String,
+      spellSlots: [SpellSlot] 
+  ): SpellList
   }
 `;
 
