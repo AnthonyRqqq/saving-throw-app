@@ -95,6 +95,12 @@ type BonusAction {
   description: String!
 }
 
+type SpellSlot {
+  level: String!
+  expended: Int!
+  available: Int!
+}
+
 # StatBlock for spell or creature
 type StatBlock {
   _id: ID
@@ -123,6 +129,15 @@ type StatBlock {
   action: [Action]
   reaction: [Reaction]
   bonusAction: [BonusAction]
+}
+
+type SpellList {
+  _id: ID
+  spell: [Spell]
+  user: User
+  spellSlots: [SpellSlot]
+  preparedSpells: [String]
+  class: String!
 }
 
 

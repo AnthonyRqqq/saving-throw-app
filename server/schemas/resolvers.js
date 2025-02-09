@@ -1,5 +1,11 @@
 const { signToken, AuthenticationError } = require("../utils/auth");
-const { User, Location, FantasyLocation, Spell } = require("../models");
+const {
+  User,
+  Location,
+  FantasyLocation,
+  Spell,
+  SpellList,
+} = require("../models");
 const bcrypt = require("bcrypt");
 
 const resolvers = {
@@ -24,6 +30,17 @@ const resolvers = {
       } catch (err) {
         console.error("Error finding user by id: ", err);
         throw new Error("Error finding user by id.");
+      }
+    },
+
+    spellLists: async (parent, { userId }) => {
+      try {
+        return await SpellList.find({ user: userId })
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        console.error(`Error getting spell lists: ${e}`);
+        throw new Error(`Error getting spell lists: ${e}`);
       }
     },
 
