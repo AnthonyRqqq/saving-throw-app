@@ -85,14 +85,6 @@ export default function SpellList() {
           </div>
         </>
       )}
-
-      {/* 
-
-      <ul>
-        {data.spellLists.map((list, index) => {
-          return <li key={index}>{list.name}</li>;
-        })}
-      </ul> */}
     </>
   );
 }
