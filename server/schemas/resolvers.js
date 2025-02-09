@@ -285,10 +285,11 @@ const resolvers = {
 
     createSpellList: async (
       parent,
-      { spellIds, userId, spellSlots, preparedSpells, spellClass }
+      { name, spellIds, userId, spellSlots, preparedSpells, spellClass }
     ) => {
       try {
         return await SpellList.create({
+          name,
           spell: spellIds,
           user: userId,
           spellSlots,
@@ -304,13 +305,14 @@ const resolvers = {
 
     updateSpellList: async (
       parent,
-      { listId, spells, preparedSpells, spellSlots, listClass }
+      { listId, name, spells, preparedSpells, spellSlots, listClass }
     ) => {
       try {
         return await SpellList.findOneAndUpdate(
           { _id: listId },
           {
             $set: {
+              name,
               spell: spells,
               preparedSpells,
               class: listClass,

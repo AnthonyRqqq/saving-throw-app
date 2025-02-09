@@ -214,6 +214,7 @@ type SpellList {
     deleteSpell(id: ID!): Spell
 
     createSpellList(
+    name: String!,
       spell: [ID],
       user: ID!,
       spellSlots: [SpellSlotInput],
@@ -222,8 +223,7 @@ type SpellList {
     ): SpellList
 
     updateSpellList(
-
-
+    name: String!,
       listId: ID,
       spell: [ID],
       preparedSpells: [ID],

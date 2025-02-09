@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const spellListSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
   spell: [
     {
       type: Schema.Types.ObjectId,

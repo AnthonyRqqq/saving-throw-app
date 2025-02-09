@@ -194,6 +194,7 @@ export const GET_ALL_SPELL_LISTS = gql`
   query spellLists($userId: ID) {
     spellLists(userId: $userId) {
       _id
+      name
       spell {
         _id
         name

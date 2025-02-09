@@ -268,6 +268,7 @@ export const CREATE_SPELL_LIST = gql`
   }
 
   mutation createSpellList(
+  $name: String
     $spellIds: [ID]
     $userId: ID
     $spellSlots: [SpellSlot]
@@ -275,6 +276,7 @@ export const CREATE_SPELL_LIST = gql`
     $spellClass: String
   ) {
     createSpellList(
+    name: $name
       spellIds: $spellIds
       userId: $userId
       spellSlots: $spellSlots
@@ -282,6 +284,7 @@ export const CREATE_SPELL_LIST = gql`
       spellClass: $spellClass
     ) {
       _id
+      name
       spell {
         _id
         name
@@ -382,6 +385,7 @@ export const UPDATE_SPELL_LIST = gql`
   }
 
   mutation updateSpellList(
+  $name: String
     $listId: ID
     $spells: [ID]
     $spellSlots: [SpellSlot]
@@ -389,6 +393,7 @@ export const UPDATE_SPELL_LIST = gql`
     $listClass: String
   ) {
     updateSpellList(
+    name: $name
       listId: $listId
       spells: $spells
       spellSlots: $spellSlots
@@ -396,6 +401,7 @@ export const UPDATE_SPELL_LIST = gql`
       listClass: $listClass
     ) {
       _id
+      name
       spell {
         _id
         name
