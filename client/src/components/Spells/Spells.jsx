@@ -141,7 +141,13 @@ export default function Spells() {
       {/* Show the SpellCard component if a spell has been selected */}
       {displayedSpell && (
         <>
-          <SpellCard spell={displayedSpell} /> <hr></hr>
+          <SpellCard
+            spell={displayedSpell}
+            handleSpellListChange={handleSpellListChange}
+            listSpells={listSpells}
+            createList={createList}
+          />
+          <hr></hr>
         </>
       )}
 
