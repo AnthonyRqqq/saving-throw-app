@@ -89,6 +89,9 @@ export default function Spells() {
     const response = await createSpellList({ variables: listObject });
 
     console.log(response);
+    setCreateList(false);
+    setListSpells(null);
+    setListName(null);
   };
 
   const handleLoading = async () => {

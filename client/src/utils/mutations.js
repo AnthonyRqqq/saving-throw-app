@@ -481,3 +481,9 @@ export const UPDATE_SPELL_LIST = gql`
     }
   }
 `;
+
+export const DELETE_SPELL_LIST = gql`
+  mutation deleteSpellList( $id: ID!) {
+    deleteSpellList (id: $id) 
+  }
+`;

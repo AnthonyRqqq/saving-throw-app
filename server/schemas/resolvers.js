@@ -294,9 +294,9 @@ const resolvers = {
           spellSlots,
           preparedSpells,
           class: args.class,
-        })
+        });
 
-        return (await list.populate('user')).populate('spell')
+        return (await list.populate("user")).populate("spell");
       } catch (e) {
         throw new Error(`Error creating spell list: ${e}`);
       }
@@ -324,6 +324,15 @@ const resolvers = {
           .populate({ path: "spell", populate: { path: "statBlock" } });
       } catch (e) {
         throw new Error(`Error updating spell list: ${e}`);
+      }
+    },
+
+    deleteSpellList: async (parent, { id }) => {
+      try {
+        await SpellList.deleteOne({ _id: id });
+        return true;
+      } catch (e) {
+        throw new Error(`Error deleting spell list: ${e}`);
       }
     },
   },

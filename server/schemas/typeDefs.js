@@ -237,6 +237,8 @@ type SpellList {
       class: String,
       spellSlots: [SpellSlotInput] 
   ): SpellList
+
+  deleteSpellList(id: ID!): Boolean
   }
 `;
 

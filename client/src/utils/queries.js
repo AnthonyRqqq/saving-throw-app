@@ -191,7 +191,7 @@ export const GET_FILTERED_SPELLS = gql`
 `;
 
 export const GET_ALL_SPELL_LISTS = gql`
-  query spellLists($userId: ID) {
+  query spellLists($userId: ID!) {
     spellLists(userId: $userId) {
       _id
       name

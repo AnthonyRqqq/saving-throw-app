@@ -1,0 +1,20 @@
+.spellListItem:hover,
+.clickText:hover {
+  cursor: pointer;
+  color: var(--hover-text-color);
+}
+
+.spellListItem {
+  font-size: xx-large;
+  color: var(--text-color);
+}
+
+.spellListCard {
+  margin-right: 8%;
+  margin-left: 8%;
+  background-color: var(--header-color);
+  margin-top: 3%;
+  position: relative;
+  border-radius: 15px;
+  text-align: center;
+}
