@@ -14,20 +14,13 @@ import { useEffect, useState } from "react";
 export default function SpellList() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [spellListId, setSpellListId] = useState(null);
-  const [reload, setReload] = useState(0);
   const user = Auth.getUser();
 
-  const { loading, data } = useQuery(GET_ALL_SPELL_LISTS, {
+  const { loading, data, refetch } = useQuery(GET_ALL_SPELL_LISTS, {
     variables: { userId: user.data._id },
   });
 
   const [deleteList] = useMutation(DELETE_SPELL_LIST);
-
-  useEffect(() => {
-    if (!loading && data) {
-      console.log(data);
-    }
-  }, [loading, data]);
 
   const handleDeleteClick = async (e) => {
     await setSpellListId(e.target.dataset.listid);
@@ -36,7 +29,7 @@ export default function SpellList() {
 
   const handleDeleteSpellList = async () => {
     await deleteList({ variables: { id: spellListId } });
-    setReload((prev) => prev + 1);
+    refetch();
   };
 
   if (loading) return <>Loading...</>;
