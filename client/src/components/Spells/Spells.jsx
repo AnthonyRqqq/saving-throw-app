@@ -10,7 +10,7 @@ import InputModal from "../Modals/InputModal";
 import Auth from "../../utils/auth";
 import "./Spells.css";
 
-export default function Spells() {
+export default function Spells({ spellList }) {
   const [allSpells, setAllSpells] = useState([]);
   const [spells, setSpells] = useState([]);
   const [filterList, setFilterList] = useState([]);
@@ -30,7 +30,12 @@ export default function Spells() {
   // Set initial spell data on page load
   useEffect(() => {
     if (!allSpellsLoading && allSpellsData) {
-      const spells = allSpellsData.spells;
+      let spells = allSpellsData.spells;
+      if (spellList)
+        spells = spells.filter(
+          (spell) =>
+            spellList.spell.map((spell) => spell._id).includes(spell._id)
+        );
       // Alphabetizes spells before setting them to display
       const sortedSpells = [...spells].sort((a, b) => {
         if (a.name < b.name) {

@@ -6,6 +6,7 @@ import {
 } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import DeleteModal from "../Modals/DeleteModal";
+import Spells from "./Spells";
 import { useQuery, useMutation } from "@apollo/client";
 import "./SpellList.css";
 
@@ -14,6 +15,7 @@ import { useEffect, useState } from "react";
 export default function SpellList() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [spellListId, setSpellListId] = useState(null);
+  const [listDisplay, setListDisplay] = useState(false);
   const user = Auth.getUser();
 
   const { loading, data, refetch } = useQuery(GET_ALL_SPELL_LISTS, {
@@ -45,36 +47,44 @@ export default function SpellList() {
         onClick={() => handleDeleteSpellList()}
       />
 
-      <button>Create Spell List</button>
+      {listDisplay ? (
+        <Spells spellList={listDisplay} />
+      ) : (
+        <>
+          <button>Create Spell List</button>
 
-      <div className="row">
-        {data.spellLists.map((list, index) => {
-          return (
-            <div
-              className="col-lg-4 col-6"
-              style={{ position: "relative" }}
-              key={index}
-            >
-              <div className="col spellListCard">
-                <span className="spellListItem">{list.name}</span>
-              </div>
+          <div className="row">
+            {data.spellLists.map((list, index) => {
+              return (
+                <>
+                  <div
+                    className="col-lg-4 col-6"
+                    style={{ position: "relative" }}
+                    key={index}
+                  >
+                    <div className="col spellListCard">
+                      <span className="spellListItem" onClick={() => setListDisplay(list)}>{list.name}</span>
+                    </div>
 
-              <div
-                data-listid={list._id}
-                className="bi bi-trash"
-                onClick={handleDeleteClick}
-                style={{
-                  position: "absolute",
-                  top: "45%",
-                  right: "12%",
-                  color: "red",
-                  cursor: "pointer",
-                }}
-              ></div>
-            </div>
-          );
-        })}
-      </div>
+                    <div
+                      data-listid={list._id}
+                      className="bi bi-trash"
+                      onClick={handleDeleteClick}
+                      style={{
+                        position: "absolute",
+                        top: "45%",
+                        right: "12%",
+                        color: "red",
+                        cursor: "pointer",
+                      }}
+                    ></div>
+                  </div>
+                </>
+              );
+            })}
+          </div>
+        </>
+      )}
 
       {/* 
 
