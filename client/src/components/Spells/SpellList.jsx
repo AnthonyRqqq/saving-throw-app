@@ -1,5 +1,7 @@
 import { GET_ALL_SPELL_LISTS } from "../../utils/queries";
 import { CREATE_SPELL_LIST, UPDATE_SPELL_LIST } from "../../utils/mutations";
+import Auth from '../../utils/auth'
+import { useQuery, useMutation } from "@apollo/client";
 
 import { useEffect } from "react";
 
@@ -16,5 +18,5 @@ export default function SpellList() {
     }
   }, [loading, data]);
 
-  return <></>;
+  return <><button>Create Spell List</button></>;
 }

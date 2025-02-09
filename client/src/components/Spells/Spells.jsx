@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import SpellCard from "./SpellCard";
 import FilterSelect from "./FilterSelect";
 import Filters from "./Filters";
@@ -13,6 +13,8 @@ export default function Spells() {
   const [filterList, setFilterList] = useState([]);
   const [displayedSpell, setDisplayedSpell] = useState("");
   const [reload, setReload] = useState(0);
+  const [createList, setCreateList] = useState(false);
+  const [listSpells, setListSpells] = useState(null);
   const intervalRef = useRef(null);
   const focusRef = useRef(null);
 
@@ -69,6 +71,25 @@ export default function Spells() {
     }, 1000);
   };
 
+  const handleSpellListChange = async (spell) => {
+    let newList = listSpells || [];
+    if (newList.includes(spell._id)) {
+      const spellIndex = newList.indexOf(spell._id);
+
+      newList = [
+        ...newList.slice(0, spellIndex),
+        ...newList.slice(spellIndex + 1),
+      ];
+    } else {
+      newList.push(spell._id);
+    }
+
+    if (newList.length) setListSpells(newList);
+    else setListSpells(null);
+
+    handleReload();
+  };
+
   return (
     <div>
       <FilterSelect
@@ -79,6 +100,32 @@ export default function Spells() {
         allSpells={allSpells}
         setDisplayedSpell={setDisplayedSpell}
       />
+
+      <button
+        onClick={() => {
+          setCreateList(!createList);
+          if (listSpells) setListSpells(null);
+        }}
+        style={{ borderRadius: "8px" }}
+      >
+        {createList ? "Cancel Create List" : "Create Spell List"}
+      </button>
+
+      {createList && (
+        <>
+          <button style={{ borderRadius: "8px" }}>Save Spell List</button>
+
+          <button
+            onClick={() => {
+              if (listSpells) setListSpells(null);
+            }}
+            style={{ borderRadius: "8px" }}
+          >
+            Clear Selected Spells List
+          </button>
+        </>
+      )}
+
       <Filters
         filterList={filterList}
         setFilterList={setFilterList}
@@ -111,6 +158,15 @@ export default function Spells() {
             // Display the list of available spells matching the selected filters
             spells.map((spell, index) => (
               <li key={index} className="spellName col-lg-3 col-sm-4 col-md-3">
+                {createList && (
+                  <input
+                    type="checkbox"
+                    className="me-1 dropdown-checkbox"
+                    onChange={() => handleSpellListChange(spell)}
+                    checked={listSpells?.includes(spell._id)}
+                  />
+                )}
+
                 <span
                   className="spellText"
                   data-spell-id={spell._id}

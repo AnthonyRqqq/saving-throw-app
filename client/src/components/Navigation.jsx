@@ -113,6 +113,20 @@ export default function Navigation() {
                 View Spells
               </Link>
             </li>
+            {Auth.loggedIn() && (
+              <li>
+                <Link
+                  to="/spellLists"
+                  className={`${
+                    currentPage === "/spells"
+                      ? "dropdown-item active-link"
+                      : "dropdown-item"
+                  } link-item`}
+                >
+                  View My Spell Lists
+                </Link>
+              </li>
+            )}
           </ul>
         </li>
 
