@@ -1,10 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
+import { CREATE_SPELL_LIST } from "../../utils/mutations";
 import { Spinner, Button } from "react-bootstrap";
 import SpellCard from "./SpellCard";
 import FilterSelect from "./FilterSelect";
 import Filters from "./Filters";
+import InputModal from "../Modals/InputModal";
+import Auth from "../../utils/auth";
 import "./Spells.css";
 
 export default function Spells() {
@@ -12,12 +15,15 @@ export default function Spells() {
   const [spells, setSpells] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [displayedSpell, setDisplayedSpell] = useState("");
+  const [showNameModal, setShowNameModal] = useState(false);
   const [reload, setReload] = useState(0);
   const [createList, setCreateList] = useState(false);
   const [listSpells, setListSpells] = useState(null);
+  const [listName, setListName] = useState("");
   const intervalRef = useRef(null);
   const focusRef = useRef(null);
 
+  const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
 
@@ -64,6 +70,27 @@ export default function Spells() {
     }
   };
 
+  const handleInputChange = async (e) => {
+    setListName(e.target.value);
+  };
+
+  const handleSaveList = async (e) => {
+    const user = Auth.getUser();
+
+    if (!user) {
+    }
+
+    const listObject = {
+      name: listName,
+      spellIds: listSpells,
+      userId: user.data._id,
+    };
+
+    const response = await createSpellList({ variables: listObject });
+
+    console.log(response);
+  };
+
   const handleLoading = async () => {
     intervalRef.current = setInterval(() => {
       const newReload = reload + 1;
@@ -92,6 +119,16 @@ export default function Spells() {
 
   return (
     <div>
+      <InputModal
+        show={showNameModal}
+        confirmText="Save List"
+        inputElements={[{ text: "List Name" }]}
+        inputTitle="Enter a name for this spell list"
+        onClose={() => setShowNameModal(false)}
+        onClick={() => handleSaveList()}
+        onChange={handleInputChange}
+      />
+
       <FilterSelect
         filterList={filterList}
         setFilterList={setFilterList}
@@ -113,7 +150,14 @@ export default function Spells() {
 
       {createList && (
         <>
-          <button style={{ borderRadius: "8px" }}>Save Spell List</button>
+          <button
+            onClick={() => {
+              setShowNameModal(true);
+            }}
+            style={{ borderRadius: "8px" }}
+          >
+            Save Spell List
+          </button>
 
           <button
             onClick={() => {

@@ -101,6 +101,12 @@ type SpellSlot {
   available: Int!
 }
 
+input SpellSlotInput {
+  level: String!
+  expended: Int!
+  available: Int!
+}
+
 # StatBlock for spell or creature
 type StatBlock {
   _id: ID
@@ -133,11 +139,12 @@ type StatBlock {
 
 type SpellList {
   _id: ID
+  name: String
   spell: [Spell]
   user: User
   spellSlots: [SpellSlot]
   preparedSpells: [String]
-  class: String!
+  class: String
 }
 
 
@@ -219,7 +226,7 @@ type SpellList {
       user: ID!,
       spellSlots: [SpellSlotInput],
       preparedSpells: [String],
-      class: String!
+      class: String
     ): SpellList
 
     updateSpellList(

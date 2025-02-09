@@ -20,15 +20,12 @@ const spellListSchema = new Schema({
     {
       level: {
         type: String,
-        required: true,
       },
       expended: {
         type: Number,
-        required: true,
       },
       available: {
         type: Number,
-        required: true,
       },
     },
   ],
@@ -39,7 +36,6 @@ const spellListSchema = new Schema({
   ],
   class: {
     type: String,
-    required: true,
   },
 });
 

@@ -283,21 +283,20 @@ const resolvers = {
       }
     },
 
-    createSpellList: async (
-      parent,
-      { name, spellIds, userId, spellSlots, preparedSpells, spellClass }
-    ) => {
+    createSpellList: async (parent, args) => {
+      const { name, spell, user, spellSlots, preparedSpells } = args;
+
       try {
-        return await SpellList.create({
+        const list = await SpellList.create({
           name,
-          spell: spellIds,
-          user: userId,
+          spell,
+          user,
           spellSlots,
           preparedSpells,
-          class: spellClass,
+          class: args.class,
         })
-          .populate({ path: "user" })
-          .populate({ path: "spell", populate: { path: "statBlock" } });
+
+        return (await list.populate('user')).populate('spell')
       } catch (e) {
         throw new Error(`Error creating spell list: ${e}`);
       }

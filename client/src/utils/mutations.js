@@ -261,27 +261,21 @@ export const DELETE_SPELL = gql`
 `;
 
 export const CREATE_SPELL_LIST = gql`
-  input SpellSlot {
-    level: String!
-    expended: Int!
-    available: Int!
-  }
-
   mutation createSpellList(
-  $name: String
+    $name: String!
     $spellIds: [ID]
-    $userId: ID
-    $spellSlots: [SpellSlot]
+    $userId: ID!
+    $spellSlots: [SpellSlotInput]
     $preparedSpells: [String]
     $spellClass: String
   ) {
     createSpellList(
-    name: $name
-      spellIds: $spellIds
-      userId: $userId
+      name: $name
+      spell: $spellIds
+      user: $userId
       spellSlots: $spellSlots
       preparedSpells: $preparedSpells
-      spellClass: $spellClass
+      class: $spellClass
     ) {
       _id
       name
@@ -378,22 +372,16 @@ export const CREATE_SPELL_LIST = gql`
 `;
 
 export const UPDATE_SPELL_LIST = gql`
-  input SpellSlot {
-    level: String!
-    expended: Int!
-    available: Int!
-  }
-
   mutation updateSpellList(
-  $name: String
+    $name: String
     $listId: ID
     $spells: [ID]
-    $spellSlots: [SpellSlot]
+    $spellSlots: [SpellSlotInput]
     $preparedSpells: [String]
     $listClass: String
   ) {
     updateSpellList(
-    name: $name
+      name: $name
       listId: $listId
       spells: $spells
       spellSlots: $spellSlots
