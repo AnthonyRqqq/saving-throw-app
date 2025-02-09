@@ -258,4 +258,232 @@ export const DELETE_SPELL = gql`
       }
     }
   }
-`
+`;
+
+export const CREATE_SPELL_LIST = gql`
+  input SpellSlot {
+    level: String!
+    expended: Int!
+    availabel: Int!
+  }
+
+  mutation createSpellList(
+    $spellIds: [ID]
+    $userId: ID
+    $spellSlots: [SpellSlot]
+    $preparedSpells: [String]
+    $spellClass: String
+  ) {
+    createSpellList(
+      spellIds: $spellIds
+      userId: $userId
+      spellSlots: $spellSlots
+      preparedSpells: $preparedSpells
+      spellClass: $spellClass
+    ) {
+      _id
+      spell {
+        _id
+        name
+        level
+        school
+        isRitual
+        description
+        effectsArray
+        atHigherLevel
+        components
+        materialComponents
+        isConcentration
+        classList
+        sourceBook
+        castingTime
+        duration
+        range
+        createdBy {
+          _id
+        }
+        statBlock {
+          _id
+          name
+          size
+          type
+          alignment
+          armorClass
+          hitPoints
+          speed
+          strength
+          dexterity
+          constitution
+          intelligence
+          wisdom
+          charisma
+          conditionImmunities
+          damageImmunities
+          resistances
+          skills
+          sense
+          language
+          challenge
+          proficiency
+          trait {
+            title
+            description
+          }
+          action {
+            title
+            type
+            hitBonus
+            range
+            target
+            description
+          }
+          reaction {
+            title
+            type
+            hitBonus
+            range
+            target
+            description
+          }
+          bonusAction {
+            title
+            type
+            hitBonus
+            range
+            target
+            description
+          }
+        }
+        table {
+          header
+          details
+        }
+      }
+      user {
+        _id
+        email
+      }
+      spellSlots {
+        level
+        expended
+        available
+      }
+      preparedSpells
+      class
+    }
+  }
+`;
+
+export const UPDATE_SPELL_LIST = gql`
+  input SpellSlot {
+    level: String!
+    expended: Int!
+    availabel: Int!
+  }
+
+  mutation updateSpellList(
+    $listId: ID
+    $spells: [ID]
+    $spellSlots: [SpellSlot]
+    $preparedSpells: [String]
+    $listClass: String
+  ) {
+    updateSpellList(
+      listId: $listId
+      spells: $spells
+      spellSlots: $spellSlots
+      preparedSpells: $preparedSpells
+      listClass: $listClass
+    ) {
+      _id
+      spell {
+        _id
+        name
+        level
+        school
+        isRitual
+        description
+        effectsArray
+        atHigherLevel
+        components
+        materialComponents
+        isConcentration
+        classList
+        sourceBook
+        castingTime
+        duration
+        range
+        createdBy {
+          _id
+        }
+        statBlock {
+          _id
+          name
+          size
+          type
+          alignment
+          armorClass
+          hitPoints
+          speed
+          strength
+          dexterity
+          constitution
+          intelligence
+          wisdom
+          charisma
+          conditionImmunities
+          damageImmunities
+          resistances
+          skills
+          sense
+          language
+          challenge
+          proficiency
+          trait {
+            title
+            description
+          }
+          action {
+            title
+            type
+            hitBonus
+            range
+            target
+            description
+          }
+          reaction {
+            title
+            type
+            hitBonus
+            range
+            target
+            description
+          }
+          bonusAction {
+            title
+            type
+            hitBonus
+            range
+            target
+            description
+          }
+        }
+        table {
+          header
+          details
+        }
+      }
+      user {
+        _id
+        email
+      }
+      spellSlots {
+        level
+        expended
+        available
+      }
+      preparedSpells
+      class
+    }
+  }
+`;
