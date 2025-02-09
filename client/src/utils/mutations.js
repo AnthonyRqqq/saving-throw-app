@@ -264,7 +264,7 @@ export const CREATE_SPELL_LIST = gql`
   input SpellSlot {
     level: String!
     expended: Int!
-    availabel: Int!
+    available: Int!
   }
 
   mutation createSpellList(
@@ -378,7 +378,7 @@ export const UPDATE_SPELL_LIST = gql`
   input SpellSlot {
     level: String!
     expended: Int!
-    availabel: Int!
+    available: Int!
   }
 
   mutation updateSpellList(

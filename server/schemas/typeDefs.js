@@ -153,7 +153,14 @@ type SpellList {
     spellLists(userId: ID!): [SpellList]
   }
 
+   input SpellSlotInput {
+    level: String!
+    expended: Int!
+    available: Int!
+  }
+
   type Mutation {
+  
     login(email: String!, password: String!): Auth
 
     addUser(email: String!, password: String!): Auth
@@ -206,20 +213,22 @@ type SpellList {
 
     deleteSpell(id: ID!): Spell
 
-    createSpellLists(
+    createSpellList(
       spell: [ID],
       user: ID!,
-      spellSlots: [SpellSlot],
+      spellSlots: [SpellSlotInput],
       preparedSpells: [String],
       class: String!
     ): SpellList
 
     updateSpellList(
+
+
       listId: ID,
       spell: [ID],
       preparedSpells: [ID],
       class: String,
-      spellSlots: [SpellSlot] 
+      spellSlots: [SpellSlotInput] 
   ): SpellList
   }
 `;
