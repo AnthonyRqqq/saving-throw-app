@@ -48,7 +48,7 @@ export default function SpellList() {
       />
 
       {listDisplay ? (
-        <Spells spellList={listDisplay} />
+        <Spells spellList={listDisplay} allLists={data.spellLists} setListDisplay={setListDisplay} />
       ) : (
         <>
           <button>Create Spell List</button>

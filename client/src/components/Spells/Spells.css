@@ -93,3 +93,11 @@ hr {
   border-color: var(--hover-text-color);
   background-color: var(--background-color);
 }
+
+.list-sidebar {
+  display: flex;
+}
+
+.main-spell-div {
+  width: 80%
+}
