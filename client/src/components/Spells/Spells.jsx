@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_ALL_SPELLS } from "../../utils/queries";
 import { CREATE_SPELL_LIST } from "../../utils/mutations";
 import { Spinner, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import SpellCard from "./SpellCard";
 import FilterSelect from "./FilterSelect";
 import Filters from "./Filters";
@@ -21,8 +22,10 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
   const [createList, setCreateList] = useState(false);
   const [listSpells, setListSpells] = useState(null);
   const [listName, setListName] = useState("");
+  const [resetSpells, setResetSpells] = useState(false);
   const intervalRef = useRef(null);
   const focusRef = useRef(null);
+  const navigate = useNavigate();
 
   const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
@@ -49,7 +52,7 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
       setSpells(sortedSpells);
       setAllSpells(sortedSpells);
     }
-  }, [allSpellsLoading, allSpellsData]);
+  }, [allSpellsLoading, allSpellsData, resetSpells]);
 
   // Handles reloading the page if spell data is still being loaded
   useEffect(() => {
@@ -125,9 +128,24 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
     handleReload();
   };
 
+  const viewAllSpells = () => {
+    // Alphabetizes spells before setting them to display
+    const sortedSpells = [...allSpellsData.spells].sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+    setSpells(sortedSpells);
+    setAllSpells(sortedSpells);
+  };
+
   return (
-    <div className={spellList ? 'list-sidebar' : ''}>
-      <div className={spellList ? "main-spell-div" : ''}>
+    <div className={spellList ? "list-sidebar" : ""}>
+      <div className={spellList ? "main-spell-div" : ""}>
         <InputModal
           show={showNameModal}
           confirmText="Save List"
@@ -154,7 +172,7 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
           }}
           style={{ borderRadius: "8px" }}
         >
-          {createList ? "Cancel Create List" : "Create Spell List"}
+          {createList ? "Cancel Create List" : "Create New Spell List"}
         </button>
 
         {createList && (
@@ -252,8 +270,15 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
       </div>
 
       {spellList && (
-        <div style={{ width: '20%'}}>
-          <SpellListSidebar list={spellList} allLists={allLists} setListDisplay={setListDisplay} />
+        <div style={{ width: "20%" }}>
+          <SpellListSidebar
+            handleSpellSelect={handleSpellSelect}
+            list={spellList}
+            allLists={allLists}
+            setListDisplay={setListDisplay}
+            viewAllSpells={viewAllSpells}
+            reloadList={() => setResetSpells(!resetSpells)}
+          />
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import "./SpellListSidebar.css";
+import { useState } from "react";
 
 export default function SpellListSidebar({
   list,
@@ -6,7 +7,11 @@ export default function SpellListSidebar({
   setListDisplay,
   viewAllSpells,
   reloadList,
+  handleSpellSelect,
 }) {
+  const [showSave, setShowSave] = useState(false);
+  const [changes, setChanges] = useState(null);
+
   const handleListChange = (e) => {
     const newList = e.target.value;
     if (newList === list.name) return;
@@ -18,8 +23,26 @@ export default function SpellListSidebar({
 
   return (
     <div className="list-sidebar-el">
+      {showSave && (
+        <button
+          onClick={() => {
+            setShowSave(false);
+            reloadList();
+          }}
+        >
+          Save Changes
+        </button>
+      )}
+
       <div>
-        <button onClick={() => viewAllSpells()}>Add Spells</button>
+        <button
+          onClick={() => {
+            viewAllSpells();
+            setShowSave(true);
+          }}
+        >
+          Add Spells
+        </button>
         <button onClick={() => setListDisplay(null)}>View All Lists</button>
         <button onClick={() => removeSpells()}>Remove Spells</button>
       </div>
@@ -39,6 +62,8 @@ export default function SpellListSidebar({
               <li
                 key={index}
                 style={{ listStyle: "none", textAlign: "center" }}
+                data-spell-id={spell._id}
+                onClick={(e) => handleSpellSelect(e)}
               >
                 {spell.name}
               </li>
