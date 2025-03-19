@@ -1,5 +1,6 @@
 import "./SpellListSidebar.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SpellListSidebar({
   list,
@@ -11,6 +12,8 @@ export default function SpellListSidebar({
 }) {
   const [showSave, setShowSave] = useState(false);
   const [changes, setChanges] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleListChange = (e) => {
     const newList = e.target.value;
@@ -37,7 +40,7 @@ export default function SpellListSidebar({
 
       <div>
         <button
-        className="rounded"
+          className="rounded"
           onClick={() => {
             viewAllSpells();
             setShowSave(true);
@@ -45,8 +48,12 @@ export default function SpellListSidebar({
         >
           Add Spells
         </button>
-        <button className="rounded" onClick={() => setListDisplay(null)}>View All Lists</button>
-        <button className="rounded" onClick={() => removeSpells()}>Remove Spells</button>
+        <button className="rounded" onClick={() => navigate("/spellLists")}>
+          View All Lists
+        </button>
+        <button className="rounded" onClick={() => removeSpells()}>
+          Remove Spells
+        </button>
       </div>
 
       <select defaultValue={list.name} onChange={handleListChange}>
