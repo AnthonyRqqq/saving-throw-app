@@ -14,7 +14,10 @@ export default function SpellListSidebar({
   reloadList,
   handleSpellSelect,
   resetSpells,
-  setResetSpells
+  setResetSpells,
+  setCreateList,
+  setListSpells,
+  listSpells,
 }) {
   const [showSave, setShowSave] = useState(false);
   const [changes, setChanges] = useState(null);
@@ -48,8 +51,7 @@ export default function SpellListSidebar({
       variables: { spells: newSpellList, listId: list._id },
     });
 
-    // refetch();
-    setResetSpells(!resetSpells)
+    setResetSpells(!resetSpells);
   };
 
   return (
@@ -63,27 +65,62 @@ export default function SpellListSidebar({
 
       <div className="list-sidebar-el">
         {showSave && (
-          <button
-            className="rounded"
-            onClick={() => {
-              setShowSave(false);
-              reloadList();
-            }}
-          >
-            Save Changes
-          </button>
+          <>
+            <button
+              className="rounded"
+              onClick={async () => {
+                let spellDiff = list.spell.filter(
+                  (spell) => !listSpells.includes(spell._id)
+                );
+                if (!spellDiff.length)
+                  spellDiff = listSpells.filter(
+                    (spell) =>
+                      !list.spell.map((spell) => spell._id).includes(spell)
+                  );
+
+                if (spellDiff.length) {
+                  await updateSpellList({
+                    variables: { spells: listSpells, listId: list._id },
+                  });
+                }
+
+                setShowSave(false);
+                setCreateList(false);
+                reloadList();
+              }}
+            >
+              Save Changes
+            </button>
+
+            <button
+              className="rounded"
+              onClick={() => {
+                setShowSave(false);
+                setCreateList(false);
+                reloadList();
+              }}
+            >
+              Cancel Changes
+            </button>
+          </>
         )}
 
         <div>
-          <button
-            className="rounded"
-            onClick={() => {
-              viewAllSpells();
-              setShowSave(true);
-            }}
-          >
-            Add Spells
-          </button>
+          {!showSave && (
+            <button
+              className="rounded"
+              onClick={() => {
+                const newListSpells = list.spell.map((spell) => spell._id);
+
+                setListSpells(newListSpells);
+                viewAllSpells();
+                setShowSave(true);
+                setCreateList(true);
+              }}
+            >
+              Add Spells
+            </button>
+          )}
           <button className="rounded" onClick={() => navigate("/spellLists")}>
             View All Lists
           </button>

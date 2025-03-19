@@ -211,10 +211,10 @@ export default function Spells({ allLists, setListDisplay }) {
           }}
           style={{ borderRadius: "8px" }}
         >
-          {createList ? "Cancel Create List" : "Create New Spell List"}
+          {createList && !listId ? "Cancel Create List" : "Create New Spell List"}
         </button>
 
-        {createList && (
+        {createList && !listId && (
           <>
             <button
               onClick={() => {
@@ -315,11 +315,14 @@ export default function Spells({ allLists, setListDisplay }) {
             handleSpellSelect={handleSpellSelect}
             list={spellList}
             allLists={spellListData.spellLists}
+            listSpells={listSpells}
+            setListSpells={setListSpells}
             setListDisplay={setListDisplay}
             viewAllSpells={viewAllSpells}
             reloadList={() => setResetSpells(!resetSpells)}
             resetSpells={resetSpells}
             setResetSpells={setResetSpells}
+            setCreateList={setCreateList}
           />
         </div>
       )}
