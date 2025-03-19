@@ -84,7 +84,7 @@ export default function Spells({ allLists, setListDisplay }) {
       setSpells(sortedSpells);
       setAllSpells(sortedSpells);
     }
-  }, [allSpellsLoading, allSpellsData, resetSpells]);
+  }, [allSpellsLoading, allSpellsData, resetSpells, spellList]);
 
   // Handles reloading the page if spell data is still being loaded
   useEffect(() => {
@@ -323,6 +323,7 @@ export default function Spells({ allLists, setListDisplay }) {
             resetSpells={resetSpells}
             setResetSpells={setResetSpells}
             setCreateList={setCreateList}
+            refetch={refetch}
           />
         </div>
       )}

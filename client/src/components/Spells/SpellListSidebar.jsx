@@ -18,6 +18,7 @@ export default function SpellListSidebar({
   setCreateList,
   setListSpells,
   listSpells,
+  refetch,
 }) {
   const [showSave, setShowSave] = useState(false);
   const [changes, setChanges] = useState(null);
@@ -31,11 +32,10 @@ export default function SpellListSidebar({
 
   const handleListChange = (e) => {
     const newList = e.target.value;
-    if (newList === list.name) return;
+    if (newList === list._id) return;
 
-    const selectedList = allLists.find((list) => list.name === newList);
-    setListDisplay(selectedList);
-    reloadList();
+    const selectedList = allLists.find((list) => list._id === newList);
+    navigate(`/spellLists/${selectedList._id}`);
   };
 
   const handleDeleteClick = (e) => {
@@ -131,7 +131,7 @@ export default function SpellListSidebar({
 
         <select defaultValue={list.name} onChange={handleListChange}>
           {allLists.map((listItem, index) => (
-            <option key={index} value={listItem.name}>
+            <option key={index} value={listItem._id}>
               {listItem.name}
             </option>
           ))}
