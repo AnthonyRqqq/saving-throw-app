@@ -25,6 +25,7 @@ export default function SpellListSidebar({
     <div className="list-sidebar-el">
       {showSave && (
         <button
+          className="rounded"
           onClick={() => {
             setShowSave(false);
             reloadList();
@@ -36,6 +37,7 @@ export default function SpellListSidebar({
 
       <div>
         <button
+        className="rounded"
           onClick={() => {
             viewAllSpells();
             setShowSave(true);
@@ -43,8 +45,8 @@ export default function SpellListSidebar({
         >
           Add Spells
         </button>
-        <button onClick={() => setListDisplay(null)}>View All Lists</button>
-        <button onClick={() => removeSpells()}>Remove Spells</button>
+        <button className="rounded" onClick={() => setListDisplay(null)}>View All Lists</button>
+        <button className="rounded" onClick={() => removeSpells()}>Remove Spells</button>
       </div>
 
       <select defaultValue={list.name} onChange={handleListChange}>
