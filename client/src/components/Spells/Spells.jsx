@@ -326,7 +326,9 @@ export default function Spells({ allLists, setListDisplay }) {
             resetSpells={resetSpells}
             setResetSpells={setResetSpells}
             setCreateList={setCreateList}
+            setDisplayedSpell={setDisplayedSpell}
             refetch={refetch}
+            allSpells={allSpells}
           />
         </div>
       )}

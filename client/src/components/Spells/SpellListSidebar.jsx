@@ -19,6 +19,8 @@ export default function SpellListSidebar({
   setListSpells,
   listSpells,
   refetch,
+  setDisplayedSpell,
+  allSpells,
 }) {
   const [showSave, setShowSave] = useState(false);
   const [changes, setChanges] = useState(null);
@@ -89,6 +91,8 @@ export default function SpellListSidebar({
 
                 setShowSave(false);
                 setCreateList(false);
+                setListSpells(null);
+                setDisplayedSpell("");
                 reloadList();
               }}
             >
@@ -100,6 +104,8 @@ export default function SpellListSidebar({
               onClick={() => {
                 setShowSave(false);
                 setCreateList(false);
+                setListSpells(null);
+                setDisplayedSpell("");
                 reloadList();
               }}
             >
@@ -119,6 +125,7 @@ export default function SpellListSidebar({
                 viewAllSpells();
                 setShowSave(true);
                 setCreateList(true);
+                setDisplayedSpell("");
               }}
             >
               Edit Spells
@@ -143,7 +150,10 @@ export default function SpellListSidebar({
 
         <div className="pt-4">
           <ul>
-            {list.spell.map((spell, index) => {
+            {(listSpells
+              ? allSpells.filter((spell) => listSpells.includes(spell._id))
+              : list.spell
+            ).map((spell, index) => {
               return (
                 <li
                   key={index}
