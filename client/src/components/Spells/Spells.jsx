@@ -217,6 +217,8 @@ export default function Spells({ allLists, setListDisplay }) {
           </button>
         )}
 
+        <button className="rounded" onClick={() => navigate('/spellLists')}>View My Spell Lists</button>
+
         {createList && !listId && (
           <>
             <button
