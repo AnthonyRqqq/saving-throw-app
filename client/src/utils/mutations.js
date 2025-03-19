@@ -374,10 +374,10 @@ export const CREATE_SPELL_LIST = gql`
 export const UPDATE_SPELL_LIST = gql`
   mutation updateSpellList(
     $name: String
-    $listId: ID
+    $listId: ID!
     $spells: [ID]
     $spellSlots: [SpellSlotInput]
-    $preparedSpells: [String]
+    $preparedSpells: [ID]
     $listClass: String
   ) {
     updateSpellList(

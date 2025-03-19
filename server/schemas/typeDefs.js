@@ -231,11 +231,11 @@ type SpellList {
     ): SpellList
 
     updateSpellList(
-    name: String!,
-      listId: ID,
-      spell: [ID],
+    name: String,
+      listId: ID!,
+      spells: [ID],
       preparedSpells: [ID],
-      class: String,
+      listClass: String,
       spellSlots: [SpellSlotInput] 
   ): SpellList
 
