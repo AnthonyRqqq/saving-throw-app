@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 export default function SpellList() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [spellListId, setSpellListId] = useState(null);
+  const [spellListName, setSpellListName] = useState(null);
   const [listDisplay, setListDisplay] = useState(false);
   const user = Auth.getUser();
 
@@ -29,6 +30,7 @@ export default function SpellList() {
 
   const handleDeleteClick = async (e) => {
     await setSpellListId(e.target.dataset.listid);
+    setSpellListName(e.target.dataset.listname);
     await setShowDeleteConfirm(true);
   };
 
@@ -48,6 +50,7 @@ export default function SpellList() {
         onClose={() => setShowDeleteConfirm(false)}
         onHide={() => setShowDeleteConfirm(false)}
         onClick={() => handleDeleteSpellList()}
+        item={spellListName}
       />
 
       {listDisplay ? (
@@ -80,6 +83,7 @@ export default function SpellList() {
 
                     <div
                       data-listid={list._id}
+                      data-listname={list.name}
                       className="bi bi-trash"
                       onClick={handleDeleteClick}
                       style={{
