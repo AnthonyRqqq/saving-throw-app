@@ -162,10 +162,14 @@ export default function SpellListSidebar({
                     textAlign: "center",
                     position: "relative",
                   }}
-                  data-spell-id={spell._id}
-                  onClick={(e) => handleSpellSelect(e)}
                 >
-                  {spell.name}
+                  <span
+                    data-spell-id={spell._id}
+                    onClick={(e) => handleSpellSelect(e)}
+                    className="list-spell"
+                  >
+                    {spell.name}
+                  </span>
 
                   {!showSave && (
                     <div

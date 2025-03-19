@@ -18,3 +18,8 @@
 .spell-list-select option {
   background-color: var(--background-color);
 }
+
+.list-spell:hover {
+  color: var(--hover-text-color);
+  cursor: pointer;
+}
