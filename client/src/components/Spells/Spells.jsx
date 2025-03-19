@@ -1,6 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_ALL_SPELLS, GET_SPELL_LIST_BY_ID } from "../../utils/queries";
+import {
+  GET_ALL_SPELLS,
+  GET_SPELL_LIST_BY_ID,
+  GET_ALL_SPELL_LISTS,
+} from "../../utils/queries";
 import { CREATE_SPELL_LIST } from "../../utils/mutations";
 import { Spinner, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -24,22 +28,40 @@ export default function Spells({ allLists, setListDisplay }) {
   const [listSpells, setListSpells] = useState(null);
   const [listName, setListName] = useState("");
   const [resetSpells, setResetSpells] = useState(false);
+  const [spellList, setSpellList] = useState(null);
   const intervalRef = useRef(null);
   const focusRef = useRef(null);
   const navigate = useNavigate();
 
   const { listId } = useParams();
 
+  const user = Auth.getUser();
+
   const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
 
-  const { loading: spellListLoading, data: spellList } = useQuery(
-    GET_SPELL_LIST_BY_ID,
+  const { loading: listLoading, data: spellListData } = useQuery(
+    GET_ALL_SPELL_LISTS,
     {
-      variables: { id: listId },
+      variables: { userId: user.data._id },
     }
   );
+
+  useEffect(() => {
+    if (!listId) {
+      setSpellList(null);
+      setResetSpells(!resetSpells);
+      return;
+    }
+
+    if (spellListData && !listLoading) {
+      const selectedList = spellListData.spellLists.find(
+        (list) => list._id === listId
+      );
+      setSpellList(selectedList);
+    }
+  }, [listId, spellListData, listLoading]);
 
   // Set initial spell data on page load
   useEffect(() => {
@@ -74,8 +96,8 @@ export default function Spells({ allLists, setListDisplay }) {
   }, [allSpellsLoading]);
 
   useEffect(() => {
-    console.log(listId)
-    console.log(spellList)
+    console.log(listId);
+    console.log(spellList);
   }, [listId, spellList]);
 
   const handleReload = () => setReload((prev) => prev + 1);
@@ -289,7 +311,7 @@ export default function Spells({ allLists, setListDisplay }) {
           <SpellListSidebar
             handleSpellSelect={handleSpellSelect}
             list={spellList}
-            allLists={allLists}
+            allLists={spellListData.spellLists}
             setListDisplay={setListDisplay}
             viewAllSpells={viewAllSpells}
             reloadList={() => setResetSpells(!resetSpells)}
