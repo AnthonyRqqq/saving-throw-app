@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <SpellLists />,
       },
       {
-        path: "/spellLists/:listId?/:createList?",
+        path: "/spellLists/:listId?",
         element: <Spells />,
       },
       {

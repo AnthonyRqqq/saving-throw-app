@@ -204,6 +204,8 @@ export default function Spells({ allLists, setListDisplay }) {
 
         <button
           onClick={() => {
+            if (spellList) navigate("/spells");
+
             setCreateList(!createList);
             if (listSpells) setListSpells(null);
           }}
