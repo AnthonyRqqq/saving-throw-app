@@ -33,7 +33,7 @@ export default function Spells({ allLists, setListDisplay }) {
   const focusRef = useRef(null);
   const navigate = useNavigate();
 
-  const { listId } = useParams();
+  const { listId, createNewList } = useParams();
 
   const user = Auth.getUser();
 
@@ -48,6 +48,13 @@ export default function Spells({ allLists, setListDisplay }) {
   } = useQuery(GET_ALL_SPELL_LISTS, {
     variables: { userId: user.data._id },
   });
+
+  useEffect(() => {
+    if (createNewList) {
+      navigate("/spells");
+      setCreateList(true);
+    }
+  }, [createNewList]);
 
   useEffect(() => {
     if (!listId) {
@@ -217,7 +224,9 @@ export default function Spells({ allLists, setListDisplay }) {
           </button>
         )}
 
-        <button className="rounded" onClick={() => navigate('/spellLists')}>View My Spell Lists</button>
+        <button className="rounded" onClick={() => navigate("/spellLists")}>
+          View My Spell Lists
+        </button>
 
         {createList && !listId && (
           <>

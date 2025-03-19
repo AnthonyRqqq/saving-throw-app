@@ -61,7 +61,9 @@ export default function SpellList() {
         />
       ) : (
         <>
-          <button>Create Spell List</button>
+          <button className="rounded" onClick={() => {
+            navigate('/spells/createNewList')
+          }} >Create New Spell List</button>
 
           <div className="row">
             {data.spellLists.map((list, index) => {

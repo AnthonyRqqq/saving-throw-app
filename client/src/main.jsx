@@ -29,6 +29,10 @@ const router = createBrowserRouter([
         element: <Spells />,
       },
       {
+        path: '/spells/:createNewList',
+        element: <Spells />
+      },
+      {
         path: "/spellLists",
         element: <SpellLists />,
       },
