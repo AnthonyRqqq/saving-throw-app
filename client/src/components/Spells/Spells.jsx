@@ -211,7 +211,7 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
         <hr ref={focusRef}></hr>
         {/* Show the SpellCard component if a spell has been selected */}
         {displayedSpell && (
-          <>
+          <div className={`${spellList && 'mx-5'}`}>
             <SpellCard
               spell={displayedSpell}
               handleSpellListChange={handleSpellListChange}
@@ -219,7 +219,7 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
               createList={createList}
             />
             <hr></hr>
-          </>
+          </div>
         )}
 
         <ul
