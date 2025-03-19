@@ -1,5 +1,11 @@
 const { signToken, AuthenticationError } = require("../utils/auth");
-const { User, Location, FantasyLocation, Spell } = require("../models");
+const {
+  User,
+  Location,
+  FantasyLocation,
+  Spell,
+  SpellList,
+} = require("../models");
 const bcrypt = require("bcrypt");
 
 const resolvers = {
@@ -24,6 +30,28 @@ const resolvers = {
       } catch (err) {
         console.error("Error finding user by id: ", err);
         throw new Error("Error finding user by id.");
+      }
+    },
+
+    spellListById: async (parent, { id }) => {
+      try {
+        return await SpellList.findOne({ _id: id })
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        console.error("Error finding spell list by id: ", e);
+        throw new Error("Error finding spell list by id");
+      }
+    },
+
+    spellLists: async (parent, { userId }) => {
+      try {
+        return await SpellList.find({ user: userId })
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        console.error(`Error getting spell lists: ${e}`);
+        throw new Error(`Error getting spell lists: ${e}`);
       }
     },
 
@@ -263,6 +291,59 @@ const resolvers = {
       } catch (err) {
         console.error("Error deleting spell: ", err);
         throw new Error("Error deleting spell");
+      }
+    },
+
+    createSpellList: async (parent, args) => {
+      const { name, spell, user, spellSlots, preparedSpells } = args;
+
+      try {
+        const list = await SpellList.create({
+          name,
+          spell,
+          user,
+          spellSlots,
+          preparedSpells,
+          class: args.class,
+        });
+
+        return (await list.populate("user")).populate("spell");
+      } catch (e) {
+        throw new Error(`Error creating spell list: ${e}`);
+      }
+    },
+
+    updateSpellList: async (
+      parent,
+      { listId, name, spells, preparedSpells, spellSlots, listClass }
+    ) => {
+      try {
+        return await SpellList.findOneAndUpdate(
+          { _id: listId },
+          {
+            $set: {
+              name,
+              spell: spells,
+              preparedSpells,
+              class: listClass,
+              spellSlots,
+            },
+          },
+          { new: true }
+        )
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        throw new Error(`Error updating spell list: ${e}`);
+      }
+    },
+
+    deleteSpellList: async (parent, { id }) => {
+      try {
+        await SpellList.deleteOne({ _id: id });
+        return true;
+      } catch (e) {
+        throw new Error(`Error deleting spell list: ${e}`);
       }
     },
   },

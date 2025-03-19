@@ -95,6 +95,18 @@ type BonusAction {
   description: String!
 }
 
+type SpellSlot {
+  level: String!
+  expended: Int!
+  available: Int!
+}
+
+input SpellSlotInput {
+  level: String!
+  expended: Int!
+  available: Int!
+}
+
 # StatBlock for spell or creature
 type StatBlock {
   _id: ID
@@ -125,6 +137,16 @@ type StatBlock {
   bonusAction: [BonusAction]
 }
 
+type SpellList {
+  _id: ID
+  name: String
+  spell: [Spell]
+  user: User
+  spellSlots: [SpellSlot]
+  preparedSpells: [String]
+  class: String
+}
+
 
   type Query {
     users: [User]
@@ -135,9 +157,18 @@ type StatBlock {
     fantasyLocationByName(name: String!): FantasyLocation
     spells: [Spell]
     filteredSpells(schools: [String], levels: [Int]): [Spell]
+    spellLists(userId: ID!): [SpellList]
+    spellListById(id: ID!): SpellList
+  }
+
+   input SpellSlotInput {
+    level: String!
+    expended: Int!
+    available: Int!
   }
 
   type Mutation {
+  
     login(email: String!, password: String!): Auth
 
     addUser(email: String!, password: String!): Auth
@@ -189,6 +220,26 @@ type StatBlock {
     ): Spell
 
     deleteSpell(id: ID!): Spell
+
+    createSpellList(
+    name: String!,
+      spell: [ID],
+      user: ID!,
+      spellSlots: [SpellSlotInput],
+      preparedSpells: [String],
+      class: String
+    ): SpellList
+
+    updateSpellList(
+    name: String,
+      listId: ID!,
+      spells: [ID],
+      preparedSpells: [ID],
+      listClass: String,
+      spellSlots: [SpellSlotInput] 
+  ): SpellList
+
+  deleteSpellList(id: ID!): Boolean
   }
 `;
 
