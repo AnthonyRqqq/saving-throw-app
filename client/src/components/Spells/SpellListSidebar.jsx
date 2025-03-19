@@ -129,7 +129,7 @@ export default function SpellListSidebar({
           </button>
         </div>
 
-        <select defaultValue={list.name} onChange={handleListChange}>
+        <select className="rounded spell-list-select" defaultValue={list.name} onChange={handleListChange}>
           {allLists.map((listItem, index) => (
             <option key={index} value={listItem._id}>
               {listItem.name}
