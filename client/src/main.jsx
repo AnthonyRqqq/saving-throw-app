@@ -33,6 +33,10 @@ const router = createBrowserRouter([
         element: <SpellLists />,
       },
       {
+        path: "/spellLists/:listId?/:createList?",
+        element: <Spells />,
+      },
+      {
         path: "/conditions",
         element: <Conditions />,
       },

@@ -158,6 +158,7 @@ type SpellList {
     spells: [Spell]
     filteredSpells(schools: [String], levels: [Int]): [Spell]
     spellLists(userId: ID!): [SpellList]
+    spellListById(id: ID!): SpellList
   }
 
    input SpellSlotInput {

@@ -33,6 +33,17 @@ const resolvers = {
       }
     },
 
+    spellListById: async (parent, { id }) => {
+      try {
+        return await SpellList.findOne({ _id: id })
+          .populate({ path: "user" })
+          .populate({ path: "spell", populate: { path: "statBlock" } });
+      } catch (e) {
+        console.error("Error finding spell list by id: ", e);
+        throw new Error("Error finding spell list by id");
+      }
+    },
+
     spellLists: async (parent, { userId }) => {
       try {
         return await SpellList.find({ user: userId })

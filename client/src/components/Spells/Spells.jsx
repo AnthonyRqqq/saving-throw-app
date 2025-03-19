@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_ALL_SPELLS } from "../../utils/queries";
+import { GET_ALL_SPELLS, GET_SPELL_LIST_BY_ID } from "../../utils/queries";
 import { CREATE_SPELL_LIST } from "../../utils/mutations";
 import { Spinner, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SpellCard from "./SpellCard";
 import FilterSelect from "./FilterSelect";
 import Filters from "./Filters";
@@ -12,7 +13,7 @@ import InputModal from "../Modals/InputModal";
 import Auth from "../../utils/auth";
 import "./Spells.css";
 
-export default function Spells({ spellList, allLists, setListDisplay }) {
+export default function Spells({ allLists, setListDisplay }) {
   const [allSpells, setAllSpells] = useState([]);
   const [spells, setSpells] = useState([]);
   const [filterList, setFilterList] = useState([]);
@@ -27,9 +28,18 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
   const focusRef = useRef(null);
   const navigate = useNavigate();
 
+  const { listId } = useParams();
+
   const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
+
+  const { loading: spellListLoading, data: spellList } = useQuery(
+    GET_SPELL_LIST_BY_ID,
+    {
+      variables: { id: listId },
+    }
+  );
 
   // Set initial spell data on page load
   useEffect(() => {
@@ -62,6 +72,11 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
       clearInterval(intervalRef.current);
     }
   }, [allSpellsLoading]);
+
+  useEffect(() => {
+    console.log(listId)
+    console.log(spellList)
+  }, [listId, spellList]);
 
   const handleReload = () => setReload((prev) => prev + 1);
 
@@ -211,7 +226,7 @@ export default function Spells({ spellList, allLists, setListDisplay }) {
         <hr ref={focusRef}></hr>
         {/* Show the SpellCard component if a spell has been selected */}
         {displayedSpell && (
-          <div className={`${spellList && 'mx-5'}`}>
+          <div className={`${spellList && "mx-5"}`}>
             <SpellCard
               spell={displayedSpell}
               handleSpellListChange={handleSpellListChange}

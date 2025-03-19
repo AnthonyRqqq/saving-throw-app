@@ -8,6 +8,7 @@ import Auth from "../../utils/auth";
 import DeleteModal from "../Modals/DeleteModal";
 import Spells from "./Spells";
 import { useQuery, useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import "./SpellList.css";
 
 import { useEffect, useState } from "react";
@@ -23,6 +24,8 @@ export default function SpellList() {
   });
 
   const [deleteList] = useMutation(DELETE_SPELL_LIST);
+
+  const navigate = useNavigate();
 
   const handleDeleteClick = async (e) => {
     await setSpellListId(e.target.dataset.listid);
@@ -48,7 +51,11 @@ export default function SpellList() {
       />
 
       {listDisplay ? (
-        <Spells spellList={listDisplay} allLists={data.spellLists} setListDisplay={setListDisplay} />
+        <Spells
+          spellList={listDisplay}
+          allLists={data.spellLists}
+          setListDisplay={setListDisplay}
+        />
       ) : (
         <>
           <button>Create Spell List</button>
@@ -63,7 +70,12 @@ export default function SpellList() {
                     key={index}
                   >
                     <div className="col spellListCard">
-                      <span className="spellListItem" onClick={() => setListDisplay(list)}>{list.name}</span>
+                      <span
+                        className="spellListItem"
+                        onClick={() => navigate(`${list._id}`)}
+                      >
+                        {list.name}
+                      </span>
                     </div>
 
                     <div
