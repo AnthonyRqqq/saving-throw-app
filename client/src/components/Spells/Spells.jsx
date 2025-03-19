@@ -41,7 +41,7 @@ export default function Spells({ allLists, setListDisplay }) {
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
 
-  const { loading: listLoading, data: spellListData } = useQuery(
+  const { loading: listLoading, data: spellListData, refetch } = useQuery(
     GET_ALL_SPELL_LISTS,
     {
       variables: { userId: user.data._id },
@@ -61,7 +61,7 @@ export default function Spells({ allLists, setListDisplay }) {
       );
       setSpellList(selectedList);
     }
-  }, [listId, spellListData, listLoading]);
+  }, [listId, spellListData, listLoading, refetch]);
 
   // Set initial spell data on page load
   useEffect(() => {
@@ -318,6 +318,8 @@ export default function Spells({ allLists, setListDisplay }) {
             setListDisplay={setListDisplay}
             viewAllSpells={viewAllSpells}
             reloadList={() => setResetSpells(!resetSpells)}
+            resetSpells={resetSpells}
+            setResetSpells={setResetSpells}
           />
         </div>
       )}

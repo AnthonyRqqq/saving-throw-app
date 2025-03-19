@@ -13,6 +13,8 @@ export default function SpellListSidebar({
   viewAllSpells,
   reloadList,
   handleSpellSelect,
+  resetSpells,
+  setResetSpells
 }) {
   const [showSave, setShowSave] = useState(false);
   const [changes, setChanges] = useState(null);
@@ -45,6 +47,9 @@ export default function SpellListSidebar({
     await updateSpellList({
       variables: { spells: newSpellList, listId: list._id },
     });
+
+    // refetch();
+    setResetSpells(!resetSpells)
   };
 
   return (
