@@ -23,6 +23,7 @@ export default function SpellListSidebar({
   const [changes, setChanges] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deletedSpell, setDeletedSpell] = useState(null);
+  const [deletedSpellName, setDeletedSpellName] = useState(null);
 
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ export default function SpellListSidebar({
 
   const handleDeleteClick = (e) => {
     setDeletedSpell(e.target.dataset.spellid);
+    setDeletedSpellName(e.target.dataset.spellname);
     setShowDeleteConfirm(true);
   };
 
@@ -61,6 +63,7 @@ export default function SpellListSidebar({
         onClose={() => setShowDeleteConfirm(false)}
         onHide={() => setShowDeleteConfirm(false)}
         onClick={() => handleRemoveSpell()}
+        item={deletedSpellName}
       />
 
       <div className="list-sidebar-el">
@@ -152,6 +155,7 @@ export default function SpellListSidebar({
 
                   <div
                     data-spellid={spell._id}
+                    data-spellname={spell.name}
                     className="bi bi-trash"
                     onClick={handleDeleteClick}
                     style={{

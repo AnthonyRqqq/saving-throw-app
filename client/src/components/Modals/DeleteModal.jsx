@@ -1,14 +1,14 @@
 import { Modal, Button } from "react-bootstrap";
 import "./DeleteModal.css";
 
-export default function DeleteModal({ onClose, onClick, show, onHide }) {
+export default function DeleteModal({ onClose, onClick, show, onHide, item }) {
   return (
     <>
       <Modal show={show} onHide={onHide} className="centeredModal">
         <div className="deleteModal">
           <Modal.Header>
             <Modal.Title className="pt-3" style={{ textAlign: "center" }}>
-              <div>Are you sure you want to delete this?</div>
+              <div className="pb-4">Are you sure you want to delete {item || 'this'}?</div>
               <div>This action cannot be undone.</div>
             </Modal.Title>
           </Modal.Header>
