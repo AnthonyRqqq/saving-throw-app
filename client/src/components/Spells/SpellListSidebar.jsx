@@ -121,7 +121,7 @@ export default function SpellListSidebar({
                 setCreateList(true);
               }}
             >
-              Add Spells
+              Edit Spells
             </button>
           )}
           <button className="rounded" onClick={() => navigate("/spellLists")}>
@@ -129,7 +129,11 @@ export default function SpellListSidebar({
           </button>
         </div>
 
-        <select className="rounded spell-list-select" defaultValue={list.name} onChange={handleListChange}>
+        <select
+          className="rounded spell-list-select"
+          defaultValue={list.name}
+          onChange={handleListChange}
+        >
           {allLists.map((listItem, index) => (
             <option key={index} value={listItem._id}>
               {listItem.name}
@@ -153,19 +157,21 @@ export default function SpellListSidebar({
                 >
                   {spell.name}
 
-                  <div
-                    data-spellid={spell._id}
-                    data-spellname={spell.name}
-                    className="bi bi-trash"
-                    onClick={handleDeleteClick}
-                    style={{
-                      position: "absolute",
-                      top: "10%",
-                      left: "-25%",
-                      color: "red",
-                      cursor: "pointer",
-                    }}
-                  ></div>
+                  {!showSave && (
+                    <div
+                      data-spellid={spell._id}
+                      data-spellname={spell.name}
+                      className="bi bi-trash"
+                      onClick={handleDeleteClick}
+                      style={{
+                        position: "absolute",
+                        top: "10%",
+                        left: "-25%",
+                        color: "red",
+                        cursor: "pointer",
+                      }}
+                    ></div>
+                  )}
                 </li>
               );
             })}

@@ -41,12 +41,13 @@ export default function Spells({ allLists, setListDisplay }) {
   const { loading: allSpellsLoading, data: allSpellsData } =
     useQuery(GET_ALL_SPELLS);
 
-  const { loading: listLoading, data: spellListData, refetch } = useQuery(
-    GET_ALL_SPELL_LISTS,
-    {
-      variables: { userId: user.data._id },
-    }
-  );
+  const {
+    loading: listLoading,
+    data: spellListData,
+    refetch,
+  } = useQuery(GET_ALL_SPELL_LISTS, {
+    variables: { userId: user.data._id },
+  });
 
   useEffect(() => {
     if (!listId) {
@@ -202,17 +203,19 @@ export default function Spells({ allLists, setListDisplay }) {
           setDisplayedSpell={setDisplayedSpell}
         />
 
-        <button
-          onClick={() => {
-            if (spellList) navigate("/spells");
+        {((!createList && listId) || !listId) && (
+          <button
+            onClick={() => {
+              if (spellList) navigate("/spells");
 
-            setCreateList(!createList);
-            if (listSpells) setListSpells(null);
-          }}
-          style={{ borderRadius: "8px" }}
-        >
-          {createList && !listId ? "Cancel Create List" : "Create New Spell List"}
-        </button>
+              setCreateList(!createList);
+              if (listSpells) setListSpells(null);
+            }}
+            style={{ borderRadius: "8px" }}
+          >
+            {createList ? "Cancel Create List" : "Create New Spell List"}
+          </button>
+        )}
 
         {createList && !listId && (
           <>
