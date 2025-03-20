@@ -53,14 +53,16 @@ export default function SpellList() {
         item={spellListName}
       />
 
-      <button
-        className="rounded"
-        onClick={() => {
-          navigate("/spells/createNewList");
-        }}
-      >
-        Create New Spell List
-      </button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          className="rounded"
+          onClick={() => {
+            navigate("/spells/createNewList");
+          }}
+        >
+          Create New Spell List
+        </button>
+      </div>
 
       <div className="row">
         {data.spellLists.map((list, index) => {
