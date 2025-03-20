@@ -19,7 +19,7 @@
   background-color: var(--background-color);
 }
 
-.custom-dropdown {
+.custom-dropdown-dark {
   position: relative;
   display: flex;
   justify-self: center;
@@ -27,7 +27,7 @@
   white-space: nowrap;
 }
 
-.dropdown-menu {
+.dropdown-menu-dark {
   display: none;
   list-style: none;
   top: 100%;
@@ -35,24 +35,28 @@
   background-color: var(--background-color);
 }
 
-.dropdown-item:hover {
+.dropdown-item-dark {
+  color: black;
+}
+
+.dropdown-item-dark:hover {
   background-color: var(--header-color);
   color: var(--text-color);
 }
 
-.custom-dropdown:hover .dropdown-menu {
+.custom-dropdown-dark:hover .dropdown-menu-dark {
   display: flex;
   flex-direction: column;
 }
 
-.dropdown-menu {
+.dropdown-menu-dark {
   justify-self: center;
   text-align: center;
   border-color: var(--header-color);
   border-width: 2px;
 }
 
-.dropdown-item:hover {
+.dropdown-item-dark:hover {
   cursor: pointer;
 }
 
