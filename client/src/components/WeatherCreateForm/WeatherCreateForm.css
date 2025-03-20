@@ -16,6 +16,11 @@ button:hover {
   background-color: var(--hover-header-color);
 }
 
+button:active {
+  background-color: var(--active-text-color) !important;
+  border-color: white !important;
+}
+
 .locationBtn:focus {
   background-color: var(--hover-header-color);
 }
