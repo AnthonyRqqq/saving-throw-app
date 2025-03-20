@@ -146,7 +146,7 @@ export default function SpellListSidebar({
           </div>
         </div>
 
-        <div class="custom-dropdown" onPointerLeave={() => setShowSpellLists(false)}>
+        <div class="custom-dropdown custom-dropdown-dark" onPointerLeave={() => setShowSpellLists(false)}>
           <button 
             onClick={() => setShowSpellLists(!showSpellLists)}
             class="dropdown-btn rounded"
@@ -155,11 +155,11 @@ export default function SpellListSidebar({
           </button>
 
           {showSpellLists && (
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-dark">
               {allLists.map((listItem, index) => (
                 <li
                   onClick={() => handleListChange(listItem._id)}
-                  className="dropdown-item"
+                  className="dropdown-item dropdown-item-dark"
                   key={index}
                   value={listItem._id}
                 >
