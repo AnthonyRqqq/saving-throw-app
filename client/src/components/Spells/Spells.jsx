@@ -140,11 +140,13 @@ export default function Spells({ allLists, setListDisplay }) {
     };
 
     const response = await createSpellList({ variables: listObject });
+    refetch();
 
     console.log(response);
     setCreateList(false);
     setListSpells(null);
     setListName(null);
+    navigate(`/spellLists/${response.data.createSpellList._id}`);
   };
 
   const handleLoading = async () => {
