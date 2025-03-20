@@ -27,17 +27,18 @@ export default function SpellListSidebar({
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deletedSpell, setDeletedSpell] = useState(null);
   const [deletedSpellName, setDeletedSpellName] = useState(null);
+  const [showSpellLists, setShowSpellLists] = useState(false);
 
   const navigate = useNavigate();
 
   const [updateSpellList] = useMutation(UPDATE_SPELL_LIST);
 
-  const handleListChange = (e) => {
-    const newList = e.target.value;
+  const handleListChange = (newList) => {
     if (newList === list._id) return;
 
     const selectedList = allLists.find((list) => list._id === newList);
     navigate(`/spellLists/${selectedList._id}`);
+    setShowSpellLists(false);
   };
 
   const handleDeleteClick = (e) => {
@@ -69,7 +70,14 @@ export default function SpellListSidebar({
       />
 
       <div className="list-sidebar-el">
-        <div style={{ display: 'flex', whiteSpace: 'nowrap', flexWrap: 'wrap', justifyContent: 'center'}}>
+        <div
+          style={{
+            display: "flex",
+            whiteSpace: "nowrap",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
           {showSave && (
             <>
               <button
@@ -138,17 +146,29 @@ export default function SpellListSidebar({
           </div>
         </div>
 
-        <select
-          className="rounded spell-list-select"
-          defaultValue={list._id}
-          onChange={handleListChange}
-        >
-          {allLists.map((listItem, index) => (
-            <option key={index} value={listItem._id}>
-              {listItem.name}
-            </option>
-          ))}
-        </select>
+        <div class="custom-dropdown" onPointerLeave={() => setShowSpellLists(false)}>
+          <button 
+            onClick={() => setShowSpellLists(!showSpellLists)}
+            class="dropdown-btn rounded"
+          >
+            List: {list.name}
+          </button>
+
+          {showSpellLists && (
+            <ul class="dropdown-menu">
+              {allLists.map((listItem, index) => (
+                <li
+                  onClick={() => handleListChange(listItem._id)}
+                  className="dropdown-item"
+                  key={index}
+                  value={listItem._id}
+                >
+                  {listItem.name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         <div className="pt-4">
           <ul>
