@@ -203,54 +203,67 @@ export default function Spells({ allLists, setListDisplay }) {
           onChange={handleInputChange}
         />
 
-        <FilterSelect
-          filterList={filterList}
-          setFilterList={setFilterList}
-          handleReload={handleReload}
-          setSpells={setSpells}
-          allSpells={allSpells}
-          setDisplayedSpell={setDisplayedSpell}
-        />
-
-        {((!createList && listId) || !listId) && (
-          <button
-            onClick={() => {
-              if (spellList) navigate("/spells");
-
-              setCreateList(!createList);
-              if (listSpells) setListSpells(null);
-            }}
-            style={{ borderRadius: "8px" }}
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            className="mx-2"
+            style={{ display: "flex", alignItems: "center" }}
           >
-            {createList ? "Cancel Create List" : "Create New Spell List"}
-          </button>
-        )}
+            <FilterSelect
+              filterList={filterList}
+              setFilterList={setFilterList}
+              handleReload={handleReload}
+              setSpells={setSpells}
+              allSpells={allSpells}
+              setDisplayedSpell={setDisplayedSpell}
+            />
+          </div>
 
-        <button className="rounded" onClick={() => navigate("/spellLists")}>
-          View My Spell Lists
-        </button>
-
-        {createList && !listId && (
-          <>
+          {((!createList && listId) || !listId) && (
             <button
+              className="mx-2"
               onClick={() => {
-                setShowNameModal(true);
-              }}
-              style={{ borderRadius: "8px" }}
-            >
-              Save Spell List
-            </button>
+                if (spellList) navigate("/spells");
 
-            <button
-              onClick={() => {
+                setCreateList(!createList);
                 if (listSpells) setListSpells(null);
               }}
               style={{ borderRadius: "8px" }}
             >
-              Clear Selected Spells List
+              {createList ? "Cancel Create List" : "Create New Spell List"}
             </button>
-          </>
-        )}
+          )}
+
+          <button
+            className="mx-2 rounded"
+            onClick={() => navigate("/spellLists")}
+          >
+            View My Spell Lists
+          </button>
+
+          {createList && !listId && (
+            <>
+              <button
+                className="mx-2"
+                onClick={() => {
+                  setShowNameModal(true);
+                }}
+                style={{ borderRadius: "8px" }}
+              >
+                Save Spell List
+              </button>
+
+              <button
+                className="mx-2"
+                onClick={() => {
+                  if (listSpells) setListSpells(null);
+                }}
+                style={{ borderRadius: "8px" }}
+              >
+                Clear Selected Spells List
+              </button>
+            </>
+          )}
+        </div>
 
         <Filters
           filterList={filterList}
