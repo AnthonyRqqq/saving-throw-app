@@ -46,7 +46,6 @@ export default function SpellFilters({
         }
       }}
       tabIndex={0} // Ensure the div can receive focus
-      className="dropdown mx-4"
     >
       <button
         style={{ borderRadius: "8px" }}

@@ -27,17 +27,18 @@ export default function SpellListSidebar({
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deletedSpell, setDeletedSpell] = useState(null);
   const [deletedSpellName, setDeletedSpellName] = useState(null);
+  const [showSpellLists, setShowSpellLists] = useState(false);
 
   const navigate = useNavigate();
 
   const [updateSpellList] = useMutation(UPDATE_SPELL_LIST);
 
-  const handleListChange = (e) => {
-    const newList = e.target.value;
+  const handleListChange = (newList) => {
     if (newList === list._id) return;
 
     const selectedList = allLists.find((list) => list._id === newList);
     navigate(`/spellLists/${selectedList._id}`);
+    setShowSpellLists(false);
   };
 
   const handleDeleteClick = (e) => {
@@ -69,84 +70,105 @@ export default function SpellListSidebar({
       />
 
       <div className="list-sidebar-el">
-        {showSave && (
-          <>
-            <button
-              className="rounded"
-              onClick={async () => {
-                let spellDiff = list.spell.filter(
-                  (spell) => !listSpells.includes(spell._id)
-                );
-                if (!spellDiff.length)
-                  spellDiff = listSpells.filter(
-                    (spell) =>
-                      !list.spell.map((spell) => spell._id).includes(spell)
+        <div
+          style={{
+            display: "flex",
+            whiteSpace: "nowrap",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {showSave && (
+            <>
+              <button
+                className="rounded"
+                onClick={async () => {
+                  let spellDiff = list.spell.filter(
+                    (spell) => !listSpells.includes(spell._id)
                   );
+                  if (!spellDiff.length)
+                    spellDiff = listSpells.filter(
+                      (spell) =>
+                        !list.spell.map((spell) => spell._id).includes(spell)
+                    );
 
-                if (spellDiff.length) {
-                  await updateSpellList({
-                    variables: { spells: listSpells, listId: list._id },
-                  });
-                }
+                  if (spellDiff.length) {
+                    await updateSpellList({
+                      variables: { spells: listSpells, listId: list._id },
+                    });
+                  }
 
-                setShowSave(false);
-                setCreateList(false);
-                setListSpells(null);
-                setDisplayedSpell("");
-                reloadList();
-              }}
-            >
-              Save Changes
-            </button>
+                  setShowSave(false);
+                  setCreateList(false);
+                  setListSpells(null);
+                  setDisplayedSpell("");
+                  reloadList();
+                }}
+              >
+                Save Changes
+              </button>
 
-            <button
-              className="rounded"
-              onClick={() => {
-                setShowSave(false);
-                setCreateList(false);
-                setListSpells(null);
-                setDisplayedSpell("");
-                reloadList();
-              }}
-            >
-              Cancel Changes
-            </button>
-          </>
-        )}
-
-        <div>
-          {!showSave && (
-            <button
-              className="rounded"
-              onClick={() => {
-                const newListSpells = list.spell.map((spell) => spell._id);
-
-                setListSpells(newListSpells);
-                viewAllSpells();
-                setShowSave(true);
-                setCreateList(true);
-                setDisplayedSpell("");
-              }}
-            >
-              Edit Spells
-            </button>
+              <button
+                className="rounded"
+                onClick={() => {
+                  setShowSave(false);
+                  setCreateList(false);
+                  setListSpells(null);
+                  setDisplayedSpell("");
+                  reloadList();
+                }}
+              >
+                Cancel Changes
+              </button>
+            </>
           )}
-          <button className="rounded" onClick={() => navigate("/spellLists")}>
-            View All Lists
-          </button>
+
+          <div>
+            {!showSave && (
+              <button
+                className="rounded"
+                onClick={() => {
+                  const newListSpells = list.spell.map((spell) => spell._id);
+
+                  setListSpells(newListSpells);
+                  viewAllSpells();
+                  setShowSave(true);
+                  setCreateList(true);
+                  setDisplayedSpell("");
+                }}
+              >
+                Edit Spells
+              </button>
+            )}
+            <button className="rounded" onClick={() => navigate("/spellLists")}>
+              View All Lists
+            </button>
+          </div>
         </div>
 
-        <select
-          className="rounded spell-list-select"
-          defaultValue={list._id}
-          onChange={handleListChange}
-        >
-          {allLists.map((listItem, index) => (
-            <option key={index} value={listItem._id}>
-              {listItem.name}
-            </option>
-          ))}
-        </select>
+        <div class="custom-dropdown" onPointerLeave={() => setShowSpellLists(false)}>
+          <button 
+            onClick={() => setShowSpellLists(!showSpellLists)}
+            class="dropdown-btn rounded"
+          >
+            List: {list.name}
+          </button>
+
+          {showSpellLists && (
+            <ul class="dropdown-menu">
+              {allLists.map((listItem, index) => (
+                <li
+                  onClick={() => handleListChange(listItem._id)}
+                  className="dropdown-item"
+                  key={index}
+                  value={listItem._id}
+                >
+                  {listItem.name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         <div className="pt-4">
           <ul>

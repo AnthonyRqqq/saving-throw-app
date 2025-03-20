@@ -22,16 +22,17 @@ export default function InputModal({
             {inputElements.map((element) => {
               return (
                 <div key={element}>
-                  <div>{element.text}</div>
+                  <div style={{ textAlign: "center" }}>{element.text}</div>
                   <input onChange={onChange}></input>
                 </div>
               );
             })}
           </Row>
 
-          <Row style={{ display: 'flex', justifyContent: 'center'}}>
-            <div>
+          <Row style={{ display: "flex", justifyContent: "center" }}>
+            <div className="d-flex">
               <Button
+                style={{ whiteSpace: "nowrap" }}
                 onClick={() => {
                   onClick();
                   if (onClose) {
@@ -41,9 +42,7 @@ export default function InputModal({
               >
                 {confirmText}
               </Button>
-            </div>
 
-            <div>
               <Button onClick={onClose}>Cancel</Button>
             </div>
           </Row>

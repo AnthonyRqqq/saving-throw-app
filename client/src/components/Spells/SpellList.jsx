@@ -53,56 +53,53 @@ export default function SpellList() {
         item={spellListName}
       />
 
-      {listDisplay ? (
-        <Spells
-          spellList={listDisplay}
-          allLists={data.spellLists}
-          setListDisplay={setListDisplay}
-        />
-      ) : (
-        <>
-          <button className="rounded" onClick={() => {
-            navigate('/spells/createNewList')
-          }} >Create New Spell List</button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          className="rounded"
+          onClick={() => {
+            navigate("/spells/createNewList");
+          }}
+        >
+          Create New Spell List
+        </button>
+      </div>
 
-          <div className="row">
-            {data.spellLists.map((list, index) => {
-              return (
-                <>
-                  <div
-                    className="col-lg-4 col-6"
-                    style={{ position: "relative" }}
-                    key={index}
+      <div className="row">
+        {data.spellLists.map((list, index) => {
+          return (
+            <>
+              <div
+                className="col-lg-4 col-6"
+                style={{ position: "relative" }}
+                key={index}
+              >
+                <div className="col spellListCard">
+                  <span
+                    className="spellListItem"
+                    onClick={() => navigate(`${list._id}`)}
                   >
-                    <div className="col spellListCard">
-                      <span
-                        className="spellListItem"
-                        onClick={() => navigate(`${list._id}`)}
-                      >
-                        {list.name}
-                      </span>
-                    </div>
+                    {list.name}
+                  </span>
+                </div>
 
-                    <div
-                      data-listid={list._id}
-                      data-listname={list.name}
-                      className="bi bi-trash"
-                      onClick={handleDeleteClick}
-                      style={{
-                        position: "absolute",
-                        top: "45%",
-                        right: "12%",
-                        color: "red",
-                        cursor: "pointer",
-                      }}
-                    ></div>
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </>
-      )}
+                <div
+                  data-listid={list._id}
+                  data-listname={list.name}
+                  className="bi bi-trash"
+                  onClick={handleDeleteClick}
+                  style={{
+                    position: "absolute",
+                    top: "45%",
+                    right: "12%",
+                    color: "red",
+                    cursor: "pointer",
+                  }}
+                ></div>
+              </div>
+            </>
+          );
+        })}
+      </div>
     </>
   );
 }

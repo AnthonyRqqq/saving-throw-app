@@ -19,6 +19,44 @@
   background-color: var(--background-color);
 }
 
+.custom-dropdown {
+  position: relative;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  display: none;
+  list-style: none;
+  top: 100%;
+  border: 1px solid #ccc;
+  background-color: var(--background-color);
+}
+
+.dropdown-item:hover {
+  background-color: var(--header-color);
+  color: var(--text-color);
+}
+
+.custom-dropdown:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu {
+  justify-self: center;
+  text-align: center;
+  border-color: var(--header-color);
+  border-width: 2px;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+}
+
+
 .list-spell:hover {
   color: var(--hover-text-color);
   cursor: pointer;
