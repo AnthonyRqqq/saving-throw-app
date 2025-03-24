@@ -46,8 +46,7 @@ export default function Spells({ allLists, setListDisplay }) {
     data: spellListData,
     refetch,
   } = useQuery(GET_ALL_SPELL_LISTS, {
-    variables: { userId: user?.data._id },
-    skip: !user,
+    variables: { userId: user.data._id },
   });
 
   useEffect(() => {
@@ -219,7 +218,7 @@ export default function Spells({ allLists, setListDisplay }) {
             />
           </div>
 
-          {((!createList && listId) || !listId) && user && (
+          {((!createList && listId) || !listId) && (
             <button
               className="mx-2"
               onClick={() => {
@@ -234,14 +233,12 @@ export default function Spells({ allLists, setListDisplay }) {
             </button>
           )}
 
-          {user && (
-            <button
-              className="mx-2 rounded"
-              onClick={() => navigate("/spellLists")}
-            >
-              View My Spell Lists
-            </button>
-          )}
+          <button
+            className="mx-2 rounded"
+            onClick={() => navigate("/spellLists")}
+          >
+            View My Spell Lists
+          </button>
 
           {createList && !listId && (
             <>

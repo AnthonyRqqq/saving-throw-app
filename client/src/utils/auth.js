@@ -4,11 +4,7 @@ const decode = jwtDecode.default || jwtDecode;
 
 class AuthService {
   getUser() {
-    try {
-      decode(this.getToken());
-    } catch (e) {
-      console.error(e);
-    }
+    return decode(this.getToken());
   }
 
   // Checks if user is still logged in
