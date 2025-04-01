@@ -1,10 +1,18 @@
 import LoginForm from "../LoginForm";
 import SignupForm from "../SignupForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function AccountModal({ afterLogin, verifyLogin }) {
+export default function AccountModal({
+  afterLogin,
+  verifyLogin,
+  onHide = () => {},
+}) {
   const [showLogin, setShowLogin] = useState(true);
-  const [showSignupForm, setShowSignupForm] = useState(null);
+  const [showSignupForm, setShowSignupForm] = useState(false);
+
+  useEffect(() => {
+    if (!showLogin && !showSignupForm) onHide();
+  }, [showLogin, showSignupForm]);
 
   return (
     <>

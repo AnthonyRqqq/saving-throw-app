@@ -192,7 +192,7 @@ export default function Spells({ allLists, setListDisplay }) {
   return (
     <div className={spellList ? "list-sidebar" : ""}>
       {showLogin && (
-        <AccountModal verifyLogin={true} afterLogin={() => handleSaveList()} />
+        <AccountModal verifyLogin={true} afterLogin={() => handleSaveList()} onHide={() => setShowLogin(false)} />
       )}
       <div className={spellList ? "main-spell-div" : ""}>
         <InputModal

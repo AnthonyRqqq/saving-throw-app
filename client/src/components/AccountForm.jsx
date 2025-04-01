@@ -118,7 +118,7 @@ export default function AccountForm({
         </div>
 
         {verifyLogin && (
-          <div style={{ textAlign: "center" }}>
+          <div className="form-div" style={{ textAlign: "center" }}>
             You must be logged in to cast this spell.
           </div>
         )}

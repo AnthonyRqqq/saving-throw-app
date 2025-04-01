@@ -8,6 +8,7 @@ export default function SignupForm({ verifyLogin, show, onHide, setShowLogin, af
       setShowLogin={setShowLogin}
       afterLogin={afterLogin}
       verifyLogin={verifyLogin}
+      signup={true}
     />
   );
 }
