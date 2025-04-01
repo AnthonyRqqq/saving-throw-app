@@ -55,11 +55,6 @@ hr {
   margin-top: 3%;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -92,4 +87,12 @@ hr {
   color: var(--hover-text-color);
   border-color: var(--hover-text-color);
   background-color: var(--background-color);
+}
+
+.list-sidebar {
+  display: flex;
+}
+
+.main-spell-div {
+  width: 80%
 }

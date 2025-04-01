@@ -4,7 +4,13 @@ import StatBlock from "../StatBlocks/StatBlock";
 import { handleStatBonus } from "../../utils/lib";
 import "./SpellCard.css";
 
-export default function SpellCard({ spell }) {
+export default function SpellCard({
+  spell,
+  createList,
+  listSpells,
+  handleSpellListChange,
+  setDisplayedSpell,
+}) {
   console.log(spell);
 
   // Sets the string to be displayed for the spell level
@@ -99,9 +105,25 @@ export default function SpellCard({ spell }) {
     <Container className="spellCard">
       <Container>
         <Row>
+          {createList && (
+            <button onClick={() => handleSpellListChange(spell)}>
+              {listSpells?.includes(spell._id)
+                ? "Remove Spell From List"
+                : "Add Spell To List"}
+            </button>
+          )}
+
           <Col className="spellCardHeader">
             <h2 className="spellCardName">{spell.name}</h2>
-            <h4>{spell.isRitual ? "Ritual" : ""}</h4>
+            <h4 className="d-flex" style={{ alignItems: "center" }}>
+              {spell.isRitual ? "Ritual" : ""}{" "}
+              <button
+                onClick={() => setDisplayedSpell(null)}
+                className="mx-2 rounded"
+              >
+                X
+              </button>
+            </h4>
           </Col>
         </Row>
 

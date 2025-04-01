@@ -1,12 +1,14 @@
 import AccountForm from "./AccountForm";
 
-export default function SignupForm({ show, onHide, setShowLogin }) {
+export default function SignupForm({ verifyLogin, show, onHide, setShowLogin, afterLogin }) {
   return (
     <AccountForm
       show={show}
       onHide={onHide}
       setShowLogin={setShowLogin}
-      signup
+      afterLogin={afterLogin}
+      verifyLogin={verifyLogin}
+      signup={true}
     />
   );
 }
