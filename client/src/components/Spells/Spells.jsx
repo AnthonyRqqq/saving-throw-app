@@ -290,6 +290,7 @@ export default function Spells({ allLists, setListDisplay }) {
               handleSpellListChange={handleSpellListChange}
               listSpells={listSpells}
               createList={createList}
+              setDisplayedSpell={setDisplayedSpell}
             />
             <hr></hr>
           </div>

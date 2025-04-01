@@ -9,6 +9,7 @@ export default function SpellCard({
   createList,
   listSpells,
   handleSpellListChange,
+  setDisplayedSpell,
 }) {
   console.log(spell);
 
@@ -111,9 +112,18 @@ export default function SpellCard({
                 : "Add Spell To List"}
             </button>
           )}
+
           <Col className="spellCardHeader">
             <h2 className="spellCardName">{spell.name}</h2>
-            <h4>{spell.isRitual ? "Ritual" : ""}</h4>
+            <h4 className="d-flex" style={{ alignItems: "center" }}>
+              {spell.isRitual ? "Ritual" : ""}{" "}
+              <button
+                onClick={() => setDisplayedSpell(null)}
+                className="mx-2 rounded"
+              >
+                X
+              </button>
+            </h4>
           </Col>
         </Row>
 
