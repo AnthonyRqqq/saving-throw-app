@@ -24,7 +24,6 @@ export default function SpellListSidebar({
   allSpells,
 }) {
   const [showSave, setShowSave] = useState(false);
-  const [changes, setChanges] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deletedSpell, setDeletedSpell] = useState(null);
   const [deletedSpellName, setDeletedSpellName] = useState(null);
@@ -42,33 +41,34 @@ export default function SpellListSidebar({
     setShowSpellLists(false);
   };
 
-  const handleDeleteClick = (e) => {
-    setDeletedSpell(e.target.dataset.spellid);
-    setDeletedSpellName(e.target.dataset.spellname);
-    setShowDeleteConfirm(true);
-  };
+  // const handleDeleteClick = (e) => {
+  //   setDeletedSpell(e.target.dataset.spellid);
+  //   setDeletedSpellName(e.target.dataset.spellname);
+  //   setShowDeleteConfirm(true);
+  // };
 
-  const handleRemoveSpell = async () => {
-    const newSpellList = list.spell
-      .filter((spell) => spell._id !== deletedSpell)
-      .map((spell) => spell._id);
+  // const handleRemoveSpell = async () => {
 
-    await updateSpellList({
-      variables: { spells: newSpellList, listId: list._id },
-    });
+  //   const newSpellList = list.spell
+  //     .filter((spell) => spell._id !== deletedSpell)
+  //     .map((spell) => spell._id);
 
-    setResetSpells(!resetSpells);
-  };
+  //   await updateSpellList({
+  //     variables: { spells: newSpellList, listId: list._id },
+  //   });
+
+  //   setResetSpells(!resetSpells);
+  // };
 
   return (
     <>
-      <DeleteModal
+      {/* <DeleteModal
         show={showDeleteConfirm}
         onClose={() => setShowDeleteConfirm(false)}
         onHide={() => setShowDeleteConfirm(false)}
         onClick={() => handleRemoveSpell()}
         item={deletedSpellName}
-      />
+      /> */}
 
       <div className="list-sidebar-el">
         <div
@@ -199,7 +199,7 @@ export default function SpellListSidebar({
                     {spell.name}
                   </span>
 
-                  {!showSave && (
+                  {/* {showSave && (
                     <div
                       data-spellid={spell._id}
                       data-spellname={spell.name}
@@ -213,7 +213,7 @@ export default function SpellListSidebar({
                         cursor: "pointer",
                       }}
                     ></div>
-                  )}
+                  )} */}
                 </li>
               );
             })}
