@@ -11,6 +11,8 @@ export default function AccountForm({
   signup = false,
   setShowSignupForm,
   setShowLogin,
+  afterLogin,
+  verifyLogin,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,7 +68,9 @@ export default function AccountForm({
       const token = await loginResponse.data.login.token;
 
       await Auth.login(token);
-      return handleOnHide();
+      handleOnHide();
+      if (afterLogin) await afterLogin();
+      return;
     } catch (e) {
       console.error(e);
       if (signup)
@@ -113,6 +117,12 @@ export default function AccountForm({
           </h3>
         </div>
 
+        {verifyLogin && (
+          <div style={{ textAlign: "center" }}>
+            You must be logged in to cast this spell.
+          </div>
+        )}
+
         <form
           onSubmit={handleFormSubmit}
           className="signup-form justify-content-center form-div"
@@ -138,7 +148,10 @@ export default function AccountForm({
             })}
 
           <div className="row justify-content-center">
-            <button className="col-3 justify-content-center rounded" type="submit">
+            <button
+              className="col-3 justify-content-center rounded"
+              type="submit"
+            >
               Submit
             </button>
           </div>

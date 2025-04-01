@@ -14,6 +14,7 @@ import FilterSelect from "./FilterSelect";
 import Filters from "./Filters";
 import SpellListSidebar from "./SpellListSidebar";
 import InputModal from "../Modals/InputModal";
+import AccountModal from "../Modals/AccountModal";
 import Auth from "../../utils/auth";
 import "./Spells.css";
 
@@ -29,6 +30,7 @@ export default function Spells({ allLists, setListDisplay }) {
   const [listName, setListName] = useState("");
   const [resetSpells, setResetSpells] = useState(false);
   const [spellList, setSpellList] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
   const intervalRef = useRef(null);
   const focusRef = useRef(null);
   const navigate = useNavigate();
@@ -46,7 +48,10 @@ export default function Spells({ allLists, setListDisplay }) {
     data: spellListData,
     refetch,
   } = useQuery(GET_ALL_SPELL_LISTS, {
-    variables: { userId: user.data._id },
+    variables: { userId: user.data?._id },
+    onError: (e) => {
+      console.log(e);
+    },
   });
 
   useEffect(() => {
@@ -131,6 +136,7 @@ export default function Spells({ allLists, setListDisplay }) {
     const user = Auth.getUser();
 
     if (!user) {
+      return setShowLogin(true);
     }
 
     const listObject = {
@@ -192,6 +198,9 @@ export default function Spells({ allLists, setListDisplay }) {
 
   return (
     <div className={spellList ? "list-sidebar" : ""}>
+      {showLogin && (
+        <AccountModal verifyLogin={true} afterLogin={() => handleSaveList()} />
+      )}
       <div className={spellList ? "main-spell-div" : ""}>
         <InputModal
           show={showNameModal}
@@ -233,12 +242,14 @@ export default function Spells({ allLists, setListDisplay }) {
             </button>
           )}
 
-          <button
-            className="mx-2 rounded"
-            onClick={() => navigate("/spellLists")}
-          >
-            View My Spell Lists
-          </button>
+          {user && (
+            <button
+              className="mx-2 rounded"
+              onClick={() => navigate("/spellLists")}
+            >
+              View My Spell Lists
+            </button>
+          )}
 
           {createList && !listId && (
             <>
