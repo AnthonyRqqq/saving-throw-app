@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { UPDATE_SPELL_LIST } from "../../utils/mutations";
+import { sortByName } from "../../utils/lib";
 
 import DeleteModal from "../Modals/DeleteModal";
 
@@ -146,8 +147,11 @@ export default function SpellListSidebar({
           </div>
         </div>
 
-        <div class="custom-dropdown custom-dropdown-dark" onPointerLeave={() => setShowSpellLists(false)}>
-          <button 
+        <div
+          class="custom-dropdown custom-dropdown-dark"
+          onPointerLeave={() => setShowSpellLists(false)}
+        >
+          <button
             onClick={() => setShowSpellLists(!showSpellLists)}
             class="dropdown-btn rounded"
           >
@@ -173,8 +177,10 @@ export default function SpellListSidebar({
         <div className="pt-4">
           <ul>
             {(listSpells
-              ? allSpells.filter((spell) => listSpells.includes(spell._id))
-              : list.spell
+              ? sortByName(
+                  allSpells.filter((spell) => listSpells.includes(spell._id))
+                )
+              : sortByName(list.spell)
             ).map((spell, index) => {
               return (
                 <li

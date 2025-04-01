@@ -17,6 +17,7 @@ import InputModal from "../Modals/InputModal";
 import AccountModal from "../Modals/AccountModal";
 import Auth from "../../utils/auth";
 import "./Spells.css";
+import { sortByName } from "../../utils/lib";
 
 export default function Spells({ allLists, setListDisplay }) {
   const [allSpells, setAllSpells] = useState([]);
@@ -85,15 +86,7 @@ export default function Spells({ allLists, setListDisplay }) {
           spellList.spell.map((spell) => spell._id).includes(spell._id)
         );
       // Alphabetizes spells before setting them to display
-      const sortedSpells = [...spells].sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
+      const sortedSpells = sortByName([...spells]);
       setSpells(sortedSpells);
       setAllSpells(sortedSpells);
     }
@@ -175,7 +168,7 @@ export default function Spells({ allLists, setListDisplay }) {
       newList.push(spell._id);
     }
 
-    if (newList.length) setListSpells(newList);
+    if (newList.length) setListSpells(sortByName([...newList]));
     else setListSpells(null);
 
     handleReload();
