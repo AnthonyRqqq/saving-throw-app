@@ -228,6 +228,7 @@ export default function Spells({ allLists, setListDisplay }) {
 
                 setCreateList(!createList);
                 if (listSpells) setListSpells(null);
+                if (createList) setDisplayedSpell("");
               }}
               style={{ borderRadius: "8px" }}
             >

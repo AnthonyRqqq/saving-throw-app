@@ -39,6 +39,7 @@ export default function SpellListSidebar({
     const selectedList = allLists.find((list) => list._id === newList);
     navigate(`/spellLists/${selectedList._id}`);
     setShowSpellLists(false);
+    setDisplayedSpell("");
   };
 
   // const handleDeleteClick = (e) => {
