@@ -65,7 +65,7 @@ type Spell {
 
 type BlogPost {
 _id: ID
-date: Date!
+date: String!
 title: String!
 body: String!
 notes: [String]
