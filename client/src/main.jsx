@@ -10,6 +10,7 @@ import WeatherDisplay from "./components/WeatherDisplay.jsx";
 import Spells from "./components/Spells/Spells.jsx";
 import Conditions from "./components/Conditions/Conditions.jsx";
 import SpellLists from "./components/Spells/SpellList.jsx";
+import DevNotes from './components/Blog/Blog.jsx'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: "/conditions",
         element: <Conditions />,
       },
+      {
+        path: '/devnotes',
+        element: <DevNotes />
+      }
     ],
   },
 ]);

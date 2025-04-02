@@ -176,6 +176,17 @@ export default function Navigation() {
             </ul>
           </li>
         )}
+
+        <li>
+        <Link
+            to="/devnotes"
+            className={`${
+              currentPage === "/devnotes" ? "active-link" : ""
+            } link-item nav-link`}
+          >
+            Dev Notes
+          </Link>
+        </li>
       </ul>
     </div>
   );
