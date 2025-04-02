@@ -287,6 +287,18 @@ export const GET_SPELL_LIST_BY_ID = gql`
   }
 `;
 
+export const GET_BLOG_POSTS = gql`
+  query blogPosts {
+    blogPosts {
+      _id
+      date
+      title
+      body
+      notes
+    }
+  }
+`;
+
 export const GET_ALL_SPELL_LISTS = gql`
   query spellLists($userId: ID!) {
     spellLists(userId: $userId) {
