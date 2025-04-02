@@ -63,6 +63,14 @@ type Spell {
   table: [Table]
 }
 
+type BlogPost {
+_id: ID
+date: String!
+title: String!
+body: String!
+notes: [String]
+}
+
 type Trait {
   title: String!
   description: String!
@@ -159,6 +167,7 @@ type SpellList {
     filteredSpells(schools: [String], levels: [Int]): [Spell]
     spellLists(userId: ID!): [SpellList]
     spellListById(id: ID!): SpellList
+    blogPosts: [BlogPost]
   }
 
    input SpellSlotInput {

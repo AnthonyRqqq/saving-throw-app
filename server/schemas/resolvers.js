@@ -5,6 +5,7 @@ const {
   FantasyLocation,
   Spell,
   SpellList,
+  BlogPost,
 } = require("../models");
 const bcrypt = require("bcrypt");
 
@@ -114,6 +115,15 @@ const resolvers = {
       } catch (err) {
         console.error("Error filtering spells: ", err);
         throw new Error("Error filtering spells");
+      }
+    },
+
+    blogPosts: async () => {
+      try {
+        return await BlogPost.find();
+      } catch (e) {
+        console.error(e);
+        throw new Error("Error getting blog posts", e);
       }
     },
   },
