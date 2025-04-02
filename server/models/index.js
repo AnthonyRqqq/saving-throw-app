@@ -4,6 +4,7 @@ const FantasyLocation = require("./FantasyLocation");
 const Spell = require("./Spell");
 const StatBlock = require("./StatBlock");
 const SpellList = require("./SpellList");
+const BlogPost = require("./BlogPost");
 
 module.exports = {
   User,
@@ -12,4 +13,5 @@ module.exports = {
   Spell,
   StatBlock,
   SpellList,
+  BlogPost,
 };
