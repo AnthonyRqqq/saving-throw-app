@@ -176,7 +176,7 @@ export default function SpellListSidebar({
         </div>
 
         <div className="pt-4">
-          <ul>
+          <ul className="px-0">
             {(listSpells
               ? sortByName(
                   allSpells.filter((spell) => listSpells.includes(spell._id))
