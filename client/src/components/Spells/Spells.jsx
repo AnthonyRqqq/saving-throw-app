@@ -38,7 +38,8 @@ export default function Spells({ allLists, setListDisplay }) {
 
   const { listId, createNewList } = useParams();
 
-  const user = Auth.getUser();
+  let user;
+  if (Auth.loggedIn()) user = Auth.getUser();
 
   const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
@@ -128,7 +129,7 @@ export default function Spells({ allLists, setListDisplay }) {
   const handleSaveList = async (e) => {
     const user = Auth.getUser();
 
-    if (!user) {
+    if (!user || !Auth.loggedIn()) {
       return setShowLogin(true);
     }
 
@@ -192,7 +193,11 @@ export default function Spells({ allLists, setListDisplay }) {
   return (
     <div className={spellList ? "list-sidebar" : ""}>
       {showLogin && (
-        <AccountModal verifyLogin={true} afterLogin={() => handleSaveList()} onHide={() => setShowLogin(false)} />
+        <AccountModal
+          verifyLogin={true}
+          afterLogin={() => handleSaveList()}
+          onHide={() => setShowLogin(false)}
+        />
       )}
       <div className={spellList ? "main-spell-div" : ""}>
         <InputModal

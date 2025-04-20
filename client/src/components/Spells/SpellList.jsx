@@ -18,7 +18,8 @@ export default function SpellList() {
   const [spellListId, setSpellListId] = useState(null);
   const [spellListName, setSpellListName] = useState(null);
   const [listDisplay, setListDisplay] = useState(false);
-  const user = Auth.getUser();
+  let user;
+  if (Auth.loggedIn()) user = Auth.getUser();
 
   const { loading, data, refetch } = useQuery(GET_ALL_SPELL_LISTS, {
     variables: { userId: user.data._id },
