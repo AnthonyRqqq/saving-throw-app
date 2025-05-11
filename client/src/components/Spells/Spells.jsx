@@ -28,14 +28,11 @@ export default function Spells({ setListDisplay }) {
   const [resetSpells, setResetSpells] = useState(false);
   const [spellList, setSpellList] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
-  const intervalRef = useRef(null);
   const focusRef = useRef(null);
   const navigate = useNavigate();
 
   const { listId, createNewList } = useParams();
-
-  let user;
-  if (Auth.loggedIn()) user = Auth.getUser();
+  const user = Auth.getLoggedInUser();
 
   const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
@@ -109,11 +106,7 @@ export default function Spells({ setListDisplay }) {
   };
 
   const handleSaveList = async (e) => {
-    const user = Auth.getUser();
-
-    if (!user || !Auth.loggedIn()) {
-      return setShowLogin(true);
-    }
+    if (!Auth.getLoggedInUser) return setShowLogin(true);
 
     const listObject = {
       name: listName,
@@ -124,7 +117,6 @@ export default function Spells({ setListDisplay }) {
     const response = await createSpellList({ variables: listObject });
     refetch();
 
-    console.log(response);
     setCreateList(false);
     setListSpells(null);
     setListName(null);
