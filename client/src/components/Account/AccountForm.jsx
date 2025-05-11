@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { validateEmail } from "../../utils/validateEmail";
+import { validateEmail } from "../../utils/lib";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, LOGIN_USER } from "../../utils/mutations";
 import { Modal } from "react-bootstrap";
