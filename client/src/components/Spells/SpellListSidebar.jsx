@@ -5,21 +5,15 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_SPELL_LIST } from "../../utils/mutations";
 import { sortByName } from "../../utils/lib";
 
-import DeleteModal from "../Modals/DeleteModal";
-
 export default function SpellListSidebar({
   list,
   allLists,
-  setListDisplay,
   viewAllSpells,
   reloadList,
   handleSpellSelect,
-  resetSpells,
-  setResetSpells,
   setCreateList,
   setListSpells,
   listSpells,
-  refetch,
   setDisplayedSpell,
   allSpells,
 }) {
