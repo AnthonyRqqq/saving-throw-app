@@ -101,11 +101,6 @@ export default function Spells({ setListDisplay }) {
     }
   }, [allSpellsLoading]);
 
-  useEffect(() => {
-    console.log(listId);
-    console.log(spellList);
-  }, [listId, spellList]);
-
   const handleReload = () => setReload((prev) => prev + 1);
 
   // Handles displaying spell card when a spell is clicked
