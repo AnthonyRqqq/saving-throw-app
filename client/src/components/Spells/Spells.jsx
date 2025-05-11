@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   GET_ALL_SPELLS,
-  GET_SPELL_LIST_BY_ID,
   GET_ALL_SPELL_LISTS,
 } from "../../utils/queries";
 import { CREATE_SPELL_LIST } from "../../utils/mutations";
@@ -19,7 +18,7 @@ import Auth from "../../utils/auth";
 import "./Spells.css";
 import { sortByName } from "../../utils/lib";
 
-export default function Spells({ allLists, setListDisplay }) {
+export default function Spells({ setListDisplay }) {
   const [allSpells, setAllSpells] = useState([]);
   const [spells, setSpells] = useState([]);
   const [filterList, setFilterList] = useState([]);
