@@ -50,13 +50,13 @@ export default function WeatherCreateForm() {
   ];
 
   const navigateTo = useNavigate();
-  const user = Auth.getUser();
+  const user = Auth.getLoggedInUser();
 
   // // Define queries
   const { loading: allLocationLoading, data: allLocationData } =
     useQuery(GET_LOCATIONS);
   const { loading: userLoading, data: userData } = useQuery(GET_USER_BY_ID, {
-    variables: { id: user.data._id },
+    variables: { id: user?.data._id },
   });
 
   // Define mutation

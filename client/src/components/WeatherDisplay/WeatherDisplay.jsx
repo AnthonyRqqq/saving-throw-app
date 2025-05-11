@@ -21,11 +21,11 @@ export default function WeatherDisplayComponent() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showNoLocation, setShowNoLocation] = useState(false);
 
-  const user = Auth.getUser();
+  const user = Auth.getLoggedInUser();
 
   // Gets user data from Auth
   const { loading, data } = useQuery(GET_USER_BY_ID, {
-    variables: { id: user.data._id },
+    variables: { id: user?.data._id },
   });
 
   // Sets fantasy location data on state change for data and loading

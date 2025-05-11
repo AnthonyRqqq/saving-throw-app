@@ -18,11 +18,10 @@ export default function SpellList() {
   const [spellListId, setSpellListId] = useState(null);
   const [spellListName, setSpellListName] = useState(null);
   const [listDisplay, setListDisplay] = useState(false);
-  let user;
-  if (Auth.loggedIn()) user = Auth.getUser();
+  const user = Auth.getLoggedInUser();
 
   const { loading, data, refetch } = useQuery(GET_ALL_SPELL_LISTS, {
-    variables: { userId: user.data._id },
+    variables: { userId: user?.data._id },
   });
 
   const [deleteList] = useMutation(DELETE_SPELL_LIST);
