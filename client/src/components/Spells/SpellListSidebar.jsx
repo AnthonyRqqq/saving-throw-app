@@ -154,7 +154,7 @@ export default function SpellListSidebar({
           )}
         </div>
 
-        <div className="pt-4 text-center">
+        {/* <div className="pt-4 text-center">
           <span>Spell Slots</span>
           <ul className="px-0">
             {spellLevels.map((level, index) => {
@@ -205,7 +205,7 @@ export default function SpellListSidebar({
               );
             })}
           </ul>
-        </div>
+        </div> */}
 
         <div className="pt-4">
           <ul className="px-0">
