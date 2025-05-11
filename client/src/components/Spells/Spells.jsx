@@ -50,7 +50,7 @@ export default function Spells({ allLists, setListDisplay }) {
     data: spellListData,
     refetch,
   } = useQuery(GET_ALL_SPELL_LISTS, {
-    variables: { userId: user.data?._id },
+    variables: { userId: user?.data?._id },
     onError: (e) => {
       console.log(e);
     },
