@@ -1,4 +1,4 @@
-import WeatherDisplayComponent from "./WeatherDisplay/WeatherDisplay";
+import WeatherDisplayComponent from "../WeatherDisplay/WeatherDisplay";
 
 export default function WeatherDisplay() {
   return (

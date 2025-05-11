@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { validateEmail } from "../utils/validateEmail";
+import { validateEmail } from "../../utils/validateEmail";
 import { useMutation } from "@apollo/client";
-import { ADD_USER, LOGIN_USER } from "../utils/mutations";
+import { ADD_USER, LOGIN_USER } from "../../utils/mutations";
 import { Modal } from "react-bootstrap";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 
 export default function AccountForm({
   show,
