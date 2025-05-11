@@ -54,35 +54,8 @@ export default function SpellListSidebar({
     setDisplayedSpell("");
   };
 
-  // const handleDeleteClick = (e) => {
-  //   setDeletedSpell(e.target.dataset.spellid);
-  //   setDeletedSpellName(e.target.dataset.spellname);
-  //   setShowDeleteConfirm(true);
-  // };
-
-  // const handleRemoveSpell = async () => {
-
-  //   const newSpellList = list.spell
-  //     .filter((spell) => spell._id !== deletedSpell)
-  //     .map((spell) => spell._id);
-
-  //   await updateSpellList({
-  //     variables: { spells: newSpellList, listId: list._id },
-  //   });
-
-  //   setResetSpells(!resetSpells);
-  // };
-
   return (
     <>
-      {/* <DeleteModal
-        show={showDeleteConfirm}
-        onClose={() => setShowDeleteConfirm(false)}
-        onHide={() => setShowDeleteConfirm(false)}
-        onClick={() => handleRemoveSpell()}
-        item={deletedSpellName}
-      /> */}
-
       <div className="list-sidebar-el">
         <div
           style={{
@@ -214,13 +187,21 @@ export default function SpellListSidebar({
                     listStyle: "none",
                     textAlign: "left",
                     position: "relative",
-                    paddingBottom: '0.75rem'
+                    paddingBottom: "0.75rem",
                   }}
                   key={index}
                 >
                   <div className="text-center">{level}</div>{" "}
-                  <div style={{ display: 'flex', justifyContent: 'space-evenly'}}>
-                    <div style={{ display: 'inline-block', whiteSpace: 'nowrap'}}>Slots: {slotCount?.length || 0} <button style={{ width: '1.5rem'}}>+</button><button style={{ width: '1.5rem'}}>-</button></div>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-evenly" }}
+                  >
+                    <div
+                      style={{ display: "inline-block", whiteSpace: "nowrap" }}
+                    >
+                      Slots: {slotCount?.length || 0}{" "}
+                      <button style={{ width: "1.5rem" }}>+</button>
+                      <button style={{ width: "1.5rem" }}>-</button>
+                    </div>
                     <div>
                       Spells:
                       {spellsPerLevel.length}
