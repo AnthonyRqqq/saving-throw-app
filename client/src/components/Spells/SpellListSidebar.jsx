@@ -5,28 +5,19 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_SPELL_LIST } from "../../utils/mutations";
 import { sortByName } from "../../utils/lib";
 
-import DeleteModal from "../Modals/DeleteModal";
-
 export default function SpellListSidebar({
   list,
   allLists,
-  setListDisplay,
   viewAllSpells,
   reloadList,
   handleSpellSelect,
-  resetSpells,
-  setResetSpells,
   setCreateList,
   setListSpells,
   listSpells,
-  refetch,
   setDisplayedSpell,
   allSpells,
 }) {
   const [showSave, setShowSave] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [deletedSpell, setDeletedSpell] = useState(null);
-  const [deletedSpellName, setDeletedSpellName] = useState(null);
   const [showSpellLists, setShowSpellLists] = useState(false);
 
   const navigate = useNavigate();
@@ -42,34 +33,8 @@ export default function SpellListSidebar({
     setDisplayedSpell("");
   };
 
-  // const handleDeleteClick = (e) => {
-  //   setDeletedSpell(e.target.dataset.spellid);
-  //   setDeletedSpellName(e.target.dataset.spellname);
-  //   setShowDeleteConfirm(true);
-  // };
-
-  // const handleRemoveSpell = async () => {
-
-  //   const newSpellList = list.spell
-  //     .filter((spell) => spell._id !== deletedSpell)
-  //     .map((spell) => spell._id);
-
-  //   await updateSpellList({
-  //     variables: { spells: newSpellList, listId: list._id },
-  //   });
-
-  //   setResetSpells(!resetSpells);
-  // };
-
   return (
     <>
-      {/* <DeleteModal
-        show={showDeleteConfirm}
-        onClose={() => setShowDeleteConfirm(false)}
-        onHide={() => setShowDeleteConfirm(false)}
-        onClick={() => handleRemoveSpell()}
-        item={deletedSpellName}
-      /> */}
 
       <div className="list-sidebar-el">
         <div
@@ -199,22 +164,6 @@ export default function SpellListSidebar({
                   >
                     {spell.name}
                   </span>
-
-                  {/* {showSave && (
-                    <div
-                      data-spellid={spell._id}
-                      data-spellname={spell.name}
-                      className="bi bi-trash"
-                      onClick={handleDeleteClick}
-                      style={{
-                        position: "absolute",
-                        top: "10%",
-                        left: "-25%",
-                        color: "red",
-                        cursor: "pointer",
-                      }}
-                    ></div>
-                  )} */}
                 </li>
               );
             })}
