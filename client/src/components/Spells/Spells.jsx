@@ -1,9 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import {
-  GET_ALL_SPELLS,
-  GET_ALL_SPELL_LISTS,
-} from "../../utils/queries";
+import { GET_ALL_SPELLS, GET_ALL_SPELL_LISTS } from "../../utils/queries";
 import { CREATE_SPELL_LIST } from "../../utils/mutations";
 import { Spinner, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -92,15 +89,6 @@ export default function Spells({ setListDisplay }) {
     }
   }, [allSpellsLoading, allSpellsData, resetSpells, spellList]);
 
-  // Handles reloading the page if spell data is still being loaded
-  useEffect(() => {
-    if (allSpellsLoading) {
-      handleLoading();
-    } else {
-      clearInterval(intervalRef.current);
-    }
-  }, [allSpellsLoading]);
-
   const handleReload = () => setReload((prev) => prev + 1);
 
   // Handles displaying spell card when a spell is clicked
@@ -141,13 +129,6 @@ export default function Spells({ setListDisplay }) {
     setListSpells(null);
     setListName(null);
     navigate(`/spellLists/${response.data.createSpellList._id}`);
-  };
-
-  const handleLoading = async () => {
-    intervalRef.current = setInterval(() => {
-      const newReload = reload + 1;
-      setReload(newReload);
-    }, 1000);
   };
 
   const handleSpellListChange = async (spell) => {
