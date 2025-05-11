@@ -1,4 +1,4 @@
-import AccountForm from "./Account/AccountForm";
+import AccountForm from "./AccountForm";
 
 export default function SignupForm({ verifyLogin, show, onHide, setShowLogin, afterLogin }) {
   return (
