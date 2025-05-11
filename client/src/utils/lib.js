@@ -8,18 +8,13 @@ export function handleStatBonus(bonus) {
     if (modifier >= 0) modifier = `+${modifier}`;
   }
 
-  console.log(bonus);
   return modifier;
 }
 
 export function sortByName(array) {
   return [...array].sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
     return 0;
   });
 }
