@@ -64,9 +64,9 @@ export default function SpellCard({
       <table className="my-4 statBlock">
         <thead>
           <tr>
-            {tableData.map((item) => {
-              return <th key={item}>{item.header}</th>;
-            })}
+            {tableData.map((item) => (
+              <th key={item}>{item.header}</th>
+            ))}
           </tr>
         </thead>
 
@@ -74,9 +74,9 @@ export default function SpellCard({
           {tableData[0].details.map((detail, index) => {
             return (
               <tr key={index}>
-                {tableData.map((item, itemIndex) => {
-                  return <td key={itemIndex}>{item.details[index]}</td>;
-                })}
+                {tableData.map((item, itemIndex) => (
+                  <td key={itemIndex}>{item.details[index]}</td>
+                ))}
               </tr>
             );
           })}
@@ -89,7 +89,6 @@ export default function SpellCard({
     let descriptionArray = spellDescription
       .split("\n\n")
       .map((item) => item.trim());
-    console.log(descriptionArray);
 
     return descriptionArray.map((item) => {
       if (item === "") return <SpellTable />;
