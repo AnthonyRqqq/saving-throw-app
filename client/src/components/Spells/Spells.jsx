@@ -258,7 +258,6 @@ export default function Spells({ setListDisplay }) {
         {displayedSpell && (
           <div className={`${spellList && "mx-5"}`}>
             <SpellCard
-              spellList={spellList}
               spell={displayedSpell}
               handleSpellListChange={handleSpellListChange}
               listSpells={listSpells}

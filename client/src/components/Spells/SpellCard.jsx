@@ -1,7 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import AdditionalEffects from "./AdditionalEffects";
 import StatBlock from "../StatBlocks/StatBlock";
-import { handleStatBonus } from "../../utils/lib";
 import "./SpellCard.css";
 
 export default function SpellCard({
@@ -11,8 +10,6 @@ export default function SpellCard({
   handleSpellListChange,
   setDisplayedSpell,
 }) {
-  console.log(spell);
-
   // Sets the string to be displayed for the spell level
   let spellLevelText;
   switch (spell.level) {
