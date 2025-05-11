@@ -1,8 +1,8 @@
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
 const decode = jwtDecode.default || jwtDecode;
 
 class AuthService {
+  // Gets user data using stored token
   getUser() {
     try {
       const user = decode(this.getToken());
@@ -17,6 +17,13 @@ class AuthService {
     // Checks for saved token and whether it's still valid
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
+  }
+
+  // Checks if user is logged in and if so returns user data
+  getLoggedInUser() {
+    const loggedIn = this.loggedIn();
+    if (loggedIn) return this.getUser();
+    return false;
   }
 
   // Check for expired token
