@@ -97,6 +97,17 @@ export default function SpellCard({
     });
   };
 
+  const SpellCardField = ({ title, content, className }) => {
+    return (
+      <Row className={`spellCardField ${className}`}>
+        <Col>
+          <div className="fieldTitle">{title}</div>
+          {content}
+        </Col>
+      </Row>
+    );
+  };
+
   return (
     <Container className="spellCard">
       <Container>
@@ -131,34 +142,22 @@ export default function SpellCard({
           </Col>
         </Row>
 
-        <Row className="spellCardField">
-          <Col>
-            <div className="fieldTitle">Casting Time: </div> {spell.castingTime}
-          </Col>
-        </Row>
-
-        <Row className="spellCardField">
-          <Col>
-            <div className="fieldTitle">Range: </div>
-            {spell.range}
-          </Col>
-        </Row>
-
-        <Row className="spellCardField">
-          <Col>
-            <div className="fieldTitle">Components: </div>
-            {spell.components}{" "}
-            {spell.materialComponents.length > 0 &&
-              `(${spell.materialComponents})`}
-          </Col>
-        </Row>
-
-        <Row className="spellCardField">
-          <Col>
-            <div className="fieldTitle">Duration: </div>
-            {spell.duration} {spell.isConcentration && `(Concentration)`}
-          </Col>
-        </Row>
+        <SpellCardField title={"Casting Time: "} content={spell.castingTime} />
+        <SpellCardField title={"Range: "} content={spell.range} />
+        <SpellCardField
+          title={"Components: "}
+          content={`${spell.components} ${
+            spell.materialComponents.length
+              ? `(${spell.materialComponents})`
+              : ""
+          }`}
+        />
+        <SpellCardField
+          title={"Duration: "}
+          content={`${spell.duration} ${
+            spell.isConcentration ? `(Concentration)` : ""
+          }`}
+        />
 
         <Row className="spellDescription">
           <Col>
@@ -171,27 +170,15 @@ export default function SpellCard({
         )}
 
         {spell.atHigherLevel && (
-          <Row className="spellCardField atHigherLevel">
-            <Col>
-              <div className="fieldTitle">At Higher Levels: </div>
-              {spell.atHigherLevel}
-            </Col>
-          </Row>
+          <SpellCardField
+            title={"At Higher Levels: "}
+            content={spell.atHigherLevel}
+            className={"atHigherLevel"}
+          />
         )}
 
-        <Row className="spellCardField">
-          <Col>
-            <div className="fieldTitle">Spell Lists: </div>
-            {spellListString}
-          </Col>
-        </Row>
-
-        <Row className="spellCardField">
-          <Col>
-            <div className="fieldTitle">Source: </div>
-            {spell.sourceBook}
-          </Col>
-        </Row>
+        <SpellCardField title={"Spell Lists: "} content={spellListString} />
+        <SpellCardField title={"Source: "} content={spell.sourceBook} />
       </Container>
 
       {statBlock && <StatBlock statBlock={statBlock} />}
