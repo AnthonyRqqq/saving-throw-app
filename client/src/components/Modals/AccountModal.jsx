@@ -1,5 +1,5 @@
-import LoginForm from "../LoginForm";
-import SignupForm from "../SignupForm";
+import LoginForm from "../Account/LoginForm";
+import SignupForm from "../Account/SignupForm";
 import { useState, useEffect } from "react";
 
 export default function AccountModal({

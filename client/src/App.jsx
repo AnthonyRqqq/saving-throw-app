@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import Footer from "./components/Footer";
 
 import "./App.css";
 
@@ -31,10 +30,6 @@ export default function App() {
           <main className="main">
             <Outlet />
           </main>
-
-          <footer className="footer">
-            <Footer />
-          </footer>
         </>
       )}
     </ApolloProvider>

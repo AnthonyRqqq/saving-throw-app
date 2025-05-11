@@ -8,18 +8,20 @@ export function handleStatBonus(bonus) {
     if (modifier >= 0) modifier = `+${modifier}`;
   }
 
-  console.log(bonus);
   return modifier;
 }
 
 export function sortByName(array) {
   return [...array].sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
     return 0;
   });
+}
+
+// Regex for checking valid email addresses
+export function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }

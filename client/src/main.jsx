@@ -5,12 +5,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import App from "./App.jsx";
-import WeatherSearch from "./components/WeatherSearch";
-import WeatherDisplay from "./components/WeatherDisplay.jsx";
+// import WeatherSearch from "../com/WeatherSearch";
+import WeatherSearch from "./components/Weather/WeatherSearch.jsx";
+import WeatherDisplay from "./components/Weather/WeatherDisplay.jsx";
 import Spells from "./components/Spells/Spells.jsx";
 import Conditions from "./components/Conditions/Conditions.jsx";
 import SpellLists from "./components/Spells/SpellList.jsx";
-import DevNotes from './components/Blog/Blog.jsx'
+import DevNotes from "./components/Blog/Blog.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
         element: <Spells />,
       },
       {
-        path: '/spells/:createNewList',
-        element: <Spells />
+        path: "/spells/:createNewList",
+        element: <Spells />,
       },
       {
         path: "/spellLists",
@@ -46,9 +47,9 @@ const router = createBrowserRouter([
         element: <Conditions />,
       },
       {
-        path: '/devnotes',
-        element: <DevNotes />
-      }
+        path: "/devnotes",
+        element: <DevNotes />,
+      },
     ],
   },
 ]);

@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   GET_ALL_SPELLS,
-  GET_SPELL_LIST_BY_ID,
   GET_ALL_SPELL_LISTS,
 } from "../../utils/queries";
 import { CREATE_SPELL_LIST } from "../../utils/mutations";
@@ -19,7 +18,7 @@ import Auth from "../../utils/auth";
 import "./Spells.css";
 import { sortByName } from "../../utils/lib";
 
-export default function Spells({ allLists, setListDisplay }) {
+export default function Spells({ setListDisplay }) {
   const [allSpells, setAllSpells] = useState([]);
   const [spells, setSpells] = useState([]);
   const [filterList, setFilterList] = useState([]);
@@ -38,7 +37,8 @@ export default function Spells({ allLists, setListDisplay }) {
 
   const { listId, createNewList } = useParams();
 
-  const user = Auth.getUser();
+  let user;
+  if (Auth.loggedIn()) user = Auth.getUser();
 
   const [createSpellList] = useMutation(CREATE_SPELL_LIST);
   const { loading: allSpellsLoading, data: allSpellsData } =
@@ -49,7 +49,7 @@ export default function Spells({ allLists, setListDisplay }) {
     data: spellListData,
     refetch,
   } = useQuery(GET_ALL_SPELL_LISTS, {
-    variables: { userId: user.data?._id },
+    variables: { userId: user?.data?._id },
     onError: (e) => {
       console.log(e);
     },
@@ -128,7 +128,7 @@ export default function Spells({ allLists, setListDisplay }) {
   const handleSaveList = async (e) => {
     const user = Auth.getUser();
 
-    if (!user) {
+    if (!user || !Auth.loggedIn()) {
       return setShowLogin(true);
     }
 
@@ -192,7 +192,11 @@ export default function Spells({ allLists, setListDisplay }) {
   return (
     <div className={spellList ? "list-sidebar" : ""}>
       {showLogin && (
-        <AccountModal verifyLogin={true} afterLogin={() => handleSaveList()} onHide={() => setShowLogin(false)} />
+        <AccountModal
+          verifyLogin={true}
+          afterLogin={() => handleSaveList()}
+          onHide={() => setShowLogin(false)}
+        />
       )}
       <div className={spellList ? "main-spell-div" : ""}>
         <InputModal

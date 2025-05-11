@@ -17,9 +17,8 @@ export default function SpellFilters({
     // If the filterList already has this filter, we are simply unchecking it
     if (newFilters.includes(filter.name)) {
       const index = newFilters.indexOf(filter.name);
-      if (index !== -1) {
-        newFilters.splice(index, 1);
-      }
+      if (index !== -1) newFilters.splice(index, 1);
+
       setFilterList(newFilters);
       return handleReload();
     }
@@ -27,9 +26,7 @@ export default function SpellFilters({
     // If the filterList has a mutually exclusive filter, uncheck it when we select our new filter
     if (newFilters.includes(filter.exclude)) {
       const index = newFilters.indexOf(filter.exclude);
-      if (index !== -1) {
-        newFilters.splice(index, 1);
-      }
+      if (index !== -1) newFilters.splice(index, 1);
     }
 
     newFilters.push(filter.name);

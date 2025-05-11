@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import LoginForm from "./Account/LoginForm";
+import SignupForm from "./Account/SignupForm";
 import Auth from "../utils/auth";
 import { useState } from "react";
 

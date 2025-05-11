@@ -5,30 +5,33 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_SPELL_LIST } from "../../utils/mutations";
 import { sortByName } from "../../utils/lib";
 
-import DeleteModal from "../Modals/DeleteModal";
-
 export default function SpellListSidebar({
   list,
   allLists,
-  setListDisplay,
   viewAllSpells,
   reloadList,
   handleSpellSelect,
-  resetSpells,
-  setResetSpells,
   setCreateList,
   setListSpells,
   listSpells,
-  refetch,
   setDisplayedSpell,
   allSpells,
 }) {
   const [showSave, setShowSave] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [deletedSpell, setDeletedSpell] = useState(null);
-  const [deletedSpellName, setDeletedSpellName] = useState(null);
   const [showSpellLists, setShowSpellLists] = useState(false);
 
+  const spellLevels = [
+    "Cantrips",
+    "1st",
+    "2nd",
+    "3rd",
+    "4th",
+    "5th",
+    "6th",
+    "7th",
+    "8th",
+    "9th",
+  ];
   const navigate = useNavigate();
 
   const [updateSpellList] = useMutation(UPDATE_SPELL_LIST);
@@ -42,34 +45,8 @@ export default function SpellListSidebar({
     setDisplayedSpell("");
   };
 
-  // const handleDeleteClick = (e) => {
-  //   setDeletedSpell(e.target.dataset.spellid);
-  //   setDeletedSpellName(e.target.dataset.spellname);
-  //   setShowDeleteConfirm(true);
-  // };
-
-  // const handleRemoveSpell = async () => {
-
-  //   const newSpellList = list.spell
-  //     .filter((spell) => spell._id !== deletedSpell)
-  //     .map((spell) => spell._id);
-
-  //   await updateSpellList({
-  //     variables: { spells: newSpellList, listId: list._id },
-  //   });
-
-  //   setResetSpells(!resetSpells);
-  // };
-
   return (
     <>
-      {/* <DeleteModal
-        show={showDeleteConfirm}
-        onClose={() => setShowDeleteConfirm(false)}
-        onHide={() => setShowDeleteConfirm(false)}
-        onClick={() => handleRemoveSpell()}
-        item={deletedSpellName}
-      /> */}
 
       <div className="list-sidebar-el">
         <div
@@ -175,8 +152,61 @@ export default function SpellListSidebar({
           )}
         </div>
 
+        {/* <div className="pt-4 text-center">
+          <span>Spell Slots</span>
+          <ul className="px-0">
+            {spellLevels.map((level, index) => {
+              const slotCount = list.spellSlots.find((slot) => {
+                if (level === "Cantrip") return slot.level === 0;
+                else return slot.level === level.substring(0, 1);
+              });
+
+              const spellsList = listSpells || allSpells;
+              const spellsPerLevel = allSpells.filter((spell) => {
+                if (!spellsList.includes(spell._id)) return false;
+
+                if (level === "Cantrips") return spell.level === 0;
+                else return spell.level === parseInt(level.substring(0, 1));
+              });
+
+              if (!slotCount?.length && !spellsPerLevel.length && !showSave) {
+                return null;
+              }
+
+              return (
+                <li
+                  style={{
+                    listStyle: "none",
+                    textAlign: "left",
+                    position: "relative",
+                    paddingBottom: "0.75rem",
+                  }}
+                  key={index}
+                >
+                  <div className="text-center">{level}</div>{" "}
+                  <div
+                    style={{ display: "flex", justifyContent: "space-evenly" }}
+                  >
+                    <div
+                      style={{ display: "inline-block", whiteSpace: "nowrap" }}
+                    >
+                      Slots: {slotCount?.length || 0}{" "}
+                      <button style={{ width: "1.5rem" }}>+</button>
+                      <button style={{ width: "1.5rem" }}>-</button>
+                    </div>
+                    <div>
+                      Spells:
+                      {spellsPerLevel.length}
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div> */}
+
         <div className="pt-4">
-          <ul>
+          <ul className="px-0">
             {(listSpells
               ? sortByName(
                   allSpells.filter((spell) => listSpells.includes(spell._id))
@@ -199,22 +229,6 @@ export default function SpellListSidebar({
                   >
                     {spell.name}
                   </span>
-
-                  {/* {showSave && (
-                    <div
-                      data-spellid={spell._id}
-                      data-spellname={spell.name}
-                      className="bi bi-trash"
-                      onClick={handleDeleteClick}
-                      style={{
-                        position: "absolute",
-                        top: "10%",
-                        left: "-25%",
-                        color: "red",
-                        cursor: "pointer",
-                      }}
-                    ></div>
-                  )} */}
                 </li>
               );
             })}
