@@ -15,7 +15,7 @@ import Auth from "../../utils/auth";
 import "./Spells.css";
 import { sortByName } from "../../utils/lib";
 
-export default function Spells({ setListDisplay }) {
+export default function Spells() {
   const [allSpells, setAllSpells] = useState([]);
   const [spells, setSpells] = useState([]);
   const [filterList, setFilterList] = useState([]);
