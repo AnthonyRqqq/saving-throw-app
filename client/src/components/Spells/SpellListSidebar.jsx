@@ -166,7 +166,8 @@ export default function SpellListSidebar({
 
               const spellsList = listSpells || allSpells;
               const spellsPerLevel = spellsList.filter((spell) => {
-                if (!spellsList.some((listItem) => listItem._id === spell._id)) return false;
+                if (!spellsList.some((listItem) => listItem._id === spell._id))
+                  return false;
 
                 if (level === "Cantrips") return spell.level === 0;
                 else return spell.level === parseInt(level.substring(0, 1));
@@ -190,48 +191,54 @@ export default function SpellListSidebar({
                   <div
                     style={{ display: "flex", justifyContent: "space-evenly" }}
                   >
-                    <div
-                      style={{ display: "inline-block", whiteSpace: "nowrap" }}
-                    >
-                      Slots: {slotCount?.length || 0}{" "}
-                      <button style={{ width: "1.5rem" }}>+</button>
-                      <button style={{ width: "1.5rem" }}>-</button>
-                    </div>
+                    {index > 0 && (
+                      <div
+                        style={{
+                          display: "inline-block",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        Slots: {slotCount?.length || 0}{" "}
+                        {showSave && (
+                          <>
+                            <button style={{ width: "1.5rem" }}>+</button>
+                            <button style={{ width: "1.5rem" }}>-</button>
+                          </>
+                        )}
+                      </div>
+                    )}
                     <div>
                       Spells:
                       {spellsPerLevel.length}
                     </div>
                   </div>
+                  <div className="pt-4">
+                    <ul className="px-0">
+                      {spellsPerLevel.map((spell, index) => {
+                        return (
+                          <li
+                            key={index}
+                            style={{
+                              listStyle: "none",
+                              textAlign: "center",
+                              position: "relative",
+                            }}
+                          >
+                            <span
+                              data-spell-id={spell._id}
+                              onClick={(e) => handleSpellSelect(e)}
+                              className="list-spell"
+                            >
+                              {spell.name}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                 </li>
               );
             })}
-          </ul>
-        </div>
-
-        <div className="pt-4">
-          <ul className="px-0">
-            {(listSpells ? sortByName(listSpells) : sortByName(list.spell)).map(
-              (spell, index) => {
-                return (
-                  <li
-                    key={index}
-                    style={{
-                      listStyle: "none",
-                      textAlign: "center",
-                      position: "relative",
-                    }}
-                  >
-                    <span
-                      data-spell-id={spell._id}
-                      onClick={(e) => handleSpellSelect(e)}
-                      className="list-spell"
-                    >
-                      {spell.name}
-                    </span>
-                  </li>
-                );
-              }
-            )}
           </ul>
         </div>
       </div>
