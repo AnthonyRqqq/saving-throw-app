@@ -166,7 +166,7 @@ export default function SpellListSidebar({
 
               const spellsList = listSpells || allSpells;
               const spellsPerLevel = spellsList.filter((spell) => {
-                if (!spellsList.includes(spell._id)) return false;
+                if (!spellsList.some((listItem) => listItem._id === spell._id)) return false;
 
                 if (level === "Cantrips") return spell.level === 0;
                 else return spell.level === parseInt(level.substring(0, 1));
