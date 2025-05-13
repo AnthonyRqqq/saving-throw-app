@@ -110,7 +110,7 @@ export default function Spells() {
 
     const listObject = {
       name: listName,
-      spellIds: listSpells,
+      spellIds: listSpells.map((spell) => spell._id),
       userId: user.data._id,
     };
 
@@ -124,16 +124,17 @@ export default function Spells() {
   };
 
   const handleSpellListChange = async (spell) => {
-    let newList = listSpells || [];
-    if (newList.includes(spell._id)) {
-      const spellIndex = newList.indexOf(spell._id);
+    let newList = [...(listSpells || [])];
+    if (newList.some((listItem) => listItem._id === spell._id)) {
+      const listSpell = newList.find((listItem) => listItem._id === spell._id);
+      const spellIndex = newList.indexOf(listSpell);
 
       newList = [
         ...newList.slice(0, spellIndex),
         ...newList.slice(spellIndex + 1),
       ];
     } else {
-      newList.push(spell._id);
+      newList.push(spell);
     }
 
     if (newList.length) setListSpells(sortByName([...newList]));
@@ -289,7 +290,12 @@ export default function Spells() {
                       type="checkbox"
                       className="me-1 dropdown-checkbox"
                       onChange={() => handleSpellListChange(spell)}
-                      checked={listSpells?.includes(spell._id)}
+                      checked={
+                        listSpells &&
+                        listSpells.some(
+                          (listItem) => listItem._id === spell._id
+                        )
+                      }
                     />
                   )}
 

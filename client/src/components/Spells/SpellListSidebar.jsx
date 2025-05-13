@@ -47,7 +47,6 @@ export default function SpellListSidebar({
 
   return (
     <>
-
       <div className="list-sidebar-el">
         <div
           style={{
@@ -63,17 +62,17 @@ export default function SpellListSidebar({
                 className="rounded"
                 onClick={async () => {
                   let spellDiff = list.spell.filter(
-                    (spell) => !listSpells.includes(spell._id)
+                    (spell) => !listSpells.some((listItem) => listItem._id === spell._id)
                   );
                   if (!spellDiff.length)
                     spellDiff = listSpells.filter(
                       (spell) =>
-                        !list.spell.map((spell) => spell._id).includes(spell)
+                        !list.spell.map((spell) => spell._id).includes(spell._id)
                     );
 
                   if (spellDiff.length) {
                     await updateSpellList({
-                      variables: { spells: listSpells, listId: list._id },
+                      variables: { spells: listSpells.map((spell) => spell._id), listId: list._id },
                     });
                   }
 
@@ -107,9 +106,7 @@ export default function SpellListSidebar({
               <button
                 className="rounded"
                 onClick={() => {
-                  const newListSpells = list.spell.map((spell) => spell._id);
-
-                  setListSpells(newListSpells);
+                  setListSpells(list.spell);
                   viewAllSpells();
                   setShowSave(true);
                   setCreateList(true);
@@ -152,7 +149,7 @@ export default function SpellListSidebar({
           )}
         </div>
 
-        {/* <div className="pt-4 text-center">
+        <div className="pt-4 text-center">
           <span>Spell Slots</span>
           <ul className="px-0">
             {spellLevels.map((level, index) => {
@@ -162,14 +159,14 @@ export default function SpellListSidebar({
               });
 
               const spellsList = listSpells || allSpells;
-              const spellsPerLevel = allSpells.filter((spell) => {
+              const spellsPerLevel = spellsList.filter((spell) => {
                 if (!spellsList.includes(spell._id)) return false;
 
                 if (level === "Cantrips") return spell.level === 0;
                 else return spell.level === parseInt(level.substring(0, 1));
               });
 
-              if (!slotCount?.length && !spellsPerLevel.length && !showSave) {
+              if (!slotCount?.length && !spellsPerLevel.length) {
                 return null;
               }
 
@@ -203,35 +200,32 @@ export default function SpellListSidebar({
               );
             })}
           </ul>
-        </div> */}
+        </div>
 
         <div className="pt-4">
           <ul className="px-0">
-            {(listSpells
-              ? sortByName(
-                  allSpells.filter((spell) => listSpells.includes(spell._id))
-                )
-              : sortByName(list.spell)
-            ).map((spell, index) => {
-              return (
-                <li
-                  key={index}
-                  style={{
-                    listStyle: "none",
-                    textAlign: "center",
-                    position: "relative",
-                  }}
-                >
-                  <span
-                    data-spell-id={spell._id}
-                    onClick={(e) => handleSpellSelect(e)}
-                    className="list-spell"
+            {(listSpells ? sortByName(listSpells) : sortByName(list.spell)).map(
+              (spell, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={{
+                      listStyle: "none",
+                      textAlign: "center",
+                      position: "relative",
+                    }}
                   >
-                    {spell.name}
-                  </span>
-                </li>
-              );
-            })}
+                    <span
+                      data-spell-id={spell._id}
+                      onClick={(e) => handleSpellSelect(e)}
+                      className="list-spell"
+                    >
+                      {spell.name}
+                    </span>
+                  </li>
+                );
+              }
+            )}
           </ul>
         </div>
       </div>
