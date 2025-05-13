@@ -62,17 +62,23 @@ export default function SpellListSidebar({
                 className="rounded"
                 onClick={async () => {
                   let spellDiff = list.spell.filter(
-                    (spell) => !listSpells.some((listItem) => listItem._id === spell._id)
+                    (spell) =>
+                      !listSpells.some((listItem) => listItem._id === spell._id)
                   );
                   if (!spellDiff.length)
                     spellDiff = listSpells.filter(
                       (spell) =>
-                        !list.spell.map((spell) => spell._id).includes(spell._id)
+                        !list.spell
+                          .map((spell) => spell._id)
+                          .includes(spell._id)
                     );
 
                   if (spellDiff.length) {
                     await updateSpellList({
-                      variables: { spells: listSpells.map((spell) => spell._id), listId: list._id },
+                      variables: {
+                        spells: listSpells.map((spell) => spell._id),
+                        listId: list._id,
+                      },
                     });
                   }
 
