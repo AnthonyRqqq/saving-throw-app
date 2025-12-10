@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { UPDATE_SPELL_LIST } from "../../utils/mutations";
 import { sortByName } from "../../utils/lib";
+import InputModal from "../Modals/InputModal";
 
 export default function SpellListSidebar({
   list,
@@ -19,6 +20,8 @@ export default function SpellListSidebar({
 }) {
   const [showSave, setShowSave] = useState(false);
   const [showSpellLists, setShowSpellLists] = useState(false);
+  const [showNameModal, setShowNameModal] = useState(false);
+  const [newName, setNewName] = useState("");
 
   const spellLevels = [
     "Cantrips",
@@ -47,6 +50,22 @@ export default function SpellListSidebar({
 
   return (
     <>
+      <InputModal
+        show={showNameModal}
+        confirmText="Update List Name"
+        inputElements={[{ text: "List Name" }]}
+        inputTitle="Enter a new name for this spell list"
+        onClose={() => {
+          setShowNameModal(false);
+          setNewName("");
+        }}
+        onClick={async () =>
+          await updateSpellList({
+            variables: { listId: list._id, name: newName },
+          })
+        }
+        onChange={(e) => setNewName(e.target.value)}
+      />
 
       <div className="list-sidebar-el">
         <div
@@ -135,6 +154,13 @@ export default function SpellListSidebar({
           >
             List: {list.name}
           </button>
+          <button
+            className="bi bi-pencil rounded"
+            onClick={() => {
+              setShowNameModal(true);
+              setNewName(list.name);
+            }}
+          />
 
           {showSpellLists && (
             <ul class="dropdown-menu dropdown-menu-dark">
